@@ -1,0 +1,9 @@
+__pycache__/
+*.pyc
+.venv/
+logs/
+reports/
+task_results_*.yaml
+benchmark_results_*.yaml
+Data_Extraction.csv
+.pytest_cache/

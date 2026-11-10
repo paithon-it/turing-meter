@@ -1,0 +1,17 @@
+id: invoice-total-001
+family: invoices
+kind: production
+language: it
+prompt: |
+  Nella cartella inputs/ c'è una fattura. Scrivi nel file output/result.json
+  un oggetto JSON con tre campi: "numero" (stringa), "data" (AAAA-MM-GG) e
+  "totale_eur" (numero con due decimali, IVA inclusa).
+environment:
+  image: python:3.12-slim
+  files: [inputs/]
+check:
+  type: script
+  command: python check.py output/result.json
+  protected: [check.py, expected.json]
+chance: null
+human: []                  # to be measured: docs/SPEC.md, section 4.1

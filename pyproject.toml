@@ -1,0 +1,19 @@
+[project]
+name = "turing-meter"
+version = "0.0.1"
+description = "How much a machine augments a human mind, against the ideal of the pair."
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.11"
+dependencies = ["pyyaml>=6", "numpy>=1.26", "scipy>=1.11"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8"]
+run = ["inspect-ai>=0.3", "pynvml>=11"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project.scripts]
+turing-meter = "turing_meter.cli:main"

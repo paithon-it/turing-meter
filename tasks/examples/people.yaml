@@ -1,0 +1,13 @@
+# Who was measured and how they worked with the machine (docs/SPEC.md, 4.2).
+people:
+  p01:
+    role: accounts clerk
+    experience: 5+ years
+    year: 2026
+protocols:
+  series:
+    machine: anthropic/claude-sonnet-5-5
+    harness: reference
+    final_decision: human
+    shows_confidence: false
+    order: counterbalanced

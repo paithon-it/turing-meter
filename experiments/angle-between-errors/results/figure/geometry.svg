@@ -1,0 +1,39 @@
+<svg viewBox="0 0 860 350" width="100%" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Three diagrams with two axes starting from the same point, the person's horizontal and the machine's tilted. A dark arrow, the ideal pair, projects onto the two axes and its projections are the two sensitivities, 1.08 and 2.34. At 90 degrees the arrow is 2.58 long; at 75 degrees 2.39; at 62 degrees it coincides with the machine's axis, 2.34 long, and the person adds nothing more.">
+<rect width="860" height="350" fill="#F8F5EE"/>
+<text font-family="sans-serif" x="36.0" y="32.0" font-size="15" font-weight="700" fill="#1A1A1A" text-anchor="start">90 degrees, by hypothesis</text>
+<text font-family="sans-serif" x="36.0" y="52.0" font-size="13" fill="#1A1A1A" text-anchor="start">the Pythagorean law</text>
+<line x1="44.0" y1="300.0" x2="269.5" y2="300.0" stroke="#2D5A5C" stroke-width="1" stroke-linecap="round" stroke-dasharray="2 4"/>
+<line x1="44.0" y1="300.0" x2="44.0" y2="74.5" stroke="#B5532C" stroke-width="1" stroke-linecap="round" stroke-dasharray="2 4"/>
+<line x1="132.6" y1="108.1" x2="132.6" y2="300.0" stroke="#1A1A1A" stroke-width="1.2" stroke-linecap="round" stroke-dasharray="5 4"/>
+<line x1="132.6" y1="108.1" x2="44.0" y2="108.1" stroke="#1A1A1A" stroke-width="1.2" stroke-linecap="round" stroke-dasharray="5 4"/>
+<line x1="44.0" y1="300.0" x2="127.5" y2="119.0" stroke="#1A1A1A" stroke-width="4" stroke-linecap="round"/><polygon points="132.6,108.1 121.6,116.3 133.4,121.7" fill="#1A1A1A"/>
+<line x1="44.0" y1="300.0" x2="120.6" y2="300.0" stroke="#2D5A5C" stroke-width="6" stroke-linecap="round"/><polygon points="132.6,300.0 120.6,293.5 120.6,306.5" fill="#2D5A5C"/>
+<line x1="44.0" y1="300.0" x2="44.0" y2="120.1" stroke="#B5532C" stroke-width="6" stroke-linecap="round"/><polygon points="44.0,108.1 37.5,120.1 50.5,120.1" fill="#B5532C"/>
+<text font-family="sans-serif" x="132.6" y="322.0" font-size="13" font-weight="700" fill="#2D5A5C" text-anchor="end">person 1.08</text>
+<text font-family="sans-serif" x="52.0" y="100.1" font-size="13" font-weight="700" fill="#B5532C" text-anchor="start">machine 2.34</text>
+<text font-family="sans-serif" x="50.0" y="342.0" font-size="13" font-weight="700" fill="#1A1A1A" text-anchor="start">ideal pair 2.58</text>
+<text font-family="sans-serif" x="312.0" y="32.0" font-size="15" font-weight="700" fill="#1A1A1A" text-anchor="start">75 degrees, measured</text>
+<text font-family="sans-serif" x="312.0" y="52.0" font-size="13" fill="#1A1A1A" text-anchor="start">GPT-4o on ChatBench</text>
+<line x1="320.0" y1="300.0" x2="545.5" y2="300.0" stroke="#2D5A5C" stroke-width="1" stroke-linecap="round" stroke-dasharray="2 4"/>
+<line x1="320.0" y1="300.0" x2="378.4" y2="82.2" stroke="#B5532C" stroke-width="1" stroke-linecap="round" stroke-dasharray="2 4"/>
+<line x1="408.6" y1="125.1" x2="408.6" y2="300.0" stroke="#1A1A1A" stroke-width="1.2" stroke-linecap="round" stroke-dasharray="5 4"/>
+<line x1="408.6" y1="125.1" x2="369.7" y2="114.7" stroke="#1A1A1A" stroke-width="1.2" stroke-linecap="round" stroke-dasharray="5 4"/>
+<line x1="320.0" y1="300.0" x2="403.1" y2="135.8" stroke="#1A1A1A" stroke-width="4" stroke-linecap="round"/><polygon points="408.6,125.1 397.3,132.9 408.9,138.7" fill="#1A1A1A"/>
+<line x1="320.0" y1="300.0" x2="396.6" y2="300.0" stroke="#2D5A5C" stroke-width="6" stroke-linecap="round"/><polygon points="408.6,300.0 396.6,293.5 396.6,306.5" fill="#2D5A5C"/>
+<line x1="320.0" y1="300.0" x2="366.6" y2="126.2" stroke="#B5532C" stroke-width="6" stroke-linecap="round"/><polygon points="369.7,114.7 360.3,124.6 372.8,127.9" fill="#B5532C"/>
+<text font-family="sans-serif" x="408.6" y="322.0" font-size="13" font-weight="700" fill="#2D5A5C" text-anchor="end">person 1.08</text>
+<text font-family="sans-serif" x="377.7" y="106.7" font-size="13" font-weight="700" fill="#B5532C" text-anchor="start">machine 2.34</text>
+<text font-family="sans-serif" x="326.0" y="342.0" font-size="13" font-weight="700" fill="#1A1A1A" text-anchor="start">ideal pair 2.39</text>
+<text font-family="sans-serif" x="588.0" y="32.0" font-size="15" font-weight="700" fill="#1A1A1A" text-anchor="start">The useful angle, 62 degrees</text>
+<text font-family="sans-serif" x="588.0" y="52.0" font-size="13" fill="#1A1A1A" text-anchor="start">the person adds nothing</text>
+<line x1="596.0" y1="300.0" x2="821.5" y2="300.0" stroke="#2D5A5C" stroke-width="1" stroke-linecap="round" stroke-dasharray="2 4"/>
+<line x1="596.0" y1="300.0" x2="700.1" y2="100.0" stroke="#B5532C" stroke-width="1" stroke-linecap="round" stroke-dasharray="2 4"/>
+<line x1="684.6" y1="129.8" x2="684.6" y2="300.0" stroke="#1A1A1A" stroke-width="1.2" stroke-linecap="round" stroke-dasharray="5 4"/>
+<line x1="684.6" y1="129.8" x2="684.6" y2="129.8" stroke="#1A1A1A" stroke-width="1.2" stroke-linecap="round" stroke-dasharray="5 4"/>
+<line x1="596.0" y1="300.0" x2="679.0" y2="140.4" stroke="#1A1A1A" stroke-width="4" stroke-linecap="round"/><polygon points="684.6,129.8 673.3,137.4 684.8,143.4" fill="#1A1A1A"/>
+<line x1="596.0" y1="300.0" x2="672.6" y2="300.0" stroke="#2D5A5C" stroke-width="6" stroke-linecap="round"/><polygon points="684.6,300.0 672.6,293.5 672.6,306.5" fill="#2D5A5C"/>
+<line x1="596.0" y1="300.0" x2="679.0" y2="140.4" stroke="#B5532C" stroke-width="6" stroke-linecap="round"/><polygon points="684.6,129.8 673.3,137.4 684.8,143.4" fill="#B5532C"/>
+<text font-family="sans-serif" x="684.6" y="322.0" font-size="13" font-weight="700" fill="#2D5A5C" text-anchor="end">person 1.08</text>
+<text font-family="sans-serif" x="692.6" y="121.8" font-size="13" font-weight="700" fill="#B5532C" text-anchor="start">machine 2.34</text>
+<text font-family="sans-serif" x="602.0" y="342.0" font-size="13" font-weight="700" fill="#1A1A1A" text-anchor="start">ideal pair 2.34</text>
+</svg>

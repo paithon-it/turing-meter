@@ -1,0 +1,5 @@
+data/
+__pycache__/
+.venv/
+gpu-results/
+silicon-outcomes/

@@ -1,0 +1,138 @@
+<svg viewBox="0 0 860 567" width="100%" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Dot plot: 88 comparisons between people and machines, split by data family, on the angle scale from 30 to 110 degrees. Almost all the dots are to the left of the 90 degree line: the angle is not a right angle, and it changes with the task.">
+<rect width="860" height="567" fill="#F8F5EE"/>
+<line x1="200.0" y1="40.0" x2="200.0" y2="483.0" stroke="#C9A961" stroke-width="0.6" stroke-linecap="round" stroke-dasharray="1 5"/>
+<text font-family="sans-serif" x="200.0" y="501.0" font-size="12" fill="#1A1A1A" text-anchor="middle">30°</text>
+<line x1="279.5" y1="40.0" x2="279.5" y2="483.0" stroke="#C9A961" stroke-width="0.6" stroke-linecap="round" stroke-dasharray="1 5"/>
+<text font-family="sans-serif" x="279.5" y="501.0" font-size="12" fill="#1A1A1A" text-anchor="middle">40°</text>
+<line x1="359.0" y1="40.0" x2="359.0" y2="483.0" stroke="#C9A961" stroke-width="0.6" stroke-linecap="round" stroke-dasharray="1 5"/>
+<text font-family="sans-serif" x="359.0" y="501.0" font-size="12" fill="#1A1A1A" text-anchor="middle">50°</text>
+<line x1="438.5" y1="40.0" x2="438.5" y2="483.0" stroke="#C9A961" stroke-width="0.6" stroke-linecap="round" stroke-dasharray="1 5"/>
+<text font-family="sans-serif" x="438.5" y="501.0" font-size="12" fill="#1A1A1A" text-anchor="middle">60°</text>
+<line x1="518.0" y1="40.0" x2="518.0" y2="483.0" stroke="#C9A961" stroke-width="0.6" stroke-linecap="round" stroke-dasharray="1 5"/>
+<text font-family="sans-serif" x="518.0" y="501.0" font-size="12" fill="#1A1A1A" text-anchor="middle">70°</text>
+<line x1="597.5" y1="40.0" x2="597.5" y2="483.0" stroke="#C9A961" stroke-width="0.6" stroke-linecap="round" stroke-dasharray="1 5"/>
+<text font-family="sans-serif" x="597.5" y="501.0" font-size="12" fill="#1A1A1A" text-anchor="middle">80°</text>
+<line x1="677.0" y1="40.0" x2="677.0" y2="483.0" stroke="#C9A961" stroke-width="0.6" stroke-linecap="round" stroke-dasharray="1 5"/>
+<text font-family="sans-serif" x="677.0" y="501.0" font-size="12" fill="#1A1A1A" text-anchor="middle">90°</text>
+<line x1="756.5" y1="40.0" x2="756.5" y2="483.0" stroke="#C9A961" stroke-width="0.6" stroke-linecap="round" stroke-dasharray="1 5"/>
+<text font-family="sans-serif" x="756.5" y="501.0" font-size="12" fill="#1A1A1A" text-anchor="middle">100°</text>
+<line x1="836.0" y1="40.0" x2="836.0" y2="483.0" stroke="#C9A961" stroke-width="0.6" stroke-linecap="round" stroke-dasharray="1 5"/>
+<text font-family="sans-serif" x="836.0" y="501.0" font-size="12" fill="#1A1A1A" text-anchor="middle">110°</text>
+<line x1="677.0" y1="26.0" x2="677.0" y2="483.0" stroke="#1A1A1A" stroke-width="1.6" stroke-linecap="round" stroke-dasharray="5 4"/>
+<text font-family="sans-serif" x="677.0" y="20.0" font-size="13" font-weight="700" fill="#1A1A1A" text-anchor="middle">90°, the hypothesis</text>
+<text font-family="sans-serif" x="24.0" y="64.0" font-size="14" font-weight="700" fill="#1A1A1A" text-anchor="start">ChatBench</text>
+<text font-family="sans-serif" x="24.0" y="82.0" font-size="12" fill="#1A1A1A" text-anchor="start">exam questions</text>
+<line x1="200.0" y1="110.0" x2="836.0" y2="110.0" stroke="#C9A961" stroke-width="0.8" stroke-linecap="round"/>
+<circle cx="462.3" cy="104.0" r="5.0" fill="#B5532C"/>
+<circle cx="510.1" cy="104.0" r="5.0" fill="#2D5A5C"/>
+<circle cx="545.8" cy="104.0" r="5.0" fill="#2D5A5C"/>
+<circle cx="557.8" cy="104.0" r="5.0" fill="#B5532C"/>
+<circle cx="557.8" cy="93.0" r="4.25" fill="#F8F5EE" stroke="#2D5A5C" stroke-width="1.5"/>
+<circle cx="557.8" cy="82.0" r="5.0" fill="#B5532C"/>
+<circle cx="581.6" cy="104.0" r="5.0" fill="#2D5A5C"/>
+<circle cx="581.6" cy="93.0" r="5.0" fill="#2D5A5C"/>
+<circle cx="581.6" cy="82.0" r="4.25" fill="#F8F5EE" stroke="#2D5A5C" stroke-width="1.5"/>
+<circle cx="593.5" cy="104.0" r="5.0" fill="#2D5A5C"/>
+<circle cx="593.5" cy="93.0" r="5.0" fill="#2D5A5C"/>
+<circle cx="593.5" cy="82.0" r="4.25" fill="#F8F5EE" stroke="#2D5A5C" stroke-width="1.5"/>
+<circle cx="593.5" cy="71.0" r="5.0" fill="#2D5A5C"/>
+<circle cx="605.5" cy="104.0" r="4.25" fill="#F8F5EE" stroke="#B5532C" stroke-width="1.5"/>
+<circle cx="605.5" cy="93.0" r="4.25" fill="#F8F5EE" stroke="#2D5A5C" stroke-width="1.5"/>
+<circle cx="605.5" cy="82.0" r="4.25" fill="#F8F5EE" stroke="#2D5A5C" stroke-width="1.5"/>
+<circle cx="617.4" cy="104.0" r="4.25" fill="#F8F5EE" stroke="#2D5A5C" stroke-width="1.5"/>
+<circle cx="617.4" cy="93.0" r="4.25" fill="#F8F5EE" stroke="#2D5A5C" stroke-width="1.5"/>
+<circle cx="629.3" cy="104.0" r="4.25" fill="#F8F5EE" stroke="#2D5A5C" stroke-width="1.5"/>
+<circle cx="641.2" cy="104.0" r="4.25" fill="#F8F5EE" stroke="#2D5A5C" stroke-width="1.5"/>
+<circle cx="641.2" cy="93.0" r="4.25" fill="#F8F5EE" stroke="#2D5A5C" stroke-width="1.5"/>
+<circle cx="653.2" cy="104.0" r="4.25" fill="#F8F5EE" stroke="#2D5A5C" stroke-width="1.5"/>
+<circle cx="653.2" cy="93.0" r="4.25" fill="#F8F5EE" stroke="#2D5A5C" stroke-width="1.5"/>
+<circle cx="665.1" cy="104.0" r="4.25" fill="#F8F5EE" stroke="#2D5A5C" stroke-width="1.5"/>
+<polygon points="506.3,102.0 512.3,110.0 506.3,118.0 500.3,110.0" fill="#C9A961" stroke="#1A1A1A" stroke-width="1"/>
+<text font-family="sans-serif" x="24.0" y="152.0" font-size="14" font-weight="700" fill="#1A1A1A" text-anchor="start">αNLI</text>
+<text font-family="sans-serif" x="24.0" y="170.0" font-size="12" fill="#1A1A1A" text-anchor="start">the most plausible explanation</text>
+<line x1="200.0" y1="220.0" x2="836.0" y2="220.0" stroke="#C9A961" stroke-width="0.8" stroke-linecap="round"/>
+<circle cx="378.9" cy="214.0" r="5.0" fill="#2D5A5C"/>
+<circle cx="378.9" cy="203.0" r="5.0" fill="#2D5A5C"/>
+<circle cx="390.8" cy="214.0" r="5.0" fill="#2D5A5C"/>
+<circle cx="402.7" cy="214.0" r="5.0" fill="#2D5A5C"/>
+<circle cx="414.6" cy="214.0" r="5.0" fill="#2D5A5C"/>
+<circle cx="426.6" cy="214.0" r="5.0" fill="#2D5A5C"/>
+<circle cx="450.4" cy="214.0" r="5.0" fill="#2D5A5C"/>
+<circle cx="450.4" cy="203.0" r="5.0" fill="#2D5A5C"/>
+<circle cx="474.3" cy="214.0" r="5.0" fill="#2D5A5C"/>
+<circle cx="474.3" cy="203.0" r="5.0" fill="#2D5A5C"/>
+<circle cx="474.3" cy="192.0" r="5.0" fill="#2D5A5C"/>
+<circle cx="474.3" cy="181.0" r="5.0" fill="#2D5A5C"/>
+<circle cx="474.3" cy="170.0" r="5.0" fill="#2D5A5C"/>
+<circle cx="474.3" cy="159.0" r="5.0" fill="#2D5A5C"/>
+<circle cx="486.2" cy="214.0" r="5.0" fill="#2D5A5C"/>
+<circle cx="498.1" cy="214.0" r="5.0" fill="#2D5A5C"/>
+<circle cx="510.1" cy="214.0" r="5.0" fill="#2D5A5C"/>
+<circle cx="510.1" cy="203.0" r="5.0" fill="#2D5A5C"/>
+<circle cx="545.8" cy="214.0" r="5.0" fill="#2D5A5C"/>
+<circle cx="569.7" cy="214.0" r="5.0" fill="#2D5A5C"/>
+<polygon points="389.7,212.0 395.7,220.0 389.7,228.0 383.7,220.0" fill="#C9A961" stroke="#1A1A1A" stroke-width="1"/>
+<text font-family="sans-serif" x="24.0" y="262.0" font-size="14" font-weight="700" fill="#1A1A1A" text-anchor="start">HAIID, text</text>
+<text font-family="sans-serif" x="24.0" y="280.0" font-size="12" fill="#1A1A1A" text-anchor="start">sarcasm, census</text>
+<line x1="200.0" y1="286.0" x2="836.0" y2="286.0" stroke="#C9A961" stroke-width="0.8" stroke-linecap="round"/>
+<circle cx="223.8" cy="280.0" r="5.0" fill="#2D5A5C"/>
+<circle cx="307.3" cy="280.0" r="5.0" fill="#2D5A5C"/>
+<circle cx="343.1" cy="280.0" r="5.0" fill="#2D5A5C"/>
+<circle cx="355.0" cy="280.0" r="5.0" fill="#2D5A5C"/>
+<circle cx="390.8" cy="280.0" r="5.0" fill="#2D5A5C"/>
+<circle cx="438.5" cy="280.0" r="5.0" fill="#2D5A5C"/>
+<circle cx="450.4" cy="280.0" r="5.0" fill="#2D5A5C"/>
+<circle cx="462.3" cy="280.0" r="5.0" fill="#2D5A5C"/>
+<circle cx="474.3" cy="280.0" r="5.0" fill="#2D5A5C"/>
+<circle cx="474.3" cy="269.0" r="5.0" fill="#2D5A5C"/>
+<circle cx="486.2" cy="280.0" r="5.0" fill="#2D5A5C"/>
+<circle cx="522.0" cy="280.0" r="5.0" fill="#2D5A5C"/>
+<circle cx="522.0" cy="269.0" r="5.0" fill="#2D5A5C"/>
+<circle cx="533.9" cy="280.0" r="5.0" fill="#2D5A5C"/>
+<circle cx="533.9" cy="269.0" r="5.0" fill="#2D5A5C"/>
+<circle cx="545.8" cy="280.0" r="5.0" fill="#2D5A5C"/>
+<circle cx="581.6" cy="280.0" r="4.25" fill="#F8F5EE" stroke="#2D5A5C" stroke-width="1.5"/>
+<circle cx="617.4" cy="280.0" r="4.25" fill="#F8F5EE" stroke="#2D5A5C" stroke-width="1.5"/>
+<text font-family="sans-serif" x="24.0" y="328.0" font-size="14" font-weight="700" fill="#1A1A1A" text-anchor="start">HAIID, images</text>
+<text font-family="sans-serif" x="24.0" y="346.0" font-size="12" fill="#1A1A1A" text-anchor="start">art, cities, skin</text>
+<line x1="200.0" y1="374.0" x2="836.0" y2="374.0" stroke="#C9A961" stroke-width="0.8" stroke-linecap="round"/>
+<circle cx="498.1" cy="368.0" r="5.0" fill="#2D5A5C"/>
+<circle cx="510.1" cy="368.0" r="5.0" fill="#2D5A5C"/>
+<circle cx="533.9" cy="368.0" r="5.0" fill="#2D5A5C"/>
+<circle cx="533.9" cy="357.0" r="5.0" fill="#2D5A5C"/>
+<circle cx="533.9" cy="346.0" r="5.0" fill="#2D5A5C"/>
+<circle cx="533.9" cy="335.0" r="5.0" fill="#2D5A5C"/>
+<circle cx="557.8" cy="368.0" r="5.0" fill="#2D5A5C"/>
+<circle cx="557.8" cy="357.0" r="5.0" fill="#2D5A5C"/>
+<circle cx="617.4" cy="368.0" r="4.25" fill="#F8F5EE" stroke="#2D5A5C" stroke-width="1.5"/>
+<circle cx="617.4" cy="357.0" r="4.25" fill="#F8F5EE" stroke="#2D5A5C" stroke-width="1.5"/>
+<circle cx="653.2" cy="368.0" r="4.25" fill="#F8F5EE" stroke="#2D5A5C" stroke-width="1.5"/>
+<circle cx="665.1" cy="368.0" r="4.25" fill="#F8F5EE" stroke="#2D5A5C" stroke-width="1.5"/>
+<circle cx="665.1" cy="357.0" r="4.25" fill="#F8F5EE" stroke="#2D5A5C" stroke-width="1.5"/>
+<circle cx="665.1" cy="346.0" r="4.25" fill="#F8F5EE" stroke="#2D5A5C" stroke-width="1.5"/>
+<circle cx="665.1" cy="335.0" r="4.25" fill="#F8F5EE" stroke="#2D5A5C" stroke-width="1.5"/>
+<circle cx="784.3" cy="368.0" r="4.25" fill="#F8F5EE" stroke="#2D5A5C" stroke-width="1.5"/>
+<text font-family="sans-serif" x="24.0" y="416.0" font-size="14" font-weight="700" fill="#1A1A1A" text-anchor="start">Recognizing objects</text>
+<text font-family="sans-serif" x="24.0" y="434.0" font-size="12" fill="#1A1A1A" text-anchor="start">one dot per network, median over conditions</text>
+<line x1="200.0" y1="473.0" x2="836.0" y2="473.0" stroke="#C9A961" stroke-width="0.8" stroke-linecap="round"/>
+<circle cx="402.7" cy="467.0" r="5.0" fill="#C9A961"/>
+<circle cx="414.6" cy="467.0" r="5.0" fill="#C9A961"/>
+<circle cx="414.6" cy="456.0" r="5.0" fill="#C9A961"/>
+<circle cx="414.6" cy="445.0" r="5.0" fill="#C9A961"/>
+<circle cx="414.6" cy="434.0" r="5.0" fill="#C9A961"/>
+<circle cx="414.6" cy="423.0" r="5.0" fill="#C9A961"/>
+<circle cx="438.5" cy="467.0" r="5.0" fill="#C9A961"/>
+<circle cx="438.5" cy="456.0" r="5.0" fill="#C9A961"/>
+<circle cx="450.4" cy="467.0" r="5.0" fill="#C9A961"/>
+<circle cx="462.3" cy="467.0" r="5.0" fill="#C9A961"/>
+<circle cx="30.0" cy="523.0" r="5.0" fill="#2D5A5C"/>
+<text font-family="sans-serif" x="42.0" y="527.0" font-size="12" fill="#1A1A1A" text-anchor="start">interval entirely below 90°</text>
+<circle cx="214.0" cy="523.0" r="4.25" fill="#F8F5EE" stroke="#2D5A5C" stroke-width="1.5"/>
+<text font-family="sans-serif" x="226.0" y="527.0" font-size="12" fill="#1A1A1A" text-anchor="start">includes 90°</text>
+<circle cx="350.0" cy="523.0" r="5.0" fill="#B5532C"/>
+<text font-family="sans-serif" x="362.0" y="527.0" font-size="12" fill="#1A1A1A" text-anchor="start">GPT-4o, Llama (alone and in chat)</text>
+<polygon points="620,517.0 626,523.0 620,529.0 614,523.0" fill="#C9A961" stroke="#1A1A1A" stroke-width="1"/>
+<text font-family="sans-serif" x="632.0" y="527.0" font-size="12" fill="#1A1A1A" text-anchor="start">two people between them</text>
+<circle cx="30.0" cy="545.0" r="5.0" fill="#C9A961"/>
+<text font-family="sans-serif" x="42.0" y="549.0" font-size="12" fill="#1A1A1A" text-anchor="start">one vision network (median over its conditions)</text>
+</svg>
