@@ -7,8 +7,8 @@ Code, protocol and results of the experiment behind the paithon.it article
 Italian). This folder is part of the turing-meter repository, the instrument.
 
 The experiment measures the angle between the errors of a person and of a
-machine on the same items, the turing (how many times the same person
-distinguishes right from wrong better with the machine beside them), and checks
+machine on the same items, the turing (how many times better the same person
+picks out the right answer with the machine beside them), and checks
 whether the law of the ideal pair predicts what a pair can really do. The
 turing is the ratio of a person's sensitivity d′ with an AI to their
 sensitivity alone; the angle is the arccos of the correlation between human and
