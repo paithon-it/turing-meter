@@ -7,8 +7,8 @@ Codice, protocollo e risultati dell'esperimento dietro l'articolo di paithon.it
 Questa cartella fa parte del repository turing-meter, lo strumento.
 
 Si misura l'angolo fra gli errori di una persona e di una macchina sugli stessi
-casi, il turing (quante volte la stessa persona distingue meglio il giusto dallo
-sbagliato con la macchina accanto), e si controlla se la legge della coppia
+casi, il turing (quante volte la stessa persona riconosce meglio la risposta
+giusta con la macchina accanto), e si controlla se la legge della coppia
 ideale prevede ciò che una coppia può davvero fare. Ipotesi e criteri stanno in
 `PROTOCOL.it.md` (la traduzione inglese è `PROTOCOL.md`), scritto prima di
 guardare i dati; ciò che è cambiato dopo sta nella sua sezione «Deviazioni».
