@@ -359,3 +359,206 @@ corner dH 1.5, k = 1.5, rho0 0.30, null           +0.002  +0.001  +0.002  0.037 
   depended on the person's noise; the same people at both waves did not.
 - 200 bootstrap draws per simulated study; the study itself uses 2,000.
 
+## 5. What explains the violations (11-12 November 2026)
+
+Follow-ups to section 1, added after two reviews of the article that reports it, and
+after its first results: they are checks, not a pre-registered analysis. Same data
+(`task_results_1_1.yaml`, sha256 `4f85fbf0…26b07`), numpy 2.4.6, scipy 1.18.0. Every
+simulation goes through the same buckets as the data, so whatever grouping different
+tasks in one bucket does to the rule is already in the expected count.
+
+### Other buckets, one collection
+
+`python michell_test.py` with other buckets and on the subsets written by
+`michell_collections.py`; double cancellation only, observed and expected under the
+four models of section 1 (p in brackets, 200 simulations, 2,000 for the 6-bucket row):
+
+| Run | Observed | M0 | M1 | M2 (Rasch) | M3 |
+|---|---|---|---|---|---|
+| 4 buckets | 0.63% | 0.13% (0.010) | 0.23% (0.045) | 0.15% (0.000) | 0.12% (0.000) |
+| 5 buckets | 1.38% | 0.49% (0.000) | 0.65% (0.005) | 0.94% (0.080) | 0.71% (0.005) |
+| 6 buckets, 2,000 simulations | 2.16% | 0.80% (0.000) | 0.88% (0.000) | 1.60% (0.051) | 1.21% (0.010) |
+| 7 buckets | 2.67% | 0.98% (0.000) | 1.06% (0.000) | 1.58% (0.005) | 1.03% (0.000) |
+| 8 buckets | 3.58% | 1.27% (0.000) | 1.36% (0.000) | 1.69% (0.000) | 1.13% (0.000) |
+| HCAST only, 5 buckets | 2.96% | 0.80% (0.000) | 1.39% (0.000) | 1.38% (0.000) | 1.68% (0.000) |
+| HCAST only, 6 buckets | 3.21% | 0.93% (0.000) | 1.52% (0.000) | 1.73% (0.000) | 1.99% (0.000) |
+| Without SWAA, 6 buckets | 3.46% | 0.97% (0.000) | 1.59% (0.000) | 2.08% (0.000) | 2.54% (0.000) |
+
+`python michell_collections.py task_results_1_1.yaml .` (first lines):
+
+```
+tasks per collection: {'SWAA': 66, 'HCAST': 157, 'RE-Bench': 5}
+  bucket 1 (0.02-0.09 min): SWAA 36, HCAST 0, RE-Bench 0
+  bucket 2 (0.09-2.11 min): SWAA 30, HCAST 10, RE-Bench 0
+  bucket 3 (2.11-12.62 min): SWAA 0, HCAST 38, RE-Bench 0
+  bucket 4 (12.62-51.09 min): SWAA 0, HCAST 38, RE-Bench 0
+  bucket 5 (51.09-360.00 min): SWAA 0, HCAST 35, RE-Bench 0
+  bucket 6 (360.00-1800.00 min): SWAA 0, HCAST 36, RE-Bench 5
+violations (all cells, no minimum of runs): 4735; with margin >= 0.05: 90; >= 0.10: 0
+  margin 0.067 | A=GPT-5.4 B=GPT-4o (Inspect) C=GPT-5 (Inspect) | x=4 y=6 z=3 | Ay 0.43 >= Bx 0.33; Bz 0.43 >= Cy 0.36; but Az 0.89 < Cx 0.96 | fewest runs 152
+```
+
+### Random buckets
+
+`python michell_random_buckets.py task_results_1_1.yaml` (summary):
+
+```
+100 random divisions into 6 buckets, model M2, 100 simulations each:
+  observed above expected in 81 of 100
+  observed/expected: median 1.50, from 0.70 to 2.08 (10th-90th percentile)
+  p: median 0.020; p < 0.05 in 57 of 100; p < 0.10 in 65
+```
+
+### Details
+
+`python michell_details.py task_results_1_1.yaml` (sections 2 to 4):
+
+```
+== 2. Cells and buckets ==
+runs per agent-task cell: mean 5.21, median 6, min 1, max 13 (5207 cells)
+tasks per bucket: [36 40 38 38 35 41]
+agents with >= 20 runs per bucket: [23 23 23 23 23 23]  fewest runs in a cell: [144. 160. 149. 147. 123. 146.]
+mean across agents: [1.    0.959 0.732 0.754 0.354 0.237]
+pooled rate (all runs): [1.    0.959 0.744 0.773 0.377 0.264]
+bucket 4 above bucket 3 for 18 agents; equal 0; below 5
+  not above: ['GPT-4 0314', 'GPT-4 1106 (Inspect)', 'Claude 3 Opus (Inspect)', 'GPT-4 Turbo (Inspect)', 'GPT-4o (Inspect)']
+
+== 3. The stopwatch, read both ways ==
+r=0.740 R2=0.547, 156 identified tasks (72 of 228 solved by all or by none)
+human minutes at equal machine difficulty (regression of time on difficulty): residual SD 2.15 doublings, a factor 4.4
+machine difficulty at equal human time, in time units (difficulty on time): residual SD 2.11 logits / slope 0.729 per doubling, a factor 7.5
+
+== 4. Worked example ==
+  GPT-5 (Inspect)      bucket 3  90.8% (152 runs) | bucket 4  96.1% (152 runs) | bucket 6  36.1% (169 runs)
+  GPT-5.4              bucket 3  89.0% (228 runs) | bucket 4  99.1% (228 runs) | bucket 6  42.9% (247 runs)
+  GPT-4o (Inspect)     bucket 3  42.8% (152 runs) | bucket 4  32.9% (152 runs) | bucket 6   2.4% (164 runs)
+  Claude Opus 4.6 (Inspect): intercept 3.912, slope -0.412 | success at 30 min 0.87, 2 h 0.74, 8 h 0.56, 24 h 0.40
+  Gemini 3.1 Pro: intercept 5.676, slope -0.661 | success at 30 min 0.92, 2 h 0.75, 8 h 0.45, 24 h 0.22
+```
+
+**A correction to section 1, [2].** The factor 7.5 printed there converts the
+residual of machine difficulty on human time into minutes with the slope of that
+regression. At equal machine difficulty, which is what the line says, human minutes
+vary by a factor 4.4: the residual of the regression of time on difficulty. The two
+readings differ by the correlation (log2 7.5 x 0.74 = log2 4.4). `michell_test.py`
+still prints the old label, so that section 1 stays reproducible.
+
+### Half-life models
+
+`python michell_halflife.py task_results_1_1.yaml --sims 2000`, then `--bins 8`, then
+on `hcast_only.yaml`:
+
+```
+228 tasks, 6 buckets: observed 2.16%
+METR's model (M1): LL -6590.5, 46 parameters, BIC 13650.6
+Ord, constant hazard: shape 1.00, LL -7644.6, 23 parameters, BIC 15524.1; expected 1.41% (p=0.067)
+Weibull, common shape: shape 0.61, LL -6701.5, 24 parameters, BIC 13647.9; expected 0.51% (p=0.000)
+
+228 tasks, 8 buckets: observed 3.58%
+METR's model (M1): LL -6590.5, 46 parameters, BIC 13650.6
+Ord, constant hazard: shape 1.00, LL -7644.6, 23 parameters, BIC 15524.1; expected 2.48% (p=0.010)
+Weibull, common shape: shape 0.61, LL -6701.5, 24 parameters, BIC 13647.9; expected 0.92% (p=0.000)
+
+157 tasks, 6 buckets: observed 3.21%
+METR's model (M1): LL -6117.5, 46 parameters, BIC 12683.9
+Ord, constant hazard: shape 1.00, LL -7169.6, 23 parameters, BIC 14563.6; expected 1.50% (p=0.000)
+Weibull, common shape: shape 0.55, LL -6182.7, 24 parameters, BIC 12599.5; expected 1.13% (p=0.000)
+```
+
+### Tasks that weigh differently, and more dimensions
+
+`python michell_dimensions.py task_results_1_1.yaml`, then with `--only-violations` on
+`hcast_only.yaml` and with lighter penalties at 8 buckets:
+
+```
+228 tasks, 27119 runs
+
+log-likelihood of the held-out runs (mean over 3 splits; per split in brackets)
+  Rasch (M2), penalty 0.001:       -2397.6  (-2340.5, -2438.7, -2413.5)
+  Rasch (M2), penalty 0.01:        -2396.6  (-2342.5, -2431.6, -2415.7)
+  Rasch (M2), penalty 0.03:        -2413.0  (-2363.6, -2443.0, -2432.2)
+  Rasch (M2), penalty 0.1:         -2485.7  (-2445.5, -2507.8, -2503.6)
+  Rasch (M2), penalty 0.3:         -2687.6  (-2658.2, -2700.9, -2703.7)
+  Rasch (M2), penalty 1:           -3209.2  (-3190.7, -3212.8, -3224.1)
+  factors, k=1, penalty 0.3:       -2219.9  (-2191.7, -2231.7, -2236.4)
+  factors, k=2, penalty 0.3:       -2173.1  (-2159.5, -2165.8, -2194.0)
+  factors, k=3, penalty 0.3:       -2198.1  (-2181.1, -2182.6, -2230.7)
+  factors, k=4, penalty 0.3:       -2241.2  (-2238.1, -2247.2, -2238.3)
+  factors, k=5, penalty 0.3:       -2271.5  (-2267.0, -2295.3, -2252.3)
+  factors, k=1, penalty 1:         -2238.6  (-2208.4, -2254.8, -2252.6)
+  factors, k=2, penalty 1:         -2158.7  (-2145.4, -2163.0, -2167.7)
+  factors, k=3, penalty 1:         -2107.9  (-2099.0, -2110.6, -2114.0)
+  factors, k=4, penalty 1:         -2079.6  (-2072.8, -2085.3, -2080.6)
+  factors, k=5, penalty 1:         -2057.6  (-2045.2, -2069.3, -2058.3)
+  factors, k=1, penalty 3:         -2392.6  (-2367.0, -2408.4, -2402.2)
+  factors, k=2, penalty 3:         -2324.1  (-2301.9, -2335.5, -2334.9)
+  factors, k=3, penalty 3:         -2261.6  (-2239.2, -2276.4, -2269.1)
+  factors, k=4, penalty 3:         -2236.9  (-2215.9, -2250.8, -2244.0)
+  factors, k=5, penalty 3:         -2219.9  (-2194.6, -2234.7, -2230.5)
+  factors, k=1, penalty 10:        -3069.9  (-3052.7, -3079.9, -3077.0)
+  factors, k=2, penalty 10:        -3069.9  (-3052.7, -3080.0, -3077.0)
+  factors, k=3, penalty 10:        -3069.9  (-3052.8, -3080.0, -3077.0)
+  factors, k=4, penalty 10:        -3069.8  (-3052.7, -3079.8, -3077.0)
+  factors, k=5, penalty 10:        -3069.9  (-3052.7, -3079.9, -3076.9)
+best Rasch: penalty 0.01 (-2396.6); best factor model: k=5, penalty 1.0 (-2057.6); best with k=1: penalty 0.3 (-2219.9)
+
+double cancellation, observed and expected from noise alone if the data came from the model
+  k=5, penalty 1, 6 buckets: observed 2.16%, expected 2.25% (p=0.580)
+  k=5, penalty 1, 8 buckets: observed 3.58%, expected 2.33% (p=0.010)
+  k=1, penalty 0.3, 6 buckets: observed 2.16%, expected 2.12% (p=0.455)
+  k=1, penalty 0.3, 8 buckets: observed 3.58%, expected 1.88% (p=0.000)
+
+157 tasks, 17321 runs
+
+double cancellation, observed and expected from noise alone if the data came from the model
+  k=1, penalty 0.3, 6 buckets: observed 3.21%, expected 2.56% (p=0.005)
+
+157 tasks, 17321 runs
+
+double cancellation, observed and expected from noise alone if the data came from the model
+  k=5, penalty 1, 6 buckets: observed 3.21%, expected 2.92% (p=0.115)
+
+228 tasks, 27119 runs
+
+double cancellation, observed and expected from noise alone if the data came from the model
+  k=5, penalty 0.3, 8 buckets: observed 3.58%, expected 2.79% (p=0.085)
+
+228 tasks, 27119 runs
+
+double cancellation, observed and expected from noise alone if the data came from the model
+  k=5, penalty 0.05, 8 buckets: observed 3.58%, expected 3.13% (p=0.210)
+```
+
+### Reading
+
+1. **The excess does not come from one choice of buckets.** With 4 to 8 equal-count
+   buckets the observed violations stay above all four models of section 1; against
+   the closest one p goes from below 0.005 to 0.08, and with 5 buckets it is not
+   significant. Cut at random into 6 buckets, the observed rate is above the one
+   expected under Rasch in 81 divisions of 100, and beyond noise (p < 0.05) in 57:
+   the sign holds, the strength depends on where the cuts fall.
+2. **Not a mix of collections.** Inside HCAST, 157 of the 228 tasks, the violations
+   rise (3.21% against 2.16%). The two middle buckets, where 18 of 23 agents do
+   better on the longer tasks, hold HCAST tasks only.
+3. **All or nothing does not explain them.** Ord's constant hazard fits far worse than
+   METR's model (log-likelihood -7644.6 against -6590.5) and expects fewer violations
+   than observed: p 0.067 with 6 buckets, 0.010 with 8, below 0.005 inside HCAST.
+   With a shape common to all agents the data give k = 0.61, a hazard per minute that
+   falls on longer tasks, and the fit comes close to METR's (BIC 13647.9 against
+   13650.6); but the model is additive, and it expects 0.51% violations.
+4. **Tasks that weigh differently** (the two-parameter logistic model, k = 1) predict
+   held-out runs better than Rasch (-2219.9 against -2396.6, each with its best
+   penalty): this test uses no buckets, and the additive model loses it. With 6
+   buckets the model accounts for the violations (2.12%, p 0.455); with 8 buckets
+   (p below 0.005) and inside HCAST (p 0.005) it does not.
+5. **More dimensions.** Held-out prediction keeps improving up to five dimensions,
+   the most tried (-2057.6 with penalty 1.0). With five the violations are within
+   noise with 6 buckets (p 0.58) and inside HCAST (p 0.115); with 8 buckets the
+   answer depends on how much the estimate is smoothed (p 0.010 with penalty 1.0,
+   0.085 with 0.3, 0.21 with 0.05). How many dimensions autonomy needs, these data do
+   not say, and METR's file does not say which domain each task belongs to.
+
+Conclusion, unchanged: one number per agent and one per task, added, do not say who
+succeeds where. The capabilities of an agent, taken one at a time, may still be
+quantities; a single number that sums them up is not.
+
