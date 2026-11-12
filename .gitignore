@@ -5,5 +5,7 @@ logs/
 reports/
 task_results_*.yaml
 benchmark_results_*.yaml
+without_swaa.yaml
+hcast_only.yaml
 Data_Extraction.csv
 .pytest_cache/

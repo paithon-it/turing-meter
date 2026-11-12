@@ -16,6 +16,27 @@ python michell_test.py task_results_1_1.yaml            # 6 duration buckets
 python michell_test.py task_results_1_1.yaml --bins 8   # sensitivity
 ```
 
+### What explains the violations
+
+Follow-ups added after two reviews (11-12 November 2026). They do not change the
+test: they put the same question to other models, other buckets and parts of the
+suite. Each simulation goes through the same buckets as the data. Shared code in
+`michell_models.py`.
+
+```sh
+python michell_details.py task_results_1_1.yaml          # flips, horizons, runs per cell, the stopwatch read both ways, a worked example
+python michell_collections.py task_results_1_1.yaml .    # SWAA, HCAST and RE-Bench per bucket; writes without_swaa.yaml and hcast_only.yaml
+python michell_test.py hcast_only.yaml                   # the test inside one collection
+python michell_random_buckets.py task_results_1_1.yaml   # 100 random divisions into 6 buckets, against Rasch
+python michell_halflife.py task_results_1_1.yaml --sims 2000   # Ord's constant hazard, and a shape common to all agents
+python michell_dimensions.py task_results_1_1.yaml       # tasks that weigh differently, and up to five dimensions
+curl -sLO https://metr.org/assets/benchmark_results_1_1.yaml
+python metr_horizons.py benchmark_results_1_1.yaml       # METR's published horizons
+```
+
+About a minute for `michell_dimensions.py` and six for `michell_random_buckets.py` on
+four cores. Outputs and reading in section 5 of [`RESULTS.md`](RESULTS.md).
+
 ## Apparent intelligence on the reference meta-analysis
 
 `composition_test.py` measures the intelligence factor and the turing on the
