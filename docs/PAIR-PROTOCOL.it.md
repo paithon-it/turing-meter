@@ -20,7 +20,7 @@ conto di queste pagine sui dati pubblici di ChatBench.
   fra 50 e 80, cioè quasi 700 casi con una macchina all'88 per cento e più di 2.000 con una al 98
   [simulazione].
 - **La regola d'uso** si regge quindi su *k* e sul tetto del margine, non sul confronto fra l'angolo
-  e l'angolo utile. La bozza di partenza va cambiata in questo punto.
+  e l'angolo utile, che con cento casi non si sa da che parte stia.
 - **La prova della coppia** si fa sugli stessi casi della taratura, non su casi nuovi: 200 casi dicono
   se la coppia sta sotto la macchina quando la resa è 0,76 come con GPT-4o.
 - **La ripetizione** è asimmetrica. La macchina si rimisura a ogni versione, senza costo. Una persona
@@ -102,8 +102,7 @@ sulle stesse; con GPT-4o, in più di un quinto delle prove dalla chat non è usc
 4. **Solo alla fine** si aprono chiavi e risultati. Da quel momento i casi del modulo, per quella
    persona, sono spesi.
 
-Il terzo passo sugli stessi casi è una scelta diversa dalla bozza di partenza, che provava la coppia
-su casi nuovi. Le ragioni: turing, resa, estrazione e filtro vogliono le tre risposte sugli stessi
+Il terzo passo si fa sugli stessi casi, e non su casi nuovi, per tre ragioni: turing, resa, estrazione e filtro vogliono le tre risposte sugli stessi
 casi; è il disegno di ChatBench, da cui vengono le cifre con cui confrontarsi; e dimezza i casi. Il
 prezzo è che la risposta con la macchina è un secondo tentativo. Nei dati pesa poco: dove la chat è
 rimasta muta le persone restano al 50 per cento, e l'ordine delle mosse non cambia l'esito in modo

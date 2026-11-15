@@ -20,7 +20,7 @@ model, **[data]** a calculation of these pages on the public ChatBench data.
   degrees you need between 50 and 80 of them, that is almost 700 cases with a machine at 88 per cent
   and more than 2,000 with one at 98 [simulation].
 - **The rule of use** therefore rests on *k* and on the margin ceiling, not on comparing the angle with
-  the useful angle. The starting draft must be changed on this point.
+  the useful angle, which a hundred cases cannot place on either side.
 - **The test of the pair** is done on the same cases as the calibration, not on new cases: 200 cases
   tell whether the pair stands below the machine when the yield is 0.76 as with GPT-4o.
 - **Repetition** is asymmetric. The machine is remeasured at every version, at no cost. A single
@@ -103,8 +103,7 @@ know how the pair does, you have to test the pair.
 4. **Only at the end** are keys and results opened. From that moment the module's cases, for that
    person, are spent.
 
-The third step on the same cases is a different choice from the starting draft, which tested the pair
-on new cases. The reasons: turing, yield, extraction and filter want the three answers on the same
+The third step is done on the same cases, not on new ones, for three reasons: turing, yield, extraction and filter want the three answers on the same
 cases; it is the design of ChatBench, the source of the figures to compare with; and it halves the
 cases. The price is that the answer with the machine is a second attempt. In the data it weighs little:
 where the chat stayed silent people stay at 50 per cent, and the order of the moves does not visibly
