@@ -28,12 +28,15 @@ macchina da sola (`dM`), dalla persona con la macchina (`dS`). Ognuna è una
 sensibilità `d'` della teoria della rilevazione del segnale: zero al caso, nessun
 tetto.
 
-- **L'intelligenza apparente** `|S| = sqrt(dH^2 + dM^2)` è il meglio che due menti
+- **La sensibilità apparente** `|S| = sqrt(dH^2 + dM^2)` è il meglio che due menti
   possono fare insieme quando sbagliano su casi diversi e mettono in comune tutta
   la loro evidenza (Green e Swets 1966; Sorkin e Dai 1994). Le coppie di persone ci arrivano
   vicino senza raggiungerlo (Bahrami et al. 2010). Ortogonali, in
-  questa lettura, vuol dire errori indipendenti.
-- **Il fattore di intelligenza** `eta = dS / |S|`: quanta parte dell'intelligenza
+  questa lettura, vuol dire errori indipendenti. È la parte misurabile
+  dell'intelligenza apparente del titolo, la sua proiezione sul piano della tecnica
+  (il nome è cambiato il 15 novembre 2026; prima `|S|` si chiamava intelligenza
+  apparente).
+- **Il fattore di intelligenza** `eta = dS / |S|`: quanta parte della sensibilità
   apparente si vede nel lavoro, come il fattore di potenza è la potenza attiva
   sull'apparente. 0 al caso, 1 all'ideale.
 - **La quota del guadagno** `g = (dS - dH) / (|S| - dH)`: quanto del guadagno
@@ -53,7 +56,7 @@ tetto.
   `phi` qui sotto: `sqrt(1 + k^2 - 2k cos(phi)) / sin(phi)`, cioè `sqrt(1 + k^2)`
   a 90 gradi.
 - **La direzione** `theta`, con `cos(theta) = dH / |S| = 1 / Tu_app`, la quota
-  della persona nell'intelligenza apparente; a 90 gradi `theta = atan(dM / dH)`.
+  della persona nella sensibilità apparente; a 90 gradi `theta = atan(dM / dH)`.
 - **L'angolo fra le menti** `phi = arccos(rho)`, dove `rho` è la correlazione dei
   loro errori sugli stessi casi. 90 gradi è la legge di `|S|`; si misura ogni
   volta che ci sono i dati caso per caso, e cambia l'ideale.
@@ -75,7 +78,7 @@ dati non hanno le risposte caso per caso:
 
 - le persone realizzano in mediana **0,30** del guadagno che l'ideale darebbe
   loro (intervallo al 95% sugli articoli 0,19-0,43; 0,38 sui confronti che
-  misurano le stesse persone), e le coppie mostrano 0,69 della loro intelligenza
+  misurano le stesse persone), e le coppie mostrano 0,69 della loro sensibilità
   apparente;
 - la quota del guadagno **non** dipende da chi è più forte (0,24 quando lo è la
   persona, 0,32 quando lo è la macchina). La quota dell'ideale scende (0,81
