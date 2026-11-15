@@ -907,3 +907,117 @@ pre-registered (2,000 replicas, Poisson weights over people and questions).
 - **Where it goes.** H3 passed for one machine, so by the rule above the
   experiment goes in the body of the article, with the pre-registered outcome
   for Llama and the controls in its appendix.
+
+## After the seventh review: two new analyses (written 15 November 2026, before computing them)
+
+Written after every result above, and before computing anything below. A
+seventh review of the article asked two questions the data already in hand can
+answer. Neither touches an earlier result. The code (`angle/homogenization.py`,
+`angle/mute_chats.py`) is written and tested on synthetic data first; this
+section and the code are committed and pushed before the runs on ChatBench.
+
+### A. Do two people become more alike with the chat beside them?
+
+**The question.** The article argues that whoever works with a machine can
+take on its errors. On ChatBench two people answering alone have an angle of
+66 degrees between their errors. If both answer the same question with the
+same machine beside them, does the angle close?
+
+**Data.** ChatBench, answer-first condition, phase 2 (`sources.chatbench_pairs`):
+each person answers a question alone, then talks with the machine and answers
+it again. Per arm: GPT-4o, 1,493 trials; Llama 3.1 8B, 1,401. The two answers
+of each trial come from the same person on the same question, so the
+comparison is paired.
+
+**Measures**, per arm.
+
+1. φ_HH: the angle between two different people on the same question, from
+   their answers alone (`sdt.rho_person_pairs` on `acc`, the personal
+   thresholds from the accuracy alone), converted to the cues as in the
+   article (`convert_person_person`, with the mean accuracy alone).
+2. φ_SS: the same, from the answers with the chat (`acc_ai`, thresholds from
+   the accuracy with the chat, conversion with the mean accuracy with the
+   chat). Same people, same questions, same pairs.
+3. Δ = φ_HH − φ_SS, in degrees of the cues.
+4. Same wrong letter: over the pairs of different people on the same question
+   who are both wrong, the share who give the same letter; alone and with the
+   chat, and the difference.
+5. Descriptive: among the pairs both wrong with the same letter with the chat,
+   the share where that letter is the one the chat gave; the crowd ceiling
+   `1/sqrt(ρ)` alone and with the chat; Δ on the trials whose chat gave a
+   letter and on those whose chat did not (a pair counts where both of its
+   trials are in the subset).
+
+**Uncertainty.** 95% percentile intervals, 2,000 replicas with Poisson weights
+over the questions, the same weights for the two conditions (paired). People
+are not resampled: the estimator pairs different people on the same question,
+and the weights over questions already carry the dependence between the pairs.
+
+**Hypotheses and criteria.**
+
+- *A1, primary (GPT-4o)*: the angle closes with the chat. Passes if the
+  interval of Δ lies above zero.
+- *A2 (Llama)*: the same.
+- *A3 (both arms)*: with the chat, two people both wrong give the same wrong
+  letter more often. Passes, per arm, if the interval of the difference lies
+  above zero.
+
+No correction for multiplicity. Measure 5 has no criterion.
+
+**What it cannot say.** It measures people *while* they use the machine, not
+after: it says whether a crowd with the same machine beside it is less varied
+than the same crowd alone, not whether people who worked with a machine stay
+like it when it is gone (that is the longitudinal protocol). The answer with
+the chat is always the second on the same question: without a condition that
+answers twice alone, the effect of the machine is not separated from that of a
+second look. The split by chats with and without a letter is the only partial
+check, and it selects trials by how the conversation went.
+
+**Where it goes.** If A1 passes, in the body of the article, next to the angle
+between two people; otherwise in the appendix of what did not work. Either way
+with A1, A2 and A3.
+
+### B. The chats without an answer
+
+**The question.** In 330 of the 1,493 GPT-4o trials ChatBench's automatic
+annotation says the chat gave no answer. The article reads them as answers
+lost in the conversation. A reviewer objects that the annotation may miss
+answers the machine gave in words, without the letter.
+
+**Data.** The 330 trials of `conversations.trials("gpt-4o")` with
+`conv_has_answer` false; the 60 whose record has no message from the machine
+are counted apart. The other 270 are examined.
+
+**Measures.**
+
+1. *Automatic, on all 270.* The text of each option, lightly normalized
+   (lowercase, LaTeX delimiters and repeated spaces removed), is looked for in
+   the machine's messages as a whole token (no letter or digit on either side).
+   Options shorter than two characters after normalization are skipped. The
+   trial is counted by how many options the machine names: none, exactly one,
+   two or more. Where it names exactly one, whether it is the key, and whether
+   the person chose it.
+2. *Read, on a sample.* 50 of the 270, drawn with seed 534, each read with the
+   question, the options and the conversation, without the key and without the
+   person's answer, and put in the first category that applies:
+   (a) *answer without the letter*: the machine states a final answer that
+   matches exactly one option, in words or as an equivalent value;
+   (b) *answer outside the options*: a final answer that matches none;
+   (c) *partial help*: an explanation or an intermediate step, with no final
+   answer to the question;
+   (d) *missing question or clarification*: the machine asks for the question,
+   the options or what is meant, or answers a different question because the
+   message was incomplete;
+   (e) *other*: off topic, a refusal, a greeting.
+   The reader is an AI assistant, instructed with this list; ten of the fifty
+   are read again by a second one, and the agreement is reported.
+
+**Uncertainty.** Shares with 95% Wilson intervals; the sample shares are
+carried to the 270 as estimates, not counts.
+
+**Decision rule for the text.** If (a) is at least 10 of the 50, the article
+stops calling the 330 «chats from which no answer came out»: it says that in an
+estimated share of them the answer was in the chat without the letter, and
+that the annotation missed it, and the decomposition of the 7.6 points gets
+that caveat. Below 10, the article reports the check in one sentence and keeps
+its reading. Either way the numbers go in the appendix.

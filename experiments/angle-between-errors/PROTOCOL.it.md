@@ -922,3 +922,119 @@ prima (2.000 repliche, pesi di Poisson su persone e domande).
 - **Dove va.** H3 è passata per una macchina, quindi per la regola scritta
   sopra l'esperimento va nel corpo dell'articolo, con l'esito di Llama come era
   scritto e i controlli nella sua appendice.
+
+## Dopo la settima revisione: due analisi nuove (scritto il 15 novembre 2026, prima di calcolarle)
+
+Scritto dopo tutti i risultati qui sopra, e prima di calcolare qualunque cosa
+qui sotto. Una settima revisione dell'articolo ha fatto due domande a cui i
+dati che abbiamo già possono rispondere. Nessuna delle due tocca un risultato
+precedente. Il codice (`angle/homogenization.py`, `angle/mute_chats.py`) è
+scritto e provato prima su dati sintetici; questa sezione e il codice sono
+committati e spinti prima di girare su ChatBench.
+
+### A. Con la chat accanto, due persone si somigliano di più?
+
+**La domanda.** L'articolo sostiene che chi lavora con una macchina può
+prenderne gli errori. Su ChatBench due persone che rispondono da sole hanno fra
+i loro errori un angolo di 66 gradi. Se tutte e due rispondono alla stessa
+domanda con la stessa macchina accanto, l'angolo si chiude?
+
+**Dati.** ChatBench, condizione answer-first, fase 2
+(`sources.chatbench_pairs`): ogni persona risponde a una domanda da sola, poi
+parla con la macchina e risponde di nuovo. Per braccio: GPT-4o, 1.493 prove;
+Llama 3.1 8B, 1.401. Le due risposte di ogni prova sono della stessa persona
+sulla stessa domanda, quindi il confronto è appaiato.
+
+**Misure**, per braccio.
+
+1. φ_HH: l'angolo fra due persone diverse sulla stessa domanda, dalle risposte
+   da sole (`sdt.rho_person_pairs` su `acc`, soglie personali
+   dall'accuratezza da sole), convertito agli indizi come nell'articolo
+   (`convert_person_person`, con l'accuratezza media da sole).
+2. φ_SS: lo stesso, dalle risposte con la chat (`acc_ai`, soglie
+   dall'accuratezza con la chat, conversione con l'accuratezza media con la
+   chat). Stesse persone, stesse domande, stesse coppie.
+3. Δ = φ_HH − φ_SS, in gradi degli indizi.
+4. Stessa lettera sbagliata: fra le coppie di persone diverse sulla stessa
+   domanda che sbagliano tutte e due, la quota che dà la stessa lettera; da
+   sole e con la chat, e la differenza.
+5. Descrittive: fra le coppie che con la chat sbagliano con la stessa lettera,
+   la quota in cui quella lettera è quella data dalla chat; il tetto della
+   folla `1/sqrt(ρ)` da sole e con la chat; Δ sulle prove in cui la chat ha
+   dato una lettera e su quelle in cui non l'ha data (una coppia conta se
+   tutte e due le sue prove stanno nel sottoinsieme).
+
+**Incertezza.** Intervalli percentili al 95 per cento, 2.000 repliche con pesi
+di Poisson sulle domande, gli stessi pesi per le due condizioni (appaiate). Le
+persone non si ricampionano: lo stimatore appaia persone diverse sulla stessa
+domanda, e i pesi sulle domande portano già la dipendenza fra le coppie.
+
+**Ipotesi e criteri.**
+
+- *A1, principale (GPT-4o)*: con la chat l'angolo si chiude. Passa se
+  l'intervallo di Δ sta sopra lo zero.
+- *A2 (Llama)*: lo stesso.
+- *A3 (tutti e due i bracci)*: con la chat due persone che sbagliano danno più
+  spesso la stessa lettera sbagliata. Passa, per braccio, se l'intervallo della
+  differenza sta sopra lo zero.
+
+Nessuna correzione per la molteplicità. La misura 5 non ha criterio.
+
+**Che cosa non può dire.** Misura le persone *mentre* usano la macchina, non
+dopo: dice se una folla con la stessa macchina accanto è meno varia della
+stessa folla da sola, non se chi ha lavorato con una macchina le resta simile
+quando non c'è più (per quello c'è il protocollo longitudinale). La risposta
+con la chat è sempre la seconda sulla stessa domanda: senza una condizione che
+risponde due volte da sola, l'effetto della macchina non si separa da quello di
+un secondo sguardo. La divisione fra chat con e senza lettera è l'unico
+controllo parziale, e sceglie le prove da come è andata la conversazione.
+
+**Dove va.** Se A1 passa, nel corpo dell'articolo, accanto all'angolo fra due
+persone; altrimenti nell'appendice di ciò che non ha funzionato. In tutti e due
+i casi con A1, A2 e A3.
+
+### B. Le chat senza risposta
+
+**La domanda.** In 330 delle 1.493 prove con GPT-4o l'annotazione automatica
+di ChatBench dice che dalla chat non è uscita una risposta. L'articolo le legge
+come risposte perse nella conversazione. Un revisore obietta che l'annotazione
+può non vedere risposte che la macchina ha dato a parole, senza la lettera.
+
+**Dati.** Le 330 prove di `conversations.trials("gpt-4o")` con
+`conv_has_answer` falso; le 60 il cui registro non ha nessun messaggio della
+macchina si contano a parte. Si esaminano le altre 270.
+
+**Misure.**
+
+1. *Automatica, su tutte le 270.* Il testo di ogni opzione, normalizzato poco
+   (minuscole, senza delimitatori LaTeX e spazi ripetuti), si cerca nei
+   messaggi della macchina come parola intera (né lettere né cifre ai due
+   lati). Le opzioni più corte di due caratteri dopo la normalizzazione si
+   saltano. La prova si conta per quante opzioni la macchina nomina: nessuna,
+   una sola, due o più. Dove ne nomina una sola, se è la chiave e se la persona
+   l'ha scelta.
+2. *Letta, su un campione.* 50 delle 270, estratte con il seme 534, lette con
+   la domanda, le opzioni e la conversazione, senza la chiave e senza la
+   risposta della persona, e messe nella prima categoria che si applica:
+   (a) *risposta senza lettera*: la macchina dà una risposta finale che
+   corrisponde a una sola opzione, a parole o con un valore equivalente;
+   (b) *risposta fuori dalle opzioni*: una risposta finale che non corrisponde
+   a nessuna;
+   (c) *aiuto parziale*: una spiegazione o un passaggio intermedio, senza una
+   risposta finale alla domanda;
+   (d) *domanda mancante o chiarimento*: la macchina chiede la domanda, le
+   opzioni o che cosa si intende, oppure risponde a un'altra domanda perché il
+   messaggio era incompleto;
+   (e) *altro*: fuori tema, un rifiuto, un saluto.
+   A leggere è un assistente AI istruito con questo elenco; dieci delle
+   cinquanta le rilegge un secondo, e si riporta l'accordo.
+
+**Incertezza.** Quote con intervalli di Wilson al 95 per cento; le quote del
+campione si portano alle 270 come stime, non come conteggi.
+
+**Regola per il testo.** Se (a) vale almeno 10 su 50, l'articolo smette di
+chiamare le 330 «chat da cui non è uscita una risposta»: dice che in una quota
+stimata di esse la risposta c'era senza la lettera, e che l'annotazione non
+l'ha vista, e la scomposizione dei 7,6 punti prende questa avvertenza. Sotto
+10, l'articolo riporta il controllo in una frase e tiene la sua lettura. In
+tutti e due i casi i numeri vanno in appendice.
