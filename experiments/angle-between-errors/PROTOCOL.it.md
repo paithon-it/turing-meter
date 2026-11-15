@@ -1169,3 +1169,36 @@ asseconda, la risposta della persona è un'ipotesi in più da controllare.
   guadagno sulla macchina da sola non si attribuisce alla persona.
 
 In ogni caso, i numeri nell'appendice dell'articolo.
+
+## L'ancora casuale: esito (15 novembre 2026)
+
+Risultati in `results/anchor.json`; le risposte in
+`devil-results/chatbench-anchor__haiku-5.5__told.jsonl` (1.038 prove, nessuna
+persa, in media 219 gettoni di risposta). Intervalli come scritto prima (2.000
+repliche, pesi di Poisson su persone e domande).
+
+- **Accuratezza** sulle 2.903 risposte: da sola 93,5 (rifatta 94,5), con la
+  risposta 96,5, con l'ancora 96,1. La lettera a caso è la chiave nel 22 per
+  cento delle risposte.
+- **R1, il formato, non passa come scritta.** d′_R / d′_0 = 1,12 (1,01-1,24)
+  contro l'esecuzione da sola del protocollo, 1,08 (0,98-1,19) contro Haiku da
+  sola interrogata di nuovo lo stesso giorno delle esecuzioni con la risposta e
+  con l'ancora. Il criterio le chiedeva tutte e due.
+- **R2, la risposta della persona, non passa.** d′_A / d′_R = 1,02 (0,94-1,11).
+- **Misura 2.** Con la risposta: 97,1 con la lettera della persona giusta, 95,6
+  con la lettera sbagliata. Con l'ancora: 94,2 con la lettera a caso giusta,
+  96,6 sbagliata. Da sola sulle stesse divisioni: 92,8 e 94,4 (secondo la
+  lettera della persona), 90,5 e 94,3 (secondo la lettera a caso).
+- **Misura 3, l'attrazione di una lettera sbagliata.** Con la risposta −0,7
+  punti (da −2,8 a +1,2), con l'ancora −0,9 (da −2,8 a +0,8); contro Haiku da
+  sola rifatta, −0,1 e −0,2. Una lettera sbagliata non attira Haiku, che sia
+  della persona o a caso.
+- **Misura 4.** L'accuratezza con la risposta prevista dalla macchina con
+  l'ancora è 95,2; quella osservata 96,5; scarto +1,3 punti (da −0,6 a +3,6).
+- **Descrittivo.** Gettoni di risposta: da sola circa 175, con la risposta 217,
+  con l'ancora 219. Sulle 254 prove in cui la lettera a caso coincide con quella
+  della persona le due domande sono identiche; la lettera di Haiku cambia in 7.
+- **Regola.** Nessuna delle due passa: l'articolo dice che la macchina che
+  riceve la nostra risposta non si distingue dalla macchina che riceve una
+  lettera a caso, e non attribuisce alla persona il guadagno sulla macchina da
+  sola.

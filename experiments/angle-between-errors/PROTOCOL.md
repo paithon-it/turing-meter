@@ -1144,3 +1144,32 @@ not sycophantic, the person's answer is one more hypothesis to check.
   machine alone is not attributed to the person.
 
 In every case, the numbers in the appendix of the article.
+
+## The random anchor: outcome (15 November 2026)
+
+Results in `results/anchor.json`; the answers in
+`devil-results/chatbench-anchor__haiku-5.5__told.jsonl` (1,038 items, none
+missing, 219 output tokens per answer on average). Intervals as
+pre-registered (2,000 replicas, Poisson weights over people and questions).
+
+- **Accuracy** on the 2,903 trials: alone 93.5 (asked again 94.5), told 96.5,
+  anchored 96.1. The random letter is the key in 22 percent of the trials.
+- **R1, the format, fails as written.** d′_R / d′_0 = 1.12 (1.01–1.24) against
+  the protocol's run alone, 1.08 (0.98–1.19) against Haiku alone asked again on
+  the same day as the told and anchored runs. The criterion asked for both.
+- **R2, the person's answer, fails.** d′_A / d′_R = 1.02 (0.94–1.11).
+- **Measure 2.** Told: 97.1 with the person's letter right, 95.6 with it
+  wrong. Anchored: 94.2 with the random letter right, 96.6 with it wrong. Alone
+  on the same splits: 92.8 and 94.4 (by the person's letter), 90.5 and 94.3
+  (by the random letter).
+- **Measure 3, the pull of a wrong letter.** Told −0.7 points (−2.8 to +1.2),
+  anchored −0.9 (−2.8 to +0.8); with Haiku alone asked again, −0.1 and −0.2.
+  A wrong letter does not attract Haiku, whether the person's or random.
+- **Measure 4.** The told accuracy predicted from the anchored machine is
+  95.2; the observed 96.5; difference +1.3 points (−0.6 to +3.6).
+- **Descriptive.** Output tokens per answer: alone about 175, told 217,
+  anchored 219. On the 254 items where the random letter equals the person's
+  the two prompts are identical; Haiku's letter differs in 7.
+- **Rule.** Neither passes: the article says that the machine told our answer
+  is not distinguishable from the machine told a random letter, and does not
+  attribute the gain over the machine alone to the person.
