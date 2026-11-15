@@ -1038,3 +1038,50 @@ stimata di esse la risposta c'era senza la lettera, e che l'annotazione non
 l'ha vista, e la scomposizione dei 7,6 punti prende questa avvertenza. Sotto
 10, l'articolo riporta il controllo in una frase e tiene la sua lettura. In
 tutti e due i casi i numeri vanno in appendice.
+
+## Dopo la settima revisione: esito (15 novembre 2026)
+
+Numeri in `results/homogenization.json` e `results/mute-chats.json`; il
+campione letto e le letture in `results/mute-chats-sample.jsonl` e
+`results/mute-chats-labels.json`. Intervalli come scritti prima.
+
+### A. Due persone con la chat accanto
+
+- **GPT-4o** (1.493 prove, 168 persone, 390 domande). φ_HH 70,4 gradi
+  (59,1–76,3), φ_SS 72,0 (55,6–80,3): Δ = −1,6 (da −11,2 a +11,5). **A1 non
+  passa.**
+- **Llama 3.1 8B** (1.401 prove, 157 persone, 387 domande). φ_HH 64,7
+  (53,5–71,7), φ_SS 54,7 (43,3–63,5): Δ = +10,1 (da −1,2 a +19,5). **A2 non
+  passa**, di poco.
+- **Stessa lettera sbagliata.** GPT-4o dal 41,0 al 50,0 per cento delle coppie
+  che sbagliano tutte e due (differenza +9,0, da −0,5 a +18,2); Llama dal 40,5
+  al 46,8 (+6,4, da −3,1 a +16,2). **A3 non passa** in nessuno dei due bracci.
+- *Descrittive.* Fra le coppie che con la chat sbagliano con la stessa lettera,
+  tutte e due le chat avevano dato quella lettera nel 5,5 per cento (GPT-4o) e
+  nel 14,4 (Llama), almeno una nel 34,6 e nel 52,5. Tetto della folla
+  `1/sqrt(ρ)`: GPT-4o 1,73 da sole, 1,80 con la chat; Llama 1,53 e 1,32. Dove
+  la chat ha dato una lettera: GPT-4o 66,6 → 63,1 (Δ 3,5, da −14,4 a +29,4),
+  Llama 52,0 → 20,9 (Δ 31,1, da 8,2 a 43,5); dove non l'ha data: GPT-4o 94,4 →
+  84,3, Llama 96,1 → 97,1. I sottoinsiemi scelgono le prove da come è andata
+  la conversazione (500 repliche ciascuno).
+- **Dove va.** A1 non è passata, quindi per la regola scritta sopra:
+  nell'appendice di ciò che non ha funzionato, con A1, A2 e A3; una frase nel
+  corpo dice che l'angolo fra due persone non si chiude in modo visibile.
+
+### B. Le chat senza risposta
+
+- 330 prove; 60 senza nessun messaggio della macchina (persone giuste con la
+  chat nel 61,7 per cento), 270 esaminate (47,8).
+- **Automatica, sulle 270.** Nessuna opzione nominata in 236, una sola in 17
+  (6,3 per cento, 4,0–9,9), due o più in 17. Delle 17 con una sola opzione, è
+  la chiave in 5, e la persona l'ha scelta in 9.
+- **Letta, sul campione di 50** (lettore 1, tutte e cinquanta): (a) risposta
+  senza lettera 2 (4 per cento, 1,1–13,5; da 3 a 36 delle 270); (b) risposta
+  fuori dalle opzioni 8; (c) aiuto parziale 19; (d) domanda mancante o
+  chiarimento 10; (e) altro 11. Il lettore 2, sulle prime dieci, concorda su 8
+  (su una, (c) contro (e); su un'altra, (a) contro (b): la risposta finale
+  della macchina, «solo I», non è fra le opzioni, quindi (b)).
+- **Regola.** (a) sta sotto 10 su 50: l'articolo tiene la sua lettura,
+  riporta il controllo in una frase, e i numeri vanno in appendice.
+- *Nota.* Il lettore 1 ha indicato le risposte con il numero di riga del file
+  del campione; sono state riportate agli id in `results/mute-chats-labels.json`.

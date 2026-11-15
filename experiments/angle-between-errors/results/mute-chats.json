@@ -1,0 +1,98 @@
+{
+  "protocol": "PROTOCOL.md, «After the seventh review», B",
+  "trials_without_answer": 330,
+  "no_machine_message": 60,
+  "acc_with_chat_no_message": 0.6166666666666667,
+  "acc_with_chat_with_message": 0.4777777777777778,
+  "automatic": {
+    "examined": 270,
+    "names_none": 236,
+    "names_one": 17,
+    "names_one_share": 0.06296296296296296,
+    "names_one_ci": [
+      0.039679088508374066,
+      0.09850838330793482
+    ],
+    "names_two_or_more": 17,
+    "names_one_is_the_key": 5,
+    "names_one_person_chose_it": 9,
+    "names_one_acc_with_chat": 0.29411764705882354
+  },
+  "readings": {
+    "read": 50,
+    "pool": 270,
+    "categories": {
+      "a": {
+        "n": 2,
+        "share": 0.04,
+        "ci": [
+          0.011038884228173514,
+          0.13460090793615148
+        ],
+        "estimated_in_pool": [
+          2.9804987416068487,
+          36.3422451427609
+        ],
+        "acc_with_chat": 0.5
+      },
+      "b": {
+        "n": 8,
+        "share": 0.16,
+        "ci": [
+          0.08337420635400901,
+          0.2851421617674486
+        ],
+        "estimated_in_pool": [
+          22.511035715582434,
+          76.98838367721112
+        ],
+        "acc_with_chat": 0.5
+      },
+      "c": {
+        "n": 19,
+        "share": 0.38,
+        "ci": [
+          0.2586278922714569,
+          0.5184955317714105
+        ],
+        "estimated_in_pool": [
+          69.82953091329335,
+          139.99379357828084
+        ],
+        "acc_with_chat": 0.3684210526315789
+      },
+      "d": {
+        "n": 10,
+        "share": 0.2,
+        "ci": [
+          0.11243749964234825,
+          0.33037106046482023
+        ],
+        "estimated_in_pool": [
+          30.358124903434028,
+          89.20018632550146
+        ],
+        "acc_with_chat": 0.4
+      },
+      "e": {
+        "n": 11,
+        "share": 0.22,
+        "ci": [
+          0.1275391591451957,
+          0.35241549695482816
+        ],
+        "estimated_in_pool": [
+          34.43557296920284,
+          95.1521841778036
+        ],
+        "acc_with_chat": 0.7272727272727273
+      }
+    },
+    "second_reader": {
+      "read": 10,
+      "agree": 8
+    },
+    "rule": "(a) at least 10 of 50: the article qualifies the 330 as partly an annotation artefact",
+    "rule_met": false
+  }
+}
