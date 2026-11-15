@@ -1,0 +1,11 @@
+1. four options, 6,000 cases
+  k 2.16 [2.078070375977999, 2.24750727425586] (true 2.16) | angle 74.4 [71.0, 77.3] [estimated] (true 74.5) | margin 2.0% (true 2.0%) | zone A | ceiling 11%
+2. yes/no, 6,000 cases, both leaning toward no
+  k 2.13 [1.9946929675926623, 2.276547752963827] (true 2.16) | angle 77.5 [74.0, 81.3] [estimated] (true 74.5) | margin 3.3% (true 2.0%) | zone A | ceiling 12%
+   six yes/no sheets of 40,000 cases: mean k 2.163 (true 2.165), mean angle 74.4 (true 74.5)
+3. two phases: archive of 2,000, the person does 200 (100 among the 227 machine errors)
+  k 2.66 [2.007521068628852, 4.041138647646389] (true 2.16) | angle 79.4 [68.8, 92.2] [estimated] (true 74.5) | margin 1.9% (true 2.0%) | zone A | ceiling 12%
+   comparison: 200 cases drawn at random from the same archive
+  k 2.16 [1.7990285037606046, 2.782345559603834] (true 2.16) | angle 68.7 [49.0, 87.8] [indicative] (true 74.5) | margin 0.6% (true 2.0%) | zone A | ceiling 14%
+4. a machine with no errors on 100 cases
+  k 4.27, exact interval [1.8814851834511532, 5.704407221056522] (the machine made no errors: k is a lower bound; its low end comes from the rule of three) | angle: not estimable | zone A | ceiling 13%

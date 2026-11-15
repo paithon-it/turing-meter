@@ -1,0 +1,546 @@
+{
+ "gpt4o": {
+  "scenario": {
+   "nome": "Person at 58%, machine at 88% (GPT-4o on ChatBench)",
+   "dh": 1.08,
+   "dm": 2.338,
+   "rho": 0.267,
+   "m": 4
+  },
+  "peso_ideale": 4.49725070981275,
+  "accuratezza": {
+   "persona": 0.577328,
+   "macchina": 0.882954,
+   "coppia_ideale": 0.889958,
+   "pesi_uguali": 0.8509605,
+   "pesa_il_verdetto": 0.883018,
+   "macchina_tranne_molto_sicuro": 0.834488,
+   "propria_tranne_poco_sicuro": 0.726246
+  },
+  "errori_su_cento": {
+   "persona": 42.2672,
+   "macchina": 11.7046,
+   "coppia_ideale": 11.004199999999997,
+   "pesi_uguali": 14.903949999999998,
+   "pesa_il_verdetto": 11.698200000000003,
+   "macchina_tranne_molto_sicuro": 16.551199999999998,
+   "propria_tranne_poco_sicuro": 27.375400000000006
+  },
+  "sensibilita": {
+   "persona": 1.0803238579527563,
+   "macchina": 2.3348402779779063,
+   "coppia_ideale": 2.3811961821471876,
+   "pesi_uguali": 2.14512238248821,
+   "pesa_il_verdetto": 2.335254853281653,
+   "macchina_tranne_molto_sicuro": 2.05825779622575,
+   "propria_tranne_poco_sicuro": 1.5902494617013343
+  },
+  "pesa_il_verdetto_bonus": 4.0,
+  "pesa_il_verdetto_segue_nei_disaccordi": 0.9981231291227798,
+  "allarme": {
+   "disaccordi": 0.437963,
+   "errore_macchina_in_accordo": 0.06016596772098634,
+   "errore_macchina_in_disaccordo": 0.19004002621225993,
+   "quota_errori_macchina_in_disaccordo": 0.7110922201527604,
+   "nel_disaccordo_ragione_macchina": 0.8099599737877401,
+   "nel_disaccordo_ragione_persona": 0.11212476853067496
+  },
+  "sicurezza_nei_disaccordi": {
+   "molto": {
+    "quota_dei_disaccordi": 0.19887638910136243,
+    "ragione_persona": 0.18639961883112038,
+    "ragione_macchina": 0.7428372971452517
+   },
+   "poco": {
+    "quota_dei_disaccordi": 0.44768507841986654,
+    "ragione_persona": 0.08013740025858178,
+    "ragione_macchina": 0.8396537962304182
+   }
+  },
+  "sopra_il_piu_forte": {
+   "persona": -0.5373028861364456,
+   "macchina": 0.0,
+   "coppia_ideale": 0.01985399369991514,
+   "pesi_uguali": -0.0812551921770005,
+   "pesa_il_verdetto": 0.00017756045570083145,
+   "macchina_tranne_molto_sicuro": -0.11845884464169476,
+   "propria_tranne_poco_sicuro": -0.31890439071979115
+  }
+ },
+ "gpt4o-due-opzioni": {
+  "scenario": {
+   "nome": "Person at 58%, machine at 88% (GPT-4o on ChatBench) [two options, same sensitivities]",
+   "dh": 1.08,
+   "dm": 2.338,
+   "rho": 0.267,
+   "m": 2
+  },
+  "peso_ideale": 4.49725070981275,
+  "accuratezza": {
+   "persona": 0.778034,
+   "macchina": 0.951,
+   "coppia_ideale": 0.9542775,
+   "pesi_uguali": 0.9355625,
+   "pesa_il_verdetto": 0.951045,
+   "macchina_tranne_molto_sicuro": 0.9394165,
+   "propria_tranne_poco_sicuro": 0.8881765
+  },
+  "errori_su_cento": {
+   "persona": 22.1966,
+   "macchina": 4.900000000000004,
+   "coppia_ideale": 4.57225,
+   "pesi_uguali": 6.443750000000003,
+   "pesa_il_verdetto": 4.895499999999997,
+   "macchina_tranne_molto_sicuro": 6.058350000000001,
+   "propria_tranne_poco_sicuro": 11.182349999999996
+  },
+  "sensibilita": {
+   "persona": 1.5311406740219666,
+   "macchina": 3.3092558047021554,
+   "coppia_ideale": 3.3756481987927582,
+   "pesi_uguali": 3.0371063906742,
+   "pesa_il_verdetto": 3.3101429528028836,
+   "macchina_tranne_molto_sicuro": 3.0997876667663387,
+   "propria_tranne_poco_sicuro": 2.43377511658488
+  },
+  "pesa_il_verdetto_bonus": 4.0,
+  "pesa_il_verdetto_segue_nei_disaccordi": 0.9987627791886436,
+  "allarme": {
+   "disaccordi": 0.230355,
+   "errore_macchina_in_accordo": 0.02638294278531011,
+   "errore_macchina_in_disaccordo": 0.12456643007531853,
+   "quota_errori_macchina_in_disaccordo": 0.5856020408163265,
+   "nel_disaccordo_ragione_macchina": 0.8754335699246815,
+   "nel_disaccordo_ragione_persona": 0.12456643007531853
+  },
+  "sicurezza_nei_disaccordi": {
+   "molto": {
+    "quota_dei_disaccordi": 0.11042738382062468,
+    "ragione_persona": 0.27231449631449633,
+    "ragione_macchina": 0.7276855036855037
+   },
+   "poco": {
+    "quota_dei_disaccordi": 0.576299624492631,
+    "ragione_persona": 0.08516159649274783,
+    "ragione_macchina": 0.9148384035072522
+   }
+  },
+  "sopra_il_piu_forte": {
+   "persona": -0.5373157095180272,
+   "macchina": 0.0,
+   "coppia_ideale": 0.02006263583379231,
+   "pesi_uguali": -0.0822388567366884,
+   "pesa_il_verdetto": 0.00026808084750284955,
+   "macchina_tranne_molto_sicuro": -0.06329765672335796,
+   "propria_tranne_poco_sicuro": -0.26455515674348773
+  }
+ },
+ "pari": {
+  "scenario": {
+   "nome": "On par (GPT-4o on ethics: 71% and 74.5%)",
+   "dh": 1.536,
+   "dm": 1.663,
+   "rho": 0.346,
+   "m": 4
+  },
+  "peso_ideale": 1.1779529919779472,
+  "accuratezza": {
+   "persona": 0.7118135,
+   "macchina": 0.74484,
+   "coppia_ideale": 0.812462,
+   "pesi_uguali": 0.8118295,
+   "pesa_il_verdetto": 0.7911415,
+   "macchina_tranne_molto_sicuro": 0.77488,
+   "propria_tranne_poco_sicuro": 0.7718675
+  },
+  "errori_su_cento": {
+   "persona": 28.81865,
+   "macchina": 25.516000000000005,
+   "coppia_ideale": 18.7538,
+   "pesi_uguali": 18.817050000000002,
+   "pesa_il_verdetto": 20.885849999999994,
+   "macchina_tranne_molto_sicuro": 22.512,
+   "propria_tranne_poco_sicuro": 22.813249999999996
+  },
+  "sensibilita": {
+   "persona": 1.5363791866412981,
+   "macchina": 1.6618425282389375,
+   "coppia_ideale": 1.9505688728748218,
+   "pesi_uguali": 1.9476005537159635,
+   "pesa_il_verdetto": 1.853698235458778,
+   "macchina_tranne_molto_sicuro": 1.7837684396586206,
+   "propria_tranne_poco_sicuro": 1.7711420291915219
+  },
+  "pesa_il_verdetto_bonus": 1.25,
+  "pesa_il_verdetto_segue_nei_disaccordi": 0.6479767260864002,
+  "allarme": {
+   "disaccordi": 0.375184,
+   "errore_macchina_in_accordo": 0.09391724923817572,
+   "errore_macchina_in_disaccordo": 0.5236870442236343,
+   "quota_errori_macchina_in_disaccordo": 0.7700227308355542,
+   "nel_disaccordo_ragione_macchina": 0.47631295577636573,
+   "nel_disaccordo_ragione_persona": 0.3882854812571965
+  },
+  "sicurezza_nei_disaccordi": {
+   "molto": {
+    "quota_dei_disaccordi": 0.1699606059959913,
+    "ragione_persona": 0.7017007362800216,
+    "ragione_macchina": 0.23060698015415618
+   },
+   "poco": {
+    "quota_dei_disaccordi": 0.4921998272847456,
+    "ragione_persona": 0.2556974637926413,
+    "ragione_macchina": 0.5809016843969231
+   }
+  },
+  "sopra_il_piu_forte": {
+   "persona": -0.07549652838081689,
+   "macchina": 0.0,
+   "coppia_ideale": 0.17373869047739987,
+   "pesi_uguali": 0.17195252896785895,
+   "pesa_il_verdetto": 0.11544758541180844,
+   "macchina_tranne_molto_sicuro": 0.07336790902137325,
+   "propria_tranne_poco_sicuro": 0.06577007092748399
+  }
+ },
+ "pari-due-opzioni": {
+  "scenario": {
+   "nome": "On par (GPT-4o on ethics: 71% and 74.5%) [two options, same sensitivities]",
+   "dh": 1.536,
+   "dm": 1.663,
+   "rho": 0.346,
+   "m": 2
+  },
+  "peso_ideale": 1.1779529919779472,
+  "accuratezza": {
+   "persona": 0.8619565,
+   "macchina": 0.8802465,
+   "coppia_ideale": 0.916539,
+   "pesi_uguali": 0.9162755,
+   "pesa_il_verdetto": 0.906077,
+   "macchina_tranne_molto_sicuro": 0.894731,
+   "propria_tranne_poco_sicuro": 0.9063145
+  },
+  "errori_su_cento": {
+   "persona": 13.80435,
+   "macchina": 11.975349999999995,
+   "coppia_ideale": 8.3461,
+   "pesi_uguali": 8.372449999999997,
+   "pesa_il_verdetto": 9.392299999999999,
+   "macchina_tranne_molto_sicuro": 10.526899999999994,
+   "propria_tranne_poco_sicuro": 9.368549999999997
+  },
+  "sensibilita": {
+   "persona": 2.1783033740676743,
+   "macchina": 2.3524398717684276,
+   "coppia_ideale": 2.7643237720062435,
+   "pesi_uguali": 2.7608943737759297,
+   "pesa_il_verdetto": 2.633955994100638,
+   "macchina_tranne_molto_sicuro": 2.5041749011519063,
+   "propria_tranne_poco_sicuro": 2.636792712083745
+  },
+  "pesa_il_verdetto_bonus": 1.25,
+  "pesa_il_verdetto_segue_nei_disaccordi": 0.6921169644334602,
+  "allarme": {
+   "disaccordi": 0.187339,
+   "errore_macchina_in_accordo": 0.04335017922602413,
+   "errore_macchina_in_disaccordo": 0.45118475063921554,
+   "quota_errori_macchina_in_disaccordo": 0.7058207067016831,
+   "nel_disaccordo_ragione_macchina": 0.5488152493607844,
+   "nel_disaccordo_ragione_persona": 0.45118475063921554
+  },
+  "sicurezza_nei_disaccordi": {
+   "molto": {
+    "quota_dei_disaccordi": 0.10373974452730078,
+    "ragione_persona": 0.8726491548534822,
+    "ragione_macchina": 0.1273508451465178
+   },
+   "poco": {
+    "quota_dei_disaccordi": 0.6232071271865441,
+    "ragione_persona": 0.3100316057250045,
+    "ragione_macchina": 0.6899683942749955
+   }
+  },
+  "sopra_il_piu_forte": {
+   "persona": -0.07402378262269782,
+   "macchina": 0.0,
+   "coppia_ideale": 0.1750879608787559,
+   "pesi_uguali": 0.17363015603899368,
+   "pesa_il_verdetto": 0.1196698481906715,
+   "macchina_tranne_molto_sicuro": 0.06450112974382338,
+   "propria_tranne_poco_sicuro": 0.12087571024782773
+  }
+ },
+ "llama": {
+  "scenario": {
+   "nome": "Machine slightly above the person (Llama 3.1 8B: 60.5% and 67%)",
+   "dh": 1.17,
+   "dm": 1.378,
+   "rho": 0.258,
+   "m": 4
+  },
+  "peso_ideale": 1.3212666794356125,
+  "accuratezza": {
+   "persona": 0.605327,
+   "macchina": 0.666907,
+   "coppia_ideale": 0.732427,
+   "pesi_uguali": 0.730128,
+   "pesa_il_verdetto": 0.705475,
+   "macchina_tranne_molto_sicuro": 0.69247,
+   "propria_tranne_poco_sicuro": 0.669757
+  },
+  "errori_su_cento": {
+   "persona": 39.46730000000001,
+   "macchina": 33.3093,
+   "coppia_ideale": 26.757299999999994,
+   "pesi_uguali": 26.9872,
+   "pesa_il_verdetto": 29.452500000000004,
+   "macchina_tranne_molto_sicuro": 30.752999999999997,
+   "propria_tranne_poco_sicuro": 33.0243
+  },
+  "sensibilita": {
+   "persona": 1.1705320155490015,
+   "macchina": 1.3764080900129283,
+   "coppia_ideale": 1.6137592973653023,
+   "pesi_uguali": 1.6049818054709548,
+   "pesa_il_verdetto": 1.5131390955430857,
+   "macchina_tranne_molto_sicuro": 1.466183752992112,
+   "propria_tranne_poco_sicuro": 1.3862675655844845
+  },
+  "pesa_il_verdetto_bonus": 1.5,
+  "pesa_il_verdetto_segue_nei_disaccordi": 0.7069616060370403,
+  "allarme": {
+   "disaccordi": 0.486066,
+   "errore_macchina_in_accordo": 0.1513813057707799,
+   "errore_macchina_in_disaccordo": 0.5252229121148156,
+   "quota_errori_macchina_in_disaccordo": 0.766431597181568,
+   "nel_disaccordo_ragione_macchina": 0.4747770878851843,
+   "nel_disaccordo_ragione_persona": 0.348086473853345
+  },
+  "sicurezza_nei_disaccordi": {
+   "molto": {
+    "quota_dei_disaccordi": 0.2298823616545901,
+    "ragione_persona": 0.5531913941541821,
+    "ragione_macchina": 0.32441514972525015
+   },
+   "poco": {
+    "quota_dei_disaccordi": 0.42169581908629694,
+    "ragione_persona": 0.24012060183829986,
+    "ragione_macchina": 0.5544562184103194
+   }
+  },
+  "sopra_il_piu_forte": {
+   "persona": -0.14957487968702143,
+   "macchina": 0.0,
+   "coppia_ideale": 0.17244246751713344,
+   "pesi_uguali": 0.16606536761628554,
+   "pesa_il_verdetto": 0.09933900165384313,
+   "macchina_tranne_molto_sicuro": 0.06522459700040018,
+   "propria_tranne_poco_sicuro": 0.007163192110752226
+  }
+ },
+ "mezzo": {
+  "scenario": {
+   "nome": "Middle zone (k = 1.5; 65% and 82%)",
+   "dh": 1.3,
+   "dm": 1.95,
+   "rho": 0.26,
+   "m": 4
+  },
+  "peso_ideale": 2.0327868852459012,
+  "accuratezza": {
+   "persona": 0.6446515,
+   "macchina": 0.811864,
+   "coppia_ideale": 0.8450635,
+   "pesi_uguali": 0.831927,
+   "pesa_il_verdetto": 0.8221345,
+   "macchina_tranne_molto_sicuro": 0.809537,
+   "propria_tranne_poco_sicuro": 0.7524235
+  },
+  "errori_su_cento": {
+   "persona": 35.53485,
+   "macchina": 18.813599999999997,
+   "coppia_ideale": 15.493650000000002,
+   "pesi_uguali": 16.8073,
+   "pesa_il_verdetto": 17.786550000000002,
+   "macchina_tranne_molto_sicuro": 19.046300000000006,
+   "propria_tranne_poco_sicuro": 24.757649999999998
+  },
+  "sensibilita": {
+   "persona": 1.3005406683637748,
+   "macchina": 1.947762351312057,
+   "coppia_ideale": 2.113319712001744,
+   "pesi_uguali": 2.045274759889155,
+   "pesa_il_verdetto": 1.996797381700137,
+   "macchina_tranne_molto_sicuro": 1.936889223445162,
+   "propria_tranne_poco_sicuro": 1.6918353167758184
+  },
+  "pesa_il_verdetto_bonus": 2.0,
+  "pesa_il_verdetto_segue_nei_disaccordi": 0.8706488121246391,
+  "allarme": {
+   "disaccordi": 0.4085235,
+   "errore_macchina_in_accordo": 0.07477135608937971,
+   "errore_macchina_in_disaccordo": 0.3522698204632047,
+   "quota_errori_macchina_in_disaccordo": 0.7649280307862397,
+   "nel_disaccordo_ragione_macchina": 0.6477301795367953,
+   "nel_disaccordo_ragione_persona": 0.2384208007617677
+  },
+  "sicurezza_nei_disaccordi": {
+   "molto": {
+    "quota_dei_disaccordi": 0.1838278581281126,
+    "ragione_persona": 0.44276811632799806,
+    "ragione_macchina": 0.47375429438866545
+   },
+   "poco": {
+    "quota_dei_disaccordi": 0.46760345488080857,
+    "ragione_persona": 0.1549859443952949,
+    "ragione_macchina": 0.7191575012956284
+   }
+  },
+  "sopra_il_piu_forte": {
+   "persona": -0.33228986201129673,
+   "macchina": 0.0,
+   "coppia_ideale": 0.08499874770562421,
+   "pesi_uguali": 0.05006381220553502,
+   "pesa_il_verdetto": 0.025175058114789373,
+   "macchina_tranne_molto_sicuro": -0.005582368844726182,
+   "propria_tranne_poco_sicuro": -0.1313954109256914
+  }
+ },
+ "haiku": {
+  "scenario": {
+   "nome": "Machine at 93% (like Claude Haiku 5.5), independent errors",
+   "dh": 1.08,
+   "dm": 2.6995904989813106,
+   "rho": 0.0,
+   "m": 4
+  },
+  "peso_ideale": 2.4996208323901024,
+  "accuratezza": {
+   "persona": 0.577409,
+   "macchina": 0.929734,
+   "coppia_ideale": 0.9491585,
+   "pesi_uguali": 0.9271165,
+   "pesa_il_verdetto": 0.931089,
+   "macchina_tranne_molto_sicuro": 0.8736835,
+   "propria_tranne_poco_sicuro": 0.747033
+  },
+  "errori_su_cento": {
+   "persona": 42.259100000000004,
+   "macchina": 7.0266000000000055,
+   "coppia_ideale": 5.084149999999998,
+   "pesi_uguali": 7.288349999999999,
+   "pesa_il_verdetto": 6.8910999999999945,
+   "macchina_tranne_molto_sicuro": 12.631650000000006,
+   "propria_tranne_poco_sicuro": 25.296700000000005
+  },
+  "sensibilita": {
+   "persona": 1.0805827229621348,
+   "macchina": 2.6970633800903294,
+   "coppia_ideale": 2.905827132097221,
+   "pesi_uguali": 2.672550577854447,
+   "pesa_il_verdetto": 2.7100299222336006,
+   "macchina_tranne_molto_sicuro": 2.2764605985145345,
+   "propria_tranne_poco_sicuro": 1.6704646537317143
+  },
+  "pesa_il_verdetto_bonus": 3.5,
+  "pesa_il_verdetto_segue_nei_disaccordi": 0.9884038206707689,
+  "allarme": {
+   "disaccordi": 0.4531665,
+   "errore_macchina_in_accordo": 0.018286187660412172,
+   "errore_macchina_in_disaccordo": 0.13298975100763186,
+   "quota_errori_macchina_in_disaccordo": 0.8576907750547917,
+   "nel_disaccordo_ragione_macchina": 0.8670102489923681,
+   "nel_disaccordo_ragione_persona": 0.08953662726613729
+  },
+  "sicurezza_nei_disaccordi": {
+   "molto": {
+    "quota_dei_disaccordi": 0.21031342784605658,
+    "ragione_persona": 0.18634517926280336,
+    "ragione_macchina": 0.7744499354716863
+   },
+   "poco": {
+    "quota_dei_disaccordi": 0.43729401886503083,
+    "ragione_persona": 0.04934726770854885,
+    "ragione_macchina": 0.9053121861863983
+   }
+  },
+  "sopra_il_piu_forte": {
+   "persona": -0.5993484131893319,
+   "macchina": 0.0,
+   "coppia_ideale": 0.07740409570942286,
+   "pesi_uguali": -0.009088700850278575,
+   "pesa_il_verdetto": 0.004807651996237894,
+   "macchina_tranne_molto_sicuro": -0.15594842326683034,
+   "propria_tranne_poco_sicuro": -0.3806357440232764
+  }
+ },
+ "forte": {
+  "scenario": {
+   "nome": "Machine at 98% (like Claude Sonnet 5.5), independent errors",
+   "dh": 1.08,
+   "dm": 3.4432059222091382,
+   "rho": 0.0,
+   "m": 4
+  },
+  "peso_ideale": 3.188153631675128,
+  "accuratezza": {
+   "persona": 0.577409,
+   "macchina": 0.9798535,
+   "coppia_ideale": 0.985271,
+   "pesi_uguali": 0.9686835,
+   "pesa_il_verdetto": 0.979893,
+   "macchina_tranne_molto_sicuro": 0.9071425,
+   "propria_tranne_poco_sicuro": 0.763641
+  },
+  "errori_su_cento": {
+   "persona": 42.259100000000004,
+   "macchina": 2.0146499999999956,
+   "coppia_ideale": 1.4728999999999992,
+   "pesi_uguali": 3.131649999999997,
+   "pesa_il_verdetto": 2.0106999999999986,
+   "macchina_tranne_molto_sicuro": 9.285750000000004,
+   "propria_tranne_poco_sicuro": 23.6359
+  },
+  "sensibilita": {
+   "persona": 1.0805827229621348,
+   "macchina": 3.439304951684738,
+   "coppia_ideale": 3.6033024401932323,
+   "pesi_uguali": 3.1952712607863534,
+   "pesa_il_verdetto": 3.4403539116217634,
+   "macchina_tranne_molto_sicuro": 2.504878733933669,
+   "propria_tranne_poco_sicuro": 1.7371419695990513
+  },
+  "pesa_il_verdetto_bonus": 5.0,
+  "pesa_il_verdetto_segue_nei_disaccordi": 0.9998099333028145,
+  "allarme": {
+   "disaccordi": 0.4314275,
+   "errore_macchina_in_accordo": 0.004950116300032098,
+   "errore_macchina_in_disaccordo": 0.0401736097026731,
+   "quota_errori_macchina_in_disaccordo": 0.8602983148437694,
+   "nel_disaccordo_ragione_macchina": 0.9598263902973269,
+   "nel_disaccordo_ragione_persona": 0.02700569620619919
+  },
+  "sicurezza_nei_disaccordi": {
+   "molto": {
+    "quota_dei_disaccordi": 0.1947905499765314,
+    "ragione_persona": 0.06096646755039387,
+    "ragione_macchina": 0.9261822032889883
+   },
+   "poco": {
+    "quota_dei_disaccordi": 0.45077446384386716,
+    "ragione_persona": 0.014500466637357212,
+    "ragione_macchina": 0.9721071697608709
+   }
+  },
+  "sopra_il_piu_forte": {
+   "persona": -0.6858136343993535,
+   "macchina": 0.0,
+   "coppia_ideale": 0.047683322884224166,
+   "pesi_uguali": -0.07095436267692556,
+   "pesa_il_verdetto": 0.00030499183752574766,
+   "macchina_tranne_molto_sicuro": -0.27169042317499115,
+   "propria_tranne_poco_sicuro": -0.4949148173824729
+  }
+ }
+}

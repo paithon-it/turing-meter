@@ -1,0 +1,49 @@
+gpt4o done
+pari done
+llama done
+mezzo done
+haiku done
+forte done
+
+THE ALARM (model)
+scenario         disagr. err.M agr. err.M dis.  err. share in dis. right M right H
+gpt4o              43.8%       6.0%      19.0%                 71%     81%     11%
+gpt4o-due-opzioni   23.0%       2.6%      12.5%                 59%     88%     12%
+pari               37.5%       9.4%      52.4%                 77%     48%     39%
+pari-due-opzioni   18.7%       4.3%      45.1%                 71%     55%     45%
+llama              48.6%      15.1%      52.5%                 77%     47%     35%
+mezzo              40.9%       7.5%      35.2%                 76%     65%     24%
+haiku              45.3%       1.8%      13.3%                 86%     87%      9%
+forte              43.1%       0.5%       4.0%                 86%     96%      3%
+
+THE RULES: correct answers per hundred (model)
+scenario                  person         machine      ideal_pair   equal_weights  weighs_verdict machine_unless_ own_unless_unsufollows (verd.)
+gpt4o                       57.7            88.3            89.0            85.1            88.3            83.4            72.6           100%
+gpt4o-due-opzioni            77.8            95.1            95.4            93.6            95.1            93.9            88.8           100%
+pari                        71.2            74.5            81.2            81.2            79.1            77.5            77.2            65%
+pari-due-opzioni            86.2            88.0            91.7            91.6            90.6            89.5            90.6            69%
+llama                       60.5            66.7            73.2            73.0            70.5            69.2            67.0            71%
+mezzo                       64.5            81.2            84.5            83.2            82.2            81.0            75.2            87%
+haiku                       57.7            93.0            94.9            92.7            93.1            87.4            74.7            99%
+forte                       57.7            98.0            98.5            96.9            98.0            90.7            76.4           100%
+
+THE RULES: sensitivity above the stronger of the two, in per cent (model)
+scenario                  person         machine      ideal_pair   equal_weights  weighs_verdict machine_unless_ own_unless_unsu
+gpt4o                      -53.7             0.0             2.0            -8.1             0.0           -11.8           -31.9
+gpt4o-due-opzioni           -53.7             0.0             2.0            -8.2             0.0            -6.3           -26.5
+pari                        -7.5             0.0            17.4            17.2            11.5             7.3             6.6
+pari-due-opzioni            -7.4             0.0            17.5            17.4            12.0             6.5            12.1
+llama                      -15.0             0.0            17.2            16.6             9.9             6.5             0.7
+mezzo                      -33.2             0.0             8.5             5.0             2.5            -0.6           -13.1
+haiku                      -59.9             0.0             7.7            -0.9             0.5           -15.6           -38.1
+forte                      -68.6             0.0             4.8            -7.1             0.0           -27.2           -49.5
+
+CONFIDENCE IN DISAGREEMENTS (model): who is right when the person is very or not very confident
+gpt4o            very confident: person 19%, machine 74% (20% of disagreements) | not very confident: person 8%, machine 84% (45%)
+gpt4o-due-opzioni very confident: person 27%, machine 73% (11% of disagreements) | not very confident: person 9%, machine 91% (58%)
+pari             very confident: person 70%, machine 23% (17% of disagreements) | not very confident: person 26%, machine 58% (49%)
+pari-due-opzioni very confident: person 87%, machine 13% (10% of disagreements) | not very confident: person 31%, machine 69% (62%)
+llama            very confident: person 55%, machine 32% (23% of disagreements) | not very confident: person 24%, machine 55% (42%)
+mezzo            very confident: person 44%, machine 47% (18% of disagreements) | not very confident: person 15%, machine 72% (47%)
+haiku            very confident: person 19%, machine 77% (21% of disagreements) | not very confident: person 5%, machine 91% (44%)
+forte            very confident: person 6%, machine 93% (19% of disagreements) | not very confident: person 1%, machine 97% (45%)

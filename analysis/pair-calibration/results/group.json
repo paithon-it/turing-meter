@@ -1,0 +1,319 @@
+{
+ "riferimento": {
+  "acc_h": 0.573456,
+  "acc_m": 0.883041,
+  "dh": 1.067966596954969,
+  "dm": 2.335403232476469,
+  "k": 2.1867755406725906,
+  "phi": 74.51417293824811
+ },
+ "parametri": {
+  "dh": 1.08,
+  "sd_fra_persone": 0.4,
+  "dm": 2.338,
+  "rho": 0.267,
+  "rho_fra_persone": 0.41,
+  "m": 4
+ },
+ "disegni": [
+  {
+   "disegno": "1 person, 100 cases",
+   "persone": 1,
+   "casi_a_testa": 100,
+   "stessi_casi": true,
+   "risposte_umane": 100,
+   "casi_con_chiave": 100,
+   "errori_macchina_distinti_attesi": 11.695900000000004,
+   "k": [
+    1.6293402908673518,
+    2.1910892335883743,
+    3.1175931639610237
+   ],
+   "k_sd_log": 0.16055674604346212,
+   "phi": [
+    52.245593938212245,
+    76.61338801611552,
+    105.10034278586114
+   ],
+   "phi_sd": 14.187363880908059,
+   "repliche": 300,
+   "escluse": 0
+  },
+  {
+   "disegno": "1 person, 200 cases",
+   "persone": 1,
+   "casi_a_testa": 200,
+   "stessi_casi": true,
+   "risposte_umane": 200,
+   "casi_con_chiave": 200,
+   "errori_macchina_distinti_attesi": 23.391800000000007,
+   "k": [
+    1.7445900614255336,
+    2.189862745386363,
+    2.7046484259013015
+   ],
+   "k_sd_log": 0.11508566399156128,
+   "phi": [
+    56.223050510255085,
+    75.42594149305751,
+    95.09687585407147
+   ],
+   "phi_sd": 10.023961616159664,
+   "repliche": 300,
+   "escluse": 0
+  },
+  {
+   "disegno": "1 person, 500 cases",
+   "persone": 1,
+   "casi_a_testa": 500,
+   "stessi_casi": true,
+   "risposte_umane": 500,
+   "casi_con_chiave": 500,
+   "errori_macchina_distinti_attesi": 58.479500000000016,
+   "k": [
+    1.870234696716848,
+    2.18658138935679,
+    2.519757874840954
+   ],
+   "k_sd_log": 0.08119407362325529,
+   "phi": [
+    63.63258472366386,
+    75.0723568152552,
+    87.05582056808636
+   ],
+   "phi_sd": 5.858746739265254,
+   "repliche": 300,
+   "escluse": 0
+  },
+  {
+   "disegno": "5 people, the same 100 cases",
+   "persone": 5,
+   "casi_a_testa": 100,
+   "stessi_casi": true,
+   "risposte_umane": 500,
+   "casi_con_chiave": 100,
+   "errori_macchina_distinti_attesi": 11.695900000000004,
+   "k": [
+    1.5750929195229686,
+    2.1851422039935837,
+    3.4515996966127545
+   ],
+   "k_sd_log": 0.21126770259923403,
+   "phi": [
+    58.73820339342325,
+    75.07197450166217,
+    92.78937576247088
+   ],
+   "phi_sd": 8.629202235778374,
+   "repliche": 300,
+   "escluse": 0
+  },
+  {
+   "disegno": "5 people, 100 different cases each",
+   "persone": 5,
+   "casi_a_testa": 100,
+   "stessi_casi": false,
+   "risposte_umane": 500,
+   "casi_con_chiave": 500,
+   "errori_macchina_distinti_attesi": 58.479500000000016,
+   "k": [
+    1.6250637301009696,
+    2.1721786091217714,
+    3.3587057841506494
+   ],
+   "k_sd_log": 0.18586881754010492,
+   "phi": [
+    64.92534680946947,
+    75.54901297102468,
+    86.18294032781117
+   ],
+   "phi_sd": 6.081087750057546,
+   "repliche": 300,
+   "escluse": 0
+  },
+  {
+   "disegno": "10 people, the same 50 cases",
+   "persone": 10,
+   "casi_a_testa": 50,
+   "stessi_casi": true,
+   "risposte_umane": 500,
+   "casi_con_chiave": 50,
+   "errori_macchina_distinti_attesi": 5.847950000000002,
+   "k": [
+    1.5424632836549943,
+    2.140525389532291,
+    3.1443191516088707
+   ],
+   "k_sd_log": 0.18208762201681689,
+   "phi": [
+    52.76953383467235,
+    73.89640158294921,
+    94.23621641154254
+   ],
+   "phi_sd": 9.70689855940193,
+   "repliche": 300,
+   "escluse": 0
+  },
+  {
+   "disegno": "10 people, 50 different cases each",
+   "persone": 10,
+   "casi_a_testa": 50,
+   "stessi_casi": false,
+   "risposte_umane": 500,
+   "casi_con_chiave": 500,
+   "errori_macchina_distinti_attesi": 58.479500000000016,
+   "k": [
+    1.750483117200077,
+    2.2424292028957056,
+    2.8071856218792
+   ],
+   "k_sd_log": 0.12717755986340026,
+   "phi": [
+    61.02691931881761,
+    74.22747309075166,
+    87.09575666688094
+   ],
+   "phi_sd": 6.223497857247583,
+   "repliche": 300,
+   "escluse": 0
+  },
+  {
+   "disegno": "20 people, the same 100 cases",
+   "persone": 20,
+   "casi_a_testa": 100,
+   "stessi_casi": true,
+   "risposte_umane": 2000,
+   "casi_con_chiave": 100,
+   "errori_macchina_distinti_attesi": 11.695900000000004,
+   "k": [
+    1.7724157894480368,
+    2.2531622447603663,
+    2.9524373545280476
+   ],
+   "k_sd_log": 0.13363469900206223,
+   "phi": [
+    62.774286818175995,
+    74.84136575737907,
+    87.49227924237161
+   ],
+   "phi_sd": 6.694896362178575,
+   "repliche": 300,
+   "escluse": 0
+  },
+  {
+   "disegno": "20 people, the same 200 cases",
+   "persone": 20,
+   "casi_a_testa": 200,
+   "stessi_casi": true,
+   "risposte_umane": 4000,
+   "casi_con_chiave": 200,
+   "errori_macchina_distinti_attesi": 23.391800000000007,
+   "k": [
+    1.8137808237951538,
+    2.1696941822588487,
+    2.741570430217186
+   ],
+   "k_sd_log": 0.10246738864068707,
+   "phi": [
+    67.09410657583321,
+    75.58480165830852,
+    83.401694398481
+   ],
+   "phi_sd": 4.225440990242256,
+   "repliche": 300,
+   "escluse": 0
+  },
+  {
+   "disegno": "20 people, 25 different cases each",
+   "persone": 20,
+   "casi_a_testa": 25,
+   "stessi_casi": false,
+   "risposte_umane": 500,
+   "casi_con_chiave": 500,
+   "errori_macchina_distinti_attesi": 58.479500000000016,
+   "k": [
+    1.8326256053650896,
+    2.223131116675697,
+    2.8518193183157385
+   ],
+   "k_sd_log": 0.11847412035951137,
+   "phi": [
+    64.45832218196581,
+    75.48117625007131,
+    87.2413882498802
+   ],
+   "phi_sd": 5.875583749095657,
+   "repliche": 300,
+   "escluse": 0
+  },
+  {
+   "disegno": "20 people, 100 different cases each",
+   "persone": 20,
+   "casi_a_testa": 100,
+   "stessi_casi": false,
+   "risposte_umane": 2000,
+   "casi_con_chiave": 2000,
+   "errori_macchina_distinti_attesi": 233.91800000000006,
+   "k": [
+    1.8429242957418666,
+    2.2072648611321064,
+    2.656774615231775
+   ],
+   "k_sd_log": 0.08964604465553193,
+   "phi": [
+    67.83616554505754,
+    74.45032639271166,
+    80.25054529341449
+   ],
+   "phi_sd": 3.2607579932687285,
+   "repliche": 300,
+   "escluse": 0
+  },
+  {
+   "disegno": "50 people, the same 100 cases",
+   "persone": 50,
+   "casi_a_testa": 100,
+   "stessi_casi": true,
+   "risposte_umane": 5000,
+   "casi_con_chiave": 100,
+   "errori_macchina_distinti_attesi": 11.695900000000004,
+   "k": [
+    1.7489364587159055,
+    2.1773829197030894,
+    2.8282725357608207
+   ],
+   "k_sd_log": 0.11625198970182705,
+   "phi": [
+    63.983119804485796,
+    73.75094878992913,
+    85.32591865773777
+   ],
+   "phi_sd": 5.815166575931837,
+   "repliche": 300,
+   "escluse": 0
+  },
+  {
+   "disegno": "50 people, 40 different cases each",
+   "persone": 50,
+   "casi_a_testa": 40,
+   "stessi_casi": false,
+   "risposte_umane": 2000,
+   "casi_con_chiave": 2000,
+   "errori_macchina_distinti_attesi": 233.91800000000006,
+   "k": [
+    1.971026744455855,
+    2.1795516294719794,
+    2.4521669992651978
+   ],
+   "k_sd_log": 0.060704058240937574,
+   "phi": [
+    68.37695422640681,
+    74.48913341082695,
+    81.01708066567416
+   ],
+   "phi_sd": 3.0821058751944097,
+   "repliche": 300,
+   "escluse": 0
+  }
+ ]
+}

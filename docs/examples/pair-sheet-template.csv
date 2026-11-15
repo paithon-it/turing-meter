@@ -1,0 +1,4 @@
+case,stratum,key,person,confidence,machine,chat,pair,seconds_alone,seconds_pair
+C001,ordinary,B,B,3,B,B,B,64,92
+C002,ordinary,D,A,1,D,D,D,81,120
+C003,atypical,A,C,2,A,,C,55,140

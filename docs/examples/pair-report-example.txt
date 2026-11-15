@@ -1,0 +1,47 @@
+CALIBRATION: 200 cases, 4 options
+  both right 123 | only you 8 | only the machine 63 | neither 6
+  Where the machine errs, you err 43% of the time; where it is right, 34%.
+
+THE TWO READINGS, SEPARATE
+  You, alone             right answers 65.5% (from 58% to 72%); sensitivity 1.34 (from 1.12 to 1.56)
+  The machine, alone     right answers 93.0% (from 89% to 96%); sensitivity 2.70 (from 2.40 to 3.10)
+  k, how many times the machine is worth you: 2.02 (from 1.66 to 2.54; exact interval from 1.50 to 2.78)
+
+THE ANGLE AND THE MARGIN
+  Angle between the errors: 82 degrees (from 62 to 108). INDICATIVE: only 14 errors on the side that errs less, 40 are needed
+  Useful angle: 60 degrees (from 53 to 67)
+  The angle is above the useful angle: the weaker one adds something, in principle.
+  Margin of the ideal pair at the measured angle: 6.5% of sensitivity (from 0% to 32%)
+  In the ideal pair the evidence of the stronger weighs 2.6 times that of the weaker (it changes a lot in a few degrees).
+  Ceiling: with independent errors (90 degrees) and the least favourable k of the interval (resampling), the ideal pair promises at most 17% of sensitivity above the stronger.
+  In errors per hundred cases: the stronger alone 7.0; the ideal pair at the measured angle 5.3; at the ceiling 3.4.
+
+THE ALARM (the two answers given alone)
+  You disagree in 37% of the cases (74 cases).
+  The machine errs in 2.4% of the cases where you agree and in 14.9% where you do not; 79% of its errors fall in the disagreements.
+  In a disagreement the machine is right 85% of the time, you 11%. Agreements on a wrong answer: 3 (the alarm does not sound there).
+  By declared confidence:
+    1          cases   71, right 44%; disagreements  41: you right 2, the machine 37
+    2          cases   74, right 72%; disagreements  24: you right 4, the machine 19
+    3          cases   55, right 85%; disagreements   9: you right 2, the machine 7 (few cases: do not make a rule of it)
+
+THE PAIR
+  With the machine: right answers 82.5%; sensitivity 2.01
+  Turing: 1.51 (from 1.31 to 1.75). Yield over the machine: 0.74 (from 0.63 to 0.86).
+  Zone: the machine helps the person, the person holds the machine back.
+  Where the points go between the machine alone and the pair (−10.5 in all): conversation −1.5, decision +0.5, chat without answer −9.5 (24% of the cases).
+  In the 54 disagreements with the chat: the chat was right 78% of the time, you followed it 76%, the pair answered right 80%.
+  Time per case: 80 s alone, 118 s with the machine. Power over you alone: 1.52.
+  Against delegating (20 s per case): power 0.09; checking pays only with a yield above 2.43.
+
+BY KIND OF CASE (k changes with the task: do not use the overall k where the strata diverge)
+  atypical         cases   60: you 82%, machine 87%, k 1.13 (exact interval from 0.68 to 1.90), zone C
+  ordinary         cases  140: you 59%, machine 96%, k 2.72 (exact interval from 1.82 to 4.27), zone A
+  WARNING: the zones change with the kind of case. The rule must be given kind by kind, not on the total.
+
+ZONE A (on the total: see the warning on the kinds of case). The machine is clearly stronger than you on these cases (the whole interval of k is above 1.5).
+  - The machine's answer stands, even when you disagree and even when you are very sure. In the data of the paper, with a machine twice as sensitive, in a disagreement the machine was right 86 times in a hundred and the person 10; those who did not follow it were right one time in four.
+  - The disagreement is an alarm: that is where most of the machine's errors fall. It serves to choose what a third source should check (a colleague, another method, the documents), not to decide on your own.
+  - Make sure an answer comes out: give the machine the whole case, and if it does not answer, ask again, do not fall back on your own. In the data the biggest loss came from chats that stayed without an answer.
+  - Your own check, by itself, adds no sensitivity that can be measured: if it stays, it is for accountability or because the two errors do not cost the same.
+  This holds for these cases, this version of the model and this way of asking it. Inside the chat the machine is not the same: only the test of the pair says.

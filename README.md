@@ -15,7 +15,7 @@ person working with a machine, and measures how close real pairs get to it.
 
 > Status: **design stage** (November 2026). The specification, the schema, the
 > core computations, two reference analyses on public data and a first experiment
-> ([`experiments/angle-between-errors/`](experiments/angle-between-errors/)) are here; the machine runner and the tool for human sessions are not written yet. See
+> ([`experiments/angle-between-errors/`](experiments/angle-between-errors/)) are here, and so is the tool for one person calibrating a model on their own cases, `turing-meter pair` ([protocol](docs/PAIR-PROTOCOL.md), [one-page card](docs/PAIR-CARD.md)); the machine runner is not written yet, and the protocol has not yet been tried with real people. See
 > [`docs/PLAN.md`](docs/PLAN.md).
 
 ## The numbers
