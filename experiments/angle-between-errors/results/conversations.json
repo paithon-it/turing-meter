@@ -201,6 +201,71 @@
      "useful_angle": 61.34421475909703
     }
    }
+  },
+  "group_against_person": {
+   "acc_alone": 0.5773610180843939,
+   "sd_alone": 0.15029110922387381,
+   "acc_with": 0.7736101808439384,
+   "sd_with": 0.1241220765138537,
+   "turing_group": 1.6460430380814253,
+   "turing_mean_of_people": 1.6946665065835875,
+   "ratio": 1.0295396094617528,
+   "turing_group_ci": [
+    1.4930355167545,
+    1.84923926813393
+   ],
+   "turing_mean_of_people_ci": [
+    1.5313356571801906,
+    1.932561095997993
+   ],
+   "ratio_ci": [
+    1.0011537276449354,
+    1.0610058827877795
+   ],
+   "sd_alone_ci": [
+    0.11549781659659289,
+    0.17850416769692018
+   ],
+   "sd_with_ci": [
+    0.08502349793429106,
+    0.15895021003973062
+   ]
+  },
+  "started_wrong": {
+   "trials_person_right": 679,
+   "trials_person_wrong": 442,
+   "chat_person_right": 0.9293078055964654,
+   "alone_person_right": 0.9238694358450301,
+   "chat_person_wrong": 0.8981900452488688,
+   "alone_person_wrong": 0.8858869701726845,
+   "lift_person_right": 0.005438369751435184,
+   "lift_person_wrong": 0.012303075076184323,
+   "difference": -0.006864705324749139,
+   "difference_ci_people": [
+    -0.03999244287093688,
+    0.027248970630760833
+   ],
+   "wrong_chats_after_wrong_person": 45,
+   "same_wrong_answer_as_person": 0.5111111111111111,
+   "same_wrong_answer_by_chance": 0.3333333333333333
+  },
+  "hundred_questions": {
+   "person_wrong": 0.4226389819156061,
+   "machine_wrong": 0.1165416946782365,
+   "both_wrong": 0.06590919653497397,
+   "both_if_independent": 0.04925506318952928
+  },
+  "contact_factor": {
+   "mute_as_guess": {
+    "contact": 0.6522692024896574,
+    "extraction": 1.1052028304909893,
+    "filter": 1.055124727992931
+   },
+   "mute_as_own_answer": {
+    "contact": 0.7524008333538564,
+    "extraction": 1.1052028304909893,
+    "filter": 0.9147057450578224
+   }
   }
  },
  "llama-3.1-8b": {
@@ -395,6 +460,71 @@
      ],
      "useful_angle": 35.5518157163565
     }
+   }
+  },
+  "group_against_person": {
+   "acc_alone": 0.6052819414703783,
+   "sd_alone": 0.16277890540447335,
+   "acc_with": 0.7387580299785867,
+   "sd_with": 0.0925350692373986,
+   "turing_group": 1.399651425413871,
+   "turing_mean_of_people": 1.3819891902539374,
+   "ratio": 0.9873809758349577,
+   "turing_group_ci": [
+    1.274728396156498,
+    1.5320562567935534
+   ],
+   "turing_mean_of_people_ci": [
+    1.2532752856704892,
+    1.5115729167921503
+   ],
+   "ratio_ci": [
+    0.9649962944870334,
+    1.0076258887943998
+   ],
+   "sd_alone_ci": [
+    0.13053859489021383,
+    0.1883218364373811
+   ],
+   "sd_with_ci": [
+    0.04503257982513353,
+    0.12249259038777416
+   ]
+  },
+  "started_wrong": {
+   "trials_person_right": 615,
+   "trials_person_wrong": 354,
+   "chat_person_right": 0.8910569105691057,
+   "alone_person_right": 0.7655560309989065,
+   "chat_person_wrong": 0.7627118644067796,
+   "alone_person_wrong": 0.6610405216700617,
+   "lift_person_right": 0.1255008795701992,
+   "lift_person_wrong": 0.10167134273671805,
+   "difference": 0.023829536833481157,
+   "difference_ci_people": [
+    -0.026228754880997893,
+    0.07591931729606066
+   ],
+   "wrong_chats_after_wrong_person": 84,
+   "same_wrong_answer_as_person": 0.5714285714285714,
+   "same_wrong_answer_by_chance": 0.3333333333333333
+  },
+  "hundred_questions": {
+   "person_wrong": 0.3947180585296217,
+   "machine_wrong": 0.3326259059112233,
+   "both_wrong": 0.16138991578176545,
+   "both_if_independent": 0.1312934517979347
+  },
+  "contact_factor": {
+   "mute_as_guess": {
+    "contact": 0.6430587563410274,
+    "extraction": 1.5301410793567345,
+    "filter": 1.2081221452252124
+   },
+   "mute_as_own_answer": {
+    "contact": 0.7981268214866555,
+    "extraction": 1.5301410793567345,
+    "filter": 0.9733960860624563
    }
   }
  }

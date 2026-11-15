@@ -539,3 +539,15 @@ chat are a selection. `angle/conversations.py`, `results/conversations.json`.
   cannot move the machine's accuracy: the bound comes from the rule of three
   (an error rate up to 3/396), with the person's sensitivity at its point and
   at the high end of its interval.
+
+- **Later the same day, after a third review.** Four more descriptive analyses
+  in the same module. *Group against person*: the people's spread of accuracy,
+  net of binomial noise, fitted with a Beta distribution, gives the ratio of
+  the average individual sensitivities with and without the machine, to set
+  against the group turing (Macmillan and Kaplan, 1985); bootstrap over
+  people. *Started wrong*: on the conversations with an answer, how much the
+  chat beats the machine alone when the person's answer alone was right and
+  when it was wrong, and how often a wrong chat repeats the person's wrong
+  answer. *A hundred questions*: errors of the people, of the machine and of
+  both, against independent errors. *Contact*: the four-factor decomposition
+  in d′ over all trials, under the two conventions for a mute chat.
