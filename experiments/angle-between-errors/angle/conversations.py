@@ -26,6 +26,10 @@
    what independent errors would give.
 10. A fourth factor in sensitivity over all trials, counting the mute chats as guesses: the contact factor
     and why it was not used (it depends on the convention for the mute chats).
+11. (added later the same day, after a further review) Agreement and disagreement: how often the chat is wrong
+    when it agrees with the person's answer alone and when it does not, who is right in a disagreement, by
+    subject and by the confidence the person stated; and, in the model, the weights of the ideal pair, the
+    "more confident one wins" rule (equal weights) and an observer that weighs the chat's verdict as it deserves.
 
 Writes results/conversations.json. Usage, from the experiment folder:  python -m angle.conversations
 """
@@ -322,6 +326,107 @@ def contact_factor(x: pd.DataFrame) -> dict:
     return out
 
 
+def weight_ratio(k: float, phi_degrees: float) -> float:
+    """How many times the machine's cue weighs the person's in the ideal pair (w ∝ Σ⁻¹d), each cue in units of
+    its own noise: (k − cos φ)/(1 − k cos φ). k at 90 degrees; it diverges at the useful angle, below which the
+    free optimum would give the person a negative weight and the article stops at the stronger."""
+    c = math.cos(math.radians(phi_degrees))
+    return (k - c) / (1 - k * c)
+
+
+def equal_weights(dh: float, dm: float, rho: float) -> dict:
+    """«The more confident one wins» amounts to equal weights on the two cues: (dH + dM)/sqrt(2(1 + ρ)). It beats
+    the stronger only if k < 1/(sqrt(2(1 + ρ)) − 1), 2.41 at 90 degrees (Bahrami et al., 2010)."""
+    d = (dh + dm) / math.sqrt(2 * (1 + rho))
+    return {"d": d, "over_machine": d / max(dh, dm), "k_threshold": 1 / (math.sqrt(2 * (1 + rho)) - 1)}
+
+
+def weighing_the_verdict(dh: float, p_chat: float, n: int = 2_000_000, seed: int = 1) -> dict:
+    """An observer with the person's graded cue and only the chat's verdict, which adds to the chat's option the
+    bonus the likelihood ratio gives, ln(p/((1 − p)/3))/dH: how often it follows the chat in a disagreement.
+    Errors of person and chat independent; it is a model, not a measurement."""
+    rng = np.random.default_rng(seed)
+    x = rng.standard_normal((n, 4))
+    x[:, 0] += dh
+    first = x.argmax(1)
+    ok = rng.random(n) < p_chat
+    chat = np.where(ok, 0, rng.integers(1, 4, n))
+    b = math.log(p_chat / ((1 - p_chat) / 3)) / dh
+    y = x.copy()
+    y[np.arange(n), chat] += b
+    f = y.argmax(1)
+    dis = chat != first
+    return {"bonus": b, "follows_in_disagreements": float((f[dis] == chat[dis]).mean()), "accuracy": float((f == 0).mean())}
+
+
+def _outcomes(z: pd.DataFrame) -> dict:
+    followed = (z.selected_answer_ai == z.conv_answer_letter)
+    return {"disagreements": int(len(z)), "chat_right": float(z.chat_ok.mean()), "person_right": float(z.acc.mean()),
+            "both_wrong": float(((z.chat_ok == 0) & (z.acc == 0)).mean()), "person_follows_chat": float(followed.mean()),
+            "kept_own": float((z.selected_answer_ai == z.selected_answer).mean()), "pair_right": float(z.acc_ai.mean())}
+
+
+def agreement_and_disagreement(x: pd.DataFrame, model: str, repetitions: int = 2000) -> dict:
+    """On the chats with a letter: a disagreement is a chat letter different from the person's answer alone."""
+    a = x[x.letter].reset_index(drop=True)
+    dis = (a.conv_answer_letter != a.selected_answer).to_numpy()
+    chat_ok, pair = a.chat_ok.to_numpy(float), a.acc_ai.to_numpy(float)
+
+    def gaps(w):
+        err_agree = 1 - np.average(chat_ok[~dis], weights=w[~dis])
+        err_dis = 1 - np.average(chat_ok[dis], weights=w[dis])
+        return err_dis - err_agree, np.average(pair[dis], weights=w[dis]) - np.average(chat_ok[dis], weights=w[dis])
+
+    gen = np.random.default_rng(SEED)
+    people, items = pd.factorize(a.worker_id)[0], pd.factorize(a.question_id)[0]
+    runs = {"people": [], "people_and_questions": []}
+    for _ in range(repetitions):
+        wp = gen.poisson(1.0, people.max() + 1)[people].astype(float)
+        wi = gen.poisson(1.0, items.max() + 1)[items].astype(float)
+        for key, w in (("people", wp), ("people_and_questions", wp * wi)):
+            if w[dis].sum() > 0 and w[~dis].sum() > 0:
+                runs[key].append(gaps(w))
+    ci = lambda key, i: [float(np.percentile([r[i] for r in runs[key]], 2.5)), float(np.percentile([r[i] for r in runs[key]], 97.5))]
+    d, agree = a[dis], a[~dis]
+    wrong_agree = agree[agree.acc == 0]
+    out = {"chats_with_letter": int(len(a)), "agreements": int((~dis).sum()), "disagreements": int(dis.sum()),
+           "chat_error_agreement": float(1 - chat_ok[~dis].mean()), "chat_error_disagreement": float(1 - chat_ok[dis].mean()),
+           "chat_error_gap": gaps(np.ones(len(a)))[0], "chat_error_gap_ci_people": ci("people", 0),
+           "chat_error_gap_ci_people_and_questions": ci("people_and_questions", 0),
+           "chat_errors": int((chat_ok == 0).sum()), "chat_errors_in_disagreement": int(((chat_ok == 0) & dis).sum()),
+           "pair_errors": int((pair == 0).sum()), "pair_errors_in_disagreement": int(((pair == 0) & dis).sum()),
+           "agreements_on_a_wrong_answer": int(len(wrong_agree)), "pair_right_there": int(wrong_agree.acc_ai.sum()),
+           "always_follow_minus_pair": -gaps(np.ones(len(a)))[1],
+           "pair_minus_always_follow_ci_people": ci("people", 1), "pair_minus_always_follow_ci_people_and_questions": ci("people_and_questions", 1),
+           "outcomes": {"all": _outcomes(d), **{subj: _outcomes(d[d.subject == subj]) for subj in ("math", "physics", "moral")}}}
+    conf = {}
+    for subj, z in (("all", d), ("math", d[d.subject == "math"])):
+        conf[subj] = {lvl: {"n": int((z.confidence == lvl).sum()), "person_right": int(z[z.confidence == lvl].acc.sum()),
+                            "chat_right": int(z[z.confidence == lvl].chat_ok.sum()), "moral": int(((z.confidence == lvl) & (z.subject == "moral")).sum())}
+                      for lvl in ("not-confident", "somewhat-confident", "very-confident")}
+    zm = d[d.subject == "math"].reset_index(drop=True)
+    pm = pd.factorize(zm.worker_id)[0]
+    h, lv = zm.acc.to_numpy(float), zm.confidence.to_numpy()
+    def vc_nc(w):
+        v, nc = lv == "very-confident", lv == "not-confident"
+        return np.average(h[v], weights=w[v]) - np.average(h[nc], weights=w[nc]) if w[v].sum() > 0 and w[nc].sum() > 0 else np.nan
+    g2 = np.random.default_rng(SEED)
+    vv = np.array([vc_nc(g2.poisson(1.0, pm.max() + 1)[pm].astype(float)) for _ in range(repetitions)])
+    vv = vv[~np.isnan(vv)]
+    conf["math_very_minus_not_confident_person_right"] = vc_nc(np.ones(len(zm)))
+    conf["math_very_minus_not_confident_ci_people"] = [float(np.percentile(vv, 2.5)), float(np.percentile(vv, 97.5))]
+    out["confidence_in_disagreements"] = conf
+    src = json.loads(Path("results/chatbench-source.json").read_text())
+    r = next(c for c in src["comparisons"] if c["machine"] == model and c["subject"] == "all" and c["kind"] == "alone")
+    out["model"] = {"k": r["k"], "phi": r["phi"], "phi_ci": r["phi_ci"],
+                    "weight_ratio_at_phi": weight_ratio(r["k"], r["phi"]),
+                    "weight_ratio_at_ci": [weight_ratio(r["k"], p) if math.cos(math.radians(p)) < 1 / r["k"] else None for p in r["phi_ci"]],
+                    "useful_angle": math.degrees(math.acos(min(1.0, 1 / r["k"]))) if r["k"] > 1 else None,
+                    "equal_weights": equal_weights(r["dh"], r["dm"], r["rho"]),
+                    "weighing_the_verdict": weighing_the_verdict(sdt.d_from_accuracy(a.acc.mean(), 4), a.chat_ok.mean())}
+    return out
+
+
 def run() -> dict:
     out = {"zero_errors_fable": zero_errors()}
     for model in MODELS:
@@ -329,7 +434,8 @@ def run() -> dict:
         out[model] = {"where_points_go": where_points_go(x), "extraction_and_filter": extraction_and_filter(model),
                       "following": following(x), "always_never": always_never(x), "by_skill": by_skill(x),
                       "group_against_person": group_against_person(x), "started_wrong": started_wrong(x),
-                      "hundred_questions": hundred_questions(x), "contact_factor": contact_factor(x)}
+                      "hundred_questions": hundred_questions(x), "contact_factor": contact_factor(x),
+                      "agreement_and_disagreement": agreement_and_disagreement(x, model)}
     Path("results").mkdir(exist_ok=True)
     Path("results/conversations.json").write_text(json.dumps(out, indent=1))
     return out

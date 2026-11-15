@@ -563,3 +563,14 @@ chat are a selection. `angle/conversations.py`, `results/conversations.json`.
   the other people who, wrong on that question on their own, chose the chat's
   letter; intervals with Poisson weights over people, and over people and
   questions.
+
+- **Later the same day, after a further review.** Agreement and disagreement
+  (`conversations.py`, `agreement_and_disagreement`), descriptive: on the chats
+  with a letter, how often the chat is wrong when it agrees with the person's
+  answer alone and when it does not (intervals with Poisson weights over
+  people, and over people and questions), who is right in a disagreement, by
+  subject and by the confidence the person stated; following the chat in
+  every disagreement against what the pair did. In the model: the weights of
+  the ideal pair, (k − cos φ)/(1 − k cos φ); equal weights («the more
+  confident one wins»); an observer that adds to the chat's option the bonus
+  of the likelihood ratio.
