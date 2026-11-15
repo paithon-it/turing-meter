@@ -56,3 +56,32 @@ def test_where_the_points_go_is_a_partition():
     w = where_points_go(x)
     assert w["total"] == pytest.approx(x.acc_ai.mean() - x.m_alone.mean())
     assert w["conversation_with_answer"] + w["decision_with_answer"] + w["chats_without_answer"] == pytest.approx(w["total"])
+
+
+def test_identical_people_have_no_spread_beyond_the_binomial():
+    import numpy as np
+    from angle.conversations import _spread
+
+    n = np.full(400, 10.0)
+    k = np.random.default_rng(1).binomial(10, 0.6, 400).astype(float)
+    mu, var = _spread(k, n)
+    assert mu == pytest.approx(0.6, abs=0.02)
+    assert var < 0.003
+
+
+def test_a_lowercase_letter_in_chat_is_the_same_answer(tmp_path):
+    """ChatBench records a few chat answers in lowercase («c»): they are the option, not a wrong answer."""
+    import json
+
+    import pandas as pd
+
+    from angle import sources
+
+    (tmp_path / "chatbench/full_study").mkdir(parents=True)
+    pd.DataFrame({"question_id": ["q1", "q2"], "answer": ["C", "A"]}).to_csv(tmp_path / "chatbench/questions.csv", index=False)
+    rows = [{"worker_id": "w1", "question_id": "q1", "model": "gpt-4o", "condition": "x", "conv_has_answer": True, "conv_answer_letter": "c"},
+            {"worker_id": "w1", "question_id": "q2", "model": "gpt-4o", "condition": "x", "conv_has_answer": True, "conv_answer_letter": " A "}]
+    (tmp_path / "chatbench/full_study/conversations.json").write_text(json.dumps(rows))
+    d = sources.chatbench_machine_in_chat(tmp_path)
+    assert d.m_ok.tolist() == [1.0, 1.0]
+    assert sources.chatbench_conversations(tmp_path).conv_answer_letter.tolist() == ["C", "A"]

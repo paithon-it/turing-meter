@@ -2,7 +2,7 @@
  "note": "Exploratory analyses, decided on 2026-11-10 after seeing the data, at the request of a review: PROTOCOL.md, \"Deviations\". They do not replace any result of the article.",
  "times": {
   "check_1_s": 184.2,
-  "check_3_s": 10.3,
+  "check_3_s": 10.4,
   "check_4_s": 9.3,
   "check_2_s": 18.6
  },
@@ -1843,12 +1843,12 @@
     "strict": {
      "n_trials": 1121,
      "acc_m_alone": 0.9088932986218573,
-     "acc_m_chat": 0.9170383586083853
+     "acc_m_chat": 0.91971454058876
     },
     "widened": {
      "n_trials": 1163,
      "acc_m_alone": 0.8962247530138453,
-     "acc_m_chat": 0.883920894239037
+     "acc_m_chat": 0.8865004299226139
     }
    }
   },
@@ -1971,12 +1971,12 @@
     "strict": {
      "n_trials": 969,
      "acc_m_alone": 0.7273738944639105,
-     "acc_m_chat": 0.8441692466460269
+     "acc_m_chat": 0.8452012383900929
     },
     "widened": {
      "n_trials": 1039,
      "acc_m_alone": 0.7125748832873237,
-     "acc_m_chat": 0.7872954764196343
+     "acc_m_chat": 0.7882579403272377
     }
    }
   }

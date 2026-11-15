@@ -15,53 +15,53 @@
    "without_answer": 372,
    "machine_alone": 0.8834583053217635,
    "pair": 0.7736101808439384,
-   "conversation_with_answer": 0.0061156143636288875,
-   "decision_with_answer": -0.039517749497655685,
+   "conversation_with_answer": 0.00812499145673003,
+   "decision_with_answer": -0.04152712659075683,
    "chats_without_answer": -0.07644598934379813,
    "total": -0.1098481244778251
   },
   "extraction_and_filter": {
    "trials": 1121,
    "k": 2.149228243007102,
-   "e": 1.0260774021382277,
-   "f": 0.8594924192604203,
+   "e": 1.0350702332397657,
+   "f": 0.8520250321100155,
    "turing": 1.8954167428026545,
    "product": 1.8954167428026543
   },
   "following": {
-   "disagreements": 467,
+   "disagreements": 464,
    "chat_right": 397,
-   "chat_wrong": 70,
+   "chat_wrong": 67,
    "follow_right": 0.8261964735516373,
-   "follow_wrong": 0.42857142857142855,
-   "difference": 0.39762504498020873,
+   "follow_wrong": 0.44776119402985076,
+   "difference": 0.3784352795217865,
    "ci_people": [
-    0.270224097986969,
-    0.5175403365452459
+    0.24640290023335615,
+    0.4975701564517354
    ],
    "ci_people_and_questions": [
-    0.16733093107545724,
-    0.6114417835726467
+    0.1510660928827765,
+    0.5982156943237065
    ],
    "linear_observer_no_gating": {
-    "bonus": 1.3325569422231638,
-    "follow_right": 0.7648120046742688,
-    "follow_wrong": 0.38737504755975233
+    "bonus": 1.3192544106204878,
+    "follow_right": 0.7603841805101699,
+    "follow_wrong": 0.38261199044881966
    }
   },
   "always_never": {
-   "people": 122,
-   "always": 0.5,
-   "never": 0.06557377049180328,
+   "people": 120,
+   "always": 0.5166666666666667,
+   "never": 0.058333333333333334,
    "identical_people_always": [
-    0.4218497267759562,
-    0.3442622950819672,
-    0.5081967213114754
+    0.4345861111111112,
+    0.35,
+    0.5166666666666667
    ],
    "identical_people_never": [
-    0.03074863387978142,
-    0.00819672131147541,
-    0.05737704918032787
+    0.027922222222222216,
+    0.0,
+    0.058333333333333334
    ]
   },
   "by_skill": {
@@ -201,6 +201,85 @@
      "useful_angle": 61.34421475909703
     }
    }
+  },
+  "group_against_person": {
+   "acc_alone": 0.5773610180843939,
+   "sd_alone": 0.15029110922387381,
+   "acc_with": 0.7736101808439384,
+   "sd_with": 0.1241220765138537,
+   "turing_group": 1.6460430380814253,
+   "turing_mean_of_people": 1.6946665065835875,
+   "ratio": 1.0295396094617528,
+   "turing_group_ci": [
+    1.4930355167545,
+    1.84923926813393
+   ],
+   "turing_mean_of_people_ci": [
+    1.5313356571801906,
+    1.932561095997993
+   ],
+   "ratio_ci": [
+    1.0011537276449354,
+    1.0610058827877795
+   ],
+   "sd_alone_ci": [
+    0.11549781659659289,
+    0.17850416769692018
+   ],
+   "sd_with_ci": [
+    0.08502349793429106,
+    0.15895021003973062
+   ]
+  },
+  "started_wrong": {
+   "trials_person_right": 679,
+   "trials_person_wrong": 442,
+   "chat_person_right": 0.9337260677466863,
+   "alone_person_right": 0.9238694358450301,
+   "chat_person_wrong": 0.8981900452488688,
+   "alone_person_wrong": 0.8858869701726845,
+   "lift_person_right": 0.009856631901656098,
+   "lift_person_wrong": 0.012303075076184323,
+   "difference": -0.0024464431745282247,
+   "difference_ci_people": [
+    -0.035300500202968176,
+    0.03140805929080119
+   ],
+   "wrong_chats_after_wrong_person": 45,
+   "same_wrong_answer_as_person": 0.5111111111111111,
+   "same_wrong_answer_by_chance": 0.3333333333333333,
+   "trap": {
+    "cases": 43,
+    "observed": 0.5116279069767442,
+    "reference": 0.4104466592838686,
+    "excess": 0.1011812476928756,
+    "excess_ci_people": [
+     -0.04681480925703613,
+     0.23982144548160161
+    ],
+    "excess_ci_people_and_questions": [
+     -0.1354439598420013,
+     0.34927455357142845
+    ]
+   }
+  },
+  "hundred_questions": {
+   "person_wrong": 0.4226389819156061,
+   "machine_wrong": 0.1165416946782365,
+   "both_wrong": 0.06590919653497397,
+   "both_if_independent": 0.04925506318952928
+  },
+  "contact_factor": {
+   "mute_as_guess": {
+    "contact": 0.649672161684277,
+    "extraction": 1.1148891391133557,
+    "filter": 1.0501388383658319
+   },
+   "mute_as_own_answer": {
+    "contact": 0.7494827866317165,
+    "extraction": 1.1148891391133557,
+    "filter": 0.9102890438029365
+   }
   }
  },
  "llama-3.1-8b": {
@@ -210,51 +289,51 @@
    "without_answer": 432,
    "machine_alone": 0.6673740940887767,
    "pair": 0.7387580299785867,
-   "conversation_with_answer": 0.08078136778334813,
-   "decision_with_answer": -0.02212705210563888,
+   "conversation_with_answer": 0.08149514365772353,
+   "decision_with_answer": -0.022840827980014283,
    "chats_without_answer": 0.012729620212100758,
    "total": 0.07138393588981007
   },
   "extraction_and_filter": {
    "trials": 969,
    "k": 1.2583841424669835,
-   "e": 1.3223841365770963,
-   "f": 0.9244346055723773,
+   "e": 1.3258239398274705,
+   "f": 0.9220361927322682,
    "turing": 1.538321331301882,
    "product": 1.5383213313018818
   },
   "following": {
    "disagreements": 373,
-   "chat_right": 270,
-   "chat_wrong": 103,
-   "follow_right": 0.8333333333333334,
-   "follow_wrong": 0.6116504854368932,
-   "difference": 0.22168284789644022,
+   "chat_right": 271,
+   "chat_wrong": 102,
+   "follow_right": 0.8339483394833949,
+   "follow_wrong": 0.6176470588235294,
+   "difference": 0.21630128065986542,
    "ci_people": [
-    0.1146521510270924,
-    0.3358272906636003
+    0.11084652186718698,
+    0.3293102726327649
    ],
    "ci_people_and_questions": [
-    0.046959596519695786,
-    0.41279100019237935
+    0.03706152647975071,
+    0.41161585265908984
    ],
    "linear_observer_no_gating": {
-    "bonus": 0.9993829737286433,
-    "follow_right": 0.6508560648615652,
-    "follow_wrong": 0.2601240596157142
+    "bonus": 0.9961810110180522,
+    "follow_right": 0.6493196490164059,
+    "follow_wrong": 0.2591651955620965
    }
   },
   "always_never": {
    "people": 96,
-   "always": 0.53125,
+   "always": 0.5416666666666666,
    "never": 0.09375,
    "identical_people_always": [
-    0.47692361111111115,
+    0.4824097222222222,
     0.3854166666666667,
     0.5729166666666666
    ],
    "identical_people_never": [
-    0.01581944444444444,
+    0.015322916666666667,
     0.0,
     0.041666666666666664
    ]
@@ -395,6 +474,85 @@
      ],
      "useful_angle": 35.5518157163565
     }
+   }
+  },
+  "group_against_person": {
+   "acc_alone": 0.6052819414703783,
+   "sd_alone": 0.16277890540447335,
+   "acc_with": 0.7387580299785867,
+   "sd_with": 0.0925350692373986,
+   "turing_group": 1.399651425413871,
+   "turing_mean_of_people": 1.3819891902539374,
+   "ratio": 0.9873809758349577,
+   "turing_group_ci": [
+    1.274728396156498,
+    1.5320562567935534
+   ],
+   "turing_mean_of_people_ci": [
+    1.2532752856704892,
+    1.5115729167921503
+   ],
+   "ratio_ci": [
+    0.9649962944870334,
+    1.0076258887943998
+   ],
+   "sd_alone_ci": [
+    0.13053859489021383,
+    0.1883218364373811
+   ],
+   "sd_with_ci": [
+    0.04503257982513353,
+    0.12249259038777416
+   ]
+  },
+  "started_wrong": {
+   "trials_person_right": 615,
+   "trials_person_wrong": 354,
+   "chat_person_right": 0.8910569105691057,
+   "alone_person_right": 0.7655560309989065,
+   "chat_person_wrong": 0.7655367231638418,
+   "alone_person_wrong": 0.6610405216700617,
+   "lift_person_right": 0.1255008795701992,
+   "lift_person_wrong": 0.1044962014937802,
+   "difference": 0.02100467807641901,
+   "difference_ci_people": [
+    -0.02884370549635821,
+    0.07341373923222592
+   ],
+   "wrong_chats_after_wrong_person": 83,
+   "same_wrong_answer_as_person": 0.5783132530120482,
+   "same_wrong_answer_by_chance": 0.3333333333333333,
+   "trap": {
+    "cases": 81,
+    "observed": 0.5925925925925926,
+    "reference": 0.390172447579855,
+    "excess": 0.20242014501273764,
+    "excess_ci_people": [
+     0.07945632707484131,
+     0.3312509239807033
+    ],
+    "excess_ci_people_and_questions": [
+     -0.014799759292847325,
+     0.42907689328072035
+    ]
+   }
+  },
+  "hundred_questions": {
+   "person_wrong": 0.3947180585296217,
+   "machine_wrong": 0.3326259059112233,
+   "both_wrong": 0.16138991578176545,
+   "both_if_independent": 0.1312934517979347
+  },
+  "contact_factor": {
+   "mute_as_guess": {
+    "contact": 0.6425484898087434,
+    "extraction": 1.5341213027371556,
+    "filter": 1.2059446310685373
+   },
+   "mute_as_own_answer": {
+    "contact": 0.7973969222863833,
+    "extraction": 1.5341213027371556,
+    "filter": 0.9717593331865849
    }
   }
  }

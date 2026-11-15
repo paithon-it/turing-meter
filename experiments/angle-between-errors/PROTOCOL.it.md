@@ -535,3 +535,30 @@ risposta in chat sono una selezione. `angle/conversations.py`,
   delle domande non muove l'accuratezza della macchina: il limite viene dalla
   regola del tre (un errore fino a 3/396), con la sensibilità della persona al
   suo valore e all'estremo alto del suo intervallo.
+
+- **Più tardi lo stesso giorno, dopo una terza revisione.** Altre quattro
+  analisi descrittive nello stesso modulo. *Gruppo contro persona*: la
+  dispersione dell'accuratezza delle persone, tolto il rumore binomiale e
+  approssimata con una distribuzione Beta, dà il rapporto fra le sensibilità
+  medie delle singole persone con e senza la macchina, da mettere accanto al
+  turing del gruppo (Macmillan e Kaplan, 1985); bootstrap sulle persone.
+  *Partita sbagliata*: sulle conversazioni con una risposta, quanto la chat
+  supera la macchina da sola quando la risposta da sola della persona era
+  giusta e quando era sbagliata, e quanto spesso una chat sbagliata ripete la
+  risposta sbagliata della persona. *Cento domande*: errori delle persone,
+  della macchina e di tutte e due, contro errori indipendenti. *Contatto*: la
+  scomposizione in quattro fattori in d′ su tutte le prove, con le due
+  convenzioni per una chat muta.
+
+- **Più tardi lo stesso giorno, dopo una revisione finale.** Due correzioni.
+  *Lettere minuscole*: ChatBench registra tredici risposte della chat in
+  minuscolo («c») e il confronto con la chiave le contava come sbagliate; la
+  lettera ora si normalizza dove si leggono le conversazioni
+  (`sources.chatbench_conversations`), e sono stati rieseguiti
+  `run_chatbench.py`, la verifica 3 di `review.py` e `conversations.py`. Con
+  GPT-4o cambiano tre prove, con Llama una; nessuna conclusione cambia. *La
+  trappola della domanda*: se una chat sbagliata ripete la risposta sbagliata
+  della persona si confronta non con un terzo ma con la quota delle altre
+  persone che, sbagliando da sole quella domanda, avevano scelto la lettera
+  della chat; intervalli con pesi di Poisson sulle persone, e su persone e
+  domande.

@@ -15,6 +15,17 @@
    measure. Median over many draws, overall and within mathematics, because each person had one subject.
 6. Zero errors: the bound on k and on the margin at 90 degrees for a model with no error on ChatBench,
    from the rule of three, since resampling cannot move zero errors.
+7. (added later the same day, after a third review) Group against person: the turing of the group
+   against the ratio of the average individual sensitivities, from the spread of the people's accuracies
+   net of binomial noise (Macmillan and Kaplan, 1985), alone and with the machine.
+8. The chat when the person started wrong: on the conversations with an answer, how much the chat beats
+   the machine queried alone when the person's answer alone was right and when it was wrong; and how often
+   a wrong chat gives exactly the person's wrong answer, against the trap of the question (the wrong
+   answers the other people chose on their own).
+9. A hundred questions: how many the people get wrong, how many the machine, and how many both, against
+   what independent errors would give.
+10. A fourth factor in sensitivity over all trials, counting the mute chats as guesses: the contact factor
+    and why it was not used (it depends on the convention for the mute chats).
 
 Writes results/conversations.json. Usage, from the experiment folder:  python -m angle.conversations
 """
@@ -43,7 +54,7 @@ def trials(model: str) -> pd.DataFrame:
     pairs = sources.chatbench_pairs(BASE)
     machine = sources.chatbench_machine_alone(BASE, model)
     x = pairs[(pairs.model == model) & pairs.question_id.isin(machine.index)].dropna(subset=["acc", "acc_ai"]).copy()
-    conv = pd.read_json(BASE / "chatbench/full_study/conversations.json")
+    conv = sources.chatbench_conversations(BASE)
     conv = conv[conv.model == model].drop_duplicates(["worker_id", "question_id"])
     x = x.merge(conv[["worker_id", "question_id", "conv_has_answer", "conv_answer_letter"]], on=["worker_id", "question_id"], how="left")
     key = pd.read_csv(BASE / "chatbench/questions.csv").set_index("question_id")["answer"]
@@ -191,12 +202,134 @@ def zero_errors(items: int = 396) -> dict:
     return out
 
 
+def _spread(k: np.ndarray, n: np.ndarray) -> tuple[float, float]:
+    """Mean and between-person variance of the true accuracies, net of the binomial noise (method of moments)."""
+    a = k / n
+    mu = float(k.sum() / n.sum())
+    var = float(np.average((a - mu) ** 2, weights=n) - np.average(mu * (1 - mu) / n, weights=n))
+    return mu, max(var, 0.0)
+
+
+_GRID = np.linspace(0.0005, 0.9995, 2001)
+_D_GRID: np.ndarray | None = None
+
+
+def _mean_d(mu: float, var: float) -> float:
+    """E[d'(a)] for accuracies with a Beta distribution of that mean and variance; d' = 0 at or below chance."""
+    global _D_GRID
+    from scipy.stats import beta as beta_dist
+    if var <= 0:
+        return _d(mu)
+    common = mu * (1 - mu) / var - 1
+    if common <= 0:
+        return float("nan")
+    if _D_GRID is None:                       # the inversion of the m-AFC formula is slow: done once
+        _D_GRID = np.array([_d(x) if x > 0.2501 else 0.0 for x in _GRID])
+    w = beta_dist.pdf(_GRID, mu * common, (1 - mu) * common)
+    return float(np.sum(w * _D_GRID) / np.sum(w))
+
+
+def group_against_person(x: pd.DataFrame, repetitions: int = 500) -> dict:
+    g = x.groupby("worker_id").agg(n=("acc", "size"), h=("acc", "sum"), s=("acc_ai", "sum"))
+    def one(g):
+        mh, vh = _spread(g.h.to_numpy(float), g.n.to_numpy(float))
+        ms, vs = _spread(g.s.to_numpy(float), g.n.to_numpy(float))
+        pooled = _d(ms) / _d(mh)
+        individual = _mean_d(ms, vs) / _mean_d(mh, vh)
+        return {"acc_alone": mh, "sd_alone": math.sqrt(vh), "acc_with": ms, "sd_with": math.sqrt(vs),
+                "turing_group": pooled, "turing_mean_of_people": individual, "ratio": individual / pooled}
+    out = one(g)
+    gen = np.random.default_rng(SEED)
+    runs = [one(g.iloc[gen.integers(0, len(g), len(g))]) for _ in range(repetitions)]
+    for key in ("turing_group", "turing_mean_of_people", "ratio", "sd_alone", "sd_with"):
+        v = np.array([r[key] for r in runs if not math.isnan(r[key])])
+        out[key + "_ci"] = [float(np.percentile(v, 2.5)), float(np.percentile(v, 97.5))]
+    return out
+
+
+def started_wrong(x: pd.DataFrame, repetitions: int = 2000) -> dict:
+    a = x[x.letter].copy()
+    a["lift"] = a.chat_ok - a.m_alone
+    def lifts(z):
+        r, w = z[z.acc == 1], z[z.acc == 0]
+        return float(r.lift.mean()), float(w.lift.mean())
+    lr, lw = lifts(a)
+    people = a.worker_id.unique()
+    idx = {p: np.flatnonzero(a.worker_id.to_numpy() == p) for p in people}
+    gen = np.random.default_rng(SEED)
+    diffs = []
+    for _ in range(repetitions):
+        rows = np.concatenate([idx[p] for p in gen.choice(people, people.size)])
+        r, w = lifts(a.iloc[rows])
+        diffs.append(r - w)
+    wrong = a[(a.acc == 0) & (a.chat_ok == 0)]
+    same = float((wrong.conv_answer_letter == wrong.selected_answer).mean())
+    trap = _the_trap_of_the_question(wrong, repetitions)
+    return {"trials_person_right": int((a.acc == 1).sum()), "trials_person_wrong": int((a.acc == 0).sum()),
+            "chat_person_right": float(a[a.acc == 1].chat_ok.mean()), "alone_person_right": float(a[a.acc == 1].m_alone.mean()),
+            "chat_person_wrong": float(a[a.acc == 0].chat_ok.mean()), "alone_person_wrong": float(a[a.acc == 0].m_alone.mean()),
+            "lift_person_right": lr, "lift_person_wrong": lw, "difference": lr - lw,
+            "difference_ci_people": [float(np.percentile(diffs, 2.5)), float(np.percentile(diffs, 97.5))],
+            "wrong_chats_after_wrong_person": int(len(wrong)), "same_wrong_answer_as_person": same,
+            "same_wrong_answer_by_chance": 1 / 3, "trap": trap}
+
+
+def _the_trap_of_the_question(wrong: pd.DataFrame, repetitions: int) -> dict:
+    """The reference for «the chat repeats the person's wrong answer» is not one in three: some wrong options
+    attract everybody. For each wrong chat after a wrong person, the share of the other people who got that
+    question wrong on their own and chose the chat's letter; the excess over it is what depends on the person.
+    Intervals with Poisson weights over people, and over people and questions (deviation of 15 November)."""
+    pairs = sources.chatbench_pairs(BASE)
+    others = pairs[pairs.acc == 0][["worker_id", "question_id", "selected_answer"]]
+    rows = []
+    for r in wrong[wrong.conv_answer_letter.isin(list("ABCD"))].itertuples():
+        o = others[(others.question_id == r.question_id) & (others.worker_id != r.worker_id)]
+        if len(o):
+            rows.append((r.worker_id, r.question_id, float(r.conv_answer_letter == r.selected_answer),
+                         float((o.selected_answer == r.conv_answer_letter).mean())))
+    d = pd.DataFrame(rows, columns=["w", "q", "observed", "reference"])
+    gap = (d.observed - d.reference).to_numpy()
+    gen = np.random.default_rng(SEED)
+    people, questions = d.w.unique(), d.q.unique()
+    by_people, by_both = [], []
+    for _ in range(repetitions):
+        wp = d.w.map(pd.Series(gen.poisson(1.0, people.size), index=people)).to_numpy(float)
+        wq = d.q.map(pd.Series(gen.poisson(1.0, questions.size), index=questions)).to_numpy(float)
+        if wp.sum() > 0:
+            by_people.append(np.average(gap, weights=wp))
+        if (wp * wq).sum() > 0:
+            by_both.append(np.average(gap, weights=wp * wq))
+    return {"cases": int(len(d)), "observed": float(d.observed.mean()), "reference": float(d.reference.mean()),
+            "excess": float(gap.mean()), "excess_ci_people": [float(np.percentile(by_people, 2.5)), float(np.percentile(by_people, 97.5))],
+            "excess_ci_people_and_questions": [float(np.percentile(by_both, 2.5)), float(np.percentile(by_both, 97.5))]}
+
+
+def hundred_questions(x: pd.DataFrame) -> dict:
+    wh, wm = 1 - x.acc.mean(), 1 - x.m_alone.mean()
+    both = float(((1 - x.acc) * (1 - x.m_alone)).mean())
+    return {"person_wrong": float(wh), "machine_wrong": float(wm), "both_wrong": both, "both_if_independent": float(wh * wm)}
+
+
+def contact_factor(x: pd.DataFrame) -> dict:
+    a = x[x.letter]
+    acc_itt = float(np.where(x.letter, x.chat_ok, 0.25).mean())
+    acc_own = float(np.where(x.letter, x.chat_ok, x.acc).mean())
+    dc_ans, dm = _d(a.chat_ok.mean()), _d(x.m_alone.mean())
+    out = {}
+    for name, acc in (("mute_as_guess", acc_itt), ("mute_as_own_answer", acc_own)):
+        dc = _d(acc)
+        out[name] = {"contact": dc / dc_ans, "extraction": dc_ans / dm, "filter": _d(x.acc_ai.mean()) / dc}
+    return out
+
+
 def run() -> dict:
     out = {"zero_errors_fable": zero_errors()}
     for model in MODELS:
         x = trials(model)
         out[model] = {"where_points_go": where_points_go(x), "extraction_and_filter": extraction_and_filter(model),
-                      "following": following(x), "always_never": always_never(x), "by_skill": by_skill(x)}
+                      "following": following(x), "always_never": always_never(x), "by_skill": by_skill(x),
+                      "group_against_person": group_against_person(x), "started_wrong": started_wrong(x),
+                      "hundred_questions": hundred_questions(x), "contact_factor": contact_factor(x)}
     Path("results").mkdir(exist_ok=True)
     Path("results/conversations.json").write_text(json.dumps(out, indent=1))
     return out

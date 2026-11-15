@@ -24,13 +24,15 @@ The same decisions are made three times: by the person alone (`dH`), by the
 machine alone (`dM`), by the person with the machine (`dS`). Each is a sensitivity
 `d'` of signal detection theory: zero at chance, no ceiling.
 
-- **The apparent intelligence** `|S| = sqrt(dH^2 + dM^2)` is the best two minds can
+- **The apparent sensitivity** `|S| = sqrt(dH^2 + dM^2)` is the best two minds can
   do together when they err on different cases and combine all their evidence
   (Green and Swets 1966; Sorkin and Dai 1994). Pairs of people fall short of it
   (Bahrami et al. 2010). Orthogonal, in this reading, means
-  independent errors.
+  independent errors. It is the measurable part of the apparent intelligence of the
+  title, its projection on the plane of technique (the name changed on 15 November
+  2026; before, `|S|` itself was called apparent intelligence).
 - **The intelligence factor** `eta = dS / |S|`: how much of the apparent
-  intelligence shows in the work, as the power factor is real over apparent power.
+  sensitivity shows in the work, as the power factor is real over apparent power.
   0 at chance, 1 at the ideal.
 - **The gain share** `g = (dS - dH) / (|S| - dH)`: how much of the possible gain
   the person realizes, 0 if they ignore the machine. `eta` falls by arithmetic as
@@ -48,7 +50,7 @@ machine alone (`dM`), by the person with the machine (`dS`). Each is a sensitivi
   `phi` below: `sqrt(1 + k^2 - 2k cos(phi)) / sin(phi)`, `sqrt(1 + k^2)` at 90
   degrees.
 - **The direction** `theta`, with `cos(theta) = dH / |S| = 1 / Tu_app`, the
-  person's share of the apparent intelligence; `theta = atan(dM / dH)` at 90
+  person's share of the apparent sensitivity; `theta = atan(dM / dH)` at 90
   degrees.
 - **The angle between the minds** `phi = arccos(rho)`, where `rho` is the
   correlation of their errors on the same items. 90 degrees is the law of `|S|`; it
@@ -71,7 +73,7 @@ item-level answers:
 
 - people realize a median **0.30** of the gain the ideal would give them (95%
   interval over papers 0.19-0.43; 0.38 on the comparisons that measure the same
-  people), and the pairs show 0.69 of their apparent intelligence;
+  people), and the pairs show 0.69 of their apparent sensitivity;
 - the share of the gain does **not** depend on who is stronger (0.24 when the
   person is, 0.32 when the machine is). The share of the ideal falls (0.81 against
   0.59), but by arithmetic: a stronger machine raises the ceiling faster than
