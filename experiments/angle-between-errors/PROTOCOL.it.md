@@ -573,3 +573,352 @@ risposta in chat sono una selezione. `angle/conversations.py`,
   coppia ideale, (k − cos φ)/(1 − k cos φ); i pesi uguali («vince il più
   sicuro»); un osservatore che aggiunge all'opzione della chat il bonus del
   rapporto di verosimiglianza.
+
+## L'avvocato del diavolo (scritto il 15 novembre 2026, prima di ogni corsa)
+
+Scritto dopo i risultati dell'articolo e prima di qualunque chiamata a una
+macchina nelle due condizioni nuove. Il codice (`angle/devil.py`,
+`closed/devil_claude.py`, `gpu/devil_llm.py`) è stato scritto e provato prima su
+prove sintetiche; questa sezione e il codice sono salvati e pubblicati prima
+delle corse.
+
+**La domanda.** Le conversazioni mostrano una trappola: una chat sbagliata dopo
+una persona sbagliata ripete la risposta della persona più spesso di quanto
+farebbero altre persone sbagliate sulla stessa domanda. Quando la macchina vede
+la risposta della persona, cade nel suo errore? E chiederle prima gli argomenti
+contro quella risposta toglie la trappola, e porta la coppia sopra la macchina
+da sola?
+
+**Dati.** ChatBench, condizione answer-first, fase 2: le 2.903 risposte date da
+sole (329 persone, 396 domande, 1.187 sbagliate). Ogni coppia distinta (domanda,
+risposta data da sola) è un item, 1.038 in tutto
+(`data/items/chatbench-devil.jsonl`). L'unità di analisi è la prova (persona,
+domanda): nelle condizioni A e B il verdetto della macchina dipende dalla
+risposta della persona, quindi è assegnato prova per prova.
+
+**Condizioni.** Una chiamata per item e per condizione.
+
+- *0, da sola*: il prompt `letter` di `gpu/machines_llm.py`, senza la risposta
+  della persona. Per Claude Haiku 5.5 la corsa già in
+  `closed-results/chatbench__haiku-5.5__low.jsonl`; per Llama una corsa nuova.
+- *A, informata*: lo stesso prompt con la riga `I think the answer is X.` prima
+  della richiesta, X la lettera scelta dalla persona da sola.
+- *B, avvocato del diavolo*: la riga `I think the answer is X.`, poi `First
+  give, briefly, the strongest arguments against my answer. Then finish with a
+  final line of the form: Answer: Y, where Y is the letter of the correct
+  option (A to D).` Claude risponde con uno schema a due campi, prima gli
+  argomenti e poi la lettera.
+
+**Macchine.** Llama 3.1 8B Instruct, il modello aperto con cui hanno lavorato le
+persone di ChatBench (pesi dalla copia senza accesso riservato
+`unsloth/Llama-3.1-8B-Instruct`, uguali a quelli di Meta), con vLLM e
+decodifica greedy, la lettera letta dalle probabilità vincolate come per gli
+altri modelli aperti; in B prima si generano gli argomenti, fino a 700 token.
+Claude Haiku 5.5 attraverso Claude Code in modalità non interattiva, effort
+`low`, come per le altre corse Claude. Un item a cui una macchina non risponde
+in una condizione esce da tutte e tre, per quella macchina.
+
+**Misure**, per macchina.
+
+1. L'accuratezza della macchina sulle 2.903 prove in 0, A e B, il suo d′ a
+   quattro opzioni, e la resa di B, d′_B / d′_0. B è una coppia: la persona
+   propone, la macchina attacca e decide.
+2. L'accuratezza sulle prove in cui la persona da sola aveva sbagliato, e su
+   quelle in cui aveva risposto giusto, per condizione.
+3. La trappola: sulle prove in cui sbagliano tutte e due, la quota in cui la
+   macchina dà la lettera della persona, per condizione.
+4. Solo descrittivo: l'angolo fra gli errori della persona e quelli della
+   macchina, per condizione, con lo stimatore dell'esperimento
+   (`measure.compare`, macchina per prova). In A e B la macchina ha visto la
+   risposta della persona: il modello gaussiano della coppia ideale non regge,
+   e il margine non si calcola.
+
+**Ipotesi e criteri.** Intervalli percentili al 95%, 2.000 repliche che
+ricampionano insieme persone e domande (pesi di Poisson, come in `measure`).
+
+- *H1, la trappola*: sulle prove in cui la persona aveva sbagliato, la
+  macchina informata è meno accurata della macchina da sola. Passa se
+  l'intervallo di acc_A − acc_0 sta sotto lo zero.
+- *H2, l'avvocato del diavolo toglie la trappola*: sulle stesse prove,
+  acc_B − acc_A sopra lo zero.
+- *H3, la coppia sopra la macchina*: su tutte le prove, d′_B / d′_0 sopra uno.
+- *Riportati comunque*, senza criterio: il costo sulle prove in cui la persona
+  aveva risposto giusto, acc_B − acc_0; le quote della trappola; gli angoli.
+
+Tre prove per macchina, due macchine, nessuna correzione per la molteplicità.
+
+**Che cosa non può dire.** Nessuna persona legge gli argomenti: decide la
+macchina. Un H3 positivo dice che, su queste domande, una coppia in cui la
+risposta della persona è l'ingresso di una macchina che la contesta batte la
+macchina da sola; non che lo farebbero persone che leggono gli argomenti. Una
+chiamata per item: la variabilità della macchina fra una chiamata e l'altra non
+è negli intervalli.
+
+**Dove va nell'articolo.** Se H3 passa per almeno una macchina, nel corpo;
+altrimenti nell'appendice di ciò che non è andato. In tutti e due i casi con i
+numeri delle tre ipotesi per le due macchine.
+
+**Deviazioni, lo stesso giorno, dopo le corse di Claude Haiku 5.5 e prima di
+quella di Llama.** I risultati di Haiku erano già visti; nessuna delle due scelte
+dipende da loro.
+
+- *Llama a 8 bit.* I pesi bf16 (16 GB) avrebbero lasciato 2 GB liberi sul
+  disco della macchina con la GPU, che è la macchina di lavoro di una persona.
+  Llama gira con i pesi FP8 dello stesso modello
+  (`RedHatAI/Meta-Llama-3.1-8B-Instruct-FP8`, 9 GB, pesi e attivazioni a 8 bit).
+- *Haiku da sola, di nuovo.* La condizione da sola veniva da una corsa del 14
+  novembre, le altre due da oggi: una differenza fra due corse potrebbe passare
+  per un effetto delle condizioni. Haiku da sola viene interrogata di nuovo oggi
+  con lo stesso prompt (`closed-results/chatbench__haiku-5.5-rerun__low.jsonl`).
+  È un controllo deciso dopo aver visto i risultati, e si riporta come tale: le
+  prove del protocollo restano sulla corsa indicata sopra.
+
+## Dopo la sesta revisione (15 novembre 2026)
+
+Scritto dopo tutti i risultati qui sopra, e dopo una sesta revisione
+dell'articolo. Non ha a che fare con l'avvocato del diavolo: quella sezione, il
+suo codice e i suoi risultati qui non si toccano. Tutto ciò che segue è stato
+deciso **dopo** i risultati: è esplorativo o descrittivo, senza ipotesi né
+criteri, e un esito favorevole non vale come conferma. Codice in
+`angle/verdict.py` e `angle/difficulty.py` (nessuna funzione esistente è
+cambiata), numeri in `results/verdict-ceiling.json` e
+`results/difficulty.json`, prove in `tests/test_verdict.py` e
+`tests/test_difficulty.py`.
+
+- **Il tetto con un verdetto.** Motivo: la coppia ideale dell'articolo mette in
+  comune gli indizi graduati dei due, e il margine si misura contro di lei; chi
+  lavora accanto a una macchina di solito ne riceve il verdetto, e una coppia
+  che si scambia verdetti a quel tetto non arriva. Metodo: l'osservatore ottimo
+  (massimo a posteriori) che tiene i propri indizi graduati e dell'altro vede
+  solo l'opzione scelta, nel modello dell'articolo (quattro opzioni, un indizio
+  gaussiano per opzione, il rumore dei due correlato opzione per opzione con ρ,
+  come in `sdt._simulate_correct`). Dati gli indizi dell'osservatore e
+  un'ipotesi sull'opzione vera, la probabilità di ogni verdetto è un integrale
+  in una dimensione; l'osservatore risponde l'opzione con la probabilità a
+  posteriori più alta. Gli indizi si estraggono (200.000 prove), il verdetto
+  no: ogni prova è mediata sui quattro verdetti. Gli errori della coppia sono
+  un rapporto con quelli del più forte dei due sulle stesse prove, ancorato al
+  suo tasso d'errore esatto; dove l'osservatore è il più forte e non sbaglia
+  quasi mai, i suoi indizi si estraggono con un rumore più largo e si pesano
+  di conseguenza. Provato contro due forme chiuse: errori indipendenti con
+  quattro opzioni (il verdetto vale un premio fisso ln(p/q)/d sulla sua
+  opzione), ed errori correlati con due opzioni (un integrale in una
+  dimensione). L'osservatore è esatto, quindi non è tenuto ai pesi non negativi
+  come l'ideale dell'articolo: sotto l'angolo utile ciò che guadagna si riporta
+  com'è.
+  (a) Le righe della tabella del margine dell'articolo: la persona è il gruppo
+  di ChatBench accanto a GPT-4o, che da solo risponde giusto 57,7 volte su
+  cento (l'articolo stampa 58; con 0,58 esatto gli errori tolti verrebbero un
+  punto più alti di quelli stampati), la macchina 1,2, 2, 3, 5 e 10 volte più
+  sensibile, a 75 e a 90 gradi. Con gli indizi in comune il codice ridà la
+  tabella com'è stampata.
+  (b) Le due coppie di ChatBench, macchina interrogata da sola, tutte le prove,
+  con le loro sensibilità e il loro angolo misurati, ai due estremi
+  dell'intervallo dell'angolo e a 90 gradi.
+  Esito, con il solo verdetto della macchina e la persona che tiene gli indizi.
+  A 90 gradi il margine sopra la macchina è del 17,0 per cento con una macchina
+  1,2 volte più sensibile (30,2 con gli indizi in comune), del 2,1 con una due
+  volte più sensibile (11,8), dello 0,1 con una tre volte (5,4), e niente da
+  cinque volte in su (2,0 e 0,5). A 75 gradi: 8,9 per cento (16,4), 0,1 (3,1),
+  poi niente (0,3, 0, 0). In errori della macchina tolti, a 90 gradi: 17,7 per
+  cento (30,3 con gli indizi in comune), 5,6 (28,2), 0,3 (27,2), niente (26,5 e
+  25,7); a 75 gradi: 9,5 (17,0), 0,3 (8,0), niente (1,7, 0, 0). Il quarto degli
+  errori della macchina che la coppia ideale toglie a 90 gradi qualunque sia k
+  esiste solo se gli indizi sono in comune. Errori standard Monte Carlo: al più
+  0,15 punti.
+  Con il solo verdetto della persona e la macchina che tiene gli indizi, il
+  caso del combinatore a verdetto di H3 e H5: margine a 90 gradi 19,4, 7,0,
+  3,0, 1,1 e 0,2 per cento, a 75 gradi 11,0, 1,8, 0,1, 0,1 e 0,7; sotto
+  l'angolo utile (cinque e dieci volte, a 75 gradi) l'osservatore esatto va una
+  frazione di punto percentuale sopra il più forte, dove l'ideale dell'articolo
+  si ferma a lui.
+  ChatBench. Con GPT-4o (k = 2,16, 74,5 gradi): l'ideale con gli indizi in
+  comune vale 1,020 volte la sensibilità della macchina, il tetto con il suo
+  verdetto 1,000 (1,000 e 1,007 agli estremi dell'intervallo dell'angolo, 59 e
+  86 gradi; 1,013 a 90), e le persone sono arrivate a 0,761 (0,673-0,849). Con
+  Llama 3.1 8B (k = 1,18, 75,1 gradi): 1,173 con gli indizi in comune, 1,098
+  con il suo verdetto (1,047 e 1,132 a 62 e 82 gradi; 1,180 a 90), e le persone
+  sono arrivate a 1,189 (1,044-1,340), sopra tutti e due, perché la macchina
+  interrogata da sola è più debole di quella che parlava con loro
+  («Deviazioni», 9 novembre).
+  È un modello, non una misura, e i suoi errori sono errori Monte Carlo, non
+  intervalli di campionamento. Una macchina che dà anche le sue ragioni, o una
+  sicurezza graduata, dà più di un verdetto: il tetto vincola una coppia che si
+  scambia verdetti, non le persone di ChatBench, che leggevano una
+  conversazione.
+
+- **La vicinanza al netto della difficoltà, su αNLI.** Motivo: nell'angolo
+  finiscono insieme due cose, quanto due menti si somigliano e quanto i casi
+  sono difficili per tutti. L'articolo lo dice, dice che i dati per separarle
+  ci sono, e la revisione ha chiesto di usarli. Per la coppia non cambia
+  niente: la difficoltà condivisa conta in ρ («Modello e definizioni») e il
+  margine tiene tutta la correlazione. Cambia quanta parte dell'angolo si può
+  leggere come somiglianza.
+  *Chi è la persona.* Su αNLI la «persona» è un voto dei cento voti anonimi su
+  una storia (`measure.compare_votes`): non ci sono persone da seguire, solo
+  quanti hanno votato per la chiave. La correlazione fra persona e macchina è
+  quindi, per costruzione, quanto la macchina sbaglia dove sbagliano in molti,
+  e la difficoltà per le persone ne è tutto il lato umano. Una difficoltà
+  stimata sulle persone stesse si porterebbe via tutto. La si mostra solo per
+  dire perché non è l'analisi fatta qui: con metà dei voti di ogni storia a
+  fare gli strati e l'altra metà come persona, l'angolo con Fable 5.2 passa da
+  47,0 gradi a 62,7 con tre fasce (58,1-66,9), 82,9 con dieci (79,3-86,2) e
+  86,6 con venticinque (83,1-89,9). Con tre fasce ciò che resta è difficoltà
+  dentro la fascia: lì un angolo sotto i 90 gradi non prova niente.
+  *Metodo.* La difficoltà si stima su una terza popolazione. Persona e
+  macchina: le dieci macchine aperte nelle due modalità, venti risposte per
+  storia (per una macchina aperta le altre nove, diciotto risposte); il
+  punteggio di una storia è quante sono giuste. Macchina e macchina: i voti
+  per la chiave. Strati: i livelli consecutivi del punteggio, uniti a partire
+  dal lato difficile finché ciascuno ha almeno 60 storie (da 9 a 12 strati sul
+  punteggio delle macchine; 18 sui voti, 15 senza le storie contestate):
+  abbastanza fini da lasciare poca difficoltà dentro uno strato, abbastanza
+  larghi da avere errori da contare. Con 30 e con 120 storie le correlazioni
+  si spostano al più di 0,04; con la sola risposta secca come terza popolazione
+  (dieci risposte) quelle fra persona e macchina sono più alte fino a 0,08,
+  perché un punteggio più grosso toglie meno. Stimatore: una sola correlazione
+  latente per tutti gli strati, ogni strato con le sue due soglie prese dai
+  suoi margini, al massimo della somma delle log-verosimiglianze delle tabelle
+  2×2; con uno strato solo è la tetracorica dell'articolo. Uno strato in cui
+  uno dei due non sbaglia mai non porta informazione ed esce. Accanto, il
+  rapporto di odds comune di Mantel-Haenszel, che non ha bisogno di soglie.
+  Intervalli: 2.000 ricampionamenti delle storie (pesi di Poisson), strati
+  fissi; 250 per la mediana sulle 180 coppie di macchine aperte. Prova: su
+  storie simulate con una correlazione nota dentro ogni livello di difficoltà
+  lo stimatore la ridà (0,29 per una vera di 0,30, dove la correlazione su
+  tutte le storie insieme è 0,64; alla taglia di αNLI con diciotto strati e
+  una macchina che risponde giusto 88 volte su cento, una media di 0,30 su
+  dodici corpora).
+  *Esito, persona e macchina*, al netto della difficoltà per le macchine
+  aperte. L'angolo si apre e resta sotto i 90 gradi con tutto l'intervallo per
+  i quattro modelli Claude: Fable 5.2 da 47,0 (44,4-49,9) a 58,6 (55,4-61,8),
+  Opus 5.5 da 47,9 a 59,9 (56,8-63,1), Sonnet 5.5 da 49,8 a 64,9 (61,1-68,5),
+  Haiku 5.5 da 55,3 a 74,7 (70,6-78,5). Senza le 157 storie contestate: Fable
+  da 67,5 a 72,2 (68,6-76,2), Opus da 70,2 a 74,1 (70,5-77,9), Sonnet da 68,8
+  a 76,4 (72,9-79,7), Haiku da 71,3 a 81,6 (78,6-84,8). Della correlazione fra
+  le persone e Fable restano tre quarti (da 0,68 a 0,52, intervallo 0,47-0,57;
+  76 per cento, 72-81), di quella con Haiku meno della metà (da 0,57 a 0,26,
+  0,20-0,33; 46 per cento, 37-55). Le macchine aperte più forti, al netto
+  delle altre nove, in risposta secca: Gemma 4 26B da 55,5 a 72,7 (69,1-76,5),
+  Qwen3.8 27B da 52,9 a 70,3 (66,2-74,2). Per le sette macchine aperte più
+  deboli l'angolo al netto delle altre sta fra 84,5 e 94,4 gradi nelle due
+  modalità, e in undici casi su quattordici l'intervallo comprende i 90 gradi
+  o sta sopra: ciò che hanno in comune con le persone è ciò che è difficile
+  per le macchine aperte.
+  *Esito, macchina e macchina*, al netto della difficoltà per le persone. Opus
+  5.5 e Fable 5.2 restano quasi la stessa macchina: da 0,95 (0,92-0,97) a 0,83
+  (0,75-0,91). Sonnet e Fable da 0,88 a 0,59 (0,45-0,72). Haiku e Fable da
+  0,72 a 0,24 (0,05-0,41), Gemma 4 26B e Fable da 0,71 a 0,24 (0,05-0,42),
+  Gemma e Haiku da 0,77 a 0,52 (0,41-0,63). La mediana sulle 180 coppie di
+  macchine aperte passa da 0,63 (0,60-0,66) a 0,45 (0,43-0,49). I rapporti di
+  odds dicono lo stesso: Opus e Fable da 156 a 20 (11-41), Haiku e Fable da 16
+  a 1,9 (1,1-3,1), Gemma e Fable da 15 a 2,0 (1,2-3,3). Senza le storie
+  contestate: Opus e Fable da 0,89 a 0,85 (0,73-0,95), Haiku e Fable da 0,44 a
+  0,16 (da −0,13 a 0,39), Gemma e Fable da 0,56 a 0,28 (0,01-0,51). Con le
+  macchine più forti contano solo gli strati difficili: Fable non sbaglia mai
+  in nove dei diciotto strati, e un confronto con lei poggia su 573 storie.
+  *Che cosa non può dire.* Il punteggio è un conto di venti risposte, o di
+  cento voti: la difficoltà che lascia dentro uno strato resta nella
+  correlazione, che è un limite superiore della somiglianza. E le macchine
+  aperte non sono giudici neutrali: ciò che hanno in comune con la macchina
+  misurata se ne va con la difficoltà, e tanto più quanto quella macchina
+  somiglia a loro. Haiku e le macchine aperte deboli sono vicine alla terza
+  popolazione, Fable no: gli angoli al netto di macchine diverse non sono una
+  tendenza da leggere. Un angolo «puro» solo non esiste, dipende da chi misura
+  la difficoltà. Qui niente è tarato.
+
+- **Le storie contestate su metà dei voti.** Motivo: l'articolo toglie le
+  storie di cui la maggioranza dei votanti contraddice la chiave guardando gli
+  stessi voti che poi misurano l'angolo, e lo dichiara. Metodo: metà dei cento
+  voti di ogni storia, estratti a sorte, dicono se è contestata; l'altra metà
+  è la persona; stesso passo di `compare_votes`. Punto: media su 200
+  divisioni. Intervallo: 2.000 ripetizioni, ciascuna con una divisione nuova e
+  le storie ricampionate. Esito: l'angolo senza le storie contestate è 65,9
+  gradi per Fable 5.2 (62,3-70,0) contro 67,5 con gli stessi voti, 68,3 per
+  Opus 5.5 (64,2-72,8) contro 70,2, 67,8 per Sonnet 5.5 (64,1-71,9) contro
+  68,8, 70,7 per Haiku 5.5 (67,5-74,1) contro 71,3, 69,0 per Gemma 4 26B in
+  risposta secca (65,6-72,0) contro 69,4. Il margine della coppia ideale: 3,9
+  per cento per Fable (2,3-5,7) contro 4,5, 6,4 per Opus (4,2-8,9) contro 7,2,
+  8,7 per Sonnet (6,0-11,3) contro 9,2, 20,0 per Haiku (16,0-23,3) contro
+  20,7. La scelta fatta sugli stessi voti vale uno o due gradi, e la lettura
+  non cambia. L'altra metà di quella cautela resta: togliere le storie più
+  difficili per le persone ne restringe la variabilità, quali che siano i voti
+  che le scelgono.
+
+- **Le persone di silicio: il metodo, e il braccio con la macchina sana.**
+  Nessun conto nuovo: i numeri stavano già in `results/silicon.json` (300
+  ricampionamenti) e l'articolo non descriveva il metodo. Metodo
+  (`gpu/silicon.py`): CIFAR-10; venti piccole reti convoluzionali per braccio;
+  tre tappe, con 4.000, 12.000 e 36.000 immagini di addestramento viste in
+  tutto, sei epoche ciascuna; la prima tappa da sole in ogni braccio. Dalla
+  seconda tappa il controllo minimizza l'entropia incrociata con l'etichetta
+  vera, i due bracci assistiti metà di quella più metà della divergenza di
+  Kullback-Leibler dall'uscita della macchina (peso 0,5). La macchina è una
+  ResNet-18 addestrata sull'insieme di addestramento e sulle 8.000 immagini di
+  test fuori dall'esame, poi congelata. La sua copia difettosa, sulle immagini
+  che chiama gatto o cane e le cui caratteristiche superano una soglia lungo
+  una direzione casuale fissa (sette su dieci), mette l'altra classe due logit
+  sopra. L'esame sono 2.000 immagini di test che né le reti né la macchina
+  hanno visto in addestramento (la soglia del difetto è fissata su di loro);
+  su 277 il difetto cambia la risposta della macchina. Le reti vedono dunque
+  sempre l'etichetta vera, e il parere della macchina è metà di ciò da cui
+  imparano: che il braccio con il difetto penda verso di lui è il verso che la
+  funzione di costo impone. La misura no: dove la macchina aveva ragione prima
+  del difetto, il bersaglio a cui la funzione di costo mira ha ancora la classe
+  vera in testa (almeno una metà, contro al più 0,44 per la classe del
+  difetto).
+  I numeri. Sui 277 casi, la risposta sbagliata del difetto: 11,0 per cento
+  nel controllo, 11,2 con la macchina sana, 23,2 con quella difettosa;
+  difettosa meno controllo 12,1 punti (8,7-15,8), sana meno controllo 0,2 (da
+  −1,0 a 1,5); risposte giuste lì 73,5, 73,9 e 61,1 per cento. Il braccio con
+  la macchina sana contro il controllo, all'ultima tappa: correlazione delle
+  risposte giuste con la macchina 0,669 contro 0,670 (0,407 e 0,405 alla
+  prima), accuratezza 83,6 contro 83,3 per cento; differenza nelle differenze
+  di A, senza condizionare alla classe, −0,005 (da −0,041 a 0,032), dentro la
+  classe −0,016 (da −0,141 a 0,071). Imparare accanto a una macchina sana non
+  ha avvicinato le reti a lei più che imparare da sole. Il braccio con il
+  difetto contro la macchina difettosa: correlazione 0,539, contro 0,413 per
+  il controllo misurato contro la stessa macchina (0,298 e 0,278 alla prima
+  tappa); differenza nelle differenze di A senza condizionare alla classe
+  0,106 (0,065-0,152), dentro la classe, come prescriveva il protocollo, 0,019
+  (da −0,059 a 0,094). Le correlazioni semplici non hanno un intervallo: le
+  risposte delle reti non stanno in questo repository.
+
+## L'avvocato del diavolo: esito (15 novembre 2026)
+
+Risultati in `results/devil.json`; le risposte in `devil-results/` e in
+`closed-results/chatbench__haiku-5.5-rerun__low.jsonl`. Intervalli come scritti
+prima (2.000 repliche, pesi di Poisson su persone e domande).
+
+- **Claude Haiku 5.5.** H1 non passa: informata della risposta sbagliata della
+  persona, la macchina è *più* accurata di 1,3 punti che da sola (da −1,5 a
+  +4,3). H2 non passa: +1,5 (da −0,9 a +4,2). H3 passa: d′_B/d′_0 = 1,18
+  (1,07–1,31); con Haiku da sola interrogata di nuovo lo stesso giorno, 1,13
+  (1,03–1,26). Informata, senza la richiesta (non era un'ipotesi): 1,14
+  (1,03–1,27), 1,10 (1,00–1,22) con la seconda corsa. Accuratezza: da sola 93,5
+  (seconda corsa 94,5), informata 96,5, avvocato del diavolo 97,1. Gettoni in
+  uscita per risposta: circa 170, 220 e 860. Fra le due corse identiche di
+  Haiku da sola cambiano esito 28 domande su 396.
+- **Llama 3.1 8B (FP8), come scritto prima.** H1 passa: −34,5 punti (da −41,6
+  a −27,8). H2 passa: +52,0 (da +45,3 a +58,3). H3 passa: 1,41 (1,09–1,89).
+  Accuratezza: da sola 47,0, informata 61,7, avvocato del diavolo 56,7. Ma da
+  sola e informata rispondevano con la sola lettera, l'avvocato del diavolo
+  dopo aver ragionato.
+- **Llama, i controlli con il ragionamento (aggiunti dopo i suoi risultati,
+  prima di farli girare).** Tutte e tre le condizioni ragionano: da sola 72,0,
+  informata 72,3, avvocato del diavolo 56,7. Il confronto di H1: −18,5 (da
+  −24,8 a −12,2). Quello di H2: +10,0 (da +3,6 a +16,5). Quello di H3: 0,67
+  (0,57–0,77), la coppia dell'avvocato del diavolo sotto la macchina da sola.
+  Dove la persona aveva ragione l'avvocato del diavolo scende da 87,5
+  (informata) a 54,1.
+- **La trappola** (sbagliano tutte e due, la macchina dà la lettera della
+  persona): Llama con la sola lettera 41 → 98 → 44 per cento (da sola,
+  informata, avvocato del diavolo); Llama ragionando 48 → 85 → 44; Haiku 48 →
+  46 → 50, su pochi errori.
+- **Gli angoli**, descrittivi (ρ fra gli errori della persona e quelli della
+  macchina): Llama con la sola lettera 0,15, 0,99 (al limite della conversione)
+  e −0,10 (da −0,36 a 0,08); Llama ragionando, informata, 0,74; Haiku −0,02,
+  0,26, 0,11.
+- **Dove va.** H3 è passata per una macchina, quindi per la regola scritta
+  sopra l'esperimento va nel corpo dell'articolo, con l'esito di Llama come era
+  scritto e i controlli nella sua appendice.

@@ -1,0 +1,483 @@
+{
+ "note": "Model, not measurement: the optimal observer under the article's Gaussian model. Added after the sixth review, 15 November 2026 (PROTOCOL.md). The standard errors are Monte Carlo errors, not sampling intervals.",
+ "trials": 200000,
+ "options": 4,
+ "table": {
+  "accuracy_alone": 0.5773610180843939,
+  "dh": 1.0804292128613333,
+  "rows": [
+   {
+    "k": 1.2,
+    "angle": 75.0,
+    "rho": 0.25881904510252074,
+    "dh": 1.0804292128613333,
+    "dm": 1.2965150554336,
+    "useful_angle": 33.55730976192072,
+    "error_person": 0.42263898191565225,
+    "error_machine": 0.35654465359314064,
+    "shared": {
+     "d_pair": 1.5085131728908123,
+     "margin": 0.163513810787421,
+     "error_pair": 0.29579418587133177,
+     "errors_removed": 0.1703867022253327
+    },
+    "machine_verdict": {
+     "d_pair": 1.4122625033819596,
+     "margin": 0.08927582249297483,
+     "margin_se": 0.0011333605977301114,
+     "error_pair": 0.32277782359941576,
+     "errors_removed": 0.09470575327223052,
+     "errors_removed_se": 0.0011777558911106683
+    },
+    "person_verdict": {
+     "d_pair": 1.4387561471821797,
+     "margin": 0.10971032781490475,
+     "margin_se": 0.0014097758057666078,
+     "error_pair": 0.31524510431865344,
+     "errors_removed": 0.115832754350076,
+     "errors_removed_se": 0.0014500203461905923
+    }
+   },
+   {
+    "k": 1.2,
+    "angle": 90.0,
+    "rho": 0.0,
+    "dh": 1.0804292128613333,
+    "dm": 1.2965150554336,
+    "useful_angle": 33.55730976192072,
+    "error_person": 0.42263898191565225,
+    "error_machine": 0.35654465359314064,
+    "shared": {
+     "d_pair": 1.687684381918062,
+     "margin": 0.30170827931777566,
+     "error_pair": 0.24861822231579112,
+     "errors_removed": 0.30270102269015164
+    },
+    "machine_verdict": {
+     "d_pair": 1.5174832061915653,
+     "margin": 0.17043238320442478,
+     "margin_se": 0.0015168800214972198,
+     "error_pair": 0.2933348118434038,
+     "errors_removed": 0.17728450311266397,
+     "errors_removed_se": 0.0015093160468748156
+    },
+    "person_verdict": {
+     "d_pair": 1.5481592692278021,
+     "margin": 0.19409278183047673,
+     "margin_se": 0.0015260356897126247,
+     "error_pair": 0.2849988335407052,
+     "errors_removed": 0.20066440298969568,
+     "errors_removed_se": 0.0014973609464256827
+    }
+   },
+   {
+    "k": 2.0,
+    "angle": 75.0,
+    "rho": 0.25881904510252074,
+    "dh": 1.0804292128613333,
+    "dm": 2.1608584257226666,
+    "useful_angle": 60.00000000000001,
+    "error_person": 0.42263898191565225,
+    "error_machine": 0.146178944544816,
+    "shared": {
+     "d_pair": 2.227198934244904,
+     "margin": 0.030700997220607373,
+     "error_pair": 0.13453358823153372,
+     "errors_removed": 0.07966507317141025
+    },
+    "machine_verdict": {
+     "d_pair": 2.163055494015238,
+     "margin": 0.0010167571676227283,
+     "margin_se": 0.0001753494649564162,
+     "error_pair": 0.14578256479962556,
+     "errors_removed": 0.0027116062879282143,
+     "errors_removed_se": 0.00046720828974397875
+    },
+    "person_verdict": {
+     "d_pair": 2.1995460476680155,
+     "margin": 0.017903820761608014,
+     "margin_se": 0.0006979211816299126,
+     "error_pair": 0.13930661318829712,
+     "errors_removed": 0.0470131411737752,
+     "errors_removed_se": 0.0018023330522111884
+    }
+   },
+   {
+    "k": 2.0,
+    "angle": 90.0,
+    "rho": 0.0,
+    "dh": 1.0804292128613333,
+    "dm": 2.1608584257226666,
+    "useful_angle": 60.00000000000001,
+    "error_person": 0.42263898191565225,
+    "error_machine": 0.146178944544816,
+    "shared": {
+     "d_pair": 2.415913164834531,
+     "margin": 0.11803398874989468,
+     "error_pair": 0.10499960649875424,
+     "errors_removed": 0.2817049895543394
+    },
+    "machine_verdict": {
+     "d_pair": 2.20682476857457,
+     "margin": 0.021272260276158805,
+     "margin_se": 0.0005970976254355299,
+     "error_pair": 0.13803905092748736,
+     "errors_removed": 0.05568444650271154,
+     "errors_removed_se": 0.0015322291996676888
+    },
+    "person_verdict": {
+     "d_pair": 2.3112319545423596,
+     "margin": 0.06958971815536819,
+     "margin_se": 0.0009409224833307958,
+     "error_pair": 0.12073400806378565,
+     "errors_removed": 0.1740670420097976,
+     "errors_removed_se": 0.002197052251332156
+    }
+   },
+   {
+    "k": 3.0,
+    "angle": 75.0,
+    "rho": 0.25881904510252074,
+    "dh": 1.0804292128613333,
+    "dm": 3.2412876385839997,
+    "useful_angle": 70.52877936550931,
+    "error_person": 0.42263898191565225,
+    "error_machine": 0.028882808122133292,
+    "shared": {
+     "d_pair": 3.2509178195656934,
+     "margin": 0.002971097309309112,
+     "error_pair": 0.028394131177710315,
+     "errors_removed": 0.01691930169520106
+    },
+    "machine_verdict": {
+     "d_pair": 3.2412876385916274,
+     "margin": 2.353228722995482e-12,
+     "margin_se": 0.0,
+     "error_pair": 0.028882808122133292,
+     "errors_removed": 0.0,
+     "errors_removed_se": 0.0
+    },
+    "person_verdict": {
+     "d_pair": 3.2450974528297922,
+     "margin": 0.0011754014671332413,
+     "margin_se": 0.0004120586956977681,
+     "error_pair": 0.028688643510793286,
+     "errors_removed": 0.006722497705865971,
+     "errors_removed_se": 0.0023500186768779115
+    }
+   },
+   {
+    "k": 3.0,
+    "angle": 90.0,
+    "rho": 0.0,
+    "dh": 1.0804292128613333,
+    "dm": 3.2412876385839997,
+    "useful_angle": 70.52877936550931,
+    "error_person": 0.42263898191565225,
+    "error_machine": 0.028882808122133292,
+    "shared": {
+     "d_pair": 3.416617163224701,
+     "margin": 0.05409255338945984,
+     "error_pair": 0.02101623514458851,
+     "errors_removed": 0.2723617781304485
+    },
+    "machine_verdict": {
+     "d_pair": 3.2431907740995602,
+     "margin": 0.0005871541583986062,
+     "margin_se": 0.00021173782938715543,
+     "error_pair": 0.02878567855311596,
+     "errors_removed": 0.003362885236318114,
+     "errors_removed_se": 0.0012109980291305305
+    },
+    "person_verdict": {
+     "d_pair": 3.3375039401790647,
+     "margin": 0.029684592150883038,
+     "margin_se": 0.000841881627948662,
+     "error_pair": 0.0243047194888113,
+     "errors_removed": 0.15850566239830888,
+     "errors_removed_se": 0.004173944823643165
+    }
+   },
+   {
+    "k": 5.0,
+    "angle": 75.0,
+    "rho": 0.25881904510252074,
+    "dh": 1.0804292128613333,
+    "dm": 5.402146064306667,
+    "useful_angle": 78.46304096718453,
+    "error_person": 0.42263898191565225,
+    "error_machine": 0.00019636710572066592,
+    "shared": {
+     "d_pair": 5.402146064306667,
+     "margin": 0.0,
+     "error_pair": 0.00019636710572066592,
+     "errors_removed": 0.0
+    },
+    "machine_verdict": {
+     "d_pair": 5.402146064306434,
+     "margin": -4.3076653355456074e-14,
+     "margin_se": 0.0,
+     "error_pair": 0.00019636710572066592,
+     "errors_removed": 0.0,
+     "errors_removed_se": 0.0
+    },
+    "person_verdict": {
+     "d_pair": 5.408176214401474,
+     "margin": 0.0011162508423550044,
+     "margin_se": 0.0004155223296078223,
+     "error_pair": 0.00019302348155358752,
+     "errors_removed": 0.017027414824938858,
+     "errors_removed_se": 0.006287351407196854
+    }
+   },
+   {
+    "k": 5.0,
+    "angle": 90.0,
+    "rho": 0.0,
+    "dh": 1.0804292128613333,
+    "dm": 5.402146064306667,
+    "useful_angle": 78.46304096718453,
+    "error_person": 0.42263898191565225,
+    "error_machine": 0.00019636710572066592,
+    "shared": {
+     "d_pair": 5.509129639435631,
+     "margin": 0.01980390271855703,
+     "error_pair": 0.00014440666344847766,
+     "errors_removed": 0.2646086883110783
+    },
+    "machine_verdict": {
+     "d_pair": 5.402146064306434,
+     "margin": -4.3076653355456074e-14,
+     "margin_se": 0.0,
+     "error_pair": 0.00019636710572066592,
+     "errors_removed": 0.0,
+     "errors_removed_se": 0.0
+    },
+    "person_verdict": {
+     "d_pair": 5.46122446454332,
+     "margin": 0.010936098271573824,
+     "margin_se": 0.0007189278500512483,
+     "error_pair": 0.0001658289462982277,
+     "errors_removed": 0.15551565681208868,
+     "errors_removed_se": 0.009431102684785402
+    }
+   },
+   {
+    "k": 10.0,
+    "angle": 75.0,
+    "rho": 0.25881904510252074,
+    "dh": 1.0804292128613333,
+    "dm": 10.804292128613334,
+    "useful_angle": 84.26082952273322,
+    "error_person": 0.42263898191565225,
+    "error_machine": 3.263663132966504e-14,
+    "shared": {
+     "d_pair": 10.804292128613334,
+     "margin": 0.0,
+     "error_pair": 3.263663132966504e-14,
+     "errors_removed": 0.0
+    },
+    "machine_verdict": {
+     "d_pair": 10.804292128612795,
+     "margin": -4.984901380566953e-14,
+     "margin_se": 0.0,
+     "error_pair": 3.263663132966504e-14,
+     "errors_removed": 0.0,
+     "errors_removed_se": 0.0
+    },
+    "person_verdict": {
+     "d_pair": 10.878400789358935,
+     "margin": 0.006859187058570582,
+     "margin_se": 0.0010135346062719846,
+     "error_pair": 2.169532031657101e-14,
+     "errors_removed": 0.335246334175088,
+     "errors_removed_se": 0.040194367422450035
+    }
+   },
+   {
+    "k": 10.0,
+    "angle": 90.0,
+    "rho": 0.0,
+    "dh": 1.0804292128613333,
+    "dm": 10.804292128613334,
+    "useful_angle": 84.26082952273322,
+    "error_person": 0.42263898191565225,
+    "error_machine": 3.263663132966504e-14,
+    "shared": {
+     "d_pair": 10.858179206681948,
+     "margin": 0.004987562112089172,
+     "error_pair": 2.4258952616703898e-14,
+     "errors_removed": 0.25669557094718476
+    },
+    "machine_verdict": {
+     "d_pair": 10.804292128612795,
+     "margin": -4.984901380566953e-14,
+     "margin_se": 0.0,
+     "error_pair": 3.263663132966504e-14,
+     "errors_removed": 0.0,
+     "errors_removed_se": 0.0
+    },
+    "person_verdict": {
+     "d_pair": 10.827627429801925,
+     "margin": 0.002159817682714449,
+     "margin_se": 0.0008370997497130873,
+     "error_pair": 2.87072422350167e-14,
+     "errors_removed": 0.12039812120795479,
+     "errors_removed_se": 0.043745037437258265
+    }
+   }
+  ]
+ },
+ "chatbench": [
+  {
+   "machine": "gpt-4o",
+   "acc_h": 0.5773610180843939,
+   "acc_m": 0.8834583053217635,
+   "acc_s": 0.7736101808439384,
+   "dh": 1.0804292128613333,
+   "dm": 2.338109471925133,
+   "ds": 1.778432983970192,
+   "k": 2.164056139997406,
+   "phi": 74.51317804091012,
+   "phi_ci": [
+    59.261007932334046,
+    85.9584139386313
+   ],
+   "useful_angle": 62.47760886904398,
+   "measured_over_machine": 0.7606286212535125,
+   "measured_over_machine_ci": [
+    0.6732220444282633,
+    0.8491814992361916
+   ],
+   "at": {
+    "measured_angle": {
+     "angle": 74.51317804091012,
+     "rho": 0.2670167338120388,
+     "shared_over_machine": 1.0202829050596665,
+     "shared_accuracy": 0.8905976701956556,
+     "machine_verdict_over_machine": 1.0001422692786166,
+     "machine_verdict_se": 8.837508123810734e-05,
+     "machine_verdict_accuracy": 0.8835095248616894,
+     "machine_verdict_errors_removed": 0.00043949541035770423,
+     "person_verdict_over_machine": 1.0122261300314408,
+     "person_verdict_se": 0.0006255059781832068,
+     "person_verdict_accuracy": 0.8878009157497888
+    },
+    "angle_ci_low": {
+     "angle": 59.261007932334046,
+     "rho": 0.5111279634744255,
+     "shared_over_machine": 1.0,
+     "shared_accuracy": 0.8834583053217631,
+     "machine_verdict_over_machine": 0.999999999999953,
+     "machine_verdict_se": 0.0,
+     "machine_verdict_accuracy": 0.8834583053217631,
+     "machine_verdict_errors_removed": 0.0,
+     "person_verdict_over_machine": 1.000598383924501,
+     "person_verdict_se": 0.00033778708981711656,
+     "person_verdict_accuracy": 0.8836736251153342
+    },
+    "angle_ci_high": {
+     "angle": 85.9584139386313,
+     "rho": 0.07048050095464806,
+     "shared_over_machine": 1.0743033642583761,
+     "shared_accuracy": 0.9080461074294214,
+     "machine_verdict_over_machine": 1.0067572209401268,
+     "machine_verdict_se": 0.0003964229920589338,
+     "machine_verdict_accuracy": 0.885873146834834,
+     "machine_verdict_errors_removed": 0.020720837462833375,
+     "person_verdict_over_machine": 1.0438945719767247,
+     "person_verdict_se": 0.0008451629176227301,
+     "person_verdict_accuracy": 0.8985005162884956
+    },
+    "90": {
+     "angle": 90.0,
+     "rho": 0.0,
+     "shared_over_machine": 1.1016042815622897,
+     "shared_accuracy": 0.9160269814705948,
+     "machine_verdict_over_machine": 1.013007824255052,
+     "machine_verdict_se": 0.0005083444415483161,
+     "machine_verdict_accuracy": 0.8880745178849947,
+     "machine_verdict_errors_removed": 0.03960996599523159,
+     "person_verdict_over_machine": 1.059466526632046,
+     "person_verdict_se": 0.0009056036418754055,
+     "person_verdict_accuracy": 0.9034764454512082
+    }
+   }
+  },
+  {
+   "machine": "llama-3.1-8b",
+   "acc_h": 0.6052819414703783,
+   "acc_m": 0.6673740940887767,
+   "acc_s": 0.7387580299785867,
+   "dh": 1.1703852130358958,
+   "dm": 1.378020698136346,
+   "ds": 1.6381313317090087,
+   "k": 1.177407816493049,
+   "phi": 75.06876574371336,
+   "phi_ci": [
+    62.44336741107076,
+    81.72138834670966
+   ],
+   "useful_angle": 31.86184618292609,
+   "measured_over_machine": 1.1887566956900137,
+   "measured_over_machine_ci": [
+    1.0442845988945346,
+    1.3395118573141716
+   ],
+   "at": {
+    "measured_angle": {
+     "angle": 75.06876574371336,
+     "rho": 0.2576595657683931,
+     "shared_over_machine": 1.172586471209309,
+     "shared_accuracy": 0.732973065988387,
+     "machine_verdict_over_machine": 1.098117405589971,
+     "machine_verdict_se": 0.001124713125321449,
+     "machine_verdict_accuracy": 0.7054998690719684,
+     "machine_verdict_errors_removed": 0.1146205821784918,
+     "person_verdict_over_machine": 1.1165588778739612,
+     "person_verdict_se": 0.0013683295642512624,
+     "person_verdict_accuracy": 0.7124272011918718
+    },
+    "angle_ci_low": {
+     "angle": 62.44336741107076,
+     "rho": 0.46262513133935346,
+     "shared_over_machine": 1.0909876774993157,
+     "shared_accuracy": 0.7028005337604254,
+     "machine_verdict_over_machine": 1.0470193538917707,
+     "machine_verdict_se": 0.0007948836986811251,
+     "machine_verdict_accuracy": 0.6859018431879652,
+     "machine_verdict_errors_removed": 0.05570146152156463,
+     "person_verdict_over_machine": 1.0624143020605232,
+     "person_verdict_se": 0.0012304017526627922,
+     "person_verdict_accuracy": 0.6918672173206734
+    },
+    "angle_ci_high": {
+     "angle": 81.72138834670966,
+     "rho": 0.14398680387211008,
+     "shared_over_machine": 1.2280196780569992,
+     "shared_accuracy": 0.7525245061481688,
+     "machine_verdict_over_machine": 1.1318639010100737,
+     "machine_verdict_se": 0.0012862783338335358,
+     "machine_verdict_accuracy": 0.7181154329836752,
+     "machine_verdict_errors_removed": 0.1525477661034682,
+     "person_verdict_over_machine": 1.1519941193337588,
+     "person_verdict_se": 0.0014217567384632933,
+     "person_verdict_accuracy": 0.7255109855741021
+    },
+    "90": {
+     "angle": 90.0,
+     "rho": 0.0,
+     "shared_over_machine": 1.3120023717656153,
+     "shared_accuracy": 0.7805887897273724,
+     "machine_verdict_over_machine": 1.1801995426112173,
+     "machine_verdict_se": 0.0014774608935447281,
+     "machine_verdict_accuracy": 0.7357049325822298,
+     "machine_verdict_errors_removed": 0.20542849272747632,
+     "person_verdict_over_machine": 1.2024719138842852,
+     "person_verdict_se": 0.0014764859851129155,
+     "person_verdict_accuracy": 0.7436123745222805
+    }
+   }
+  }
+ ]
+}

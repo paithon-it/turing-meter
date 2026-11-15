@@ -126,6 +126,21 @@ mathematics), and the rule-of-three bound for a model with no error.
 .venv/bin/python -m angle.conversations     # writes results/conversations.json, about half a minute
 ```
 
+## After the sixth review (added 15 November 2026)
+
+Two analyses asked for by a sixth review, exploratory (protocol, "After the
+sixth review"). The ceiling of a pair when one of the two gives only a verdict:
+the optimal observer under the article's model, for the rows of the article's
+margin table and for the two ChatBench pairs. And, on αNLI, the closeness
+between people and a machine net of the difficulty for a third population (the
+open machines), and between two machines net of the difficulty for the people,
+with the contested stories defined on half of the votes.
+
+```bash
+.venv/bin/python -m angle.verdict                                    # writes results/verdict-ceiling.json, about twenty minutes
+.venv/bin/python -m angle.difficulty closed-results GPU_RESULTS_DIR  # writes results/difficulty.json, about ten minutes
+```
+
 ## Licenses
 
 - Code (`angle/`, `gpu/`, `tests/`): MIT license, see the repository

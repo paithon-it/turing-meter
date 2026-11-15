@@ -121,6 +121,21 @@ sola matematica), e il limite della regola del tre per un modello senza errori.
 .venv/bin/python -m angle.conversations     # scrive results/conversations.json, circa mezzo minuto
 ```
 
+## Dopo la sesta revisione (aggiunta del 15 novembre 2026)
+
+Due analisi chieste da una sesta revisione, esplorative (protocollo, «Dopo la
+sesta revisione»). Il tetto di una coppia quando uno dei due dà solo un
+verdetto: l'osservatore ottimo nel modello dell'articolo, per le righe della
+tabella del margine e per le due coppie di ChatBench. E, su αNLI, la vicinanza
+fra le persone e una macchina al netto della difficoltà per una terza
+popolazione (le macchine aperte), e fra due macchine al netto della difficoltà
+per le persone, con le storie contestate definite su metà dei voti.
+
+```bash
+.venv/bin/python -m angle.verdict                                           # scrive results/verdict-ceiling.json, circa venti minuti
+.venv/bin/python -m angle.difficulty closed-results CARTELLA_RISULTATI_GPU  # scrive results/difficulty.json, circa dieci minuti
+```
+
 ## Licenze
 
 - Codice (`angle/`, `gpu/`, `tests/`): licenza MIT, vedi il `LICENSE` del
