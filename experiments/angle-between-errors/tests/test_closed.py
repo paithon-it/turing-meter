@@ -85,3 +85,18 @@ def test_a_lowercase_letter_in_chat_is_the_same_answer(tmp_path):
     d = sources.chatbench_machine_in_chat(tmp_path)
     assert d.m_ok.tolist() == [1.0, 1.0]
     assert sources.chatbench_conversations(tmp_path).conv_answer_letter.tolist() == ["C", "A"]
+
+
+def test_the_weights_of_the_ideal_pair():
+    """w ∝ Σ⁻¹d: the machine's cue weighs k times the person's at 90 degrees, more as the angle closes, and the
+    person's weight vanishes at the useful angle. Equal weights beat the stronger only below Bahrami's threshold."""
+    import math
+
+    from angle.conversations import equal_weights, weight_ratio
+
+    assert weight_ratio(2.0, 90.0) == pytest.approx(2.0)
+    assert weight_ratio(2.0, 75.0) == pytest.approx((2 - math.cos(math.radians(75))) / (1 - 2 * math.cos(math.radians(75))))
+    assert weight_ratio(2.0, 75.0) > 2.0
+    assert abs(weight_ratio(2.0, 60.0001)) > 1e4            # cos 60 = 1/2: the useful angle of k = 2
+    assert equal_weights(1.0, 2.0, 0.0)["k_threshold"] == pytest.approx(1 / (math.sqrt(2) - 1))
+    assert equal_weights(1.0, 3.0, 0.0)["over_machine"] < 1 < equal_weights(1.0, 2.0, 0.0)["over_machine"]

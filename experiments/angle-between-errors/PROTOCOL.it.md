@@ -562,3 +562,14 @@ risposta in chat sono una selezione. `angle/conversations.py`,
   persone che, sbagliando da sole quella domanda, avevano scelto la lettera
   della chat; intervalli con pesi di Poisson sulle persone, e su persone e
   domande.
+
+- **Più tardi lo stesso giorno, dopo un'altra revisione.** Accordo e
+  disaccordo (`conversations.py`, `agreement_and_disagreement`), descrittivo:
+  sulle chat con una lettera, quanto spesso la chat sbaglia quando dà la stessa
+  risposta della persona da sola e quando no (intervalli con pesi di Poisson
+  sulle persone, e su persone e domande), chi ha ragione in un disaccordo, per
+  materia e per la sicurezza dichiarata dalla persona; seguire la chat in ogni
+  disaccordo contro ciò che ha fatto la coppia. Nel modello: i pesi della
+  coppia ideale, (k − cos φ)/(1 − k cos φ); i pesi uguali («vince il più
+  sicuro»); un osservatore che aggiunge all'opzione della chat il bonus del
+  rapporto di verosimiglianza.

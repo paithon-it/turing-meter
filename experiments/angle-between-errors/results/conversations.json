@@ -280,6 +280,146 @@
     "extraction": 1.1148891391133557,
     "filter": 0.9102890438029365
    }
+  },
+  "agreement_and_disagreement": {
+   "chats_with_letter": 1121,
+   "agreements": 657,
+   "disagreements": 464,
+   "chat_error_agreement": 0.03500761035007616,
+   "chat_error_disagreement": 0.1443965517241379,
+   "chat_error_gap": 0.10938894137406174,
+   "chat_error_gap_ci_people": [
+    0.06750615109658853,
+    0.15071254795018382
+   ],
+   "chat_error_gap_ci_people_and_questions": [
+    0.04636495063916585,
+    0.17930579736330393
+   ],
+   "chat_errors": 90,
+   "chat_errors_in_disagreement": 67,
+   "pair_errors": 152,
+   "pair_errors_in_disagreement": 109,
+   "agreements_on_a_wrong_answer": 23,
+   "pair_right_there": 1,
+   "always_follow_minus_pair": 0.09051724137931039,
+   "pair_minus_always_follow_ci_people": [
+    -0.13389321535104404,
+    -0.04809633896763441
+   ],
+   "pair_minus_always_follow_ci_people_and_questions": [
+    -0.16454037800687293,
+    -0.015966748166259363
+   ],
+   "outcomes": {
+    "all": {
+     "disagreements": 464,
+     "chat_right": 0.8556034482758621,
+     "person_right": 0.09698275862068965,
+     "both_wrong": 0.04741379310344827,
+     "person_follows_chat": 0.771551724137931,
+     "kept_own": 0.17456896551724138,
+     "pair_right": 0.7650862068965517
+    },
+    "math": {
+     "disagreements": 289,
+     "chat_right": 0.8754325259515571,
+     "person_right": 0.08650519031141868,
+     "both_wrong": 0.03806228373702422,
+     "person_follows_chat": 0.8373702422145328,
+     "kept_own": 0.10034602076124567,
+     "pair_right": 0.7958477508650519
+    },
+    "physics": {
+     "disagreements": 126,
+     "chat_right": 0.9523809523809523,
+     "person_right": 0.015873015873015872,
+     "both_wrong": 0.031746031746031744,
+     "person_follows_chat": 0.7619047619047619,
+     "kept_own": 0.19047619047619047,
+     "pair_right": 0.7619047619047619
+    },
+    "moral": {
+     "disagreements": 49,
+     "chat_right": 0.4897959183673469,
+     "person_right": 0.3673469387755102,
+     "both_wrong": 0.14285714285714285,
+     "person_follows_chat": 0.40816326530612246,
+     "kept_own": 0.5714285714285714,
+     "pair_right": 0.5918367346938775
+    }
+   },
+   "confidence_in_disagreements": {
+    "all": {
+     "not-confident": {
+      "n": 196,
+      "person_right": 8,
+      "chat_right": 176,
+      "moral": 1
+     },
+     "somewhat-confident": {
+      "n": 162,
+      "person_right": 11,
+      "chat_right": 149,
+      "moral": 10
+     },
+     "very-confident": {
+      "n": 106,
+      "person_right": 26,
+      "chat_right": 72,
+      "moral": 38
+     }
+    },
+    "math": {
+     "not-confident": {
+      "n": 148,
+      "person_right": 8,
+      "chat_right": 130,
+      "moral": 0
+     },
+     "somewhat-confident": {
+      "n": 95,
+      "person_right": 7,
+      "chat_right": 88,
+      "moral": 0
+     },
+     "very-confident": {
+      "n": 46,
+      "person_right": 10,
+      "chat_right": 35,
+      "moral": 0
+     }
+    },
+    "math_very_minus_not_confident_person_right": 0.16333725029377202,
+    "math_very_minus_not_confident_ci_people": [
+     0.047162828947368424,
+     0.2808602463480679
+    ]
+   },
+   "model": {
+    "k": 2.164056139997406,
+    "phi": 74.51317804091012,
+    "phi_ci": [
+     59.261007932334046,
+     85.9584139386313
+    ],
+    "weight_ratio_at_phi": 4.493641798259809,
+    "weight_ratio_at_ci": [
+     null,
+     2.470364999401438
+    ],
+    "useful_angle": 62.47760886904398,
+    "equal_weights": {
+     "d": 2.1475057018683352,
+     "over_machine": 0.9184795355626099,
+     "k_threshold": 1.6895751178210443
+    },
+    "weighing_the_verdict": {
+     "bonus": 3.018572331021801,
+     "follows_in_disagreements": 0.9697810176747953,
+     "accuracy": 0.9229205
+    }
+   }
   }
  },
  "llama-3.1-8b": {
@@ -553,6 +693,146 @@
     "contact": 0.7973969222863833,
     "extraction": 1.5341213027371556,
     "filter": 0.9717593331865849
+   }
+  },
+  "agreement_and_disagreement": {
+   "chats_with_letter": 969,
+   "agreements": 596,
+   "disagreements": 373,
+   "chat_error_agreement": 0.08053691275167785,
+   "chat_error_disagreement": 0.27345844504021444,
+   "chat_error_gap": 0.1929215322885366,
+   "chat_error_gap_ci_people": [
+    0.13533812904189427,
+    0.25339534435822336
+   ],
+   "chat_error_gap_ci_people_and_questions": [
+    0.09742216906502774,
+    0.2908256939922339
+   ],
+   "chat_errors": 150,
+   "chat_errors_in_disagreement": 102,
+   "pair_errors": 182,
+   "pair_errors_in_disagreement": 116,
+   "agreements_on_a_wrong_answer": 48,
+   "pair_right_there": 3,
+   "always_follow_minus_pair": 0.03753351206434319,
+   "pair_minus_always_follow_ci_people": [
+    -0.0903974979822438,
+    0.014925373134328294
+   ],
+   "pair_minus_always_follow_ci_people_and_questions": [
+    -0.12500725058004641,
+    0.04350737577639744
+   ],
+   "outcomes": {
+    "all": {
+     "disagreements": 373,
+     "chat_right": 0.7265415549597856,
+     "person_right": 0.17962466487935658,
+     "both_wrong": 0.0938337801608579,
+     "person_follows_chat": 0.774798927613941,
+     "kept_own": 0.16890080428954424,
+     "pair_right": 0.6890080428954424
+    },
+    "math": {
+     "disagreements": 204,
+     "chat_right": 0.7058823529411765,
+     "person_right": 0.1715686274509804,
+     "both_wrong": 0.12254901960784313,
+     "person_follows_chat": 0.8725490196078431,
+     "kept_own": 0.09803921568627451,
+     "pair_right": 0.7205882352941176
+    },
+    "physics": {
+     "disagreements": 115,
+     "chat_right": 0.9043478260869565,
+     "person_right": 0.034782608695652174,
+     "both_wrong": 0.06086956521739131,
+     "person_follows_chat": 0.808695652173913,
+     "kept_own": 0.11304347826086956,
+     "pair_right": 0.7478260869565218
+    },
+    "moral": {
+     "disagreements": 54,
+     "chat_right": 0.42592592592592593,
+     "person_right": 0.5185185185185185,
+     "both_wrong": 0.05555555555555555,
+     "person_follows_chat": 0.3333333333333333,
+     "kept_own": 0.5555555555555556,
+     "pair_right": 0.4444444444444444
+    }
+   },
+   "confidence_in_disagreements": {
+    "all": {
+     "not-confident": {
+      "n": 154,
+      "person_right": 14,
+      "chat_right": 124,
+      "moral": 1
+     },
+     "somewhat-confident": {
+      "n": 139,
+      "person_right": 30,
+      "chat_right": 99,
+      "moral": 24
+     },
+     "very-confident": {
+      "n": 80,
+      "person_right": 23,
+      "chat_right": 48,
+      "moral": 29
+     }
+    },
+    "math": {
+     "not-confident": {
+      "n": 98,
+      "person_right": 13,
+      "chat_right": 72,
+      "moral": 0
+     },
+     "somewhat-confident": {
+      "n": 72,
+      "person_right": 14,
+      "chat_right": 51,
+      "moral": 0
+     },
+     "very-confident": {
+      "n": 34,
+      "person_right": 8,
+      "chat_right": 21,
+      "moral": 0
+     }
+    },
+    "math_very_minus_not_confident_person_right": 0.10264105642256902,
+    "math_very_minus_not_confident_ci_people": [
+     -0.06144461662183262,
+     0.2750035197103781
+    ]
+   },
+   "model": {
+    "k": 1.177407816493049,
+    "phi": 75.06876574371336,
+    "phi_ci": [
+     62.44336741107076,
+     81.72138834670966
+    ],
+    "weight_ratio_at_phi": 1.3202830215718404,
+    "weight_ratio_at_ci": [
+     1.5699104878378938,
+     1.2443826885789908
+    ],
+    "useful_angle": 31.861846182926104,
+    "equal_weights": {
+     "d": 1.6068378629725015,
+     "over_machine": 1.1660476980829177,
+     "k_threshold": 1.7065552150423373
+    },
+    "weighing_the_verdict": {
+     "bonus": 2.206634003515635,
+     "follows_in_disagreements": 0.8620011741709386,
+     "accuracy": 0.86524
+    }
    }
   }
  }
