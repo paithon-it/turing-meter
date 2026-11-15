@@ -573,3 +573,87 @@ risposta in chat sono una selezione. `angle/conversations.py`,
   coppia ideale, (k − cos φ)/(1 − k cos φ); i pesi uguali («vince il più
   sicuro»); un osservatore che aggiunge all'opzione della chat il bonus del
   rapporto di verosimiglianza.
+
+## L'avvocato del diavolo (scritto il 15 novembre 2026, prima di ogni corsa)
+
+Scritto dopo i risultati dell'articolo e prima di qualunque chiamata a una
+macchina nelle due condizioni nuove. Il codice (`angle/devil.py`,
+`closed/devil_claude.py`, `gpu/devil_llm.py`) è stato scritto e provato prima su
+prove sintetiche; questa sezione e il codice sono salvati e pubblicati prima
+delle corse.
+
+**La domanda.** Le conversazioni mostrano una trappola: una chat sbagliata dopo
+una persona sbagliata ripete la risposta della persona più spesso di quanto
+farebbero altre persone sbagliate sulla stessa domanda. Quando la macchina vede
+la risposta della persona, cade nel suo errore? E chiederle prima gli argomenti
+contro quella risposta toglie la trappola, e porta la coppia sopra la macchina
+da sola?
+
+**Dati.** ChatBench, condizione answer-first, fase 2: le 2.903 risposte date da
+sole (329 persone, 396 domande, 1.187 sbagliate). Ogni coppia distinta (domanda,
+risposta data da sola) è un item, 1.038 in tutto
+(`data/items/chatbench-devil.jsonl`). L'unità di analisi è la prova (persona,
+domanda): nelle condizioni A e B il verdetto della macchina dipende dalla
+risposta della persona, quindi è assegnato prova per prova.
+
+**Condizioni.** Una chiamata per item e per condizione.
+
+- *0, da sola*: il prompt `letter` di `gpu/machines_llm.py`, senza la risposta
+  della persona. Per Claude Haiku 5.5 la corsa già in
+  `closed-results/chatbench__haiku-5.5__low.jsonl`; per Llama una corsa nuova.
+- *A, informata*: lo stesso prompt con la riga `I think the answer is X.` prima
+  della richiesta, X la lettera scelta dalla persona da sola.
+- *B, avvocato del diavolo*: la riga `I think the answer is X.`, poi `First
+  give, briefly, the strongest arguments against my answer. Then finish with a
+  final line of the form: Answer: Y, where Y is the letter of the correct
+  option (A to D).` Claude risponde con uno schema a due campi, prima gli
+  argomenti e poi la lettera.
+
+**Macchine.** Llama 3.1 8B Instruct, il modello aperto con cui hanno lavorato le
+persone di ChatBench (pesi dalla copia senza accesso riservato
+`unsloth/Llama-3.1-8B-Instruct`, uguali a quelli di Meta), con vLLM e
+decodifica greedy, la lettera letta dalle probabilità vincolate come per gli
+altri modelli aperti; in B prima si generano gli argomenti, fino a 700 token.
+Claude Haiku 5.5 attraverso Claude Code in modalità non interattiva, effort
+`low`, come per le altre corse Claude. Un item a cui una macchina non risponde
+in una condizione esce da tutte e tre, per quella macchina.
+
+**Misure**, per macchina.
+
+1. L'accuratezza della macchina sulle 2.903 prove in 0, A e B, il suo d′ a
+   quattro opzioni, e la resa di B, d′_B / d′_0. B è una coppia: la persona
+   propone, la macchina attacca e decide.
+2. L'accuratezza sulle prove in cui la persona da sola aveva sbagliato, e su
+   quelle in cui aveva risposto giusto, per condizione.
+3. La trappola: sulle prove in cui sbagliano tutte e due, la quota in cui la
+   macchina dà la lettera della persona, per condizione.
+4. Solo descrittivo: l'angolo fra gli errori della persona e quelli della
+   macchina, per condizione, con lo stimatore dell'esperimento
+   (`measure.compare`, macchina per prova). In A e B la macchina ha visto la
+   risposta della persona: il modello gaussiano della coppia ideale non regge,
+   e il margine non si calcola.
+
+**Ipotesi e criteri.** Intervalli percentili al 95%, 2.000 repliche che
+ricampionano insieme persone e domande (pesi di Poisson, come in `measure`).
+
+- *H1, la trappola*: sulle prove in cui la persona aveva sbagliato, la
+  macchina informata è meno accurata della macchina da sola. Passa se
+  l'intervallo di acc_A − acc_0 sta sotto lo zero.
+- *H2, l'avvocato del diavolo toglie la trappola*: sulle stesse prove,
+  acc_B − acc_A sopra lo zero.
+- *H3, la coppia sopra la macchina*: su tutte le prove, d′_B / d′_0 sopra uno.
+- *Riportati comunque*, senza criterio: il costo sulle prove in cui la persona
+  aveva risposto giusto, acc_B − acc_0; le quote della trappola; gli angoli.
+
+Tre prove per macchina, due macchine, nessuna correzione per la molteplicità.
+
+**Che cosa non può dire.** Nessuna persona legge gli argomenti: decide la
+macchina. Un H3 positivo dice che, su queste domande, una coppia in cui la
+risposta della persona è l'ingresso di una macchina che la contesta batte la
+macchina da sola; non che lo farebbero persone che leggono gli argomenti. Una
+chiamata per item: la variabilità della macchina fra una chiamata e l'altra non
+è negli intervalli.
+
+**Dove va nell'articolo.** Se H3 passa per almeno una macchina, nel corpo;
+altrimenti nell'appendice di ciò che non è andato. In tutti e due i casi con i
+numeri delle tre ipotesi per le due macchine.

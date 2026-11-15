@@ -574,3 +574,83 @@ chat are a selection. `angle/conversations.py`, `results/conversations.json`.
   the ideal pair, (k − cos φ)/(1 − k cos φ); equal weights («the more
   confident one wins»); an observer that adds to the chat's option the bonus
   of the likelihood ratio.
+
+## The devil's advocate (written 15 November 2026, before any run)
+
+Written after the article's results and before any call to a machine in the two
+new conditions. The code (`angle/devil.py`, `closed/devil_claude.py`,
+`gpu/devil_llm.py`) was written and tested on synthetic trials first; this
+section and the code are committed and pushed before the runs.
+
+**The question.** The conversations show a trap: a wrong chat after a wrong
+person repeats the person's answer more often than other people wrong on the
+same question would. When the machine sees the person's answer, does it fall
+into the person's error? And does asking it first for the arguments against
+that answer remove the trap, and bring the pair above the machine alone?
+
+**Data.** ChatBench, answer-first condition, phase 2: the 2,903 answers given
+alone (329 people, 396 questions, 1,187 wrong). Each distinct pair (question,
+answer given alone) is an item, 1,038 in all (`data/items/chatbench-devil.jsonl`).
+The unit of analysis is the trial (person, question): in conditions A and B the
+machine's verdict depends on the person's answer, so it is assigned per trial.
+
+**Conditions.** One call per item and condition.
+
+- *0, alone*: the `letter` prompt of `gpu/machines_llm.py`, without the person's
+  answer. For Claude Haiku 5.5 the run already in
+  `closed-results/chatbench__haiku-5.5__low.jsonl`; for Llama a new run.
+- *A, told*: the same prompt with the line `I think the answer is X.` before
+  the request, X the letter the person chose alone.
+- *B, devil's advocate*: the line `I think the answer is X.`, then `First give,
+  briefly, the strongest arguments against my answer. Then finish with a final
+  line of the form: Answer: Y, where Y is the letter of the correct option (A
+  to D).` Claude answers through a schema with two fields, the arguments first
+  and then the letter.
+
+**Machines.** Llama 3.1 8B Instruct, the open model the people of ChatBench
+worked with (weights from the ungated mirror `unsloth/Llama-3.1-8B-Instruct`,
+the same as Meta's), with vLLM and greedy decoding, the letter read from the
+constrained probabilities as for the other open models; in B the arguments are
+generated first, up to 700 tokens. Claude Haiku 5.5 through Claude Code in
+headless mode, effort `low`, as for the other Claude runs. An item a machine
+does not answer in some condition is dropped from all three, for that machine.
+
+**Measures**, per machine.
+
+1. The machine's accuracy on the 2,903 trials in 0, A and B, its d′ with four
+   options, and the yield of B, d′_B / d′_0. B is a pair: the person proposes,
+   the machine attacks and decides.
+2. Accuracy on the trials where the person alone was wrong, and on those where
+   the person was right, per condition.
+3. The trap: on the trials where person and machine are both wrong, the share
+   where the machine gives the person's letter, per condition.
+4. Descriptive only: the angle between the person's errors and the machine's,
+   per condition, with the experiment's estimator (`measure.compare`,
+   machine per trial). In A and B the machine has seen the person's answer:
+   the Gaussian model of the ideal pair does not hold, and no margin is
+   computed.
+
+**Hypotheses and criteria.** 95% percentile intervals, 2,000 replicas
+resampling people and questions together (Poisson weights, as in
+`measure`).
+
+- *H1, the trap*: on the trials where the person was wrong, the machine told
+  the answer is less accurate than the machine alone. Passes if the interval of
+  acc_A − acc_0 lies below zero.
+- *H2, the devil's advocate removes the trap*: on the same trials,
+  acc_B − acc_A above zero.
+- *H3, the pair above the machine*: on all trials, d′_B / d′_0 above one.
+- *Reported whatever happens*, with no criterion: the cost on the trials where
+  the person was right, acc_B − acc_0; the trap shares; the angles.
+
+Three tests per machine, two machines, no correction for multiplicity.
+
+**What it cannot say.** No person reads the arguments: the decision is the
+machine's. A positive H3 says that, on these questions, a pair in which the
+person's answer is the input of a contrarian machine beats the machine alone;
+not that people reading the arguments would. One call per item: the variance
+of the machine between calls is not in the intervals.
+
+**Where it goes in the article.** If H3 passes for at least one machine, in
+the body; otherwise in the appendix of what did not work. Either way with the
+numbers of all three hypotheses for both machines.
