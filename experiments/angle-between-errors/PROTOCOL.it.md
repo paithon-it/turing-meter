@@ -477,3 +477,27 @@ bordo.
     che conta fino a tre volte la varianza residua, cioè fino a √3 in larghezza.
     Non spiega l'angolo (1,6-2,1 volte) né lo scenario F (2,4): lì il meccanismo
     resta non isolato. Nessuna prova nuova, è una lettura della letteratura.
+
+## Deviazioni del 14 novembre 2026
+
+Decise dopo tutti i risultati qui sopra, per rispondere a una domanda: la
+lettura regge con macchine molto più forti di GPT-4o? Esplorative per intero.
+
+- **Quattro modelli chiusi.** Claude Haiku 5.5, Sonnet 5.5, Opus 5.5 e Fable
+  5.2 rispondono da soli alle domande di ChatBench (396) e αNLI (1.532), con il
+  prompt `letter` invariato, attraverso Claude Code headless, con impegno `low`
+  (sui modelli più grandi il ragionamento non si spegne), una risposta per
+  domanda, la lettera vincolata da uno schema di risposta. Solo verdetti: il
+  combinatore a probabilità di H3 non si applica. Nessuna risposta persa.
+- **Che cosa si calcola.** Con gli stimatori di H1 e H7: k, φ, l'angolo utile e
+  il margine della coppia ideale sopra il più forte dei due,
+  |S|/max(dH, dM) − 1, anche a 90 gradi. Su αNLI con le tre letture della
+  chiave della prova 1 del 10 novembre (la chiave della storia, senza le storie
+  in cui la maggioranza dei votanti la contraddice, la maggioranza come chiave),
+  per i modelli chiusi e per quelli aperti allo stesso modo. `angle/frontier.py`,
+  `results/frontier.json`.
+- **Limiti noti prima di leggere i numeri.** Su ChatBench i modelli più forti
+  non sbagliano quasi mai, e senza errori né d′ né φ esistono: l'accuratezza è
+  fermata a 0,9999, quindi lì k è un minimo. Una risposta per domanda, a un solo
+  livello di impegno, attraverso un prodotto in abbonamento e non l'API: la
+  versione del modello è quella servita quel giorno.

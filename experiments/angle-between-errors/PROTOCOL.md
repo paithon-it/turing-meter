@@ -483,3 +483,26 @@ edge.
     It does not explain the angle (1.6-2.1 times) nor scenario F (2.4): there
     the mechanism remains not isolated. No new test, it is a reading of the
     literature.
+
+## Deviations of 14 November 2026
+
+Decided after all the results above, to answer one question: does the reading
+hold with machines much stronger than GPT-4o? Exploratory throughout.
+
+- **Four closed models.** Claude Haiku 5.5, Sonnet 5.5, Opus 5.5 and Fable 5.2
+  answer the ChatBench (396) and αNLI (1,532) items alone, with the `letter`
+  prompt unchanged, through Claude Code headless, at effort `low` (thinking
+  cannot be switched off on the larger models), one draw per item, the letter
+  constrained by a response schema. Verdicts only: the probability combiner of
+  H3 does not apply. No answer was lost.
+- **What is computed.** With the estimators of H1 and H7: k, φ, the useful
+  angle, and the margin of the ideal pair over the stronger of the two,
+  |S|/max(dH, dM) − 1, also at 90 degrees. On αNLI with the three readings of
+  the key of check 1 of 10 November (the story's key, without the stories where
+  most voters go against it, the majority as the key), for the closed and the
+  open models alike. `angle/frontier.py`, `results/frontier.json`.
+- **Limits known before reading the numbers.** On ChatBench the strongest
+  models make almost no errors, and with no errors neither d′ nor φ exists: the
+  accuracy is clipped at 0.9999, so k is a floor there. One draw per item, at
+  one effort level, through a subscription product rather than the API: the
+  model version is the one served on the day.
