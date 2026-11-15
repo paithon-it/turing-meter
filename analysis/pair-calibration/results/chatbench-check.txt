@@ -1,0 +1,14 @@
+
+## gpt-4o: 1493 trials, 390 questions, 168 people; people 57.7%, machine 88.3%, pair 77.4%
+N=  50 | k 1.40-3.62 (med 2.11; sd log data 0.246, model 0.247) | angle 17-127 (med 78; sd data 24.1, model 24.3) | turing 1.16-2.57 | yield 0.55-1.11
+N= 100 | k 1.54-3.01 (med 2.08; sd log data 0.171, model 0.170) | angle 53-111 (med 79; sd data 14.5, model 14.8) | turing 1.27-2.26 | yield 0.63-1.00
+N= 200 | k 1.67-2.61 (med 2.07; sd log data 0.115, model 0.115) | angle 61-100 (med 79; sd data 9.6, model 9.7) | turing 1.37-2.01 | yield 0.68-0.94
+N= 400 | k 1.78-2.44 (med 2.06; sd log data 0.082, model 0.083) | angle 67-92 (med 79; sd data 6.5, model 6.6) | turing 1.44-1.89 | yield 0.71-0.89
+{'domande': 396, 'accuratezza_di_una_chiamata': 0.87, 'sempre_giuste': 285, 'sempre_sbagliate': 19, 'variabili': 92, 'errore_di_una_chiamata': 0.13, 'errore_in_due_chiamate_su_due': 0.104, 'quota_dell_errore_che_si_ripete': 0.797, 'esiti_diversi_fra_due_chiamate': 0.053, 'accuratezza_maggioranza_di_5': 0.875, 'errori_su_domande_quasi_sempre_sbagliate': 0.537, 'errori_su_domande_quasi_sempre_giuste': 0.029}
+
+## llama-3.1-8b: 1401 trials, 387 questions, 157 people; people 60.5%, machine 66.7%, pair 73.9%
+N=  50 | k 0.69-1.96 (med 1.12; sd log data 0.263, model 0.250) | angle 50-109 (med 77; sd data 15.1, model 15.3) | turing 1.00-2.19 | yield 0.87-1.96
+N= 100 | k 0.80-1.63 (med 1.14; sd log data 0.179, model 0.171) | angle 57-98 (med 77; sd data 10.5, model 10.6) | turing 1.11-1.90 | yield 0.97-1.66
+N= 200 | k 0.89-1.44 (med 1.13; sd log data 0.125, model 0.119) | angle 63-92 (med 77; sd data 7.5, model 7.4) | turing 1.19-1.74 | yield 1.05-1.55
+N= 400 | k 0.95-1.35 (med 1.14; sd log data 0.090, model 0.085) | angle 67-88 (med 77; sd data 5.2, model 5.2) | turing 1.27-1.65 | yield 1.11-1.45
+{'domande': 396, 'accuratezza_di_una_chiamata': 0.639, 'sempre_giuste': 118, 'sempre_sbagliate': 21, 'variabili': 257, 'errore_di_una_chiamata': 0.361, 'errore_in_due_chiamate_su_due': 0.26, 'quota_dell_errore_che_si_ripete': 0.721, 'esiti_diversi_fra_due_chiamate': 0.201, 'accuratezza_maggioranza_di_5': 0.639, 'errori_su_domande_quasi_sempre_sbagliate': 0.344, 'errori_su_domande_quasi_sempre_giuste': 0.017}

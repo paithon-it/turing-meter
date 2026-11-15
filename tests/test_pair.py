@@ -173,3 +173,11 @@ def test_mchoice_matches_two_alternative_case():
     assert mchoice.pc_mafc(0.0, 4) == pytest.approx(0.25, abs=1e-6)
     assert mchoice.useful_angle(1.0, 2.0) == pytest.approx(60.0)
     assert mchoice.ideal(1.0, 1.0, 0.0) == pytest.approx(math.sqrt(2))
+
+
+def test_the_documented_example_reproduces_its_report():
+    from pathlib import Path
+    docs = Path(__file__).resolve().parents[1] / "docs" / "examples"
+    ref = pair.analyze(pair.read_sheet(docs / "pair-sheet-example.csv"), 4, delegate_seconds=20)
+    assert pair.report(ref) == (docs / "pair-report-example.txt").read_text(encoding="utf-8").rstrip("\n")
+    assert ref["k"]["estimate"] == pytest.approx(2.02, abs=0.005) and ref["zone"] == "A" and ref["strata_diverge"]

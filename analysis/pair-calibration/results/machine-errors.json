@@ -1,0 +1,2594 @@
+[
+ {
+  "persona": "person at 58%",
+  "acc_m": 0.7,
+  "rho": 0.0,
+  "phi_vero": 90.0,
+  "errori_attesi": 10,
+  "N": 33,
+  "errori_comuni_attesi": 4.193112,
+  "phi_sd": 20.399590508825963,
+  "phi_q": [
+   52.700656879997425,
+   90.16309971035753,
+   126.86989764584402
+  ],
+  "mezza_larghezza_95": 37.0846203829233,
+  "non_stimabile": 0.00025,
+  "al_limite": 0.06875
+ },
+ {
+  "persona": "person at 58%",
+  "acc_m": 0.7,
+  "rho": 0.0,
+  "phi_vero": 90.0,
+  "errori_attesi": 20,
+  "N": 67,
+  "errori_comuni_attesi": 8.513288000000001,
+  "phi_sd": 14.564639803478217,
+  "phi_q": [
+   63.4409493446602,
+   90.55977354547092,
+   121.69880183315618
+  ],
+  "mezza_larghezza_95": 29.128926244247992,
+  "non_stimabile": 0.0,
+  "al_limite": 0.0145
+ },
+ {
+  "persona": "person at 58%",
+  "acc_m": 0.7,
+  "rho": 0.0,
+  "phi_vero": 90.0,
+  "errori_attesi": 40,
+  "N": 133,
+  "errori_comuni_attesi": 16.899512,
+  "phi_sd": 10.081696227516183,
+  "phi_q": [
+   71.81493344710324,
+   90.33372077209813,
+   111.24670656685079
+  ],
+  "mezza_larghezza_95": 19.715886559873773,
+  "non_stimabile": 0.0,
+  "al_limite": 0.00075
+ },
+ {
+  "persona": "person at 58%",
+  "acc_m": 0.7,
+  "rho": 0.0,
+  "phi_vero": 90.0,
+  "errori_attesi": 80,
+  "N": 267,
+  "errori_comuni_attesi": 33.926088,
+  "phi_sd": 6.929424407161297,
+  "phi_q": [
+   76.66700600516238,
+   89.99397902634615,
+   103.89032559822863
+  ],
+  "mezza_larghezza_95": 13.611659796533125,
+  "non_stimabile": 0.0,
+  "al_limite": 0.0
+ },
+ {
+  "persona": "person at 58%",
+  "acc_m": 0.7,
+  "rho": 0.0,
+  "phi_vero": 90.0,
+  "errori_attesi": 160,
+  "N": 533,
+  "errori_comuni_attesi": 67.72511200000001,
+  "phi_sd": 4.854552924301913,
+  "phi_q": [
+   80.75382908543693,
+   90.19280779484325,
+   99.58000049464553
+  ],
+  "mezza_larghezza_95": 9.413085704604299,
+  "non_stimabile": 0.0,
+  "al_limite": 0.0
+ },
+ {
+  "persona": "person at 58%",
+  "acc_m": 0.7,
+  "rho": 0.0,
+  "phi_vero": 90.0,
+  "errori_attesi": 320,
+  "N": 1067,
+  "errori_comuni_attesi": 135.577288,
+  "phi_sd": 3.4049337516102267,
+  "phi_q": [
+   83.3662896363185,
+   90.0421697909706,
+   96.8202761428963
+  ],
+  "mezza_larghezza_95": 6.726993253288903,
+  "non_stimabile": 0.0,
+  "al_limite": 0.0
+ },
+ {
+  "persona": "person at 58%",
+  "acc_m": 0.7,
+  "rho": 0.267,
+  "phi_vero": 74.51417293824811,
+  "errori_attesi": 10,
+  "N": 33,
+  "errori_comuni_attesi": 5.2695885,
+  "phi_sd": 19.505895645420615,
+  "phi_q": [
+   41.07180591219854,
+   74.16513390038061,
+   117.63514095643649
+  ],
+  "mezza_larghezza_95": 38.28166752211897,
+  "non_stimabile": 0.0,
+  "al_limite": 0.0135
+ },
+ {
+  "persona": "person at 58%",
+  "acc_m": 0.7,
+  "rho": 0.267,
+  "phi_vero": 74.51417293824811,
+  "errori_attesi": 20,
+  "N": 67,
+  "errori_comuni_attesi": 10.6988615,
+  "phi_sd": 13.10959546393923,
+  "phi_q": [
+   50.418606302991286,
+   73.62243222918947,
+   101.7854851528197
+  ],
+  "mezza_larghezza_95": 25.68343942491421,
+  "non_stimabile": 0.0,
+  "al_limite": 0.00075
+ },
+ {
+  "persona": "person at 58%",
+  "acc_m": 0.7,
+  "rho": 0.267,
+  "phi_vero": 74.51417293824811,
+  "errori_attesi": 40,
+  "N": 133,
+  "errori_comuni_attesi": 21.238038500000002,
+  "phi_sd": 9.315846334841561,
+  "phi_q": [
+   56.915453496061595,
+   74.46918446164509,
+   93.40895993137177
+  ],
+  "mezza_larghezza_95": 18.246753217655087,
+  "non_stimabile": 0.0,
+  "al_limite": 0.0
+ },
+ {
+  "persona": "person at 58%",
+  "acc_m": 0.7,
+  "rho": 0.267,
+  "phi_vero": 74.51417293824811,
+  "errori_attesi": 80,
+  "N": 267,
+  "errori_comuni_attesi": 42.6357615,
+  "phi_sd": 6.503510077810951,
+  "phi_q": [
+   62.11588491420869,
+   74.39360972939767,
+   87.9759857805344
+  ],
+  "mezza_larghezza_95": 12.930050433162855,
+  "non_stimabile": 0.0,
+  "al_limite": 0.0
+ },
+ {
+  "persona": "person at 58%",
+  "acc_m": 0.7,
+  "rho": 0.267,
+  "phi_vero": 74.51417293824811,
+  "errori_attesi": 160,
+  "N": 533,
+  "errori_comuni_attesi": 85.1118385,
+  "phi_sd": 4.522780633443512,
+  "phi_q": [
+   65.62387704432757,
+   74.41629781802094,
+   83.54576732146893
+  ],
+  "mezza_larghezza_95": 8.960945138570679,
+  "non_stimabile": 0.0,
+  "al_limite": 0.0
+ },
+ {
+  "persona": "person at 58%",
+  "acc_m": 0.7,
+  "rho": 0.267,
+  "phi_vero": 74.51417293824811,
+  "errori_attesi": 320,
+  "N": 1066,
+  "errori_comuni_attesi": 170.223677,
+  "phi_sd": 3.1434256586154996,
+  "phi_q": [
+   68.28417444530034,
+   74.40358996116461,
+   80.56294050618122
+  ],
+  "mezza_larghezza_95": 6.139383030440442,
+  "non_stimabile": 0.0,
+  "al_limite": 0.0
+ },
+ {
+  "persona": "person at 58%",
+  "acc_m": 0.8,
+  "rho": 0.0,
+  "phi_vero": 90.0,
+  "errori_attesi": 10,
+  "N": 50,
+  "errori_comuni_attesi": 4.23235,
+  "phi_sd": 17.813061542088686,
+  "phi_q": [
+   57.70598082505244,
+   90.05519542225872,
+   126.86989764584402
+  ],
+  "mezza_larghezza_95": 34.581958410395785,
+  "non_stimabile": 0.0,
+  "al_limite": 0.043
+ },
+ {
+  "persona": "person at 58%",
+  "acc_m": 0.8,
+  "rho": 0.0,
+  "phi_vero": 90.0,
+  "errori_attesi": 20,
+  "N": 100,
+  "errori_comuni_attesi": 8.4647,
+  "phi_sd": 13.010773717994667,
+  "phi_q": [
+   66.96630242299672,
+   90.42717200618556,
+   118.67060287761292
+  ],
+  "mezza_larghezza_95": 25.8521502273081,
+  "non_stimabile": 0.0,
+  "al_limite": 0.0095
+ },
+ {
+  "persona": "person at 58%",
+  "acc_m": 0.8,
+  "rho": 0.0,
+  "phi_vero": 90.0,
+  "errori_attesi": 40,
+  "N": 200,
+  "errori_comuni_attesi": 16.9294,
+  "phi_sd": 8.882734617679912,
+  "phi_q": [
+   73.56372472254394,
+   90.03215102088737,
+   108.01054689011093
+  ],
+  "mezza_larghezza_95": 17.223411083783496,
+  "non_stimabile": 0.0,
+  "al_limite": 0.00025
+ },
+ {
+  "persona": "person at 58%",
+  "acc_m": 0.8,
+  "rho": 0.0,
+  "phi_vero": 90.0,
+  "errori_attesi": 80,
+  "N": 400,
+  "errori_comuni_attesi": 33.8588,
+  "phi_sd": 6.253577341189999,
+  "phi_q": [
+   77.88766234181419,
+   90.33822081098367,
+   102.67274025110254
+  ],
+  "mezza_larghezza_95": 12.392538954644174,
+  "non_stimabile": 0.0,
+  "al_limite": 0.0
+ },
+ {
+  "persona": "person at 58%",
+  "acc_m": 0.8,
+  "rho": 0.0,
+  "phi_vero": 90.0,
+  "errori_attesi": 160,
+  "N": 800,
+  "errori_comuni_attesi": 67.7176,
+  "phi_sd": 4.322718218399554,
+  "phi_q": [
+   81.6041279863537,
+   90.28739600971176,
+   98.75466286337898
+  ],
+  "mezza_larghezza_95": 8.57526743851264,
+  "non_stimabile": 0.0,
+  "al_limite": 0.0
+ },
+ {
+  "persona": "person at 58%",
+  "acc_m": 0.8,
+  "rho": 0.0,
+  "phi_vero": 90.0,
+  "errori_attesi": 320,
+  "N": 1600,
+  "errori_comuni_attesi": 135.4352,
+  "phi_sd": 3.0216205732231667,
+  "phi_q": [
+   84.12800507631503,
+   90.31385953726502,
+   96.15517296766969
+  ],
+  "mezza_larghezza_95": 6.0135839456773255,
+  "non_stimabile": 0.0,
+  "al_limite": 0.0
+ },
+ {
+  "persona": "person at 58%",
+  "acc_m": 0.8,
+  "rho": 0.267,
+  "phi_vero": 74.51417293824811,
+  "errori_attesi": 10,
+  "N": 50,
+  "errori_comuni_attesi": 5.551225,
+  "phi_sd": 18.208250956956665,
+  "phi_q": [
+   41.467543452990846,
+   74.19195731514701,
+   111.86042103846026
+  ],
+  "mezza_larghezza_95": 35.19643879273471,
+  "non_stimabile": 0.0,
+  "al_limite": 0.01075
+ },
+ {
+  "persona": "person at 58%",
+  "acc_m": 0.8,
+  "rho": 0.267,
+  "phi_vero": 74.51417293824811,
+  "errori_attesi": 20,
+  "N": 100,
+  "errori_comuni_attesi": 11.10245,
+  "phi_sd": 11.768938264600704,
+  "phi_q": [
+   52.93303255238819,
+   74.5014578465347,
+   99.14362397274509
+  ],
+  "mezza_larghezza_95": 23.10529571017845,
+  "non_stimabile": 0.0,
+  "al_limite": 0.00025
+ },
+ {
+  "persona": "person at 58%",
+  "acc_m": 0.8,
+  "rho": 0.267,
+  "phi_vero": 74.51417293824811,
+  "errori_attesi": 40,
+  "N": 200,
+  "errori_comuni_attesi": 22.2049,
+  "phi_sd": 8.077195335902028,
+  "phi_q": [
+   59.13791300361246,
+   74.10335054694684,
+   91.2296108022329
+  ],
+  "mezza_larghezza_95": 16.04584889931022,
+  "non_stimabile": 0.0,
+  "al_limite": 0.0
+ },
+ {
+  "persona": "person at 58%",
+  "acc_m": 0.8,
+  "rho": 0.267,
+  "phi_vero": 74.51417293824811,
+  "errori_attesi": 80,
+  "N": 400,
+  "errori_comuni_attesi": 44.4098,
+  "phi_sd": 5.76846747742929,
+  "phi_q": [
+   63.451664913819805,
+   74.43793922941771,
+   86.26980458210912
+  ],
+  "mezza_larghezza_95": 11.409069834144656,
+  "non_stimabile": 0.0,
+  "al_limite": 0.0
+ },
+ {
+  "persona": "person at 58%",
+  "acc_m": 0.8,
+  "rho": 0.267,
+  "phi_vero": 74.51417293824811,
+  "errori_attesi": 160,
+  "N": 800,
+  "errori_comuni_attesi": 88.8196,
+  "phi_sd": 4.032693197367014,
+  "phi_q": [
+   66.60301623014088,
+   74.41905825912738,
+   82.78046446182441
+  ],
+  "mezza_larghezza_95": 8.088724115841764,
+  "non_stimabile": 0.0,
+  "al_limite": 0.0
+ },
+ {
+  "persona": "person at 58%",
+  "acc_m": 0.8,
+  "rho": 0.267,
+  "phi_vero": 74.51417293824811,
+  "errori_attesi": 320,
+  "N": 1601,
+  "errori_comuni_attesi": 177.7502245,
+  "phi_sd": 2.7739349347888624,
+  "phi_q": [
+   69.07914422377138,
+   74.38115300096135,
+   79.92175309462866
+  ],
+  "mezza_larghezza_95": 5.421304435428638,
+  "non_stimabile": 0.0,
+  "al_limite": 0.0
+ },
+ {
+  "persona": "person at 58%",
+  "acc_m": 0.88,
+  "rho": 0.0,
+  "phi_vero": 90.0,
+  "errori_attesi": 10,
+  "N": 83,
+  "errori_comuni_attesi": 4.2074775,
+  "phi_sd": 16.47169425417637,
+  "phi_q": [
+   60.67368029117588,
+   90.79230409460146,
+   126.86989764584402
+  ],
+  "mezza_larghezza_95": 33.09810867733407,
+  "non_stimabile": 0.0,
+  "al_limite": 0.036
+ },
+ {
+  "persona": "person at 58%",
+  "acc_m": 0.88,
+  "rho": 0.0,
+  "phi_vero": 90.0,
+  "errori_attesi": 20,
+  "N": 167,
+  "errori_comuni_attesi": 8.465647500000001,
+  "phi_sd": 11.498274287971746,
+  "phi_q": [
+   69.21668478624137,
+   89.8627846015072,
+   114.78848526756698
+  ],
+  "mezza_larghezza_95": 22.785900240662805,
+  "non_stimabile": 0.0,
+  "al_limite": 0.005
+ },
+ {
+  "persona": "person at 58%",
+  "acc_m": 0.88,
+  "rho": 0.0,
+  "phi_vero": 90.0,
+  "errori_attesi": 40,
+  "N": 334,
+  "errori_comuni_attesi": 16.931295000000002,
+  "phi_sd": 7.773992169688716,
+  "phi_q": [
+   75.46292041747564,
+   89.96037626729162,
+   106.18857583176498
+  ],
+  "mezza_larghezza_95": 15.362827707144667,
+  "non_stimabile": 0.0,
+  "al_limite": 0.0
+ },
+ {
+  "persona": "person at 58%",
+  "acc_m": 0.88,
+  "rho": 0.0,
+  "phi_vero": 90.0,
+  "errori_attesi": 80,
+  "N": 668,
+  "errori_comuni_attesi": 33.862590000000004,
+  "phi_sd": 5.479618800751872,
+  "phi_q": [
+   79.59731722751057,
+   90.00221830936533,
+   100.68775226275662
+  ],
+  "mezza_larghezza_95": 10.545217517623023,
+  "non_stimabile": 0.0,
+  "al_limite": 0.0
+ },
+ {
+  "persona": "person at 58%",
+  "acc_m": 0.88,
+  "rho": 0.0,
+  "phi_vero": 90.0,
+  "errori_attesi": 160,
+  "N": 1336,
+  "errori_comuni_attesi": 67.72518000000001,
+  "phi_sd": 3.905964518643773,
+  "phi_q": [
+   82.35353661865149,
+   90.039218533818,
+   97.47338500635007
+  ],
+  "mezza_larghezza_95": 7.559924193849291,
+  "non_stimabile": 0.0,
+  "al_limite": 0.0
+ },
+ {
+  "persona": "person at 58%",
+  "acc_m": 0.88,
+  "rho": 0.0,
+  "phi_vero": 90.0,
+  "errori_attesi": 320,
+  "N": 2671,
+  "errori_comuni_attesi": 135.3996675,
+  "phi_sd": 2.6920111159590068,
+  "phi_q": [
+   84.80897760443021,
+   90.12304857567615,
+   95.39803952995109
+  ],
+  "mezza_larghezza_95": 5.29453096276044,
+  "non_stimabile": 0.0,
+  "al_limite": 0.0
+ },
+ {
+  "persona": "person at 58%",
+  "acc_m": 0.88,
+  "rho": 0.267,
+  "phi_vero": 74.51417293824811,
+  "errori_attesi": 10,
+  "N": 83,
+  "errori_comuni_attesi": 5.7829835,
+  "phi_sd": 16.59845177369882,
+  "phi_q": [
+   45.62065435723451,
+   74.1728495590157,
+   108.33540410168325
+  ],
+  "mezza_larghezza_95": 31.357374872224373,
+  "non_stimabile": 0.0,
+  "al_limite": 0.00725
+ },
+ {
+  "persona": "person at 58%",
+  "acc_m": 0.88,
+  "rho": 0.267,
+  "phi_vero": 74.51417293824811,
+  "errori_attesi": 20,
+  "N": 166,
+  "errori_comuni_attesi": 11.565967,
+  "phi_sd": 10.437501148934311,
+  "phi_q": [
+   54.443036619306724,
+   74.22448629817478,
+   95.69726927769146
+  ],
+  "mezza_larghezza_95": 20.62711632919237,
+  "non_stimabile": 0.0,
+  "al_limite": 0.00025
+ },
+ {
+  "persona": "person at 58%",
+  "acc_m": 0.88,
+  "rho": 0.267,
+  "phi_vero": 74.51417293824811,
+  "errori_attesi": 40,
+  "N": 333,
+  "errori_comuni_attesi": 23.2016085,
+  "phi_sd": 7.055186634949958,
+  "phi_q": [
+   60.7829315802607,
+   74.19381390868007,
+   88.90335477503007
+  ],
+  "mezza_larghezza_95": 14.060211597384683,
+  "non_stimabile": 0.0,
+  "al_limite": 0.0
+ },
+ {
+  "persona": "person at 58%",
+  "acc_m": 0.88,
+  "rho": 0.267,
+  "phi_vero": 74.51417293824811,
+  "errori_attesi": 80,
+  "N": 666,
+  "errori_comuni_attesi": 46.403217,
+  "phi_sd": 5.012314450267253,
+  "phi_q": [
+   64.63847145136977,
+   74.18832588576956,
+   84.54130213305255
+  ],
+  "mezza_larghezza_95": 9.951415340841393,
+  "non_stimabile": 0.0,
+  "al_limite": 0.0
+ },
+ {
+  "persona": "person at 58%",
+  "acc_m": 0.88,
+  "rho": 0.267,
+  "phi_vero": 74.51417293824811,
+  "errori_attesi": 160,
+  "N": 1332,
+  "errori_comuni_attesi": 92.806434,
+  "phi_sd": 3.4045565914023066,
+  "phi_q": [
+   67.5329738616701,
+   74.15871457782984,
+   80.89579973945851
+  ],
+  "mezza_larghezza_95": 6.681412938894205,
+  "non_stimabile": 0.0,
+  "al_limite": 0.0
+ },
+ {
+  "persona": "person at 58%",
+  "acc_m": 0.88,
+  "rho": 0.267,
+  "phi_vero": 74.51417293824811,
+  "errori_attesi": 320,
+  "N": 2663,
+  "errori_comuni_attesi": 185.5431935,
+  "phi_sd": 2.456492308448151,
+  "phi_q": [
+   69.60941964295083,
+   74.26976007458981,
+   79.26536013028492
+  ],
+  "mezza_larghezza_95": 4.827970243667046,
+  "non_stimabile": 0.0,
+  "al_limite": 0.0
+ },
+ {
+  "persona": "person at 58%",
+  "acc_m": 0.93,
+  "rho": 0.0,
+  "phi_vero": 90.0,
+  "errori_attesi": 10,
+  "N": 143,
+  "errori_comuni_attesi": 4.2368755,
+  "phi_sd": 15.660223782867845,
+  "phi_q": [
+   61.98219159695355,
+   89.82170831591174,
+   126.86989764584402
+  ],
+  "mezza_larghezza_95": 32.44385302444523,
+  "non_stimabile": 0.0,
+  "al_limite": 0.03075
+ },
+ {
+  "persona": "person at 58%",
+  "acc_m": 0.93,
+  "rho": 0.0,
+  "phi_vero": 90.0,
+  "errori_attesi": 20,
+  "N": 286,
+  "errori_comuni_attesi": 8.473751,
+  "phi_sd": 10.370613759184677,
+  "phi_q": [
+   71.38177487254366,
+   90.1501643242403,
+   113.50257142889504
+  ],
+  "mezza_larghezza_95": 21.06039827817569,
+  "non_stimabile": 0.0,
+  "al_limite": 0.00425
+ },
+ {
+  "persona": "person at 58%",
+  "acc_m": 0.93,
+  "rho": 0.0,
+  "phi_vero": 90.0,
+  "errori_attesi": 40,
+  "N": 572,
+  "errori_comuni_attesi": 16.947502,
+  "phi_sd": 6.875110661504103,
+  "phi_q": [
+   77.01256747971055,
+   89.8470664332578,
+   103.95769613862116
+  ],
+  "mezza_larghezza_95": 13.472564329455302,
+  "non_stimabile": 0.0,
+  "al_limite": 0.0
+ },
+ {
+  "persona": "person at 58%",
+  "acc_m": 0.93,
+  "rho": 0.0,
+  "phi_vero": 90.0,
+  "errori_attesi": 80,
+  "N": 1143,
+  "errori_comuni_attesi": 33.8653755,
+  "phi_sd": 4.889961787445041,
+  "phi_q": [
+   80.35714507504115,
+   89.81167175730872,
+   99.85809124082378
+  ],
+  "mezza_larghezza_95": 9.750473082891318,
+  "non_stimabile": 0.0,
+  "al_limite": 0.0
+ },
+ {
+  "persona": "person at 58%",
+  "acc_m": 0.93,
+  "rho": 0.0,
+  "phi_vero": 90.0,
+  "errori_attesi": 160,
+  "N": 2286,
+  "errori_comuni_attesi": 67.730751,
+  "phi_sd": 3.435850483170858,
+  "phi_q": [
+   83.24326140024867,
+   89.79987712567335,
+   96.51736873446761
+  ],
+  "mezza_larghezza_95": 6.63705366710947,
+  "non_stimabile": 0.0,
+  "al_limite": 0.0
+ },
+ {
+  "persona": "person at 58%",
+  "acc_m": 0.93,
+  "rho": 0.0,
+  "phi_vero": 90.0,
+  "errori_attesi": 320,
+  "N": 4572,
+  "errori_comuni_attesi": 135.461502,
+  "phi_sd": 2.427485856828915,
+  "phi_q": [
+   85.17439512024562,
+   89.88523864922803,
+   94.72531902145829
+  ],
+  "mezza_larghezza_95": 4.775461950606335,
+  "non_stimabile": 0.0,
+  "al_limite": 0.0
+ },
+ {
+  "persona": "person at 58%",
+  "acc_m": 0.93,
+  "rho": 0.267,
+  "phi_vero": 74.51417293824811,
+  "errori_attesi": 10,
+  "N": 143,
+  "errori_comuni_attesi": 6.039605,
+  "phi_sd": 15.220704778933998,
+  "phi_q": [
+   47.73368727130009,
+   73.83219327342272,
+   104.10099178523689
+  ],
+  "mezza_larghezza_95": 28.183652256968397,
+  "non_stimabile": 0.0,
+  "al_limite": 0.005
+ },
+ {
+  "persona": "person at 58%",
+  "acc_m": 0.93,
+  "rho": 0.267,
+  "phi_vero": 74.51417293824811,
+  "errori_attesi": 20,
+  "N": 286,
+  "errori_comuni_attesi": 12.07921,
+  "phi_sd": 9.335009959121127,
+  "phi_q": [
+   56.571489113706924,
+   74.06337975426189,
+   93.31238175970527
+  ],
+  "mezza_larghezza_95": 18.370446322999175,
+  "non_stimabile": 0.0,
+  "al_limite": 0.0
+ },
+ {
+  "persona": "person at 58%",
+  "acc_m": 0.93,
+  "rho": 0.267,
+  "phi_vero": 74.51417293824811,
+  "errori_attesi": 40,
+  "N": 572,
+  "errori_comuni_attesi": 24.15842,
+  "phi_sd": 6.557977872996234,
+  "phi_q": [
+   61.51473881567921,
+   74.03229537807144,
+   87.73802443927028
+  ],
+  "mezza_larghezza_95": 13.111642811795534,
+  "non_stimabile": 0.0,
+  "al_limite": 0.0
+ },
+ {
+  "persona": "person at 58%",
+  "acc_m": 0.93,
+  "rho": 0.267,
+  "phi_vero": 74.51417293824811,
+  "errori_attesi": 80,
+  "N": 1143,
+  "errori_comuni_attesi": 48.274605,
+  "phi_sd": 4.547116548031765,
+  "phi_q": [
+   65.4406703429092,
+   74.04686903642306,
+   83.45907341238258
+  ],
+  "mezza_larghezza_95": 9.00920153473669,
+  "non_stimabile": 0.0,
+  "al_limite": 0.0
+ },
+ {
+  "persona": "person at 58%",
+  "acc_m": 0.93,
+  "rho": 0.267,
+  "phi_vero": 74.51417293824811,
+  "errori_attesi": 160,
+  "N": 2287,
+  "errori_comuni_attesi": 96.59144500000001,
+  "phi_sd": 3.1416449632114833,
+  "phi_q": [
+   68.14514214101979,
+   74.13139277202217,
+   80.49424245006577
+  ],
+  "mezza_larghezza_95": 6.17455015452299,
+  "non_stimabile": 0.0,
+  "al_limite": 0.0
+ },
+ {
+  "persona": "person at 58%",
+  "acc_m": 0.93,
+  "rho": 0.267,
+  "phi_vero": 74.51417293824811,
+  "errori_attesi": 320,
+  "N": 4573,
+  "errori_comuni_attesi": 193.140655,
+  "phi_sd": 2.2462140185910897,
+  "phi_q": [
+   69.70130454481604,
+   74.16522534032453,
+   78.52942072595084
+  ],
+  "mezza_larghezza_95": 4.414058090567401,
+  "non_stimabile": 0.0,
+  "al_limite": 0.0
+ },
+ {
+  "persona": "person at 58%",
+  "acc_m": 0.96,
+  "rho": 0.0,
+  "phi_vero": 90.0,
+  "errori_attesi": 10,
+  "N": 250,
+  "errori_comuni_attesi": 4.216625,
+  "phi_sd": 14.034889791847448,
+  "phi_q": [
+   64.55884974222059,
+   90.36785128286928,
+   125.07756019666448
+  ],
+  "mezza_larghezza_95": 30.259355227221945,
+  "non_stimabile": 0.00025,
+  "al_limite": 0.02375
+ },
+ {
+  "persona": "person at 58%",
+  "acc_m": 0.96,
+  "rho": 0.0,
+  "phi_vero": 90.0,
+  "errori_attesi": 20,
+  "N": 501,
+  "errori_comuni_attesi": 8.4501165,
+  "phi_sd": 9.441611599337165,
+  "phi_q": [
+   72.88802812937824,
+   89.99708932250853,
+   110.65290771858197
+  ],
+  "mezza_larghezza_95": 18.882439794601865,
+  "non_stimabile": 0.0,
+  "al_limite": 0.00225
+ },
+ {
+  "persona": "person at 58%",
+  "acc_m": 0.96,
+  "rho": 0.0,
+  "phi_vero": 90.0,
+  "errori_attesi": 40,
+  "N": 1002,
+  "errori_comuni_attesi": 16.900233,
+  "phi_sd": 6.19158304781326,
+  "phi_q": [
+   78.57358303807014,
+   90.38387843831052,
+   103.16307433720294
+  ],
+  "mezza_larghezza_95": 12.294745649566401,
+  "non_stimabile": 0.0,
+  "al_limite": 0.0
+ },
+ {
+  "persona": "person at 58%",
+  "acc_m": 0.96,
+  "rho": 0.0,
+  "phi_vero": 90.0,
+  "errori_attesi": 80,
+  "N": 2004,
+  "errori_comuni_attesi": 33.800466,
+  "phi_sd": 4.271880397227144,
+  "phi_q": [
+   81.65380331556145,
+   90.18755959150302,
+   98.70716997394874
+  ],
+  "mezza_larghezza_95": 8.526683329193645,
+  "non_stimabile": 0.0,
+  "al_limite": 0.0
+ },
+ {
+  "persona": "person at 58%",
+  "acc_m": 0.96,
+  "rho": 0.0,
+  "phi_vero": 90.0,
+  "errori_attesi": 160,
+  "N": 4008,
+  "errori_comuni_attesi": 67.600932,
+  "phi_sd": 3.01801417106948,
+  "phi_q": [
+   84.30121537923638,
+   90.26384994448753,
+   96.15084876867901
+  ],
+  "mezza_larghezza_95": 5.924816694721315,
+  "non_stimabile": 0.0,
+  "al_limite": 0.0
+ },
+ {
+  "persona": "person at 58%",
+  "acc_m": 0.96,
+  "rho": 0.0,
+  "phi_vero": 90.0,
+  "errori_attesi": 320,
+  "N": 8016,
+  "errori_comuni_attesi": 135.201864,
+  "phi_sd": 2.0882360166755105,
+  "phi_q": [
+   86.02545410080884,
+   90.29998851119379,
+   94.38257515518274
+  ],
+  "mezza_larghezza_95": 4.178560527186946,
+  "non_stimabile": 0.0,
+  "al_limite": 0.0
+ },
+ {
+  "persona": "person at 58%",
+  "acc_m": 0.96,
+  "rho": 0.267,
+  "phi_vero": 74.51417293824811,
+  "errori_attesi": 10,
+  "N": 250,
+  "errori_comuni_attesi": 6.2303749999999996,
+  "phi_sd": 14.332160580037822,
+  "phi_q": [
+   47.5885617033285,
+   74.10302775838021,
+   101.77305885533652
+  ],
+  "mezza_larghezza_95": 27.092248576004007,
+  "non_stimabile": 0.0,
+  "al_limite": 0.00275
+ },
+ {
+  "persona": "person at 58%",
+  "acc_m": 0.96,
+  "rho": 0.267,
+  "phi_vero": 74.51417293824811,
+  "errori_attesi": 20,
+  "N": 500,
+  "errori_comuni_attesi": 12.460749999999999,
+  "phi_sd": 8.897516747510931,
+  "phi_q": [
+   57.089319042878365,
+   74.03335509970648,
+   91.77301682849927
+  ],
+  "mezza_larghezza_95": 17.34184889281045,
+  "non_stimabile": 0.0,
+  "al_limite": 0.0
+ },
+ {
+  "persona": "person at 58%",
+  "acc_m": 0.96,
+  "rho": 0.267,
+  "phi_vero": 74.51417293824811,
+  "errori_attesi": 40,
+  "N": 999,
+  "errori_comuni_attesi": 24.8965785,
+  "phi_sd": 6.272424254515826,
+  "phi_q": [
+   62.766575595661415,
+   74.39795421617193,
+   86.97805739256641
+  ],
+  "mezza_larghezza_95": 12.105740898452499,
+  "non_stimabile": 0.0,
+  "al_limite": 0.0
+ },
+ {
+  "persona": "person at 58%",
+  "acc_m": 0.96,
+  "rho": 0.267,
+  "phi_vero": 74.51417293824811,
+  "errori_attesi": 80,
+  "N": 1999,
+  "errori_comuni_attesi": 49.8180785,
+  "phi_sd": 4.3990045231653765,
+  "phi_q": [
+   65.86030423616246,
+   74.39733608084568,
+   83.06237984645273
+  ],
+  "mezza_larghezza_95": 8.601037805145133,
+  "non_stimabile": 0.0,
+  "al_limite": 0.0
+ },
+ {
+  "persona": "person at 58%",
+  "acc_m": 0.96,
+  "rho": 0.267,
+  "phi_vero": 74.51417293824811,
+  "errori_attesi": 160,
+  "N": 3997,
+  "errori_comuni_attesi": 99.61123549999999,
+  "phi_sd": 3.0480865394298284,
+  "phi_q": [
+   68.38233660840439,
+   74.5331409187798,
+   80.28872080306168
+  ],
+  "mezza_larghezza_95": 5.953192097328646,
+  "non_stimabile": 0.0,
+  "al_limite": 0.0
+ },
+ {
+  "persona": "person at 58%",
+  "acc_m": 0.96,
+  "rho": 0.267,
+  "phi_vero": 74.51417293824811,
+  "errori_attesi": 320,
+  "N": 7994,
+  "errori_comuni_attesi": 199.22247099999998,
+  "phi_sd": 2.188603513527074,
+  "phi_q": [
+   70.06463256789536,
+   74.50217096494578,
+   78.76047267608148
+  ],
+  "mezza_larghezza_95": 4.347920054093059,
+  "non_stimabile": 0.0,
+  "al_limite": 0.0
+ },
+ {
+  "persona": "person at 58%",
+  "acc_m": 0.98,
+  "rho": 0.0,
+  "phi_vero": 90.0,
+  "errori_attesi": 10,
+  "N": 501,
+  "errori_comuni_attesi": 4.230944999999999,
+  "phi_sd": 13.35826096410549,
+  "phi_q": [
+   67.20134624739973,
+   90.49154394823343,
+   123.11130895322951
+  ],
+  "mezza_larghezza_95": 27.954981352914892,
+  "non_stimabile": 0.0,
+  "al_limite": 0.02025
+ },
+ {
+  "persona": "person at 58%",
+  "acc_m": 0.98,
+  "rho": 0.0,
+  "phi_vero": 90.0,
+  "errori_attesi": 20,
+  "N": 1001,
+  "errori_comuni_attesi": 8.453444999999999,
+  "phi_sd": 8.295306109552573,
+  "phi_q": [
+   74.2744358602617,
+   90.46299712368605,
+   108.39353330868485
+  ],
+  "mezza_larghezza_95": 17.059548724211574,
+  "non_stimabile": 0.0,
+  "al_limite": 0.0005
+ },
+ {
+  "persona": "person at 58%",
+  "acc_m": 0.98,
+  "rho": 0.0,
+  "phi_vero": 90.0,
+  "errori_attesi": 40,
+  "N": 2002,
+  "errori_comuni_attesi": 16.906889999999997,
+  "phi_sd": 5.5031820125919175,
+  "phi_q": [
+   79.40190194570648,
+   90.56384248795385,
+   101.50625680836556
+  ],
+  "mezza_larghezza_95": 11.05217743132954,
+  "non_stimabile": 0.0,
+  "al_limite": 0.0
+ },
+ {
+  "persona": "person at 58%",
+  "acc_m": 0.98,
+  "rho": 0.0,
+  "phi_vero": 90.0,
+  "errori_attesi": 80,
+  "N": 4004,
+  "errori_comuni_attesi": 33.813779999999994,
+  "phi_sd": 3.73890072008355,
+  "phi_q": [
+   82.86611179205202,
+   90.51573311662398,
+   98.0042487356984
+  ],
+  "mezza_larghezza_95": 7.569068471823186,
+  "non_stimabile": 0.0,
+  "al_limite": 0.0
+ },
+ {
+  "persona": "person at 58%",
+  "acc_m": 0.98,
+  "rho": 0.0,
+  "phi_vero": 90.0,
+  "errori_attesi": 160,
+  "N": 8008,
+  "errori_comuni_attesi": 67.62755999999999,
+  "phi_sd": 2.5329038761664666,
+  "phi_q": [
+   85.21518519075066,
+   90.52039037624834,
+   95.37947213353291
+  ],
+  "mezza_larghezza_95": 5.082143471391127,
+  "non_stimabile": 0.0,
+  "al_limite": 0.0
+ },
+ {
+  "persona": "person at 58%",
+  "acc_m": 0.98,
+  "rho": 0.0,
+  "phi_vero": 90.0,
+  "errori_attesi": 320,
+  "N": 16016,
+  "errori_comuni_attesi": 135.25511999999998,
+  "phi_sd": 1.7525859610533558,
+  "phi_q": [
+   86.79786639209644,
+   90.44240989326889,
+   93.83772367187564
+  ],
+  "mezza_larghezza_95": 3.5199286398895993,
+  "non_stimabile": 0.0,
+  "al_limite": 0.0
+ },
+ {
+  "persona": "person at 58%",
+  "acc_m": 0.98,
+  "rho": 0.267,
+  "phi_vero": 74.51417293824811,
+  "errori_attesi": 10,
+  "N": 501,
+  "errori_comuni_attesi": 6.4476195,
+  "phi_sd": 13.597635798137732,
+  "phi_q": [
+   29.683670234697573,
+   74.43569658832698,
+   98.31475371418105
+  ],
+  "mezza_larghezza_95": 34.31554173974174,
+  "non_stimabile": 0.00025,
+  "al_limite": 0.001
+ },
+ {
+  "persona": "person at 58%",
+  "acc_m": 0.98,
+  "rho": 0.267,
+  "phi_vero": 74.51417293824811,
+  "errori_attesi": 20,
+  "N": 1001,
+  "errori_comuni_attesi": 12.882369500000001,
+  "phi_sd": 8.042330761536189,
+  "phi_q": [
+   59.11720725582398,
+   74.32377141297654,
+   90.37524008643231
+  ],
+  "mezza_larghezza_95": 15.629016415304168,
+  "non_stimabile": 0.0,
+  "al_limite": 0.0
+ },
+ {
+  "persona": "person at 58%",
+  "acc_m": 0.98,
+  "rho": 0.267,
+  "phi_vero": 74.51417293824811,
+  "errori_attesi": 40,
+  "N": 2003,
+  "errori_comuni_attesi": 25.777608500000003,
+  "phi_sd": 5.427091582639453,
+  "phi_q": [
+   64.2317960098482,
+   74.37704606288463,
+   85.54523014224303
+  ],
+  "mezza_larghezza_95": 10.656717066197416,
+  "non_stimabile": 0.0,
+  "al_limite": 0.0
+ },
+ {
+  "persona": "person at 58%",
+  "acc_m": 0.98,
+  "rho": 0.267,
+  "phi_vero": 74.51417293824811,
+  "errori_attesi": 80,
+  "N": 4005,
+  "errori_comuni_attesi": 51.542347500000005,
+  "phi_sd": 3.8283742791813467,
+  "phi_q": [
+   67.4428059152224,
+   74.65426016332297,
+   82.25161341142578
+  ],
+  "mezza_larghezza_95": 7.404403748101693,
+  "non_stimabile": 0.0,
+  "al_limite": 0.0
+ },
+ {
+  "persona": "person at 58%",
+  "acc_m": 0.98,
+  "rho": 0.267,
+  "phi_vero": 74.51417293824811,
+  "errori_attesi": 160,
+  "N": 8011,
+  "errori_comuni_attesi": 103.0975645,
+  "phi_sd": 2.7332814913158265,
+  "phi_q": [
+   69.40843210223,
+   74.57692579227763,
+   80.07185726831891
+  ],
+  "mezza_larghezza_95": 5.331712583044457,
+  "non_stimabile": 0.0,
+  "al_limite": 0.0
+ },
+ {
+  "persona": "person at 58%",
+  "acc_m": 0.98,
+  "rho": 0.267,
+  "phi_vero": 74.51417293824811,
+  "errori_attesi": 320,
+  "N": 16021,
+  "errori_comuni_attesi": 206.18225950000001,
+  "phi_sd": 1.8868720082607011,
+  "phi_q": [
+   70.98701588903813,
+   74.63752106743672,
+   78.35217991272954
+  ],
+  "mezza_larghezza_95": 3.682582011845703,
+  "non_stimabile": 0.0,
+  "al_limite": 0.0
+ },
+ {
+  "persona": "person at 82%",
+  "acc_m": 0.7,
+  "rho": 0.0,
+  "phi_vero": 90.0,
+  "errori_attesi": 10,
+  "N": 33,
+  "errori_comuni_attesi": 1.8596325,
+  "phi_sd": 23.7586931710492,
+  "phi_q": [
+   47.03949998461625,
+   89.97022312514474,
+   126.86989764584402
+  ],
+  "mezza_larghezza_95": 39.91519883061389,
+  "non_stimabile": 0.001,
+  "al_limite": 0.162
+ },
+ {
+  "persona": "person at 82%",
+  "acc_m": 0.7,
+  "rho": 0.0,
+  "phi_vero": 90.0,
+  "errori_attesi": 20,
+  "N": 67,
+  "errori_comuni_attesi": 3.7756175,
+  "phi_sd": 16.80910604505677,
+  "phi_q": [
+   61.15527986450224,
+   90.27042293769132,
+   126.86989764584402
+  ],
+  "mezza_larghezza_95": 32.85730889067089,
+  "non_stimabile": 0.0,
+  "al_limite": 0.048
+ },
+ {
+  "persona": "person at 82%",
+  "acc_m": 0.7,
+  "rho": 0.0,
+  "phi_vero": 90.0,
+  "errori_attesi": 40,
+  "N": 133,
+  "errori_comuni_attesi": 7.4948825,
+  "phi_sd": 11.884125634315767,
+  "phi_q": [
+   69.17925786330666,
+   90.11716404794788,
+   116.33649512629965
+  ],
+  "mezza_larghezza_95": 23.578618631496497,
+  "non_stimabile": 0.0,
+  "al_limite": 0.008
+ },
+ {
+  "persona": "person at 82%",
+  "acc_m": 0.7,
+  "rho": 0.0,
+  "phi_vero": 90.0,
+  "errori_attesi": 80,
+  "N": 267,
+  "errori_comuni_attesi": 15.0461175,
+  "phi_sd": 8.020051103409614,
+  "phi_q": [
+   75.39115150327113,
+   90.21863869803431,
+   107.5844579867858
+  ],
+  "mezza_larghezza_95": 16.09665324175733,
+  "non_stimabile": 0.0,
+  "al_limite": 0.00025
+ },
+ {
+  "persona": "person at 82%",
+  "acc_m": 0.7,
+  "rho": 0.0,
+  "phi_vero": 90.0,
+  "errori_attesi": 160,
+  "N": 533,
+  "errori_comuni_attesi": 30.0358825,
+  "phi_sd": 5.464898570263902,
+  "phi_q": [
+   79.60772952946789,
+   90.16590676092297,
+   101.14970994956064
+  ],
+  "mezza_larghezza_95": 10.770990210046378,
+  "non_stimabile": 0.0,
+  "al_limite": 0.0
+ },
+ {
+  "persona": "person at 82%",
+  "acc_m": 0.7,
+  "rho": 0.0,
+  "phi_vero": 90.0,
+  "errori_attesi": 320,
+  "N": 1067,
+  "errori_comuni_attesi": 60.1281175,
+  "phi_sd": 3.8332869975926447,
+  "phi_q": [
+   82.73817657921298,
+   90.12360362015791,
+   98.04613350384943
+  ],
+  "mezza_larghezza_95": 7.6539784623182285,
+  "non_stimabile": 0.0,
+  "al_limite": 0.0
+ },
+ {
+  "persona": "person at 82%",
+  "acc_m": 0.7,
+  "rho": 0.267,
+  "phi_vero": 74.51417293824811,
+  "errori_attesi": 10,
+  "N": 33,
+  "errori_comuni_attesi": 2.626239,
+  "phi_sd": 24.66034288344172,
+  "phi_q": [
+   32.43717087180987,
+   74.89512628291189,
+   126.86989764584402
+  ],
+  "mezza_larghezza_95": 47.216363387017076,
+  "non_stimabile": 0.00175,
+  "al_limite": 0.08475
+ },
+ {
+  "persona": "person at 82%",
+  "acc_m": 0.7,
+  "rho": 0.267,
+  "phi_vero": 74.51417293824811,
+  "errori_attesi": 20,
+  "N": 67,
+  "errori_comuni_attesi": 5.332061,
+  "phi_sd": 15.617954002904641,
+  "phi_q": [
+   47.908559722660385,
+   74.66913317357995,
+   109.90076726970514
+  ],
+  "mezza_larghezza_95": 30.99610377352238,
+  "non_stimabile": 0.0,
+  "al_limite": 0.007
+ },
+ {
+  "persona": "person at 82%",
+  "acc_m": 0.7,
+  "rho": 0.267,
+  "phi_vero": 74.51417293824811,
+  "errori_attesi": 40,
+  "N": 133,
+  "errori_comuni_attesi": 10.584539,
+  "phi_sd": 10.82390766410415,
+  "phi_q": [
+   54.69651848031606,
+   74.02813186759062,
+   96.59855838621901
+  ],
+  "mezza_larghezza_95": 20.951019952951476,
+  "non_stimabile": 0.0,
+  "al_limite": 0.00025
+ },
+ {
+  "persona": "person at 82%",
+  "acc_m": 0.7,
+  "rho": 0.267,
+  "phi_vero": 74.51417293824811,
+  "errori_attesi": 80,
+  "N": 267,
+  "errori_comuni_attesi": 21.248661000000002,
+  "phi_sd": 7.1970853095154625,
+  "phi_q": [
+   61.36601752827319,
+   74.80989723549708,
+   89.39508046251109
+  ],
+  "mezza_larghezza_95": 14.01453146711895,
+  "non_stimabile": 0.0,
+  "al_limite": 0.0
+ },
+ {
+  "persona": "person at 82%",
+  "acc_m": 0.7,
+  "rho": 0.267,
+  "phi_vero": 74.51417293824811,
+  "errori_attesi": 160,
+  "N": 533,
+  "errori_comuni_attesi": 42.417739,
+  "phi_sd": 5.075351771800773,
+  "phi_q": [
+   65.11571966724826,
+   74.54911653153108,
+   84.87208516524731
+  ],
+  "mezza_larghezza_95": 9.878182748999528,
+  "non_stimabile": 0.0,
+  "al_limite": 0.0
+ },
+ {
+  "persona": "person at 82%",
+  "acc_m": 0.7,
+  "rho": 0.267,
+  "phi_vero": 74.51417293824811,
+  "errori_attesi": 320,
+  "N": 1066,
+  "errori_comuni_attesi": 84.835478,
+  "phi_sd": 3.624903432379125,
+  "phi_q": [
+   67.66767116777136,
+   74.74563563336184,
+   82.20695103365591
+  ],
+  "mezza_larghezza_95": 7.269639932942276,
+  "non_stimabile": 0.0,
+  "al_limite": 0.0
+ },
+ {
+  "persona": "person at 82%",
+  "acc_m": 0.8,
+  "rho": 0.0,
+  "phi_vero": 90.0,
+  "errori_attesi": 10,
+  "N": 50,
+  "errori_comuni_attesi": 1.8828250000000002,
+  "phi_sd": 21.403037009200723,
+  "phi_q": [
+   54.786985147603346,
+   92.22663360405684,
+   126.86989764584402
+  ],
+  "mezza_larghezza_95": 36.04145624912034,
+  "non_stimabile": 0.0,
+  "al_limite": 0.169
+ },
+ {
+  "persona": "person at 82%",
+  "acc_m": 0.8,
+  "rho": 0.0,
+  "phi_vero": 90.0,
+  "errori_attesi": 20,
+  "N": 100,
+  "errori_comuni_attesi": 3.7656500000000004,
+  "phi_sd": 15.218865238846801,
+  "phi_q": [
+   64.94341170672897,
+   90.43416676567952,
+   126.86989764584402
+  ],
+  "mezza_larghezza_95": 30.963242969557527,
+  "non_stimabile": 0.0,
+  "al_limite": 0.0335
+ },
+ {
+  "persona": "person at 82%",
+  "acc_m": 0.8,
+  "rho": 0.0,
+  "phi_vero": 90.0,
+  "errori_attesi": 40,
+  "N": 200,
+  "errori_comuni_attesi": 7.531300000000001,
+  "phi_sd": 10.648785603686196,
+  "phi_q": [
+   71.89625230515442,
+   90.20032938363013,
+   114.71602734444609
+  ],
+  "mezza_larghezza_95": 21.409887519645835,
+  "non_stimabile": 0.0,
+  "al_limite": 0.006
+ },
+ {
+  "persona": "person at 82%",
+  "acc_m": 0.8,
+  "rho": 0.0,
+  "phi_vero": 90.0,
+  "errori_attesi": 80,
+  "N": 400,
+  "errori_comuni_attesi": 15.062600000000002,
+  "phi_sd": 7.247412946229355,
+  "phi_q": [
+   77.52603164035281,
+   90.23546754699764,
+   105.34292445614908
+  ],
+  "mezza_larghezza_95": 13.908446407898133,
+  "non_stimabile": 0.0,
+  "al_limite": 0.0005
+ },
+ {
+  "persona": "person at 82%",
+  "acc_m": 0.8,
+  "rho": 0.0,
+  "phi_vero": 90.0,
+  "errori_attesi": 160,
+  "N": 800,
+  "errori_comuni_attesi": 30.125200000000003,
+  "phi_sd": 4.978088015907954,
+  "phi_q": [
+   80.7384213762654,
+   90.04689344556067,
+   100.63243883208708
+  ],
+  "mezza_larghezza_95": 9.947008727910834,
+  "non_stimabile": 0.0,
+  "al_limite": 0.0
+ },
+ {
+  "persona": "person at 82%",
+  "acc_m": 0.8,
+  "rho": 0.0,
+  "phi_vero": 90.0,
+  "errori_attesi": 320,
+  "N": 1600,
+  "errori_comuni_attesi": 60.250400000000006,
+  "phi_sd": 3.4368328603246936,
+  "phi_q": [
+   83.53132587637656,
+   89.96157914910758,
+   97.09738889513486
+  ],
+  "mezza_larghezza_95": 6.78303150937915,
+  "non_stimabile": 0.0,
+  "al_limite": 0.0
+ },
+ {
+  "persona": "person at 82%",
+  "acc_m": 0.8,
+  "rho": 0.267,
+  "phi_vero": 74.51417293824811,
+  "errori_attesi": 10,
+  "N": 50,
+  "errori_comuni_attesi": 2.844325,
+  "phi_sd": 20.556580695941086,
+  "phi_q": [
+   41.692897400259916,
+   74.65326060501731,
+   126.86989764584402
+  ],
+  "mezza_larghezza_95": 42.588500122792055,
+  "non_stimabile": 0.0,
+  "al_limite": 0.048
+ },
+ {
+  "persona": "person at 82%",
+  "acc_m": 0.8,
+  "rho": 0.267,
+  "phi_vero": 74.51417293824811,
+  "errori_attesi": 20,
+  "N": 100,
+  "errori_comuni_attesi": 5.68865,
+  "phi_sd": 13.718357694583384,
+  "phi_q": [
+   51.539574889533675,
+   74.87948334943142,
+   106.00409622680003
+  ],
+  "mezza_larghezza_95": 27.232260668633177,
+  "non_stimabile": 0.0,
+  "al_limite": 0.005
+ },
+ {
+  "persona": "person at 82%",
+  "acc_m": 0.8,
+  "rho": 0.267,
+  "phi_vero": 74.51417293824811,
+  "errori_attesi": 40,
+  "N": 200,
+  "errori_comuni_attesi": 11.3773,
+  "phi_sd": 9.39314035220681,
+  "phi_q": [
+   56.96733225535185,
+   74.5899124248567,
+   94.83040969844073
+  ],
+  "mezza_larghezza_95": 18.93153872154444,
+  "non_stimabile": 0.0,
+  "al_limite": 0.0
+ },
+ {
+  "persona": "person at 82%",
+  "acc_m": 0.8,
+  "rho": 0.267,
+  "phi_vero": 74.51417293824811,
+  "errori_attesi": 80,
+  "N": 400,
+  "errori_comuni_attesi": 22.7546,
+  "phi_sd": 6.39838257176591,
+  "phi_q": [
+   62.54380172682333,
+   74.70547293073578,
+   87.96253478815474
+  ],
+  "mezza_larghezza_95": 12.709366530665704,
+  "non_stimabile": 0.0,
+  "al_limite": 0.0
+ },
+ {
+  "persona": "person at 82%",
+  "acc_m": 0.8,
+  "rho": 0.267,
+  "phi_vero": 74.51417293824811,
+  "errori_attesi": 160,
+  "N": 800,
+  "errori_comuni_attesi": 45.5092,
+  "phi_sd": 4.422930591603022,
+  "phi_q": [
+   66.27635953994161,
+   74.71853438326448,
+   83.57448106863248
+  ],
+  "mezza_larghezza_95": 8.649060764345435,
+  "non_stimabile": 0.0,
+  "al_limite": 0.0
+ },
+ {
+  "persona": "person at 82%",
+  "acc_m": 0.8,
+  "rho": 0.267,
+  "phi_vero": 74.51417293824811,
+  "errori_attesi": 320,
+  "N": 1601,
+  "errori_comuni_attesi": 91.0752865,
+  "phi_sd": 3.10805311408835,
+  "phi_q": [
+   68.75901612042934,
+   74.71232774957637,
+   81.02296530274445
+  ],
+  "mezza_larghezza_95": 6.131974591157558,
+  "non_stimabile": 0.0,
+  "al_limite": 0.0
+ },
+ {
+  "persona": "person at 82%",
+  "acc_m": 0.88,
+  "rho": 0.0,
+  "phi_vero": 90.0,
+  "errori_attesi": 10,
+  "N": 83,
+  "errori_comuni_attesi": 1.8754265,
+  "phi_sd": 19.76761886189629,
+  "phi_q": [
+   59.37728755511522,
+   91.50101136961405,
+   126.86989764584402
+  ],
+  "mezza_larghezza_95": 33.7463050453644,
+  "non_stimabile": 0.0,
+  "al_limite": 0.1525
+ },
+ {
+  "persona": "person at 82%",
+  "acc_m": 0.88,
+  "rho": 0.0,
+  "phi_vero": 90.0,
+  "errori_attesi": 20,
+  "N": 167,
+  "errori_comuni_attesi": 3.7734485,
+  "phi_sd": 14.072904416589028,
+  "phi_q": [
+   68.76720620429424,
+   90.41128894655105,
+   126.86989764584402
+  ],
+  "mezza_larghezza_95": 29.05134572077489,
+  "non_stimabile": 0.0,
+  "al_limite": 0.0275
+ },
+ {
+  "persona": "person at 82%",
+  "acc_m": 0.88,
+  "rho": 0.0,
+  "phi_vero": 90.0,
+  "errori_attesi": 40,
+  "N": 334,
+  "errori_comuni_attesi": 7.546897,
+  "phi_sd": 9.332071242746325,
+  "phi_q": [
+   74.85204933150577,
+   89.70263901422638,
+   111.37227842057933
+  ],
+  "mezza_larghezza_95": 18.260114544536783,
+  "non_stimabile": 0.0,
+  "al_limite": 0.0035
+ },
+ {
+  "persona": "person at 82%",
+  "acc_m": 0.88,
+  "rho": 0.0,
+  "phi_vero": 90.0,
+  "errori_attesi": 80,
+  "N": 668,
+  "errori_comuni_attesi": 15.093794,
+  "phi_sd": 6.4935660030803355,
+  "phi_q": [
+   78.79451486207124,
+   89.94112073403515,
+   104.71306273392132
+  ],
+  "mezza_larghezza_95": 12.95927393592504,
+  "non_stimabile": 0.0,
+  "al_limite": 0.00025
+ },
+ {
+  "persona": "person at 82%",
+  "acc_m": 0.88,
+  "rho": 0.0,
+  "phi_vero": 90.0,
+  "errori_attesi": 160,
+  "N": 1336,
+  "errori_comuni_attesi": 30.187588,
+  "phi_sd": 4.430171827616873,
+  "phi_q": [
+   81.98339456018866,
+   89.80669002427177,
+   99.42904375674398
+  ],
+  "mezza_larghezza_95": 8.722824598277661,
+  "non_stimabile": 0.0,
+  "al_limite": 0.0
+ },
+ {
+  "persona": "person at 82%",
+  "acc_m": 0.88,
+  "rho": 0.0,
+  "phi_vero": 90.0,
+  "errori_attesi": 320,
+  "N": 2671,
+  "errori_comuni_attesi": 60.3525805,
+  "phi_sd": 3.1663890613183856,
+  "phi_q": [
+   84.08488228425647,
+   89.69192258333075,
+   96.35064868423271
+  ],
+  "mezza_larghezza_95": 6.132883199988122,
+  "non_stimabile": 0.0,
+  "al_limite": 0.0
+ },
+ {
+  "persona": "person at 82%",
+  "acc_m": 0.88,
+  "rho": 0.267,
+  "phi_vero": 74.51417293824811,
+  "errori_attesi": 10,
+  "N": 83,
+  "errori_comuni_attesi": 3.0509555,
+  "phi_sd": 18.072813945970864,
+  "phi_q": [
+   46.320721051949,
+   75.15469152333327,
+   126.86989764584402
+  ],
+  "mezza_larghezza_95": 40.27458829694751,
+  "non_stimabile": 0.0,
+  "al_limite": 0.03775
+ },
+ {
+  "persona": "person at 82%",
+  "acc_m": 0.88,
+  "rho": 0.267,
+  "phi_vero": 74.51417293824811,
+  "errori_attesi": 20,
+  "N": 166,
+  "errori_comuni_attesi": 6.101911,
+  "phi_sd": 11.857812709218786,
+  "phi_q": [
+   54.68409166690185,
+   74.56318309183081,
+   102.40798825270834
+  ],
+  "mezza_larghezza_95": 23.861948292903243,
+  "non_stimabile": 0.0,
+  "al_limite": 0.00125
+ },
+ {
+  "persona": "person at 82%",
+  "acc_m": 0.88,
+  "rho": 0.267,
+  "phi_vero": 74.51417293824811,
+  "errori_attesi": 40,
+  "N": 333,
+  "errori_comuni_attesi": 12.2405805,
+  "phi_sd": 7.869117826353947,
+  "phi_q": [
+   60.24280695395652,
+   74.21153827368809,
+   91.34000213664251
+  ],
+  "mezza_larghezza_95": 15.548597591342997,
+  "non_stimabile": 0.0,
+  "al_limite": 0.0
+ },
+ {
+  "persona": "person at 82%",
+  "acc_m": 0.88,
+  "rho": 0.267,
+  "phi_vero": 74.51417293824811,
+  "errori_attesi": 80,
+  "N": 666,
+  "errori_comuni_attesi": 24.481161,
+  "phi_sd": 5.497857522882378,
+  "phi_q": [
+   64.50194775487047,
+   74.52683636733734,
+   85.88350736661792
+  ],
+  "mezza_larghezza_95": 10.690779805873724,
+  "non_stimabile": 0.0,
+  "al_limite": 0.0
+ },
+ {
+  "persona": "person at 82%",
+  "acc_m": 0.88,
+  "rho": 0.267,
+  "phi_vero": 74.51417293824811,
+  "errori_attesi": 160,
+  "N": 1332,
+  "errori_comuni_attesi": 48.962322,
+  "phi_sd": 3.8906574954230417,
+  "phi_q": [
+   67.15011407042057,
+   74.36597249297299,
+   82.41779561417914
+  ],
+  "mezza_larghezza_95": 7.633840771879285,
+  "non_stimabile": 0.0,
+  "al_limite": 0.0
+ },
+ {
+  "persona": "person at 82%",
+  "acc_m": 0.88,
+  "rho": 0.267,
+  "phi_vero": 74.51417293824811,
+  "errori_attesi": 320,
+  "N": 2663,
+  "errori_comuni_attesi": 97.8878855,
+  "phi_sd": 2.699173982621467,
+  "phi_q": [
+   69.28368078172477,
+   74.38626909073335,
+   79.91416142366323
+  ],
+  "mezza_larghezza_95": 5.315240320969231,
+  "non_stimabile": 0.0,
+  "al_limite": 0.0
+ },
+ {
+  "persona": "person at 82%",
+  "acc_m": 0.93,
+  "rho": 0.0,
+  "phi_vero": 90.0,
+  "errori_attesi": 10,
+  "N": 143,
+  "errori_comuni_attesi": 1.8850259999999999,
+  "phi_sd": 18.534301269367656,
+  "phi_q": [
+   63.59700731533287,
+   90.87706292007218,
+   126.86989764584402
+  ],
+  "mezza_larghezza_95": 31.636445165255576,
+  "non_stimabile": 0.00025,
+  "al_limite": 0.15525
+ },
+ {
+  "persona": "person at 82%",
+  "acc_m": 0.93,
+  "rho": 0.0,
+  "phi_vero": 90.0,
+  "errori_attesi": 20,
+  "N": 286,
+  "errori_comuni_attesi": 3.7700519999999997,
+  "phi_sd": 12.828081997535994,
+  "phi_q": [
+   71.0738535616652,
+   90.72772442801997,
+   125.5743800701646
+  ],
+  "mezza_larghezza_95": 27.250263254249695,
+  "non_stimabile": 0.0,
+  "al_limite": 0.0245
+ },
+ {
+  "persona": "person at 82%",
+  "acc_m": 0.93,
+  "rho": 0.0,
+  "phi_vero": 90.0,
+  "errori_attesi": 40,
+  "N": 572,
+  "errori_comuni_attesi": 7.5401039999999995,
+  "phi_sd": 8.742913136006981,
+  "phi_q": [
+   76.19539550238501,
+   90.04826952018145,
+   110.41815228131252
+  ],
+  "mezza_larghezza_95": 17.111378389463752,
+  "non_stimabile": 0.0,
+  "al_limite": 0.00225
+ },
+ {
+  "persona": "person at 82%",
+  "acc_m": 0.93,
+  "rho": 0.0,
+  "phi_vero": 90.0,
+  "errori_attesi": 80,
+  "N": 1143,
+  "errori_comuni_attesi": 15.067025999999998,
+  "phi_sd": 5.844343761877434,
+  "phi_q": [
+   80.1728762444731,
+   89.94393829864111,
+   103.40695889725852
+  ],
+  "mezza_larghezza_95": 11.617041326392709,
+  "non_stimabile": 0.0,
+  "al_limite": 0.0
+ },
+ {
+  "persona": "person at 82%",
+  "acc_m": 0.93,
+  "rho": 0.0,
+  "phi_vero": 90.0,
+  "errori_attesi": 160,
+  "N": 2286,
+  "errori_comuni_attesi": 30.134051999999997,
+  "phi_sd": 4.065055606825229,
+  "phi_q": [
+   82.86114445727097,
+   89.74456748987149,
+   98.9227741352661
+  ],
+  "mezza_larghezza_95": 8.030814838997564,
+  "non_stimabile": 0.0,
+  "al_limite": 0.0
+ },
+ {
+  "persona": "person at 82%",
+  "acc_m": 0.93,
+  "rho": 0.0,
+  "phi_vero": 90.0,
+  "errori_attesi": 320,
+  "N": 4572,
+  "errori_comuni_attesi": 60.268103999999994,
+  "phi_sd": 2.715904429114778,
+  "phi_q": [
+   84.88614899346301,
+   89.70998355806654,
+   95.89817205746262
+  ],
+  "mezza_larghezza_95": 5.506011531999803,
+  "non_stimabile": 0.0,
+  "al_limite": 0.0
+ },
+ {
+  "persona": "person at 82%",
+  "acc_m": 0.93,
+  "rho": 0.267,
+  "phi_vero": 74.51417293824811,
+  "errori_attesi": 10,
+  "N": 143,
+  "errori_comuni_attesi": 3.2770595,
+  "phi_sd": 16.11982073545404,
+  "phi_q": [
+   50.77544883463561,
+   75.01796825073224,
+   126.86989764584402
+  ],
+  "mezza_larghezza_95": 38.047224405604204,
+  "non_stimabile": 0.0,
+  "al_limite": 0.0325
+ },
+ {
+  "persona": "person at 82%",
+  "acc_m": 0.93,
+  "rho": 0.267,
+  "phi_vero": 74.51417293824811,
+  "errori_attesi": 20,
+  "N": 286,
+  "errori_comuni_attesi": 6.554119,
+  "phi_sd": 10.314784153846682,
+  "phi_q": [
+   56.9127401895991,
+   74.6764001503478,
+   98.04636794175147
+  ],
+  "mezza_larghezza_95": 20.566813876076186,
+  "non_stimabile": 0.0,
+  "al_limite": 0.0015
+ },
+ {
+  "persona": "person at 82%",
+  "acc_m": 0.93,
+  "rho": 0.267,
+  "phi_vero": 74.51417293824811,
+  "errori_attesi": 40,
+  "N": 572,
+  "errori_comuni_attesi": 13.108238,
+  "phi_sd": 7.158598330103609,
+  "phi_q": [
+   61.79092728663213,
+   74.35033822652251,
+   89.32066424116016
+  ],
+  "mezza_larghezza_95": 13.764868477264013,
+  "non_stimabile": 0.0,
+  "al_limite": 0.0
+ },
+ {
+  "persona": "person at 82%",
+  "acc_m": 0.93,
+  "rho": 0.267,
+  "phi_vero": 74.51417293824811,
+  "errori_attesi": 80,
+  "N": 1143,
+  "errori_comuni_attesi": 26.1935595,
+  "phi_sd": 4.834449965628891,
+  "phi_q": [
+   65.3740439870376,
+   74.47059250653604,
+   84.20528541106819
+  ],
+  "mezza_larghezza_95": 9.415620712015297,
+  "non_stimabile": 0.0,
+  "al_limite": 0.0
+ },
+ {
+  "persona": "person at 82%",
+  "acc_m": 0.93,
+  "rho": 0.267,
+  "phi_vero": 74.51417293824811,
+  "errori_attesi": 160,
+  "N": 2287,
+  "errori_comuni_attesi": 52.4100355,
+  "phi_sd": 3.4493637142667635,
+  "phi_q": [
+   68.07947594003791,
+   74.52137367261207,
+   81.62327728218916
+  ],
+  "mezza_larghezza_95": 6.7719006710756275,
+  "non_stimabile": 0.0,
+  "al_limite": 0.0
+ },
+ {
+  "persona": "person at 82%",
+  "acc_m": 0.93,
+  "rho": 0.267,
+  "phi_vero": 74.51417293824811,
+  "errori_attesi": 320,
+  "N": 4573,
+  "errori_comuni_attesi": 104.79715449999999,
+  "phi_sd": 2.4491038139897907,
+  "phi_q": [
+   69.84576143936494,
+   74.5382446850028,
+   79.50437000982934
+  ],
+  "mezza_larghezza_95": 4.829304285232205,
+  "non_stimabile": 0.0,
+  "al_limite": 0.0
+ },
+ {
+  "persona": "person at 82%",
+  "acc_m": 0.96,
+  "rho": 0.0,
+  "phi_vero": 90.0,
+  "errori_attesi": 10,
+  "N": 250,
+  "errori_comuni_attesi": 1.884125,
+  "phi_sd": 18.07145136945358,
+  "phi_q": [
+   64.26398011981827,
+   91.60018220125691,
+   126.86989764584402
+  ],
+  "mezza_larghezza_95": 31.302958763012874,
+  "non_stimabile": 0.00025,
+  "al_limite": 0.16075
+ },
+ {
+  "persona": "person at 82%",
+  "acc_m": 0.96,
+  "rho": 0.0,
+  "phi_vero": 90.0,
+  "errori_attesi": 20,
+  "N": 501,
+  "errori_comuni_attesi": 3.7757864999999997,
+  "phi_sd": 12.065829408516205,
+  "phi_q": [
+   71.91815550988409,
+   90.89731190934177,
+   126.86989764584402
+  ],
+  "mezza_larghezza_95": 27.475871067979966,
+  "non_stimabile": 0.0,
+  "al_limite": 0.02725
+ },
+ {
+  "persona": "person at 82%",
+  "acc_m": 0.96,
+  "rho": 0.0,
+  "phi_vero": 90.0,
+  "errori_attesi": 40,
+  "N": 1002,
+  "errori_comuni_attesi": 7.551572999999999,
+  "phi_sd": 8.00220733786723,
+  "phi_q": [
+   77.26689700495791,
+   90.49629189631173,
+   109.76599612065813
+  ],
+  "mezza_larghezza_95": 16.24954955785011,
+  "non_stimabile": 0.0,
+  "al_limite": 0.002
+ },
+ {
+  "persona": "person at 82%",
+  "acc_m": 0.96,
+  "rho": 0.0,
+  "phi_vero": 90.0,
+  "errori_attesi": 80,
+  "N": 2004,
+  "errori_comuni_attesi": 15.103145999999999,
+  "phi_sd": 5.349202612139889,
+  "phi_q": [
+   81.16019619385516,
+   90.49896062595995,
+   102.59154973442855
+  ],
+  "mezza_larghezza_95": 10.715676770286699,
+  "non_stimabile": 0.0,
+  "al_limite": 0.0
+ },
+ {
+  "persona": "person at 82%",
+  "acc_m": 0.96,
+  "rho": 0.0,
+  "phi_vero": 90.0,
+  "errori_attesi": 160,
+  "N": 4008,
+  "errori_comuni_attesi": 30.206291999999998,
+  "phi_sd": 3.614974635249587,
+  "phi_q": [
+   83.89753437019402,
+   90.17320387148624,
+   98.02183523717531
+  ],
+  "mezza_larghezza_95": 7.062150433490643,
+  "non_stimabile": 0.0,
+  "al_limite": 0.0
+ },
+ {
+  "persona": "person at 82%",
+  "acc_m": 0.96,
+  "rho": 0.0,
+  "phi_vero": 90.0,
+  "errori_attesi": 320,
+  "N": 8016,
+  "errori_comuni_attesi": 60.412583999999995,
+  "phi_sd": 2.5031348509997797,
+  "phi_q": [
+   85.58516063079307,
+   90.22151583409607,
+   95.54230094586546
+  ],
+  "mezza_larghezza_95": 4.978570157536197,
+  "non_stimabile": 0.0,
+  "al_limite": 0.0
+ },
+ {
+  "persona": "person at 82%",
+  "acc_m": 0.96,
+  "rho": 0.267,
+  "phi_vero": 74.51417293824811,
+  "errori_attesi": 10,
+  "N": 250,
+  "errori_comuni_attesi": 3.468,
+  "phi_sd": 15.34777417543837,
+  "phi_q": [
+   51.237448597776144,
+   75.22803812665366,
+   126.86989764584402
+  ],
+  "mezza_larghezza_95": 37.81622452403394,
+  "non_stimabile": 0.0,
+  "al_limite": 0.029
+ },
+ {
+  "persona": "person at 82%",
+  "acc_m": 0.96,
+  "rho": 0.267,
+  "phi_vero": 74.51417293824811,
+  "errori_attesi": 20,
+  "N": 500,
+  "errori_comuni_attesi": 6.936,
+  "phi_sd": 9.446000374970168,
+  "phi_q": [
+   58.797622521822205,
+   75.1097201226673,
+   95.47091671894047
+  ],
+  "mezza_larghezza_95": 18.336647098559133,
+  "non_stimabile": 0.0,
+  "al_limite": 0.00125
+ },
+ {
+  "persona": "person at 82%",
+  "acc_m": 0.96,
+  "rho": 0.267,
+  "phi_vero": 74.51417293824811,
+  "errori_attesi": 40,
+  "N": 999,
+  "errori_comuni_attesi": 13.858128,
+  "phi_sd": 6.537655546822749,
+  "phi_q": [
+   63.188744056493725,
+   74.8488921044212,
+   88.48206353300584
+  ],
+  "mezza_larghezza_95": 12.646659738256059,
+  "non_stimabile": 0.0,
+  "al_limite": 0.0
+ },
+ {
+  "persona": "person at 82%",
+  "acc_m": 0.96,
+  "rho": 0.267,
+  "phi_vero": 74.51417293824811,
+  "errori_attesi": 80,
+  "N": 1999,
+  "errori_comuni_attesi": 27.730128,
+  "phi_sd": 4.490860697205288,
+  "phi_q": [
+   66.32666169914154,
+   74.5156211389193,
+   83.9412029320692
+  ],
+  "mezza_larghezza_95": 8.807270616463832,
+  "non_stimabile": 0.0,
+  "al_limite": 0.0
+ },
+ {
+  "persona": "person at 82%",
+  "acc_m": 0.96,
+  "rho": 0.267,
+  "phi_vero": 74.51417293824811,
+  "errori_attesi": 160,
+  "N": 3997,
+  "errori_comuni_attesi": 55.446384,
+  "phi_sd": 3.2374464725829597,
+  "phi_q": [
+   68.79423858541426,
+   74.7830104056553,
+   81.33858326486606
+  ],
+  "mezza_larghezza_95": 6.272172339725898,
+  "non_stimabile": 0.0,
+  "al_limite": 0.0
+ },
+ {
+  "persona": "person at 82%",
+  "acc_m": 0.96,
+  "rho": 0.267,
+  "phi_vero": 74.51417293824811,
+  "errori_attesi": 320,
+  "N": 7994,
+  "errori_comuni_attesi": 110.892768,
+  "phi_sd": 2.2120125297146025,
+  "phi_q": [
+   70.44939079103499,
+   74.6968912506,
+   79.21866467010987
+  ],
+  "mezza_larghezza_95": 4.384636939537444,
+  "non_stimabile": 0.0,
+  "al_limite": 0.0
+ },
+ {
+  "persona": "person at 82%",
+  "acc_m": 0.98,
+  "rho": 0.0,
+  "phi_vero": 90.0,
+  "errori_attesi": 10,
+  "N": 501,
+  "errori_comuni_attesi": 1.907307,
+  "phi_sd": 17.290795970788476,
+  "phi_q": [
+   67.40321514976326,
+   91.37464287705434,
+   126.86989764584402
+  ],
+  "mezza_larghezza_95": 29.733341248040382,
+  "non_stimabile": 0.0,
+  "al_limite": 0.156
+ },
+ {
+  "persona": "person at 82%",
+  "acc_m": 0.98,
+  "rho": 0.0,
+  "phi_vero": 90.0,
+  "errori_attesi": 20,
+  "N": 1001,
+  "errori_comuni_attesi": 3.810807,
+  "phi_sd": 10.991473032649216,
+  "phi_q": [
+   74.49077273735128,
+   90.73333066703243,
+   118.38115787741684
+  ],
+  "mezza_larghezza_95": 21.94519257003278,
+  "non_stimabile": 0.0,
+  "al_limite": 0.02225
+ },
+ {
+  "persona": "person at 82%",
+  "acc_m": 0.98,
+  "rho": 0.0,
+  "phi_vero": 90.0,
+  "errori_attesi": 40,
+  "N": 2002,
+  "errori_comuni_attesi": 7.621614,
+  "phi_sd": 7.024776405402819,
+  "phi_q": [
+   78.67431868615462,
+   90.21199680027397,
+   106.76320406772645
+  ],
+  "mezza_larghezza_95": 14.044442690785914,
+  "non_stimabile": 0.0,
+  "al_limite": 0.00075
+ },
+ {
+  "persona": "person at 82%",
+  "acc_m": 0.98,
+  "rho": 0.0,
+  "phi_vero": 90.0,
+  "errori_attesi": 80,
+  "N": 4004,
+  "errori_comuni_attesi": 15.243228,
+  "phi_sd": 4.60229911339644,
+  "phi_q": [
+   81.77300140290029,
+   90.36259455400346,
+   100.43133985521483
+  ],
+  "mezza_larghezza_95": 9.32916922615727,
+  "non_stimabile": 0.0,
+  "al_limite": 0.0
+ },
+ {
+  "persona": "person at 82%",
+  "acc_m": 0.98,
+  "rho": 0.0,
+  "phi_vero": 90.0,
+  "errori_attesi": 160,
+  "N": 8008,
+  "errori_comuni_attesi": 30.486456,
+  "phi_sd": 3.136159786822215,
+  "phi_q": [
+   84.21394094461863,
+   90.22154460838013,
+   96.9427611315058
+  ],
+  "mezza_larghezza_95": 6.364410093443588,
+  "non_stimabile": 0.0,
+  "al_limite": 0.0
+ },
+ {
+  "persona": "person at 82%",
+  "acc_m": 0.98,
+  "rho": 0.0,
+  "phi_vero": 90.0,
+  "errori_attesi": 320,
+  "N": 16016,
+  "errori_comuni_attesi": 60.972912,
+  "phi_sd": 2.147423345850731,
+  "phi_q": [
+   86.23625696860226,
+   90.24711159284588,
+   94.6403376289252
+  ],
+  "mezza_larghezza_95": 4.202040330161466,
+  "non_stimabile": 0.0,
+  "al_limite": 0.0
+ },
+ {
+  "persona": "person at 82%",
+  "acc_m": 0.98,
+  "rho": 0.267,
+  "phi_vero": 74.51417293824811,
+  "errori_attesi": 10,
+  "N": 501,
+  "errori_comuni_attesi": 3.691368,
+  "phi_sd": 13.830526456649629,
+  "phi_q": [
+   54.366035021598385,
+   75.26428156457628,
+   108.00392176792778
+  ],
+  "mezza_larghezza_95": 26.818943373164696,
+  "non_stimabile": 0.0,
+  "al_limite": 0.024
+ },
+ {
+  "persona": "person at 82%",
+  "acc_m": 0.98,
+  "rho": 0.267,
+  "phi_vero": 74.51417293824811,
+  "errori_attesi": 20,
+  "N": 1001,
+  "errori_comuni_attesi": 7.375368000000001,
+  "phi_sd": 8.52913521146789,
+  "phi_q": [
+   60.09812929536919,
+   75.07691888678639,
+   93.4559070373423
+  ],
+  "mezza_larghezza_95": 16.678888870986555,
+  "non_stimabile": 0.0,
+  "al_limite": 0.0005
+ },
+ {
+  "persona": "person at 82%",
+  "acc_m": 0.98,
+  "rho": 0.267,
+  "phi_vero": 74.51417293824811,
+  "errori_attesi": 40,
+  "N": 2003,
+  "errori_comuni_attesi": 14.758104000000001,
+  "phi_sd": 5.710723498336702,
+  "phi_q": [
+   64.37726737495613,
+   74.79143335030558,
+   87.48268470771211
+  ],
+  "mezza_larghezza_95": 11.552708666377988,
+  "non_stimabile": 0.0,
+  "al_limite": 0.0
+ },
+ {
+  "persona": "person at 82%",
+  "acc_m": 0.98,
+  "rho": 0.267,
+  "phi_vero": 74.51417293824811,
+  "errori_attesi": 80,
+  "N": 4005,
+  "errori_comuni_attesi": 29.508840000000003,
+  "phi_sd": 4.009633775766829,
+  "phi_q": [
+   67.20240333474538,
+   74.71730787248683,
+   83.17810249987697
+  ],
+  "mezza_larghezza_95": 7.987849582565794,
+  "non_stimabile": 0.0,
+  "al_limite": 0.0
+ },
+ {
+  "persona": "person at 82%",
+  "acc_m": 0.98,
+  "rho": 0.267,
+  "phi_vero": 74.51417293824811,
+  "errori_attesi": 160,
+  "N": 8011,
+  "errori_comuni_attesi": 59.025048000000005,
+  "phi_sd": 2.7848611316270637,
+  "phi_q": [
+   69.58171502022702,
+   74.78806205284039,
+   80.2390431359366
+  ],
+  "mezza_larghezza_95": 5.3286640578547875,
+  "non_stimabile": 0.0,
+  "al_limite": 0.0
+ },
+ {
+  "persona": "person at 82%",
+  "acc_m": 0.98,
+  "rho": 0.267,
+  "phi_vero": 74.51417293824811,
+  "errori_attesi": 320,
+  "N": 16021,
+  "errori_comuni_attesi": 118.04272800000001,
+  "phi_sd": 1.9400253300728065,
+  "phi_q": [
+   71.1101502716799,
+   74.75478447755407,
+   78.62267182393765
+  ],
+  "mezza_larghezza_95": 3.756260776128876,
+  "non_stimabile": 0.0,
+  "al_limite": 0.0
+ }
+]

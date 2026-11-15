@@ -67,3 +67,10 @@ python assimilation_power.py --reps 400
 
 Requires `numpy`, `scipy`, `pyyaml`. Neither dataset is redistributed here.
 Results in [`RESULTS.md`](RESULTS.md).
+
+## How a person calibrates a model on their own cases
+
+[`pair-calibration/`](pair-calibration/) holds the simulations behind the protocol of
+[`../docs/PAIR-PROTOCOL.md`](../docs/PAIR-PROTOCOL.md): how many cases `k` and the angle need, what each
+rule of use returns, what the pitfalls cost, checked against the ChatBench data. The program is
+`turing-meter pair`. About twenty minutes on four cores; see its README.

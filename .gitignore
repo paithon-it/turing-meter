@@ -9,3 +9,5 @@ without_swaa.yaml
 hcast_only.yaml
 Data_Extraction.csv
 .pytest_cache/
+analysis/pair-calibration/results/*.err
+analysis/pair-calibration/*.npz

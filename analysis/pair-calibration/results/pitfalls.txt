@@ -1,0 +1,110 @@
+## 1. Wrong keys
+gpt4o   random     wrong keys    0% | acc 57.7 and 88.4 | k 2.17 | angle 74.4 | useful 62.5 | margin 2.0% | M errors due to the key 0%
+gpt4o   random     wrong keys    1% | acc 57.3 and 87.5 | k 2.14 | angle 72.4 | useful 62.1 | margin 1.5% | M errors due to the key 8%
+gpt4o   random     wrong keys    2% | acc 56.8 and 86.7 | k 2.12 | angle 70.7 | useful 61.9 | margin 1.1% | M errors due to the key 14%
+gpt4o   random     wrong keys    5% | acc 55.6 and 84.1 | k 2.07 | angle 66.4 | useful 61.1 | margin 0.4% | M errors due to the key 30%
+gpt4o   random     wrong keys   10% | acc 53.4 and 79.9 | k 2.00 | angle 61.1 | useful 60.0 | margin 0.0% | M errors due to the key 48%
+gpt4o   trap       wrong keys    0% | acc 57.7 and 88.4 | k 2.17 | angle 74.4 | useful 62.5 | margin 2.0% | M errors due to the key 0%
+gpt4o   trap       wrong keys    1% | acc 57.4 and 87.6 | k 2.14 | angle 73.2 | useful 62.1 | margin 1.7% | M errors due to the key 7%
+gpt4o   trap       wrong keys    2% | acc 57.1 and 86.7 | k 2.11 | angle 72.1 | useful 61.8 | margin 1.5% | M errors due to the key 14%
+gpt4o   trap       wrong keys    5% | acc 56.1 and 84.3 | k 2.04 | angle 69.4 | useful 60.7 | margin 1.1% | M errors due to the key 29%
+gpt4o   trap       wrong keys   10% | acc 54.5 and 80.3 | k 1.95 | angle 66.0 | useful 59.1 | margin 0.7% | M errors due to the key 47%
+forte   random     wrong keys    0% | acc 57.7 and 98.0 | k 3.19 | angle 90.3 | useful 71.7 | margin 5.0% | M errors due to the key 0%
+forte   random     wrong keys    1% | acc 57.3 and 97.0 | k 3.02 | angle 79.9 | useful 70.7 | margin 1.2% | M errors due to the key 33%
+forte   random     wrong keys    2% | acc 56.9 and 96.1 | k 2.91 | angle 73.6 | useful 69.9 | margin 0.2% | M errors due to the key 50%
+forte   random     wrong keys    5% | acc 55.6 and 93.2 | k 2.68 | angle 64.4 | useful 68.1 | margin 0.0% | M errors due to the key 72%
+forte   random     wrong keys   10% | acc 53.4 and 88.3 | k 2.47 | angle 57.8 | useful 66.2 | margin 0.0% | M errors due to the key 85%
+forte   trap       wrong keys    0% | acc 57.7 and 98.0 | k 3.19 | angle 90.3 | useful 71.7 | margin 5.0% | M errors due to the key 0%
+forte   trap       wrong keys    1% | acc 57.3 and 97.0 | k 3.03 | angle 79.8 | useful 70.7 | margin 1.2% | M errors due to the key 33%
+forte   trap       wrong keys    2% | acc 56.8 and 96.1 | k 2.91 | angle 73.6 | useful 69.9 | margin 0.2% | M errors due to the key 50%
+forte   trap       wrong keys    5% | acc 55.5 and 93.2 | k 2.69 | angle 64.5 | useful 68.1 | margin 0.0% | M errors due to the key 72%
+forte   trap       wrong keys   10% | acc 53.4 and 88.3 | k 2.48 | angle 57.9 | useful 66.2 | margin 0.0% | M errors due to the key 85%
+pari    random     wrong keys    0% | acc 71.2 and 74.6 | k 1.08 | angle 69.9 | useful 22.7 | margin 17.5% | M errors due to the key 0%
+pari    random     wrong keys    1% | acc 70.5 and 73.8 | k 1.08 | angle 68.3 | useful 22.4 | margin 16.5% | M errors due to the key 3%
+pari    random     wrong keys    2% | acc 69.9 and 73.2 | k 1.08 | angle 66.8 | useful 22.3 | margin 15.5% | M errors due to the key 7%
+pari    random     wrong keys    5% | acc 68.1 and 71.2 | k 1.08 | angle 62.8 | useful 22.1 | margin 13.1% | M errors due to the key 16%
+pari    random     wrong keys   10% | acc 65.0 and 67.9 | k 1.07 | angle 57.7 | useful 21.5 | margin 10.4% | M errors due to the key 29%
+pari    trap       wrong keys    0% | acc 71.2 and 74.6 | k 1.08 | angle 69.9 | useful 22.7 | margin 17.5% | M errors due to the key 0%
+pari    trap       wrong keys    1% | acc 70.7 and 74.0 | k 1.08 | angle 68.8 | useful 22.5 | margin 16.8% | M errors due to the key 3%
+pari    trap       wrong keys    2% | acc 70.1 and 73.4 | k 1.08 | angle 67.7 | useful 22.4 | margin 16.1% | M errors due to the key 6%
+pari    trap       wrong keys    5% | acc 68.6 and 71.7 | k 1.08 | angle 64.8 | useful 22.0 | margin 14.3% | M errors due to the key 15%
+pari    trap       wrong keys   10% | acc 65.9 and 68.8 | k 1.07 | angle 60.8 | useful 21.2 | margin 12.2% | M errors due to the key 27%
+storie  random     wrong keys    0% | acc 90.0 and 96.0 | k 1.36 | angle 67.8 | useful 42.9 | margin 7.1% | M errors due to the key 0%
+storie  random     wrong keys    1% | acc 89.2 and 95.1 | k 1.33 | angle 58.8 | useful 41.5 | margin 3.6% | M errors due to the key 19%
+storie  random     wrong keys    2% | acc 88.4 and 94.2 | k 1.31 | angle 52.7 | useful 40.3 | margin 1.9% | M errors due to the key 33%
+storie  random     wrong keys    5% | acc 86.0 and 91.4 | k 1.26 | angle 41.9 | useful 37.7 | margin 0.2% | M errors due to the key 56%
+storie  random     wrong keys   10% | acc 82.0 and 86.8 | k 1.22 | angle 33.3 | useful 34.8 | margin 0.0% | M errors due to the key 73%
+
+## 2. Contamination
+vera-80  cases already seen   0% | measured machine 80.0% | k 1.76 | angle 74.5 | useful 55.3 | margin 4.8% | margin at 90 15.1%
+vera-80  cases already seen  10% | measured machine 82.0% | k 1.84 | angle 75.0 | useful 57.1 | margin 4.2% | margin at 90 13.8%
+vera-80  cases already seen  20% | measured machine 84.0% | k 1.93 | angle 75.6 | useful 58.9 | margin 3.8% | margin at 90 12.6%
+vera-80  cases already seen  40% | measured machine 88.0% | k 2.15 | angle 76.6 | useful 62.2 | margin 2.8% | margin at 90 10.3%
+vera-80  cases already seen  60% | measured machine 92.0% | k 2.42 | angle 77.8 | useful 65.6 | margin 2.1% | margin at 90 8.2%
+gpt4o    cases already seen   0% | measured machine 88.3% | k 2.17 | angle 74.2 | useful 62.5 | margin 1.9% | margin at 90 10.1%
+gpt4o    cases already seen  10% | measured machine 89.5% | k 2.24 | angle 74.6 | useful 63.5 | margin 1.8% | margin at 90 9.5%
+gpt4o    cases already seen  20% | measured machine 90.7% | k 2.32 | angle 75.1 | useful 64.4 | margin 1.6% | margin at 90 8.9%
+gpt4o    cases already seen  40% | measured machine 93.0% | k 2.50 | angle 76.0 | useful 66.4 | margin 1.3% | margin at 90 7.7%
+gpt4o    cases already seen  60% | measured machine 95.3% | k 2.74 | angle 77.2 | useful 68.6 | margin 1.1% | margin at 90 6.4%
+pari     cases already seen   0% | measured machine 74.5% | k 1.08 | angle 69.7 | useful 22.6 | margin 17.4% | margin at 90 36.1%
+pari     cases already seen  10% | measured machine 77.1% | k 1.15 | angle 70.7 | useful 29.6 | margin 15.2% | margin at 90 32.5%
+pari     cases already seen  20% | measured machine 79.6% | k 1.22 | angle 71.7 | useful 35.0 | margin 13.2% | margin at 90 29.2%
+pari     cases already seen  40% | measured machine 84.7% | k 1.38 | angle 73.5 | useful 43.7 | margin 10.0% | margin at 90 23.4%
+pari     cases already seen  60% | measured machine 89.8% | k 1.59 | angle 75.2 | useful 51.0 | margin 7.3% | margin at 90 18.2%
+
+## 3. Relative error of d' with 100 cases
+m=4 acc  30.0% d' 0.19 relative error  68.5% (95%: 0.21-2.64 times the true value) not measurable 16.5%
+m=4 acc  35.0% d' 0.36 relative error  42.4% (95%: 0.21-1.90 times the true value) not measurable 2.1%
+m=4 acc  40.0% d' 0.52 relative error  30.3% (95%: 0.42-1.60 times the true value) not measurable 0.1%
+m=4 acc  50.0% d' 0.84 relative error  18.8% (95%: 0.62-1.38 times the true value) not measurable 0.0%
+m=4 acc  58.0% d' 1.09 relative error  14.6% (95%: 0.71-1.31 times the true value) not measurable 0.0%
+m=4 acc  70.0% d' 1.49 relative error  11.3% (95%: 0.79-1.24 times the true value) not measurable 0.0%
+m=4 acc  80.0% d' 1.89 relative error   9.7% (95%: 0.83-1.19 times the true value) not measurable 0.0%
+m=4 acc  88.0% d' 2.32 relative error   9.3% (95%: 0.84-1.21 times the true value) not measurable 0.0%
+m=4 acc  93.0% d' 2.70 relative error   9.8% (95%: 0.86-1.28 times the true value) not measurable 0.1%
+m=4 acc  96.0% d' 3.05 relative error  10.1% (95%: 0.85-1.24 times the true value) not measurable 1.7%
+m=4 acc  98.0% d' 3.44 relative error   8.4% (95%: 0.85-1.10 times the true value) not measurable 13.3%
+m=4 acc  99.0% d' 3.80 relative error   6.1% (95%: 0.80-1.00 times the true value) not measurable 36.5%
+m=2 acc  55.0% d' 0.25 relative error  78.5% (95%: 0.20-3.07 times the true value) not measurable 18.3%
+m=2 acc  60.0% d' 0.51 relative error  47.3% (95%: 0.20-2.07 times the true value) not measurable 2.7%
+m=2 acc  65.0% d' 0.77 relative error  33.6% (95%: 0.39-1.67 times the true value) not measurable 0.2%
+m=2 acc  70.0% d' 1.05 relative error  25.5% (95%: 0.53-1.54 times the true value) not measurable 0.0%
+m=2 acc  80.0% d' 1.68 relative error  17.4% (95%: 0.69-1.40 times the true value) not measurable 0.0%
+m=2 acc  88.0% d' 2.35 relative error  14.5% (95%: 0.75-1.32 times the true value) not measurable 0.0%
+m=2 acc  93.0% d' 2.95 relative error  13.9% (95%: 0.80-1.27 times the true value) not measurable 0.1%
+m=2 acc  96.0% d' 3.50 relative error  13.6% (95%: 0.80-1.33 times the true value) not measurable 1.7%
+m=2 acc  98.0% d' 4.11 relative error  11.0% (95%: 0.80-1.13 times the true value) not measurable 13.2%
+m=2 acc  99.0% d' 4.65 relative error   7.7% (95%: 0.75-1.00 times the true value) not measurable 36.3%
+
+## 4. Yes/no against four options (same sensitivities as GPT-4o on ChatBench: 1.08 and 2.34; angle 74.5)
+N= 100 criteria 0.0/0.0 | k 1.34-4.13 (sd log 0.280) | angle by class 49-109 (med 75, sd 15.0) | angle without classes: median 75
+N= 100 criteria 0.4/0.4 | k 1.33-4.36 (sd log 0.298) | angle by class 46-117 (med 76, sd 19.3) | angle without classes: median 68
+N= 200 criteria 0.0/0.0 | k 1.54-3.25 (sd log 0.192) | angle by class 58-94 (med 75, sd 9.1) | angle without classes: median 75
+N= 200 criteria 0.4/0.4 | k 1.52-3.28 (sd log 0.197) | angle by class 56-110 (med 75, sd 13.0) | angle without classes: median 68
+N= 400 criteria 0.0/0.0 | k 1.69-2.83 (sd log 0.132) | angle by class 63-88 (med 75, sd 6.2) | angle without classes: median 74
+N= 400 criteria 0.4/0.4 | k 1.68-2.93 (sd log 0.141) | angle by class 63-93 (med 75, sd 7.9) | angle without classes: median 68
+N= 800 criteria 0.0/0.0 | k 1.83-2.61 (sd log 0.093) | angle by class 67-83 (med 75, sd 4.3) | angle without classes: median 75
+N= 800 criteria 0.4/0.4 | k 1.79-2.68 (sd log 0.100) | angle by class 66-85 (med 75, sd 4.8) | angle without classes: median 68
+
+## 5. Open answers: k according to the assumed alternatives
+acc 58% and 88.0% | alternatives     2 | dH 0.40 dM 2.35 | k 5.82 | useful 80 | margin at 90 1%
+acc 58% and 88.0% | alternatives     3 | dH 0.82 dM 2.09 | k 2.55 | useful 67 | margin at 90 7%
+acc 58% and 88.0% | alternatives     4 | dH 1.09 dM 2.32 | k 2.13 | useful 62 | margin at 90 11%
+acc 58% and 88.0% | alternatives     5 | dH 1.27 dM 2.47 | k 1.95 | useful 59 | margin at 90 12%
+acc 58% and 88.0% | alternatives    10 | dH 1.71 dM 2.86 | k 1.67 | useful 53 | margin at 90 17%
+acc 58% and 88.0% | alternatives   100 | dH 2.72 dM 3.78 | k 1.39 | useful 44 | margin at 90 23%
+acc 58% and 88.0% | alternatives  1000 | dH 3.45 dM 4.49 | k 1.30 | useful 40 | margin at 90 26%
+acc 71% and 74.5% | alternatives     2 | dH 1.11 dM 1.32 | k 1.19 | useful 33 | margin at 90 31%
+acc 71% and 74.5% | alternatives     3 | dH 1.28 dM 1.41 | k 1.11 | useful 25 | margin at 90 35%
+acc 71% and 74.5% | alternatives     4 | dH 1.53 dM 1.66 | k 1.09 | useful 23 | margin at 90 36%
+acc 71% and 74.5% | alternatives     5 | dH 1.70 dM 1.83 | k 1.08 | useful 22 | margin at 90 36%
+acc 71% and 74.5% | alternatives    10 | dH 2.12 dM 2.25 | k 1.06 | useful 19 | margin at 90 38%
+acc 71% and 74.5% | alternatives   100 | dH 3.10 dM 3.22 | k 1.04 | useful 15 | margin at 90 39%
+acc 71% and 74.5% | alternatives  1000 | dH 3.82 dM 3.94 | k 1.03 | useful 14 | margin at 90 39%
+acc 58% and 98.0% | alternatives     2 | dH 0.40 dM 4.11 | k 10.17 | useful 84 | margin at 90 0%
+acc 58% and 98.0% | alternatives     3 | dH 0.82 dM 3.25 | k 3.98 | useful 75 | margin at 90 3%
+acc 58% and 98.0% | alternatives     4 | dH 1.09 dM 3.44 | k 3.16 | useful 72 | margin at 90 5%
+acc 58% and 98.0% | alternatives     5 | dH 1.27 dM 3.57 | k 2.82 | useful 69 | margin at 90 6%
+acc 58% and 98.0% | alternatives    10 | dH 1.71 dM 3.91 | k 2.29 | useful 64 | margin at 90 9%
+acc 58% and 98.0% | alternatives   100 | dH 2.72 dM 4.76 | k 1.75 | useful 55 | margin at 90 15%
+acc 58% and 98.0% | alternatives  1000 | dH 3.45 dM 5.44 | k 1.58 | useful 51 | margin at 90 18%

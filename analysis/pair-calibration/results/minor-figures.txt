@@ -1,0 +1,54 @@
+## The two errors do not cost the same (worked example, yes/no, 10 positives in 100, one omission costs 20 false alarms)
+  machine, neutral criterion                              correct yes  87.9%  false alarms  12.1%  cost per hundred cases   35.1
+  machine, cautious criterion (+0.5)                      correct yes  74.8%  false alarms   4.8%  cost per hundred cases   54.6
+  machine, best criterion for these costs                 correct yes  93.5%  false alarms  20.4%  cost per hundred cases   31.4
+  pair (yield 0.76), best criterion for these costs       correct yes  91.0%  false alarms  33.0%  cost per hundred cases   47.8
+  pair (yield 0.76), neutral criterion                    correct yes  81.3%  false alarms  18.7%  cost per hundred cases   54.2
+
+## The sentinel: how many answers change from noise alone between two calls
+  GPT-4o on ChatBench: over 30 cases 1.6 changed answers expected; 6 or more happen less than once in a hundred (0.44%)
+  GPT-4o on ChatBench: over 50 cases 2.6 changed answers expected; 8 or more happen less than once in a hundred (0.45%)
+  Llama 3.1 8B on ChatBench: over 30 cases 6.0 changed answers expected; 12 or more happen less than once in a hundred (0.99%)
+  Llama 3.1 8B on ChatBench: over 50 cases 10.1 changed answers expected; 18 or more happen less than once in a hundred (0.66%)
+
+## The person who remembers the cases: share of cases whose key they remember, and the resulting k (true 2.16)
+  remembered   0%: correct answers 57.7%, k 2.16
+  remembered  10%: correct answers 62.0%, k 1.92
+  remembered  20%: correct answers 66.2%, k 1.72
+  remembered  30%: correct answers 70.4%, k 1.55
+  remembered  50%: correct answers 78.9%, k 1.27
+
+## k per person: how much of what distinguishes people is real and how much is sampling noise
+    9 cases each: noise 16.5 points, true spread 15 points, reliability 0.45
+   25 cases each: noise 9.9 points, true spread 15 points, reliability 0.70
+   50 cases each: noise 7.0 points, true spread 15 points, reliability 0.82
+  100 cases each: noise 4.9 points, true spread 15 points, reliability 0.90
+  200 cases each: noise 3.5 points, true spread 15 points, reliability 0.95
+
+## The margin in errors: by how much the ideal pair's errors fall, with four options
+  machine 88.3%, margin 2.0%: errors per hundred from 11.70 to 10.99 (-6%)
+  machine 88.3%, margin 10.0%: errors per hundred from 11.70 to 8.48 (-28%)
+  machine 88.3%, margin 20.0%: errors per hundred from 11.70 to 5.99 (-49%)
+  machine 93.0%, margin 7.7%: errors per hundred from 7.00 to 5.07 (-28%)
+  machine 98.0%, margin 5.0%: errors per hundred from 2.00 to 1.44 (-28%)
+  machine 99.2%, margin 5.0%: errors per hundred from 0.76 to 0.50 (-35%)
+  machine 74.5%, margin 17.4%: errors per hundred from 25.50 to 18.73 (-27%)
+
+## The same margin, read in errors: the ideal pair next to ever stronger machines (person at 58%, four options)
+   k   machine   | at 90 degrees: margin, errors per hundred, cut | at 75 degrees: margin, errors per hundred, cut
+  1.20   64.33%  |  30.2%  35.67 -> 24.88  ( -30%) |  16.4%  35.67 -> 29.60  ( -17%) |
+  1.50   73.41%  |  20.2%  26.59 -> 18.83  ( -29%) |   8.5%  26.59 -> 23.12  ( -13%) |
+  2.00   85.37%  |  11.8%  14.63 -> 10.51  ( -28%) |   3.1%  14.63 -> 13.47  (  -8%) |
+  2.16   88.26%  |  10.2%  11.74 ->  8.46  ( -28%) |   2.2%  11.74 -> 10.96  (  -7%) |
+  3.00   97.11%  |   5.4%   2.89 ->  2.11  ( -27%) |   0.3%   2.89 ->  2.85  (  -2%) |
+  5.00   99.98%  |   2.0%   0.02 ->  0.01  ( -26%) |   0.0%   0.02 ->  0.02  (  +0%) |
+  (check by simulation, results/rules.json: the ideal pair goes from 88.3 to 89.0 correct answers at 74.5 degrees with k 2.16,
+   from 93.0 to 94.9 at 90 degrees with k 2.5, from 98.0 to 98.5 at 90 degrees with k 3.19)
+
+## Two modules, two yields: how far apart they must be for the difference to show (power 80%, two-sided 5%)
+  gpt4o-come-nei-dati, 100 cases per module: standard deviation of the yield 0.084, visible difference 0.33
+  gpt4o-come-nei-dati, 200 cases per module: standard deviation of the yield 0.059, visible difference 0.23
+  gpt4o-come-nei-dati, 400 cases per module: standard deviation of the yield 0.042, visible difference 0.17
+  pari-ideale, 100 cases per module: standard deviation of the yield 0.110, visible difference 0.44
+  pari-ideale, 200 cases per module: standard deviation of the yield 0.076, visible difference 0.30
+  pari-ideale, 400 cases per module: standard deviation of the yield 0.053, visible difference 0.21

@@ -1,0 +1,114 @@
+
+## Person at 58%, machine at 88% (GPT-4o on ChatBench)
+true: k 2.16, angle 74.5, useful angle 62.5, margin 2.0%, margin at 90 degrees 10.2%; accuracies 57.7 and 88.3
+    N  err.M  common | k: 2.5-97.5 of the estimates | angle: 2.5-97.5  (sd) | margin %: 2.5-97.5 | CI95 k | CI95 angle | cov. k/ang/marg | angle not est.
+   50    5.8    3.4 | 1.47-3.78 (med 2.17) | 13-127 (sd 24.3) | 0.0-57.5 (med 1.5) | 1.46-4.03 | 12-127 | 96/88/89 | 0.1%
+  100   11.7    6.8 | 1.59-3.12 (med 2.19) | 47-105 (sd 14.8) | 0.0-25.2 (med 2.0) | 1.64-3.16 | 47-104 | 93/95/94 | 0.0%
+  200   23.3   13.6 | 1.75-2.77 (med 2.17) | 56-95 (sd 9.7) | 0.0-14.1 (med 1.9) | 1.76-2.77 | 56-93 | 94/94/93 | 0.0%
+  400   46.7   27.1 | 1.86-2.58 (med 2.17) | 62-88 (sd 6.6) | 0.0-9.4 (med 1.9) | 1.87-2.57 | 62-88 | 96/94/94 | 0.0%
+  800   93.3   54.2 | 1.95-2.42 (med 2.16) | 66-83 (sd 4.5) | 0.1-6.1 (med 1.9) | 1.95-2.43 | 65-83 | 96/95/96 | 0.0%
+ 1600  186.7  108.5 | 2.00-2.34 (med 2.16) | 68-81 (sd 3.2) | 0.4-4.7 (med 2.0) | 2.00-2.35 | 68-80 | 94/95/94 | 0.0%
+  readings allowed by the interval (share of calibrations):
+    N          machine_stronger          k_includes_one          k_at_least_1.5            k_at_least_2     ceiling90_within_10     ceiling90_within_15     ceiling90_within_20  exact_machine_stronger   exact_ceiling90_in_10   exact_ceiling90_in_20        margin_within_10       margin_above_zero      angle_above_useful      angle_below_useful          angle_below_90
+   50                       97%                      3%                     45%                      8%                      3%                     22%                     44%                     76%                      0%                      6%                     14%                      2%                      8%                      8%                     15%
+  100                      100%                      0%                     72%                      9%                      3%                     29%                     70%                     98%                      0%                     22%                     17%                      6%                     14%                      1%                     20%
+  200                      100%                      0%                     94%                     12%                      3%                     49%                     93%                    100%                      0%                     63%                     34%                     10%                     24%                      0%                     36%
+  400                      100%                      0%                    100%                     17%                      2%                     80%                    100%                    100%                      0%                     98%                     58%                     15%                     44%                      0%                     60%
+  800                      100%                      0%                    100%                     29%                      1%                     97%                    100%                    100%                      0%                    100%                     86%                     24%                     72%                      0%                     90%
+ 1600                      100%                      0%                    100%                     51%                      2%                    100%                    100%                    100%                      0%                    100%                    100%                     41%                     93%                      0%                    100%
+  coverage of the exact interval of k: N=50: 100%, N=100: 100%, N=200: 100%, N=400: 100%, N=800: 100%, N=1600: 100%
+
+## On par (GPT-4o on ethics: 71% and 74.5%)
+true: k 1.08, angle 69.8, useful angle 22.5, margin 17.4%, margin at 90 degrees 36.1%; accuracies 71.2 and 74.5
+    N  err.M  common | k: 2.5-97.5 of the estimates | angle: 2.5-97.5  (sd) | margin %: 2.5-97.5 | CI95 k | CI95 angle | cov. k/ang/marg | angle not est.
+   50   12.8    5.5 | 0.74-1.62 (med 1.10) | 41-107 (sd 16.5) | 0.1-56.6 (med 14.2) | 0.73-1.60 | 39-106 | 94/93/93 | 0.0%
+  100   25.5   11.0 | 0.82-1.43 (med 1.08) | 50-93 (sd 11.1) | 3.1-39.6 (med 15.8) | 0.83-1.42 | 49-93 | 94/94/95 | 0.0%
+  200   51.0   21.9 | 0.90-1.30 (med 1.09) | 55-86 (sd 7.7) | 5.8-31.7 (med 16.5) | 0.90-1.31 | 55-86 | 95/95/95 | 0.0%
+  400  102.0   43.8 | 0.94-1.24 (med 1.09) | 59-81 (sd 5.4) | 8.7-27.4 (med 17.3) | 0.95-1.23 | 59-81 | 94/93/95 | 0.0%
+  800  204.0   87.6 | 0.99-1.19 (med 1.08) | 62-78 (sd 3.8) | 11.1-24.8 (med 17.5) | 0.98-1.18 | 63-77 | 96/95/96 | 0.0%
+ 1600  408.1  175.3 | 1.01-1.16 (med 1.08) | 64-75 (sd 2.8) | 12.6-22.9 (med 17.5) | 1.01-1.15 | 64-75 | 95/94/94 | 0.0%
+  readings allowed by the interval (share of calibrations):
+    N          machine_stronger          k_includes_one          k_at_least_1.5            k_at_least_2     ceiling90_within_10     ceiling90_within_15     ceiling90_within_20  exact_machine_stronger   exact_ceiling90_in_10   exact_ceiling90_in_20        margin_within_10       margin_above_zero      angle_above_useful      angle_below_useful          angle_below_90
+   50                        5%                     94%                      0%                      0%                      0%                      0%                      0%                      0%                      0%                      0%                      1%                     25%                     40%                      0%                     22%
+  100                        7%                     92%                      0%                      0%                      0%                      0%                      0%                      0%                      0%                      0%                      1%                     70%                     89%                      0%                     42%
+  200                       14%                     86%                      0%                      0%                      0%                      0%                      0%                      1%                      0%                      0%                      0%                     96%                    100%                      0%                     69%
+  400                       21%                     79%                      0%                      0%                      0%                      0%                      0%                      3%                      0%                      0%                      0%                    100%                    100%                      0%                     94%
+  800                       37%                     63%                      0%                      0%                      0%                      0%                      0%                      5%                      0%                      0%                      0%                    100%                    100%                      0%                    100%
+ 1600                       60%                     40%                      0%                      0%                      0%                      0%                      0%                     20%                      0%                      0%                      0%                    100%                    100%                      0%                    100%
+  coverage of the exact interval of k: N=50: 100%, N=100: 100%, N=200: 100%, N=400: 100%, N=800: 100%, N=1600: 100%
+
+## Machine slightly above the person (Llama 3.1 8B: 60.5% and 67%)
+true: k 1.18, angle 75.0, useful angle 31.9, margin 17.2%, margin at 90 degrees 31.2%; accuracies 60.5 and 66.7
+    N  err.M  common | k: 2.5-97.5 of the estimates | angle: 2.5-97.5  (sd) | margin %: 2.5-97.5 | CI95 k | CI95 angle | cov. k/ang/marg | angle not est.
+   50   16.6    8.2 | 0.74-2.00 (med 1.17) | 48-108 (sd 15.3) | 0.1-56.6 (med 15.3) | 0.74-1.95 | 47-109 | 95/95/96 | 0.0%
+  100   33.3   16.4 | 0.85-1.68 (med 1.17) | 55-97 (sd 10.6) | 2.1-41.8 (med 16.9) | 0.84-1.63 | 55-96 | 95/93/95 | 0.0%
+  200   66.5   32.8 | 0.94-1.50 (med 1.18) | 61-90 (sd 7.4) | 5.5-34.8 (med 17.2) | 0.94-1.50 | 61-89 | 95/95/97 | 0.0%
+  400  133.1   65.6 | 0.99-1.39 (med 1.17) | 65-86 (sd 5.2) | 8.0-29.6 (med 17.4) | 1.00-1.39 | 65-86 | 93/95/96 | 0.0%
+  800  266.2  131.1 | 1.05-1.32 (med 1.18) | 68-82 (sd 3.7) | 10.3-25.3 (med 17.3) | 1.05-1.32 | 68-82 | 94/92/93 | 0.0%
+ 1600  532.4  262.2 | 1.08-1.28 (med 1.18) | 70-80 (sd 2.6) | 12.2-22.9 (med 17.2) | 1.09-1.28 | 70-80 | 95/95/95 | 0.0%
+  readings allowed by the interval (share of calibrations):
+    N          machine_stronger          k_includes_one          k_at_least_1.5            k_at_least_2     ceiling90_within_10     ceiling90_within_15     ceiling90_within_20  exact_machine_stronger   exact_ceiling90_in_10   exact_ceiling90_in_20        margin_within_10       margin_above_zero      angle_above_useful      angle_below_useful          angle_below_90
+   50                        9%                     91%                      0%                      0%                      0%                      0%                      0%                      0%                      0%                      0%                      1%                     31%                     47%                      0%                     15%
+  100                       13%                     87%                      0%                      0%                      0%                      0%                      0%                      0%                      0%                      0%                      0%                     72%                     85%                      0%                     30%
+  200                       26%                     74%                      0%                      0%                      0%                      0%                      0%                      3%                      0%                      0%                      0%                     97%                    100%                      0%                     53%
+  400                       48%                     52%                      0%                      0%                      0%                      0%                      0%                     14%                      0%                      0%                      0%                    100%                    100%                      0%                     79%
+  800                       80%                     20%                      0%                      0%                      0%                      0%                      0%                     41%                      0%                      0%                      0%                    100%                    100%                      0%                     97%
+ 1600                       97%                      3%                      0%                      0%                      0%                      0%                      0%                     81%                      0%                      0%                      0%                    100%                    100%                      0%                    100%
+  coverage of the exact interval of k: N=50: 100%, N=100: 100%, N=200: 100%, N=400: 100%, N=800: 100%, N=1600: 100%
+
+## Middle zone (k = 1.5; 65% and 82%)
+true: k 1.50, angle 74.9, useful angle 48.2, margin 8.5%, margin at 90 degrees 20.2%; accuracies 64.4 and 81.2
+    N  err.M  common | k: 2.5-97.5 of the estimates | angle: 2.5-97.5  (sd) | margin %: 2.5-97.5 | CI95 k | CI95 angle | cov. k/ang/marg | angle not est.
+   50    9.4    4.5 | 1.00-2.33 (med 1.49) | 45-117 (sd 18.0) | 0.0-62.2 (med 9.4) | 1.04-2.41 | 38-119 | 96/93/93 | 0.0%
+  100   18.8    9.1 | 1.13-2.05 (med 1.50) | 54-101 (sd 12.1) | 0.0-35.2 (med 8.9) | 1.15-2.05 | 52-100 | 94/95/95 | 0.0%
+  200   37.5   18.1 | 1.22-1.83 (med 1.50) | 59-92 (sd 8.5) | 0.9-24.4 (med 8.8) | 1.24-1.86 | 59-92 | 95/94/95 | 0.0%
+  400   75.1   36.2 | 1.31-1.73 (med 1.50) | 64-87 (sd 5.8) | 2.5-18.4 (med 8.6) | 1.31-1.74 | 64-87 | 95/95/95 | 0.0%
+  800  150.1   72.4 | 1.36-1.66 (med 1.50) | 67-83 (sd 4.1) | 3.9-14.9 (med 8.6) | 1.36-1.66 | 68-83 | 95/93/94 | 0.0%
+ 1600  300.3  144.8 | 1.39-1.61 (med 1.50) | 70-81 (sd 2.9) | 5.2-13.0 (med 8.6) | 1.40-1.61 | 70-81 | 95/95/94 | 0.0%
+  readings allowed by the interval (share of calibrations):
+    N          machine_stronger          k_includes_one          k_at_least_1.5            k_at_least_2     ceiling90_within_10     ceiling90_within_15     ceiling90_within_20  exact_machine_stronger   exact_ceiling90_in_10   exact_ceiling90_in_20        margin_within_10       margin_above_zero      angle_above_useful      angle_below_useful          angle_below_90
+   50                       51%                     49%                      2%                      0%                      0%                      1%                      2%                     11%                      0%                      0%                      5%                     15%                     25%                      0%                     14%
+  100                       79%                     21%                      3%                      0%                      0%                      0%                      3%                     41%                      0%                      0%                      4%                     36%                     53%                      0%                     22%
+  200                       99%                      1%                      2%                      0%                      0%                      0%                      2%                     82%                      0%                      0%                      4%                     59%                     83%                      0%                     41%
+  400                      100%                      0%                      2%                      0%                      0%                      0%                      2%                    100%                      0%                      0%                      5%                     90%                     99%                      0%                     68%
+  800                      100%                      0%                      2%                      0%                      0%                      0%                      2%                    100%                      0%                      0%                      7%                    100%                    100%                      0%                     92%
+ 1600                      100%                      0%                      2%                      0%                      0%                      0%                      2%                    100%                      0%                      0%                     11%                    100%                    100%                      0%                    100%
+  coverage of the exact interval of k: N=50: 100%, N=100: 100%, N=200: 100%, N=400: 100%, N=800: 100%, N=1600: 99%
+
+## Machine at 93% (like Claude Haiku 5.5), independent errors
+true: k 2.50, angle 90.0, useful angle 66.4, margin 7.7%, margin at 90 degrees 7.7%; accuracies 57.7 and 93.0
+    N  err.M  common | k: 2.5-97.5 of the estimates | angle: 2.5-97.5  (sd) | margin %: 2.5-97.5 | CI95 k | CI95 angle | cov. k/ang/marg | angle not est.
+   50    3.5    1.5 | 1.63-5.21 (med 2.55) | 17-127 (sd 31.3) | 0.0-69.3 (med 6.3) | 1.69-5.46 | 16-127 | 91/69/82 | 3.1%
+  100    7.0    3.0 | 1.85-3.79 (med 2.53) | 54-127 (sd 19.7) | 0.0-61.2 (med 7.9) | 1.86-3.83 | 50-127 | 94/89/92 | 0.0%
+  200   14.0    5.9 | 2.01-3.26 (med 2.51) | 67-119 (sd 12.7) | 0.0-42.5 (med 8.1) | 2.01-3.27 | 68-120 | 95/92/93 | 0.0%
+  400   28.0   11.8 | 2.13-3.01 (med 2.51) | 74-107 (sd 8.4) | 0.7-24.0 (med 7.6) | 2.15-3.03 | 75-109 | 93/95/95 | 0.0%
+  800   56.1   23.7 | 2.23-2.83 (med 2.51) | 79-102 (sd 5.9) | 2.0-17.9 (med 7.8) | 2.23-2.81 | 78-101 | 95/96/95 | 0.0%
+ 1600  112.1   47.4 | 2.30-2.71 (med 2.50) | 82-98 (sd 4.0) | 3.3-13.9 (med 7.8) | 2.30-2.72 | 82-98 | 96/95/94 | 0.0%
+  readings allowed by the interval (share of calibrations):
+    N          machine_stronger          k_includes_one          k_at_least_1.5            k_at_least_2     ceiling90_within_10     ceiling90_within_15     ceiling90_within_20  exact_machine_stronger   exact_ceiling90_in_10   exact_ceiling90_in_20        margin_within_10       margin_above_zero      angle_above_useful      angle_below_useful          angle_below_90
+   50                       99%                      1%                     68%                     25%                     16%                     40%                     68%                     93%                      1%                     24%                     14%                      6%                     24%                     11%                     11%
+  100                      100%                      0%                     93%                     33%                     16%                     64%                     93%                    100%                      2%                     61%                      5%                     15%                     26%                      2%                      5%
+  200                      100%                      0%                    100%                     52%                     22%                     89%                    100%                    100%                      5%                     96%                      4%                     32%                     49%                      0%                      3%
+  400                      100%                      0%                    100%                     83%                     43%                     99%                    100%                    100%                     14%                    100%                      6%                     58%                     80%                      0%                      3%
+  800                      100%                      0%                    100%                     97%                     63%                    100%                    100%                    100%                     32%                    100%                      7%                     85%                     99%                      0%                      2%
+ 1600                      100%                      0%                    100%                    100%                     92%                    100%                    100%                    100%                     69%                    100%                     12%                     99%                    100%                      0%                      3%
+  coverage of the exact interval of k: N=50: 100%, N=100: 100%, N=200: 100%, N=400: 100%, N=800: 99%, N=1600: 100%
+
+## Machine at 98% (like Claude Sonnet 5.5), independent errors
+true: k 3.19, angle 90.0, useful angle 71.7, margin 4.8%, margin at 90 degrees 4.8%; accuracies 57.7 and 98.0
+    N  err.M  common | k: 2.5-97.5 of the estimates | angle: 2.5-97.5  (sd) | margin %: 2.5-97.5 | CI95 k | CI95 angle | cov. k/ang/marg | angle not est.
+   50    1.0    0.4 | 2.07-7.28 (med 3.58) | 18-127 (sd 44.6) | 0.0-64.3 (med 0.0) | 2.25-7.62 | 26-127 | 72/17/48 | 35.1%
+  100    2.0    0.8 | 2.33-6.05 (med 3.28) | 23-127 (sd 37.1) | 0.0-58.4 (med 2.8) | 2.39-5.89 | 26-127 | 84/40/68 | 12.9%
+  200    4.0    1.7 | 2.57-4.62 (med 3.24) | 27-127 (sd 25.9) | 0.0-54.3 (med 5.9) | 2.58-4.78 | 27-127 | 93/73/85 | 2.1%
+  400    8.0    3.4 | 2.70-3.91 (med 3.22) | 64-127 (sd 15.5) | 0.0-49.5 (med 5.1) | 2.74-3.97 | 60-127 | 93/92/92 | 0.0%
+  800   16.0    6.8 | 2.83-3.64 (med 3.20) | 73-111 (sd 9.5) | 0.0-22.5 (med 5.1) | 2.84-3.67 | 73-112 | 95/94/95 | 0.0%
+ 1600   32.1   13.6 | 2.92-3.52 (med 3.20) | 78-104 (sd 6.3) | 0.6-14.8 (med 5.0) | 2.93-3.50 | 77-102 | 95/95/96 | 0.0%
+  readings allowed by the interval (share of calibrations):
+    N          machine_stronger          k_includes_one          k_at_least_1.5            k_at_least_2     ceiling90_within_10     ceiling90_within_15     ceiling90_within_20  exact_machine_stronger   exact_ceiling90_in_10   exact_ceiling90_in_20        margin_within_10       margin_above_zero      angle_above_useful      angle_below_useful          angle_below_90
+   50                      100%                      0%                     97%                     66%                     54%                     82%                     96%                    100%                      3%                     59%                     52%                      0%                     32%                     19%                     19%
+  100                      100%                      0%                    100%                     86%                     67%                     97%                    100%                    100%                     20%                     97%                     31%                      1%                     31%                     18%                     18%
+  200                      100%                      0%                    100%                     98%                     92%                    100%                    100%                    100%                     59%                    100%                     11%                      8%                     24%                      8%                      8%
+  400                      100%                      0%                    100%                    100%                    100%                    100%                    100%                    100%                     97%                    100%                     10%                     13%                     28%                      1%                      3%
+  800                      100%                      0%                    100%                    100%                    100%                    100%                    100%                    100%                    100%                    100%                     12%                     31%                     55%                      0%                      3%
+ 1600                      100%                      0%                    100%                    100%                    100%                    100%                    100%                    100%                    100%                    100%                     27%                     46%                     81%                      0%                      2%
+  coverage of the exact interval of k: N=50: 100%, N=100: 100%, N=200: 99%, N=400: 100%, N=800: 100%, N=1600: 100%
