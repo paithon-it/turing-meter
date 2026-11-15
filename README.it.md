@@ -17,9 +17,10 @@ misura quanto le coppie reali ci si avvicinano.
 
 > Stato: **in progettazione** (novembre 2026). Ci sono la specifica, lo schema
 > dei compiti, i calcoli di base, due analisi su dati pubblici e un primo
-> esperimento ([`experiments/angle-between-errors/`](experiments/angle-between-errors/)); mancano il runner
-> per la macchina e lo strumento per le sessioni con le persone. Vedi
-> [`docs/PLAN.md`](docs/PLAN.md).
+> esperimento ([`experiments/angle-between-errors/`](experiments/angle-between-errors/)) e lo strumento per chi
+> vuole tarare un modello sui propri casi, `turing-meter pair` ([protocollo](docs/PAIR-PROTOCOL.it.md),
+> [scheda](docs/PAIR-CARD.it.md)); manca il runner per la macchina, e il protocollo non è ancora stato
+> provato con persone vere. Vedi [`docs/PLAN.md`](docs/PLAN.md).
 
 ## I numeri
 
