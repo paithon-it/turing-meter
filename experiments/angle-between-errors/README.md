@@ -19,8 +19,9 @@ model-vs-human, against 24 machines. Hypotheses and criteria are in
 
 ## How to cite
 
-endjneer (2026). *Intelligenza apparente*. Version 1. Zenodo.
-https://doi.org/10.5281/zenodo.24107649
+endjneer (2026). *Intelligenza apparente* (*Apparent Intelligence*). Zenodo.
+https://doi.org/10.5281/zenodo.24107648 (all versions; the latest is the paper version, in
+Italian and English)
 
 Code and data: https://github.com/paithon-it/turing-meter, folder
 `experiments/angle-between-errors`.
@@ -109,6 +110,20 @@ redone exactly.
 python -m closed.machines_claude probe claude-haiku-5-5                              # what the model receives
 python -m closed.machines_claude run claude-opus-5-5 opus-5.5 chatbench,alphanli low  # resumes where it stopped
 .venv/bin/python -m angle.frontier closed-results GPU_RESULTS_DIR                     # writes results/frontier.json
+```
+
+## Inside the conversations (added 15 November 2026)
+
+What happens in the ChatBench conversations, exploratory and asked for by two
+reviews (protocol, "Deviations of 15 November 2026"): where the points go
+between the machine alone and the pair, extraction and filter, how often people
+follow the chat when it is right and when it is wrong (against a linear
+observer with no gating), always and never followers against identical people,
+people split by skill (median over 300 random half splits, overall and within
+mathematics), and the rule-of-three bound for a model with no error.
+
+```bash
+.venv/bin/python -m angle.conversations     # writes results/conversations.json, about half a minute
 ```
 
 ## Licenses

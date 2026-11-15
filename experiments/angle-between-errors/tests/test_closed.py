@@ -45,3 +45,14 @@ def test_margin_is_what_the_ideal_pair_promises_over_the_stronger():
     assert independent["margin"] == pytest.approx(5 ** 0.5 / 2 - 1)     # Pythagoras over the machine alone
     assert independent["above_useful_angle"] and independent["margin"] == pytest.approx(independent["margin_90"])
     assert below["margin"] == pytest.approx(0.0) and not below["above_useful_angle"]   # the ideal stops at the stronger
+
+
+def test_where_the_points_go_is_a_partition():
+    import pandas as pd
+    from angle.conversations import where_points_go
+
+    x = pd.DataFrame({"letter": [True, True, False, False], "chat_ok": [1.0, 0.0, 0.0, 0.0],
+                      "m_alone": [1.0, 0.5, 0.8, 0.2], "acc_ai": [1.0, 0.0, 0.0, 1.0]})
+    w = where_points_go(x)
+    assert w["total"] == pytest.approx(x.acc_ai.mean() - x.m_alone.mean())
+    assert w["conversation_with_answer"] + w["decision_with_answer"] + w["chats_without_answer"] == pytest.approx(w["total"])

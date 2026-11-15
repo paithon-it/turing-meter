@@ -501,3 +501,37 @@ lettura regge con macchine molto più forti di GPT-4o? Esplorative per intero.
   fermata a 0,9999, quindi lì k è un minimo. Una risposta per domanda, a un solo
   livello di impegno, attraverso un prodotto in abbonamento e non l'API: la
   versione del modello è quella servita quel giorno.
+
+## Deviazioni del 15 novembre 2026
+
+Chieste da due revisioni dell'articolo, dopo tutti i risultati qui sopra.
+Esplorative e descrittive: nessun intervallo è tarato, e le prove con una
+risposta in chat sono una selezione. `angle/conversations.py`,
+`results/conversations.json`.
+
+- **Dove vanno i punti.** La distanza in accuratezza fra la macchina da sola e
+  la coppia, divisa fra le prove in cui la chat ha dato una delle opzioni (la
+  conversazione: chat meno macchina da sola; la decisione: coppia meno chat) e
+  le altre. Una partizione delle prove, senza convenzioni per le chat mute. Una
+  scomposizione in d′ su tutte le prove, con le chat mute contate come risposte
+  a caso, è stata provata prima: dipende da quella convenzione (con quella
+  opposta i segni di e ed f si rovesciano), ed è stata tolta.
+- **Estrazione e filtro.** Tu = k·e·f sulle prove con una risposta, dalle
+  sensibilità già in `results/chatbench-source.json`.
+- **Seguire la chat.** Sulle prove in cui la lettera della chat è diversa dalla
+  risposta da sola della persona: quanto la si segue quando ha ragione e quando
+  ha torto, con intervalli che ricampionano le persone, e persone e domande
+  insieme. Contro un osservatore lineare che aggiunge un bonus fisso
+  all'opzione della chat, tarato sull'accuratezza della coppia: dà una
+  differenza simile, quindi la differenza da sola non prova un gating.
+- **Sempre e mai.** Quote di persone con almeno due disaccordi che hanno
+  seguito sempre o mai, contro persone con le stesse probabilità.
+- **Bravura.** Metà delle prove di ogni persona, scelte a sorte, classifica;
+  l'altra metà misura. Mediana su 300 divisioni, terzo più basso e più alto con
+  i pareggi. Ogni persona ha una sola materia, quindi anche nella sola
+  matematica. Una prima divisione singola era stata letta nell'articolo ed è
+  stata sostituita: era un estremo, e confusa con la materia.
+- **Zero errori.** Per un modello senza errori su ChatBench il ricampionamento
+  delle domande non muove l'accuratezza della macchina: il limite viene dalla
+  regola del tre (un errore fino a 3/396), con la sensibilità della persona al
+  suo valore e all'estremo alto del suo intervallo.
