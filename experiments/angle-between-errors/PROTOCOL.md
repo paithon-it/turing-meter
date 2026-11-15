@@ -668,3 +668,208 @@ Haiku's results had been seen; neither change depends on them.
   (`closed-results/chatbench__haiku-5.5-rerun__low.jsonl`). It is a check,
   decided after seeing the results, and is reported as such: the tests of the
   protocol stay on the run named above.
+
+## After the sixth review (15 November 2026)
+
+Written after every result above, and after a sixth review of the article. It
+has nothing to do with the devil's advocate: that section, its code and its
+results are not touched here. Everything below was decided **after** the
+results: it is exploratory or descriptive, with no hypothesis and no criterion,
+and a favourable outcome does not count as a confirmation. Code in
+`angle/verdict.py` and `angle/difficulty.py` (no existing function has
+changed), numbers in `results/verdict-ceiling.json` and
+`results/difficulty.json`, tests in `tests/test_verdict.py` and
+`tests/test_difficulty.py`.
+
+- **The ceiling with a verdict.** Reason: the article's ideal pair pools the
+  graded cues of the two, and the margin is measured against it; a person next
+  to a machine usually gets its verdict, and a pair that exchanges verdicts
+  cannot reach that ceiling. Method: the optimal observer (maximum a
+  posteriori) that keeps its own graded cues and of the other sees only the
+  option chosen, under the article's model (four options, one Gaussian cue per
+  option, the noise of the two correlated option by option with ρ, as in
+  `sdt._simulate_correct`). Given the observer's cues and a hypothesis on the
+  true option, the probability of each verdict is a one-dimensional integral;
+  the observer answers the option with the largest posterior. The cues are
+  drawn (200,000 trials), the verdict is not: every trial is averaged over the
+  four verdicts. The pair's errors are a ratio to those of the stronger member
+  on the same trials, anchored to its exact error rate; where the observer is
+  the stronger and almost never wrong, its cues are drawn with a wider noise
+  and weighed back. Tested against two closed forms: independent errors with
+  four options (the verdict is worth a fixed bonus ln(p/q)/d on its option),
+  and correlated errors with two options (a one-dimensional integral). The
+  observer is exact, so it is not held to non-negative weights as the
+  article's ideal is: below the useful angle what it gains is reported as it
+  comes.
+  (a) The rows of the article's table of the margin: the person is the
+  ChatBench group next to GPT-4o, right 57.7 times in a hundred on its own (the
+  article prints 58; with exactly 0.58 the errors removed read one point higher
+  than printed), the machine 1.2, 2, 3, 5 and 10 times as sensitive, at 75 and
+  90 degrees. With shared cues the code gives back the table as printed.
+  (b) The two ChatBench pairs, machine queried alone, all trials, at their
+  measured sensitivities and angle, at the two ends of the angle's interval
+  and at 90 degrees.
+  Outcome, with only the machine's verdict and the person keeping the cues. At
+  90 degrees the margin over the machine is 17.0 percent with a machine 1.2
+  times as sensitive (30.2 with shared cues), 2.1 with one twice as sensitive
+  (11.8), 0.1 with one three times (5.4), and nothing from five times on (2.0
+  and 0.5). At 75 degrees: 8.9 percent (16.4), 0.1 (3.1), then nothing (0.3,
+  0, 0). In errors of the machine removed, at 90 degrees: 17.7 percent (30.3
+  with shared cues), 5.6 (28.2), 0.3 (27.2), nothing (26.5 and 25.7); at 75
+  degrees: 9.5 (17.0), 0.3 (8.0), nothing (1.7, 0, 0). The quarter of the
+  machine's errors that the ideal pair removes at 90 degrees whatever k exists
+  only if the cues are shared. Monte Carlo standard errors: at most 0.15 points.
+  With only the person's verdict and the machine keeping the cues, the case of
+  the verdict combiner of H3 and H5: margin at 90 degrees 19.4, 7.0, 3.0, 1.1
+  and 0.2 percent, at 75 degrees 11.0, 1.8, 0.1, 0.1 and 0.7; below the useful
+  angle (five and ten times, at 75 degrees) the exact observer goes a fraction
+  of a percent above the stronger, where the article's ideal stops at it.
+  ChatBench. With GPT-4o (k = 2.16, 74.5 degrees): the ideal with shared cues
+  is 1.020 times the machine's sensitivity, the ceiling with its verdict 1.000
+  (1.000 and 1.007 at the ends of the angle's interval, 59 and 86 degrees;
+  1.013 at 90), and the people reached 0.761 (0.673-0.849). With Llama 3.1 8B
+  (k = 1.18, 75.1 degrees): 1.173 with shared cues, 1.098 with its verdict
+  (1.047 and 1.132 at 62 and 82 degrees; 1.180 at 90), and the people reached
+  1.189 (1.044-1.340), above both, because the machine queried alone is weaker
+  than the one that talked with them («Deviations», 9 November).
+  It is a model, not a measurement, and its errors are Monte Carlo errors, not
+  sampling intervals. A machine that also gives its reasons, or a graded
+  confidence, gives more than a verdict: the ceiling binds a pair that
+  exchanges verdicts, not the people of ChatBench, who read a conversation.
+
+- **Closeness net of difficulty, on αNLI.** Reason: in the angle two things
+  end up together, how alike two minds are and how hard the items are for
+  everyone. The article says so, says that the data to tell them apart exist,
+  and the review asked to use them. For the pair nothing changes: the shared
+  difficulty counts in ρ («Model and definitions») and the margin keeps the
+  whole correlation. What changes is how much of the angle can be read as
+  likeness.
+  *Who the person is.* On αNLI the «person» is one vote of the hundred
+  anonymous votes on a story (`measure.compare_votes`): there are no people to
+  follow, only how many voted for the key. The correlation between person and
+  machine is therefore, by construction, how much the machine fails where many
+  people fail, and the difficulty for the people is the whole human side of
+  it. A difficulty estimated on the people themselves would take everything
+  out. It is shown only to say why it is not the analysis done here: with half
+  of the votes of each story making the strata and the other half as the
+  person, the angle with Fable 5.2 goes from 47.0 degrees to 62.7 with three
+  bands (58.1-66.9), 82.9 with ten (79.3-86.2) and 86.6 with twenty-five
+  (83.1-89.9). With three bands what is left is difficulty inside the band:
+  an angle below 90 degrees there proves nothing.
+  *Method.* The difficulty is estimated on a third population. Person and
+  machine: the ten open machines in both modes, twenty answers per story (for
+  an open machine the other nine, eighteen answers); the score of a story is
+  how many are right. Machine and machine: the votes for the key. Strata: the
+  consecutive levels of the score, merged from the hard end until each holds
+  at least 60 stories (9 to 12 strata on the machines' score; 18 on the votes,
+  15 without the contested stories): fine enough that little difficulty is
+  left inside a stratum, large enough that a stratum has errors to count. With
+  30 and with 120 stories the correlations move by at most 0.04; with the
+  immediate answer alone as the third population (ten answers) those between
+  person and machine are higher by up to 0.08, because a coarser score takes
+  out less. Estimator: one latent
+  correlation for all the strata, each stratum with its own two thresholds
+  taken from its margins, at the maximum of the summed log-likelihood of the
+  2×2 tables; with one stratum it is the article's tetrachoric. A stratum
+  where one of the two makes no error carries no information and drops out.
+  Next to it the Mantel-Haenszel common odds ratio, which needs no thresholds.
+  Intervals: 2,000 resamples of the stories (Poisson weights), strata fixed;
+  250 for the median over the 180 pairs of open machines. Test: on stories
+  simulated with a known correlation inside each level of difficulty the
+  estimator gives it back (0.29 for a true 0.30, where the correlation on all
+  the stories together is 0.64; at the size of αNLI with eighteen strata and a
+  machine right 88 times in a hundred, a mean of 0.30 over twelve corpora).
+  *Outcome, person and machine*, net of the difficulty for the open machines.
+  The angle opens and stays below 90 degrees with its whole interval for the
+  four Claude models: Fable 5.2 from 47.0 (44.4-49.9) to 58.6 (55.4-61.8),
+  Opus 5.5 from 47.9 to 59.9 (56.8-63.1), Sonnet 5.5 from 49.8 to 64.9
+  (61.1-68.5), Haiku 5.5 from 55.3 to 74.7 (70.6-78.5). Without the 157
+  contested stories: Fable from 67.5 to 72.2 (68.6-76.2), Opus from 70.2 to
+  74.1 (70.5-77.9), Sonnet from 68.8 to 76.4 (72.9-79.7), Haiku from 71.3 to
+  81.6 (78.6-84.8). Of the correlation between people and Fable three quarters
+  remain (from 0.68 to 0.52, interval 0.47-0.57; 76 percent, 72-81), of that
+  with Haiku less than half (from 0.57 to 0.26, 0.20-0.33; 46 percent, 37-55).
+  The strongest open machines, net of the other nine, in immediate answer:
+  Gemma 4 26B from 55.5 to 72.7 (69.1-76.5), Qwen3.8 27B from 52.9 to 70.3
+  (66.2-74.2). For the seven weakest open machines the angle net of the others
+  lies between 84.5 and 94.4 degrees over the two modes, and in eleven of the
+  fourteen cases the interval includes 90 degrees or lies above it: what they
+  share with the people is what is hard for the open machines.
+  *Outcome, machine and machine*, net of the difficulty for the people. Opus
+  5.5 and Fable 5.2 stay almost the same machine: from 0.95 (0.92-0.97) to
+  0.83 (0.75-0.91). Sonnet and Fable from 0.88 to 0.59 (0.45-0.72). Haiku and
+  Fable from 0.72 to 0.24 (0.05-0.41), Gemma 4 26B and Fable from 0.71 to 0.24
+  (0.05-0.42), Gemma and Haiku from 0.77 to 0.52 (0.41-0.63). The median over
+  the 180 pairs of open machines goes from 0.63 (0.60-0.66) to 0.45
+  (0.43-0.49). The odds ratios say the same: Opus and Fable from 156 to 20
+  (11-41), Haiku and Fable from 16 to 1.9 (1.1-3.1), Gemma and Fable from 15
+  to 2.0 (1.2-3.3). Without the contested stories: Opus and Fable from 0.89 to
+  0.85 (0.73-0.95), Haiku and Fable from 0.44 to 0.16 (−0.13 to 0.39), Gemma
+  and Fable from 0.56 to 0.28 (0.01-0.51). With the strongest machines only
+  the hard strata count: Fable makes no error in nine of the eighteen strata,
+  and a comparison with it rests on 573 stories.
+  *What it cannot say.* The score is a count of twenty answers, or of a
+  hundred votes: the difficulty it leaves inside a stratum stays in the
+  correlation, which is an upper bound on the likeness. And the open machines
+  are not neutral judges: what they share with the machine measured goes out
+  with the difficulty, and more of it the more that machine resembles them.
+  Haiku and the weak open machines are close to the third population, Fable is
+  not: the net angles of different machines are not a trend to read. There is
+  no single «pure» angle, it depends on who measures the difficulty. Nothing
+  here is calibrated.
+
+- **The contested stories on half of the votes.** Reason: the article takes
+  out the stories whose key most voters contradict, looking at the same votes
+  that then measure the angle, and says so. Method: half of the hundred votes
+  of each story, drawn at random, say whether it is contested; the other half
+  is the person; same step as `compare_votes`. Point: mean over 200 splits.
+  Interval: 2,000 repetitions, each with a new split and resampled stories.
+  Outcome: the angle without the contested stories is 65.9 degrees for Fable
+  5.2 (62.3-70.0) against 67.5 with the same votes, 68.3 for Opus 5.5
+  (64.2-72.8) against 70.2, 67.8 for Sonnet 5.5 (64.1-71.9) against 68.8, 70.7
+  for Haiku 5.5 (67.5-74.1) against 71.3, 69.0 for Gemma 4 26B in immediate
+  answer (65.6-72.0) against 69.4. The margin of the ideal pair: 3.9 percent
+  for Fable (2.3-5.7) against 4.5, 6.4 for Opus (4.2-8.9) against 7.2, 8.7 for
+  Sonnet (6.0-11.3) against 9.2, 20.0 for Haiku (16.0-23.3) against 20.7. The
+  choice made on the same votes is worth one or two degrees, and the reading
+  does not change. The other half of that caution stays: taking out the
+  stories hardest for the people narrows their range, whatever votes choose
+  them.
+
+- **The silicon people: the method, and the arm with the healthy machine.** No
+  new computation: the numbers were already in `results/silicon.json` (300
+  resamples) and the article did not describe the method. Method
+  (`gpu/silicon.py`): CIFAR-10; twenty small convolutional networks per arm;
+  three stages, with 4,000, 12,000 and 36,000 training images seen in all, six
+  epochs each; the first stage alone in every arm. From the second stage the
+  control minimizes the cross-entropy with the true label, the two assisted
+  arms half of it plus half of the Kullback-Leibler divergence from the
+  machine's output (weight 0.5). The machine is a ResNet-18 trained on the
+  training set and on the 8,000 test images outside the exam, then frozen. Its
+  defective copy, on the images it calls cat or dog whose features exceed a
+  threshold along a fixed random direction (seven in ten), puts the other
+  class two logits above. The exam is 2,000 test images that neither the
+  networks nor the machine saw in training (the defect's threshold is set on
+  them); on 277 the defect changes the machine's answer. So the networks
+  always see the true label, and the machine's opinion is half of what they
+  learn from: that the arm with the defect leans toward it is the direction
+  the loss builds in. The size is not: where the machine was right before the
+  defect, the target the loss aims at still has the true class first (at least
+  one half, against at most 0.44 for the defect's class).
+  The numbers. On the 277 items, the defect's wrong answer: 11.0 percent in
+  the control, 11.2 with the healthy machine, 23.2 with the defective one;
+  defective minus control 12.1 points (8.7-15.8), healthy minus control 0.2
+  (−1.0 to 1.5); correct answers there 73.5, 73.9 and 61.1 percent. The arm
+  with the healthy machine against the control, at the last stage:
+  correlation of the correct answers with the machine 0.669 against 0.670
+  (0.407 and 0.405 at the first), accuracy 83.6 against 83.3 percent;
+  difference in the differences of A, without conditioning on the class,
+  −0.005 (−0.041 to 0.032), within the class −0.016 (−0.141 to 0.071).
+  Learning next to a healthy machine did not bring the networks closer to it
+  than learning alone. The arm with the defect against the defective machine:
+  correlation 0.539, against 0.413 for the control measured against the same
+  machine (0.298 and 0.278 at the first stage); difference in the differences
+  of A without conditioning on the class 0.106 (0.065-0.152), within the
+  class, as the protocol prescribed, 0.019 (−0.059 to 0.094). The plain
+  correlations have no interval: the networks' answers are not in this
+  repository.
