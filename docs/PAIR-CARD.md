@@ -27,16 +27,16 @@ Draft of 15 November 2026. The detail, with the calculations, is in [`PAIR-PROTO
 | Margin ceiling | The most a perfect pair would add to the stronger partner | Yes | Yes |
 | Alarm | How often the machine errs where you agree and where you do not | Yes, roughly | Yes |
 | Yield over the machine | Whether together you do better or worse than the machine alone | Only if the distance is large | Yes |
-| Angle between the errors | How much you err on the same cases | **No** (from 47 to 105 degrees) | **No** (from 56 to 95) |
+| Angle between the errors | How far your errors overlap | **No** (from 47 to 105 degrees) | **No** (from 56 to 95) |
 
 The angle lives on the machine's errors: to know it within ten degrees you need between 50 and 80 of them. Below 40 errors it is only an indication, below 10 it should not be read.
 
 ## The rule, by zone
 
-- **Zone A: the whole interval of *k* above 1.5.** The machine's answer stands, even when you disagree and even when you are very sure. The disagreement is an alarm: those cases go to a third source, not to your second opinion. Get the answer out: the whole case in the chat, and if it does not answer, ask again.
+- **Zone A: the whole interval of *k* above 1.5.** The machine's answer stands, even when you disagree and even when you are very sure. The disagreement is an alarm: those cases go to a third source, not to your second opinion. Make sure an answer comes out: the whole case in the chat, and if it does not answer, ask again.
 - **Zone B: *k* above 1, not all above 1.5.** No fixed rule. Add cases and decide on the test of the pair (item 3).
 - **Zone C: the interval includes 1.** Neither is in charge. When you agree you proceed; a disagreement is decided with something else (time, a third source).
-- **Zones D and E: you are the stronger one.** The roles are swapped. Take care not to be dragged along by a wrong answer well put.
+- **Zones D and E: you are the stronger one.** The roles are swapped. Take care not to be dragged along by a wrong answer that is persuasively worded.
 
 If the kinds of case give different zones, the rule is given kind by kind.
 

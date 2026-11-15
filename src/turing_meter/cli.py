@@ -16,7 +16,7 @@ def main(argv: list[str] | None = None) -> int:
     v = sub.add_parser("validate", help="validate every task under a directory")
     v.add_argument("dir", type=Path)
     p = sub.add_parser("pair", help="measure one person and one machine on a sheet of the person's own cases")
-    p.add_argument("sheet", type=Path, help="CSV with one row per case (docs/PAIR-PROTOCOL.md, section 8)")
+    p.add_argument("sheet", type=Path, help="CSV with one row per case (docs/PAIR-PROTOCOL.md, section 9)")
     p.add_argument("--options", type=int, required=True, help="number of options per case (2 for yes/no)")
     p.add_argument("--resamples", type=int, default=2000, help="resamplings of the cases for the intervals")
     p.add_argument("--seed", type=int, default=534)

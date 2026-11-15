@@ -42,6 +42,6 @@ BY KIND OF CASE (k changes with the task: do not use the overall k where the str
 ZONE A (on the total: see the warning on the kinds of case). The machine is clearly stronger than you on these cases (the whole interval of k is above 1.5).
   - The machine's answer stands, even when you disagree and even when you are very sure. In the data of the paper, with a machine twice as sensitive, in a disagreement the machine was right 86 times in a hundred and the person 10; those who did not follow it were right one time in four.
   - The disagreement is an alarm: that is where most of the machine's errors fall. It serves to choose what a third source should check (a colleague, another method, the documents), not to decide on your own.
-  - Let the answer come out: give the machine the whole case, and if it does not answer, ask again, do not fall back on your own. In the data the biggest loss came from chats that stayed without an answer.
-  - Your own check, by itself, adds no sensitivity that can be measured: if it stays, it is for responsibility or because the two errors do not cost the same.
+  - Make sure an answer comes out: give the machine the whole case, and if it does not answer, ask again, do not fall back on your own. In the data the biggest loss came from chats that stayed without an answer.
+  - Your own check, by itself, adds no sensitivity that can be measured: if it stays, it is for accountability or because the two errors do not cost the same.
   This holds for these cases, this version of the model and this way of asking it. Inside the chat the machine is not the same: only the test of the pair says.

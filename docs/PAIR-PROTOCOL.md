@@ -2,9 +2,8 @@
 
 > **English** · [Italiano](PAIR-PROTOCOL.it.md). The Italian is the original; this is its translation.
 
-Draft 0.1, 15 November 2026. It accompanies the article "Intelligenza Apparente" and uses its quantities. The article calls what is done here the baseline measurement, because it uses "calibration" for the instrument's own calibration (its Appendix C); in these pages "calibration" is the user's baseline measurement.
-It has not been tried with real people: the calculations are simulations made with the estimators of the
-experiment's repository, plus two checks on the ChatBench data. Every figure says where it comes from:
+Draft 0.1, 15 November 2026. It accompanies the article "Intelligenza Apparente" and uses its quantities. The article calls the user's own measurement the "baseline measurement", because it reserves "calibration" for the calibration of the instrument itself (its Appendix C). These pages use "calibration" for the user's baseline measurement.
+It has not been tried with real people: the calculations are simulations made with the estimators in `experiments/angle-between-errors/`, plus two checks on the ChatBench data. Every figure says where it comes from:
 **[article]** is a figure from the article, **[simulation]** a calculation of these pages inside the
 model, **[data]** a calculation of these pages on the public ChatBench data.
 
@@ -82,7 +81,7 @@ know how the pair does, you have to test the pair.
 - **The format.** Four options, if the work allows it (section 3.5).
 - **How many, and how to divide them.** For one person: 300 cases per kind, divided at random into three
   modules of 100. Module A is for calibration, B for testing the rule, C is kept aside for repetition.
-  Randomly dividing a single pile guarantees that the modules are equally difficult: this is what makes
+  Randomly dividing a single pile makes the modules equally difficult on average: this is what makes
   it possible to compare the person of today with the person of a year from now. Module C must not be
   given to the machine until it is needed.
 - **Order.** The cases are presented in random order, different for the person and for the machine.
@@ -103,7 +102,7 @@ know how the pair does, you have to test the pair.
 4. **Only at the end** are keys and results opened. From that moment the module's cases, for that
    person, are spent.
 
-The third step is done on the same cases, not on new ones, for three reasons: turing, yield, extraction and filter want the three answers on the same
+The third step is done on the same cases, not on new ones, for three reasons: the turing and the yield need all three answers on the same
 cases; it is the design of ChatBench, the source of the figures to compare with; and it halves the
 cases. The price is that the answer with the machine is a second attempt. In the data it weighs little:
 where the chat stayed silent people stay at 50 per cent, and the order of the moves does not visibly
@@ -112,7 +111,7 @@ change the outcome [article]. New cases are needed afterwards, to test the rule 
 ### 3.3 How many cases: the calculations
 
 **How they are made.** For each situation (true sensitivities, true angle, four options) 4,000
-calibrations of a single person are simulated with the repository's process, and the article's
+calibrations of a single person are simulated with the process in the repository, and the article's
 estimators run on each one. The tables give the interval in which 95 per cent of the estimates fall:
 what a single calibration can return. Check on the real data: drawing calibrations of 100 cases from
 ChatBench, *k* and the angle oscillate as much as the model says (standard deviation of the logarithm
@@ -161,8 +160,7 @@ degrees, margin 17 per cent.
   (zone A in 93 per cent of calibrations) is told apart from one on par (the interval includes 1 in 92).
   With *k* around 2, zone A comes out seven times in ten. The angle cannot be read.
 - **With 200 cases**: *k* within a quarter. Zone A comes out in 94 per cent of cases with *k* 2.2. On
-  par, one can say that the ideal pair has a margin above zero. The yield of a pair like the ChatBench
-  one is told apart from one. The angle still has an interval of forty degrees.
+  par, one can say that the ideal pair has a margin above zero. The yield of a pair like the ChatBench one can be told apart from 1. The angle still has an interval of forty degrees.
 - **With 400 cases**: the angle within 13 degrees with a machine at 88 per cent.
 
 **The practical rule for the angle.** Its standard deviation is about 45 degrees divided by the square
@@ -260,7 +258,7 @@ are 300 calibrations per row, which is why the first row differs slightly from t
 - **If keys are scarce**, give everyone the same cases. **If hours are scarce**, give different cases.
 - **Each person's *k*** remains their own: the machine's sensitivity comes from all the cases, the
   person's from their own. With 100 cases each, nine tenths of what distinguishes one person from
-  another is a true difference; with 25 cases seven tenths, with ChatBench's nine less than half
+  another is a true difference; with 25 cases seven tenths, with ChatBench's nine cases per person less than half
   [data]. With 25 cases a person's *k* has an uncertainty of almost a third: not enough to assign them
   a zone.
 - **Each person's angle**, with a group, is not available: what you get is the group's. Whether the angle
@@ -268,8 +266,7 @@ are 300 calibrations per row, which is why the first row differs slightly from t
 
 ### 3.7 The two-phase design
 
-The person's hours cost, the machine's do not. Where an archive of cases with the key exists (a thousand
-closed files with their outcome), the machine does them all. The person does 200, drawn at random within
+The person's hours are expensive; the machine's are free. Where an archive of cases with the key exists (a thousand closed files, each with its known outcome), the machine does them all. The person does 200, drawn at random within
 two strata: half among the cases the machine got wrong, half among those it got right, without knowing
 which are which. Each answer weighs as much as the archive cases it represents. With the same 200
 answers [simulation]:
@@ -301,14 +298,14 @@ The rule is taken from the interval of *k*, for each kind of case.
 | D, E | all below 1 | as B and A, with the roles swapped | The person is stronger |
 
 The 1.5 threshold is a convention. It corresponds to a ceiling of 20 per cent with independent errors
-and to a margin of 8.5 at 75 degrees, the angle measured between people and GPT-4o. Whoever wants a lower
+and to a margin of 8.5 per cent at 75 degrees, the angle measured between people and GPT-4o. Whoever wants a lower
 ceiling moves the threshold: 1.8 for 15 per cent, 2.2 for 10. In the article's data all the pairs with a
 machine twice as strong, or more, stayed below the machine (yield between 0.66 and 0.76); between 1.6
 and 1.9 the yield goes from 0.81 to 1.29 depending on the machine. Two machines alone do not fix a
 threshold.
 
 **The margin read in errors.** The margin is in sensitivity, and people at work count errors. At 90
-degrees a person at 58 per cent brings the ideal pair always the same weight of evidence, and the cut in
+degrees a person at 58 per cent always adds the same weight of evidence to the ideal pair, and the cut in
 errors is almost the same at every *k*: between 26 and 30 per cent of the machine's errors. At an angle
 of 75 degrees the cut narrows: 17 per cent with *k* 1.2, 8 with *k* 2, 2 with *k* 3 [simulation]. In
 absolute numbers, with a machine at 98 per cent the ceiling is worth half an error per hundred cases.
@@ -324,14 +321,14 @@ absolute numbers, with a machine at 98 per cent the ceiling is worth half an err
    only the verdict of a machine 2.2 times more sensitive cannot do better than always follow it
    [simulation].
 2. **Even when very sure.** In mathematics, among those who said they were very sure, the person was
-   right in 10 disagreements out of 46 and the chat in 35 [article]. The model gives the same thing: 19
+   right in 10 disagreements out of 46 and the chat in 35 [article]. The model gives the same picture: 19
    and 74 per cent. The rule "I follow the machine, except when I am very sure" costs 5 points of
    correct answers at GPT-4o's values, and 7 with a machine at 98 per cent [simulation].
 3. **The disagreement is an alarm.** GPT-4o's chat erred in 3.5 per cent of agreements and 14.4 of
    disagreements, and three of its errors in four fell in a disagreement [article]. The alarm sounds in
    41 per cent of cases, and in those cases the machine is still right more than eight times in ten: it
    serves to choose what to verify, not whom to believe.
-4. **Get the answer out.** Of the 11 points the pair lost against GPT-4o alone, almost 8 lie in the
+4. **Make sure an answer comes out.** Of the 11 points the pair lost against GPT-4o alone, almost 8 lie in the
    chats from which no answer came out; there the machine alone answered correctly 84 times in a
    hundred and people stayed at 50 [article]. It is a description, not a proven cause, but the remedy
    costs nothing: give the machine the whole case, with the options, and if it does not answer, ask
@@ -390,8 +387,7 @@ crude rule gains 3 points, and the ideal almost 7.
   very sure people, and in the ethics disagreements the person is right 37 times in a hundred [article].
   In the model, on par, someone very sure is right 70 times in a hundred [simulation]: declared
   confidence is not the model's. It must be tested, not prescribed.
-- **"In a disagreement, recheck."** Rechecking alone, in the data, did worse than following. What makes a
-  third source worth it no datum of the article says.
+- **"In a disagreement, recheck."** Rechecking alone, in the data, did worse than following. No datum in the article says what makes a third source worth consulting.
 - **A rule from one's own confidence.** With 100 cases the disagreements are about forty, divided over
   three levels: too few to fix a personal threshold.
 - **A gain beyond the model.** That people know when the machine errs is not proven: they follow the chat
@@ -421,7 +417,7 @@ then with the machine applying the rule) on new cases. The answers given alone a
 calibration: after module B the cases for *k* and for the angle are 200. The yield of module B is
 compared with that of module A, and the difference between two yields is more uncertain than either: with
 100 cases per module only a jump of 0.33 is seen (from 0.76 to more than 1.05), with 200 of 0.23, with
-400 of 0.17 [simulation]. A small improvement, a single person does not see.
+400 of 0.17 [simulation]. A single person cannot see a small improvement.
 
 **Time.** With the two times per case, the pair's power relative to the person is the turing squared
 times the ratio of the times; relative to the machine that is delegated to without looking, the yield
@@ -452,8 +448,7 @@ ratio between the sensitivity alone then and today [article]. But a single perso
 
 The percentages are the probability of noticing the drop. With 100 cases at a time a person sees, one
 time in two, only a drop of 40 per cent. An organization that pools 1,000 answers at a time (ten people
-with 100 cases) sees a drop of 20 per cent almost nine times in ten, and with 3,000 one of 10 three
-times in four, if the drop is common to all. The anchored turing is an organization-level measure.
+with 100 cases) sees a drop of 20 per cent almost nine times in ten, and with 3,000 a drop of 10 per cent three times in four, if the drop is common to all. The anchored turing is an organization-level measure.
 
 **When.** The machine: at every version, and when the sentinel sounds. The person: once a year, or when
 the way of working changes. The modules wear out: three modules are three measurements.
@@ -471,8 +466,8 @@ the way of working changes. The modules wear out: three modules are three measur
 | **The person who remembers the cases** | If they remember the key of three cases in ten, *k* goes from 2.16 to 1.55 [simulation] | Each module only once; no key before the end |
 | **The machine in the chat** | Llama: 85% in chat, 73% alone. GPT-4o: more than a fifth of trials without an answer [article] | The test of the pair, with the chat's answer noted case by case |
 | **The two errors do not cost the same** | Sensitivity does not see it. Example calculation: positives one in ten, an omission costs twenty false alarms. A pair with yield 0.76 that moves the criterion costs 48 per hundred cases; the machine with a neutral criterion 35, with a cautious criterion that cannot be moved 55 [simulation] | On yes/no, count omissions and false alarms separately for person, machine and pair, and weigh them with your own costs and the true frequency of positives |
-| **Cases linked to each other** | Ten files of the same client are not ten cases: the true intervals are wider | One case per client or per file; otherwise resample by groups |
-| **Peeking and adding** | Lengthening the calibration until the hoped-for zone comes out raises the probability of getting the zone wrong | Fix the steps beforehand (100, then 200) and the zone that makes you stop |
+| **Dependent cases** | Ten files of the same client are not ten cases: the true intervals are wider | One case per client or per file; otherwise resample by groups |
+| **Peeking and extending** | Lengthening the calibration until the hoped-for zone comes out raises the probability of getting the zone wrong | Fix the steps beforehand (100, then 200) and the zone that makes you stop |
 
 On the keys there is a confirmation in the data. On αNLI, where in one story in ten the majority of
 voters contradicts the key, the angle between people and Fable 5.2 is 47 degrees with all the stories
@@ -499,7 +494,7 @@ anyone calculate it on an open test:
   calibration ages (Opus 5.5 and Fable 5.2 have a correlation of 0.95 [article]);
 - **how often no usable answer comes out** in chat-style use: in the data it is the biggest loss, and
   no model card reports it;
-- **results on new questions**, held by a third party and published after the model is retired: an open
+- **results on new questions**, held by a third party and published only once the questions are retired: an open
   and repeatable test is also a test that the next model has read.
 
 With these public answers, whoever uses the model is left with only their own half to do: answering 100
@@ -511,7 +506,7 @@ confidence, the time, the pair. They keep the sheet and redo it at every version
 
 **An organization** does what a single person cannot:
 
-- the archive of cases with the key, the second reading, the modules drawn at random, the secrecy;
+- the archive of cases with the key, the second reading, the modules drawn at random, the cases kept secret;
 - the machine queried once for everyone, with the conditions fixed and the answers kept;
 - the two-phase design and the group, which give the angle;
 - a *k* per kind of case and per band of experience, and the rule that follows: who signs, when a
@@ -528,7 +523,7 @@ confidence, the time, the pair. They keep the sheet and redo it at every version
 **The sheet.** A CSV with one row per case: [`examples/pair-sheet-template.csv`](examples/pair-sheet-template.csv).
 Columns: `case`, `stratum`, `key`, `person`, `confidence`, `machine`, `chat`, `pair`, `seconds_alone`,
 `seconds_pair`, and `weight` for the two-phase design. Only `key`, `person`, `machine` are required.
-The program also accepts the Italian names of the first drafts (`caso`, `strato`, `chiave`, `persona`,
+The program also accepts Italian column names (`caso`, `strato`, `chiave`, `persona`,
 `sicurezza`, `macchina`, `chat`, `coppia`, `secondi_solo`, `secondi_coppia`, `peso`).
 
 **The program.** `turing-meter pair`, in the repository's package:
@@ -559,7 +554,7 @@ for *k* and does not report the angle.
 | Need | In the experiment | Added in the package |
 |---|---|---|
 | Sensitivity with *m* options, tetrachoric, ideal, useful angle | `angle/sdt.py` | Ported to `mchoice.py`, unchanged |
-| Conversion from the correlation of the correct answers to that of the cues | `sdt.convert_rho_mafc`, `measure.conversion_table` | For a single person the first is used, with the exact threshold. The second rounds the thresholds (the defect declared in appendix D of the experiment): with a machine around 98% its table stops growing with the correlation and no longer inverts reliably |
+| Conversion from the correlation of the correct answers to that of the cues | `sdt.convert_rho_mafc`, `measure.conversion_table` | For a single person the first is used, with the exact threshold. The second rounds the thresholds, an approximation: with a machine around 98% its table stops growing with the correlation and no longer inverts reliably |
 | Angle and intervals for many people with few cases | `measure.compare` | For a single person `measure.compare` discards one resample in three and has no exact intervals for few errors: here resampling of the cases and exact intervals |
 | Floor for *k* with zero errors | `conversations.zero_errors` | A general function |
 | Margin with interval, ceiling, errors per hundred | Only the formula | Everything |
@@ -587,15 +582,14 @@ are in `analysis/pair-calibration/`, the protocol and the card in `docs/`.
 3. **What to do when the alarm sounds.** The data say what does not work, deciding alone. What makes a
    third source, or a second model, worth it is not there.
 4. **Whether the machine's confidence is needed.** The margin in zone A is taken only with a graded cue
-   from the machine. Whether the confidence a model declares is one, is not measured here.
+   from the machine. Whether the confidence a model states is such a cue is not measured here.
 5. **Today's models.** No person has worked with them in the data: for them there is *k*, not a turing,
    and on exam questions the angle is not estimated. The zones, for the models actually in use, come
    from *k* alone.
 6. **Today's chat.** Memory, tools, web search: whether today's chats stay as mute as ChatBench's, or
-   comply more, we do not know. Nor do we know whether Llama's extra third in chat is due to those who
-   ask.
+   are more compliant, we do not know. Nor do we know whether Llama's extra third in chat is owed to the people who ask.
 7. **People.** The data come from workers recruited online on short tasks. For a specialist on their own
-   work there is not a single measurement.
+   work there is no measurement at all.
 8. **Time and costs.** The instrument reads sensitivity per decision. No datum of the article has times
    case by case, or the costs of the two errors.
 9. **Work without a key.** Open answers, long tasks, choices about what to ask: outside the instrument,
@@ -611,7 +605,7 @@ are in `analysis/pair-calibration/`, the protocol and the card in `docs/`.
 ## Appendix. How to redo the calculations
 
 The scripts are in [`analysis/pair-calibration/`](../analysis/pair-calibration/) and read the
-estimators from the experiment's repository without writing anything inside it; the path is changed
+estimators from `experiments/angle-between-errors/` without writing anything inside it; the path is changed
 with the variable `TURING_METER_EXPERIMENT`. They need Python 3.11 or later, numpy and scipy (with the
 repository: `uv run python analysis/pair-calibration/sim_sample.py`), plus pandas and the ChatBench data
 (`python -m angle.download data chatbench`, inside the experiment) for `verify_chatbench.py`. All
@@ -633,7 +627,7 @@ command writes which file.
 | `verify_chatbench.py` | The calibrations drawn from the real data; the machine that changes its answer | `chatbench-check.txt` |
 | `minor_figures.py` | Costs of the two errors, sentinel, memory, reliability, margin in errors | `minor-figures.txt` |
 | `check_pair_tool.py` | `turing-meter pair` tested on sheets whose truth is known | `tool-check.txt` |
-| `make_example.py` | The fake sheet in `docs/examples/` | `examples/pair-sheet-example.csv` |
+| `make_example.py` | The fake sheet in `docs/examples/` | `docs/examples/pair-sheet-example.csv` |
 
 Two caveats on the calculations. The fast route uses the tetrachoric with the exact threshold and the
 table of `sdt.convert_rho_mafc`; the article's instrument, designed for many people with few cases, uses

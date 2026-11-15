@@ -499,9 +499,9 @@ RULES = {
            "twice as sensitive, in a disagreement the machine was right 86 times in a hundred and the person 10; those who did not follow it were right one time in four.",
            "The disagreement is an alarm: that is where most of the machine's errors fall. It serves to choose what a third source should check "
            "(a colleague, another method, the documents), not to decide on your own.",
-           "Let the answer come out: give the machine the whole case, and if it does not answer, ask again, do not fall back on your own. In the data the biggest loss "
+           "Make sure an answer comes out: give the machine the whole case, and if it does not answer, ask again, do not fall back on your own. In the data the biggest loss "
            "came from chats that stayed without an answer.",
-           "Your own check, by itself, adds no sensitivity that can be measured: if it stays, it is for responsibility or because the two errors do not cost the same."]),
+           "Your own check, by itself, adds no sensitivity that can be measured: if it stays, it is for accountability or because the two errors do not cost the same."]),
     "B": ("The machine is stronger, but not by much: you are in the middle zone (k above 1, not all above 1.5).",
           ["Here the model promises the pair a margin that may be worth having, and the data do not say how much of it you get.",
            "Do not draw a fixed rule from this calibration: add cases, and decide on the test of the pair.",
@@ -515,7 +515,7 @@ RULES = {
            "Be careful not to be dragged along: with a weaker machine the people in the paper followed its wrong answers more than was good for them."]),
     "E": ("You are clearly stronger than the machine on these cases (the whole interval of k is below 0.67).",
           ["You decide: the machine adds no sensitivity that can be measured. Use it for what saves time, not for deciding.",
-           "The risk is the opposite of the usual one: being persuaded by a wrong answer well put."]),
+           "The risk is the opposite of the usual one: being persuaded by a wrong answer that is persuasively worded."]),
 }
 
 

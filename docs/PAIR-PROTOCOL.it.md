@@ -81,7 +81,7 @@ sulle stesse; con GPT-4o, in più di un quinto delle prove dalla chat non è usc
 - **La forma.** Quattro opzioni, se il lavoro lo consente (paragrafo 3.5).
 - **Quanti, e come dividerli.** Per una persona: 300 casi per tipo, divisi a sorte in tre moduli da
   100. Il modulo A serve alla taratura, il B alla prova della regola, il C resta da parte per la
-  ripetizione. Dividere a sorte un solo mucchio garantisce che i moduli siano difficili uguale: è ciò
+  ripetizione. Dividere a sorte un solo mucchio rende i moduli difficili uguale, in media: è ciò
   che permette di confrontare la persona di oggi con quella di fra un anno. Il modulo C non va dato
   alla macchina finché non serve.
 - **Ordine.** I casi si presentano in ordine casuale, diverso per la persona e per la macchina.
@@ -102,7 +102,7 @@ sulle stesse; con GPT-4o, in più di un quinto delle prove dalla chat non è usc
 4. **Solo alla fine** si aprono chiavi e risultati. Da quel momento i casi del modulo, per quella
    persona, sono spesi.
 
-Il terzo passo si fa sugli stessi casi, e non su casi nuovi, per tre ragioni: turing, resa, estrazione e filtro vogliono le tre risposte sugli stessi
+Il terzo passo si fa sugli stessi casi, e non su casi nuovi, per tre ragioni: turing e resa vogliono le tre risposte sugli stessi
 casi; è il disegno di ChatBench, da cui vengono le cifre con cui confrontarsi; e dimezza i casi. Il
 prezzo è che la risposta con la macchina è un secondo tentativo. Nei dati pesa poco: dove la chat è
 rimasta muta le persone restano al 50 per cento, e l'ordine delle mosse non cambia l'esito in modo
@@ -302,7 +302,7 @@ La regola si prende dall'intervallo di *k*, per ogni tipo di caso.
 | D, E | tutto sotto 1 | come B e A, a parti scambiate | La persona è più forte |
 
 La soglia a 1,5 è una convenzione. Corrisponde a un tetto del 20 per cento con errori indipendenti e
-a un margine dell'8,5 a 75 gradi, l'angolo misurato fra persone e GPT-4o. Chi vuole un tetto più
+a un margine dell'8,5 per cento a 75 gradi, l'angolo misurato fra persone e GPT-4o. Chi vuole un tetto più
 basso sposta la soglia: 1,8 per il 15 per cento, 2,2 per il 10. Nei dati dell'articolo tutte le
 coppie con una macchina due volte più forte, o più, sono rimaste sotto la macchina (resa fra 0,66 e
 0,76); fra 1,6 e 1,9 la resa va da 0,81 a 1,29 secondo la macchina. Due macchine sole non fissano una
@@ -533,7 +533,7 @@ cinque errori.
 **Il foglio.** Un CSV con una riga per caso: [`examples/pair-sheet-template.csv`](examples/pair-sheet-template.csv).
 Colonne: `case`, `stratum`, `key`, `person`, `confidence`, `machine`, `chat`, `pair`, `seconds_alone`,
 `seconds_pair`, e `weight` per il disegno a due fasi. Obbligatorie solo `key`, `person`, `machine`.
-Il programma accetta anche i nomi italiani delle prime bozze (`caso`, `strato`, `chiave`, `persona`,
+Il programma accetta anche i nomi italiani delle colonne (`caso`, `strato`, `chiave`, `persona`,
 `sicurezza`, `macchina`, `chat`, `coppia`, `secondi_solo`, `secondi_coppia`, `peso`).
 
 **Il programma.** `turing-meter pair`, nel pacchetto del repository:
@@ -564,7 +564,7 @@ ci ha costruito sopra `pair.py`.
 | Serve | Nell'esperimento | Aggiunto nel pacchetto |
 |---|---|---|
 | Sensibilità a *m* opzioni, tetracorica, ideale, angolo utile | `angle/sdt.py` | Portate in `mchoice.py`, invariate |
-| Conversione dalla correlazione delle risposte giuste a quella degli indizi | `sdt.convert_rho_mafc`, `measure.conversion_table` | Per una persona sola si usa la prima, con la soglia esatta. La seconda arrotonda le soglie (il difetto dichiarato in appendice D dell'esperimento): con una macchina intorno al 98% la sua tabella smette di crescere con la correlazione e non si inverte più in modo affidabile |
+| Conversione dalla correlazione delle risposte giuste a quella degli indizi | `sdt.convert_rho_mafc`, `measure.conversion_table` | Per una persona sola si usa la prima, con la soglia esatta. La seconda arrotonda le soglie, un'approssimazione: con una macchina intorno al 98% la sua tabella smette di crescere con la correlazione e non si inverte più in modo affidabile |
 | Angolo e intervalli per molte persone con pochi casi | `measure.compare` | Per una persona sola `measure.compare` scarta un ricampionamento su tre e non ha intervalli esatti per pochi errori: qui ricampionamento dei casi e intervalli esatti |
 | Minimo di *k* con zero errori | `conversations.zero_errors` | Una funzione generale |
 | Margine con intervallo, tetto, errori su cento | Solo la formula | Tutto |
@@ -639,7 +639,7 @@ comando scrive quale file.
 | `verify_chatbench.py` | Le tarature estratte dai dati veri; la macchina che cambia risposta | `chatbench-check.txt` |
 | `minor_figures.py` | Costi dei due errori, sentinella, memoria, affidabilità, margine in errori | `minor-figures.txt` |
 | `check_pair_tool.py` | `turing-meter pair` alla prova su fogli di cui si conosce il vero | `tool-check.txt` |
-| `make_example.py` | Il foglio finto di `docs/examples/` | `examples/pair-sheet-example.csv` |
+| `make_example.py` | Il foglio finto di `docs/examples/` | `docs/examples/pair-sheet-example.csv` |
 
 Due avvertenze sui conti. La via rapida usa la tetracorica con la soglia esatta e la tabella di
 `sdt.convert_rho_mafc`; lo strumento dell'articolo, pensato per molte persone con pochi casi, usa
