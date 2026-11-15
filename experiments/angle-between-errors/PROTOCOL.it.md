@@ -1085,3 +1085,87 @@ campione letto e le letture in `results/mute-chats-sample.jsonl` e
   riporta il controllo in una frase, e i numeri vanno in appendice.
 - *Nota.* Il lettore 1 ha indicato le risposte con il numero di riga del file
   del campione; sono state riportate agli id in `results/mute-chats-labels.json`.
+
+## L'ancora casuale (scritto il 15 novembre 2026, prima di ogni esecuzione)
+
+Scritto dopo tutti i risultati qui sopra e prima di ogni chiamata a una
+macchina nella condizione nuova. Il codice (`angle/anchor.py`,
+`closed/anchor_claude.py`) è stato scritto e provato prima su prove sintetiche
+(`tests/test_anchor.py`); questa sezione e il codice sono committati e spinti
+prima dell'esecuzione.
+
+**La domanda.** Con la frase «I think the answer is X», dove X è la risposta
+della persona, Claude Haiku 5.5 risponde meglio che da sola (96,5 contro 93,5
+per cento; rapporto delle d′ 1,14, 1,10 contro Haiku da sola interrogata di
+nuovo). Due spiegazioni prevedono lo stesso guadagno. O la risposta della
+persona porta un'informazione che la macchina usa, o qualunque candidata
+scritta nella domanda spinge la macchina a controllarla (un effetto del
+formato, una verifica indotta dalla domanda), qualunque sia la candidata. Una
+lettera tirata a sorte le separa: ha il formato e nessuna informazione della
+persona.
+
+**Dati e prove.** Le 1.038 prove dell'avvocato del diavolo (ogni coppia
+distinta di domanda e risposta data da sola), le stesse 2.903 risposte. Per
+ogni prova una lettera R è estratta in modo uniforme fra le quattro opzioni,
+fissata dall'id della prova e dal seme 534 (`anchor.anchor_letter`, SHA-256, non
+l'hash di Python), indipendente dalla risposta della persona e dalla chiave:
+giusta una volta su quattro, e uguale alla lettera della persona in 254 prove,
+come dà il caso. Le prove in `data/items/chatbench-anchor.jsonl`.
+
+**Condizione.** *R, l'ancora casuale*: la domanda della condizione con la
+risposta, invariata (`devil.prompt(c, "told")`), con R al posto di X. Claude
+Haiku 5.5 attraverso Claude Code in modalità non interattiva, effort `low`, lo
+schema a un campo, una chiamata per prova, come in `closed/devil_claude.py`. Le
+altre condizioni sono le esecuzioni già nel repository: da sola (quella
+indicata dal protocollo dell'avvocato del diavolo, e quella rifatta), con la
+risposta. Una prova senza risposta esce da tutte le condizioni.
+
+**Misure.** Sulle 2.903 risposte:
+
+1. Accuratezza e d′ (quattro opzioni) della macchina da sola, con la risposta e
+   con l'ancora.
+2. L'accuratezza quando la lettera nella domanda è giusta e quando è sbagliata,
+   per la macchina con la risposta e con l'ancora; la macchina da sola sulle
+   stesse divisioni.
+3. L'attrazione di una lettera sbagliata: quante volte la macchina dà la lettera
+   ricevuta quando è sbagliata, meno quante volte la dà da sola.
+4. La macchina con la risposta come la prevede la lettera a caso: l'accuratezza
+   con l'ancora giusta per l'accuratezza della persona, più l'accuratezza con
+   l'ancora sbagliata per il suo complemento. Un'accuratezza con la risposta
+   sopra la previsione direbbe che le risposte della persona portano qualcosa
+   che una lettera a caso, giusta altrettanto spesso, non porta; sotto, che le
+   risposte sbagliate della persona attirano più di lettere sbagliate a caso
+   (sono distrattori plausibili).
+
+**Ipotesi e criteri.** Intervalli percentili al 95 per cento, 2.000 repliche
+ricampionando persone e domande insieme (pesi di Poisson), come
+nell'avvocato del diavolo.
+
+- *R1, il formato*: la macchina con l'ancora è più sensibile della macchina da
+  sola, d′_R / d′_0 sopra uno. Passa se l'intervallo sta sopra uno con tutte e
+  due le esecuzioni di Haiku da sola.
+- *R2, la risposta della persona*: la macchina con la risposta è più sensibile
+  della macchina con l'ancora, d′_A / d′_R sopra uno. Passa se l'intervallo sta
+  sopra uno.
+- *Riportate comunque*, senza criterio: le misure 2-4.
+
+**Che cosa può dire e che cosa no.** Le esecuzioni con la risposta e con
+l'ancora sono dello stesso giorno e sulle stesse prove, quindi la variabilità
+fra esecuzioni pesa su R2 meno che sul confronto con la macchina da sola (fra
+le due esecuzioni di Haiku da sola cambiano esito 28 domande su 396); negli
+intervalli comunque non c'è. Le differenze attese sono piccole (con la
+risposta e da sola le accuratezze distano tre punti), e R2 può non avere la
+potenza per passare anche se la risposta della persona aiuta: allora la misura
+4 dice più del test.
+
+**Dove va nell'articolo.** L'articolo dice che, per una macchina che non
+asseconda, la risposta della persona è un'ipotesi in più da controllare.
+
+- R2 passa: la frase resta, con il rapporto di R2.
+- R2 non passa, R1 passa: l'articolo dice che il guadagno viene dal formato,
+  una candidata nella domanda, e non dalla risposta della persona.
+- Nessuna delle due passa: l'articolo dice che la macchina che riceve la nostra
+  risposta non si distingue dalla macchina che riceve una lettera a caso, e il
+  guadagno sulla macchina da sola non si attribuisce alla persona.
+
+In ogni caso, i numeri nell'appendice dell'articolo.

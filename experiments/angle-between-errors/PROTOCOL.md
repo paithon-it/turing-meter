@@ -1066,3 +1066,81 @@ sample read and the readings in `results/mute-chats-sample.jsonl` and
   check in one sentence, and the numbers go in the appendix.
 - *Note.* Reader 1 keyed its answers by line number of the sample file; they
   were mapped to the ids in `results/mute-chats-labels.json`.
+
+## The random anchor (written 15 November 2026, before any run)
+
+Written after every result above and before any call to a machine in the new
+condition. The code (`angle/anchor.py`, `closed/anchor_claude.py`) was written
+and tested on synthetic trials first (`tests/test_anchor.py`); this section and
+the code are committed and pushed before the run.
+
+**The question.** Told «I think the answer is X», with X the person's answer,
+Claude Haiku 5.5 is more accurate than alone (96.5 against 93.5 percent; d′
+ratio 1.14, 1.10 against Haiku alone asked again). Two explanations predict the
+same gain. Either the person's answer carries information the machine uses, or
+any candidate written in the prompt makes the machine check it (a format
+effect, a kind of verification the prompt induces), whatever the candidate is.
+A letter drawn at random separates them: it has the format and none of the
+person's information.
+
+**Data and items.** The 1,038 items of the devil's advocate (each distinct pair
+of question and answer given alone), the same 2,903 trials. For each item a
+letter R is drawn uniformly among the four options, fixed by the item's id and
+the seed 534 (`anchor.anchor_letter`, SHA-256, not Python's hash), independently
+of the person's answer and of the key: right one time in four, and equal to the
+person's letter in 254 items, as chance gives. Items in
+`data/items/chatbench-anchor.jsonl`.
+
+**Condition.** *R, the random anchor*: the prompt of the told condition,
+unchanged (`devil.prompt(c, "told")`), with X replaced by R. Claude Haiku 5.5
+through Claude Code in headless mode, effort `low`, the one-field schema, one
+call per item, as in `closed/devil_claude.py`. The other conditions are the
+runs already in the repository: alone (the run named by the devil's protocol,
+and the one asked again), told. An item not answered is dropped from all
+conditions.
+
+**Measures.** On the 2,903 trials:
+
+1. The accuracy and d′ (four options) of the machine alone, told and anchored.
+2. Accuracy when the letter in the prompt is right and when it is wrong, for the
+   told and the anchored machine; the machine alone on the same splits.
+3. The pull of a wrong letter: how often the machine gives the letter it was
+   told when that letter is wrong, minus how often it gives it alone.
+4. The told machine as the random letter predicts it: the anchored accuracy
+   with a right letter times the person's accuracy, plus the anchored accuracy
+   with a wrong letter times its complement. A told accuracy above the
+   prediction would say the person's answers carry something a random letter
+   with the same correctness does not; below, that the person's wrong answers
+   pull harder than random wrong letters (they are plausible distractors).
+
+**Hypotheses and criteria.** 95% percentile intervals, 2,000 replicas
+resampling people and questions together (Poisson weights), as in the devil's
+advocate.
+
+- *R1, the format*: the anchored machine is more sensitive than the machine
+  alone, d′_R / d′_0 above one. Passes if the interval lies above one with both
+  runs of Haiku alone.
+- *R2, the person's answer*: the told machine is more sensitive than the
+  anchored machine, d′_A / d′_R above one. Passes if the interval lies above
+  one.
+- *Reported whatever happens*, with no criterion: measures 2-4.
+
+**What it can and cannot say.** The told and anchored runs are on the same day
+and the same items, so the variability between runs weighs less on R2 than on
+the comparison with the machine alone (between the two runs of Haiku alone 28
+of 396 questions change outcome); it is still not in the intervals. The
+expected differences are small (the told and alone accuracies differ by three
+points), and R2 may not have the power to pass even if the person's answer
+helps: then measure 4 says more than the test.
+
+**Where it goes in the article.** The article says that, for a machine that is
+not sycophantic, the person's answer is one more hypothesis to check.
+
+- R2 passes: the sentence stays, with the ratio of R2.
+- R2 fails, R1 passes: the article says that the gain comes from the format, a
+  candidate in the prompt, and not from the person's answer.
+- Neither passes: the article says that the machine told our answer is not
+  distinguishable from the machine told a random letter, and the gain over the
+  machine alone is not attributed to the person.
+
+In every case, the numbers in the appendix of the article.
