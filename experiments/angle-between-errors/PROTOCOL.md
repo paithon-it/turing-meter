@@ -873,3 +873,37 @@ changed), numbers in `results/verdict-ceiling.json` and
   class, as the protocol prescribed, 0.019 (−0.059 to 0.094). The plain
   correlations have no interval: the networks' answers are not in this
   repository.
+
+## The devil's advocate: outcome (15 November 2026)
+
+Results in `results/devil.json`; the answers in `devil-results/` and
+`closed-results/chatbench__haiku-5.5-rerun__low.jsonl`. Intervals as
+pre-registered (2,000 replicas, Poisson weights over people and questions).
+
+- **Claude Haiku 5.5.** H1 fails: told the person's wrong answer, the machine
+  is 1.3 points *more* accurate than alone (−1.5 to +4.3). H2 fails: +1.5
+  (−0.9 to +4.2). H3 passes: d′_B/d′_0 = 1.18 (1.07–1.31); with Haiku alone
+  asked again the same day, 1.13 (1.03–1.26). Told the answer, without the
+  request (not a hypothesis): 1.14 (1.03–1.27), 1.10 (1.00–1.22) with the
+  rerun. Accuracy: alone 93.5 (rerun 94.5), told 96.5, devil's advocate 97.1.
+  Output tokens per answer: about 170, 220 and 860. Between the two identical
+  runs of Haiku alone, 28 of 396 questions change outcome.
+- **Llama 3.1 8B (FP8), as pre-registered.** H1 passes: −34.5 points (−41.6 to
+  −27.8). H2 passes: +52.0 (+45.3 to +58.3). H3 passes: 1.41 (1.09–1.89).
+  Accuracy: alone 47.0, told 61.7, devil's advocate 56.7. But alone and told
+  answered with the letter only, the devil's advocate after reasoning.
+- **Llama, the reasoning controls (added after its results, before running
+  them).** All three conditions reason: alone 72.0, told 72.3, devil's
+  advocate 56.7. The H1 comparison: −18.5 (−24.8 to −12.2). The H2
+  comparison: +10.0 (+3.6 to +16.5). The H3 comparison: 0.67 (0.57–0.77), the
+  devil's-advocate pair below the machine alone. Where the person had been
+  right the devil's advocate falls from 87.5 (told) to 54.1.
+- **The trap** (both wrong, the machine gives the person's letter): Llama with
+  the letter only 41 → 98 → 44 percent (alone, told, devil's advocate); Llama
+  reasoning 48 → 85 → 44; Haiku 48 → 46 → 50, on few errors.
+- **Angles**, descriptive (ρ between the person's errors and the machine's):
+  Llama with the letter only 0.15, 0.99 (at the bound of the conversion) and
+  −0.10 (−0.36 to 0.08); Llama reasoning, told, 0.74; Haiku −0.02, 0.26, 0.11.
+- **Where it goes.** H3 passed for one machine, so by the rule above the
+  experiment goes in the body of the article, with the pre-registered outcome
+  for Llama and the controls in its appendix.

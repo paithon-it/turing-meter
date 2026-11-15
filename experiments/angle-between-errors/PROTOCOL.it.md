@@ -883,3 +883,42 @@ cambiata), numeri in `results/verdict-ceiling.json` e
   0,106 (0,065-0,152), dentro la classe, come prescriveva il protocollo, 0,019
   (da −0,059 a 0,094). Le correlazioni semplici non hanno un intervallo: le
   risposte delle reti non stanno in questo repository.
+
+## L'avvocato del diavolo: esito (15 novembre 2026)
+
+Risultati in `results/devil.json`; le risposte in `devil-results/` e in
+`closed-results/chatbench__haiku-5.5-rerun__low.jsonl`. Intervalli come scritti
+prima (2.000 repliche, pesi di Poisson su persone e domande).
+
+- **Claude Haiku 5.5.** H1 non passa: informata della risposta sbagliata della
+  persona, la macchina è *più* accurata di 1,3 punti che da sola (da −1,5 a
+  +4,3). H2 non passa: +1,5 (da −0,9 a +4,2). H3 passa: d′_B/d′_0 = 1,18
+  (1,07–1,31); con Haiku da sola interrogata di nuovo lo stesso giorno, 1,13
+  (1,03–1,26). Informata, senza la richiesta (non era un'ipotesi): 1,14
+  (1,03–1,27), 1,10 (1,00–1,22) con la seconda corsa. Accuratezza: da sola 93,5
+  (seconda corsa 94,5), informata 96,5, avvocato del diavolo 97,1. Gettoni in
+  uscita per risposta: circa 170, 220 e 860. Fra le due corse identiche di
+  Haiku da sola cambiano esito 28 domande su 396.
+- **Llama 3.1 8B (FP8), come scritto prima.** H1 passa: −34,5 punti (da −41,6
+  a −27,8). H2 passa: +52,0 (da +45,3 a +58,3). H3 passa: 1,41 (1,09–1,89).
+  Accuratezza: da sola 47,0, informata 61,7, avvocato del diavolo 56,7. Ma da
+  sola e informata rispondevano con la sola lettera, l'avvocato del diavolo
+  dopo aver ragionato.
+- **Llama, i controlli con il ragionamento (aggiunti dopo i suoi risultati,
+  prima di farli girare).** Tutte e tre le condizioni ragionano: da sola 72,0,
+  informata 72,3, avvocato del diavolo 56,7. Il confronto di H1: −18,5 (da
+  −24,8 a −12,2). Quello di H2: +10,0 (da +3,6 a +16,5). Quello di H3: 0,67
+  (0,57–0,77), la coppia dell'avvocato del diavolo sotto la macchina da sola.
+  Dove la persona aveva ragione l'avvocato del diavolo scende da 87,5
+  (informata) a 54,1.
+- **La trappola** (sbagliano tutte e due, la macchina dà la lettera della
+  persona): Llama con la sola lettera 41 → 98 → 44 per cento (da sola,
+  informata, avvocato del diavolo); Llama ragionando 48 → 85 → 44; Haiku 48 →
+  46 → 50, su pochi errori.
+- **Gli angoli**, descrittivi (ρ fra gli errori della persona e quelli della
+  macchina): Llama con la sola lettera 0,15, 0,99 (al limite della conversione)
+  e −0,10 (da −0,36 a 0,08); Llama ragionando, informata, 0,74; Haiku −0,02,
+  0,26, 0,11.
+- **Dove va.** H3 è passata per una macchina, quindi per la regola scritta
+  sopra l'esperimento va nel corpo dell'articolo, con l'esito di Llama come era
+  scritto e i controlli nella sua appendice.
