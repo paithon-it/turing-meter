@@ -1,0 +1,163 @@
+{
+  "protocol": "PROTOCOL.md, «After the seventh review», A",
+  "repetitions": 2000,
+  "seed": 534,
+  "gpt-4o": {
+    "trials": 1493,
+    "people": 168,
+    "questions": 390,
+    "acc_alone": 0.5773610180843939,
+    "acc_chat": 0.7736101808439384,
+    "phi_hh": 70.37651512572751,
+    "phi_hh_ci": [
+      59.08885480913576,
+      76.33498075443757
+    ],
+    "phi_ss": 72.02123825534056,
+    "phi_ss_ci": [
+      55.62246664219279,
+      80.26577821118562
+    ],
+    "delta": -1.6447231296130553,
+    "delta_ci": [
+      -11.194463851089044,
+      11.512682497230491
+    ],
+    "rho_hh": 0.33583767996372266,
+    "rho_ss": 0.30866443791755616,
+    "crowd_ceiling_alone": 1.7255807587246919,
+    "crowd_ceiling_chat": 1.7999345026075033,
+    "same_letter_alone": 0.41001564945226915,
+    "same_letter_alone_ci": [
+      0.3577491015804723,
+      0.4633276416108694
+    ],
+    "same_letter_chat": 0.5,
+    "same_letter_chat_ci": [
+      0.40638912671232874,
+      0.599194214876033
+    ],
+    "same_letter_diff": 0.08998435054773085,
+    "same_letter_diff_ci": [
+      -0.0054955747670440876,
+      0.18153170228784404
+    ],
+    "pairs_both_wrong_alone": 639.0,
+    "pairs_both_wrong_chat": 254.0,
+    "shared_letter_from_chat": {
+      "pairs": 127.0,
+      "both_chats_gave_it": 0.05511811023622047,
+      "at_least_one_chat_gave_it": 0.3464566929133858
+    },
+    "subsets": {
+      "chat_gave_a_letter": {
+        "trials": 1121,
+        "acc_alone": 0.6057091882247992,
+        "acc_chat": 0.864406779661017,
+        "phi_hh": 66.61535554588386,
+        "phi_ss": 63.11979065082451,
+        "delta": 3.4955648950593456,
+        "delta_ci": [
+          -14.350232336664984,
+          29.361759591923217
+        ]
+      },
+      "chat_gave_no_letter": {
+        "trials": 372,
+        "acc_alone": 0.49193548387096775,
+        "acc_chat": 0.5,
+        "phi_hh": 94.41736122402357,
+        "phi_ss": 84.25415218924023,
+        "delta": 10.163209034783335,
+        "delta_ci": [
+          -10.96268049458529,
+          37.527108691985774
+        ]
+      }
+    },
+    "passes": false,
+    "a3_passes": false
+  },
+  "llama-3.1-8b": {
+    "trials": 1401,
+    "people": 157,
+    "questions": 387,
+    "acc_alone": 0.6052819414703783,
+    "acc_chat": 0.7387580299785867,
+    "phi_hh": 64.73935660043797,
+    "phi_hh_ci": [
+      53.48573785764786,
+      71.67637831583296
+    ],
+    "phi_ss": 54.67313581700499,
+    "phi_ss_ci": [
+      43.34762640613378,
+      63.507421688940354
+    ],
+    "delta": 10.066220783432982,
+    "delta_ci": [
+      -1.1912134399678675,
+      19.468260646296763
+    ],
+    "rho_hh": 0.42673674626827507,
+    "rho_ss": 0.5782402220141138,
+    "crowd_ceiling_alone": 1.5308053777243082,
+    "crowd_ceiling_chat": 1.3150608572220057,
+    "same_letter_alone": 0.4047058823529412,
+    "same_letter_alone_ci": [
+      0.35786498176878534,
+      0.45360950465174754
+    ],
+    "same_letter_chat": 0.46825396825396826,
+    "same_letter_chat_ci": [
+      0.3790214721890349,
+      0.5650054347826086
+    ],
+    "same_letter_diff": 0.06354808590102706,
+    "same_letter_diff_ci": [
+      -0.031078724629125486,
+      0.1619213547703249
+    ],
+    "pairs_both_wrong_alone": 425.0,
+    "pairs_both_wrong_chat": 252.0,
+    "shared_letter_from_chat": {
+      "pairs": 118.0,
+      "both_chats_gave_it": 0.1440677966101695,
+      "at_least_one_chat_gave_it": 0.5254237288135594
+    },
+    "subsets": {
+      "chat_gave_a_letter": {
+        "trials": 969,
+        "acc_alone": 0.6346749226006192,
+        "acc_chat": 0.8121775025799793,
+        "phi_hh": 52.00295354921671,
+        "phi_ss": 20.937985553325348,
+        "delta": 31.064967995891365,
+        "delta_ci": [
+          8.175884017035916,
+          43.465239171091795
+        ]
+      },
+      "chat_gave_no_letter": {
+        "trials": 432,
+        "acc_alone": 0.5393518518518519,
+        "acc_chat": 0.5740740740740741,
+        "phi_hh": 96.14404983261156,
+        "phi_ss": 97.08967749981203,
+        "delta": -0.9456276672004691,
+        "delta_ci": [
+          -15.08946128600684,
+          17.970770864682194
+        ]
+      }
+    },
+    "passes": false,
+    "a3_passes": false
+  },
+  "A1_gpt-4o": false,
+  "A2_llama": false,
+  "A3": {
+    "gpt-4o": false,
+    "llama-3.1-8b": false
+  }
+}
