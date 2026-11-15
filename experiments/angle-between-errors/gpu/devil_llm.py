@@ -25,6 +25,8 @@ from gpu.machines_llm import Machine, model_input                 # noqa: E402
 
 BASE = Path("data")
 RUNS = (("alone", "chatbench"), ("told", "chatbench-devil"), ("devil", "chatbench-devil"))
+# controls added after Llama's results (PROTOCOL.md): the same reasoning as `devil`, without and with the answer
+CONTROLS = (("alone_reason", "chatbench"), ("told_reason", "chatbench-devil"))
 
 
 def main() -> None:
@@ -35,7 +37,7 @@ def main() -> None:
     t0 = time.time()
     machine = Machine(hf_id, False)
     print(f"loaded {name} in {time.time() - t0:.0f} s", flush=True)
-    for mode, task in RUNS:
+    for mode, task in (CONTROLS if "--controls" in sys.argv else RUNS):
         items = [json.loads(l) for l in open(BASE / "items" / f"{task}.jsonl", encoding="utf-8")]
         file = output / f"{task}__{name}__{mode}.jsonl"
         done = {json.loads(l)["id"] for l in open(file, encoding="utf-8")} if file.exists() else set()
@@ -46,12 +48,12 @@ def main() -> None:
                 block = rest[i:i + 64]
                 texts = [machine.prompt(prompt(c, mode), False) for c in block]
                 arguments = [""] * len(block)
-                if mode == "devil":
+                if mode in ("devil", "alone_reason", "told_reason"):
                     p = SamplingParams(max_tokens=700, temperature=0.0, stop=["Answer:", "ANSWER:"])
                     u = machine.llm.generate([model_input(machine, BASE, c, x) for c, x in zip(block, texts)], p, use_tqdm=False)
                     arguments = [o.outputs[0].text for o in u]
                     texts = [x + a + "Answer:" for x, a in zip(texts, arguments)]
-                ids = [machine.ids(len(c["options"]), space=mode == "devil") for c in block]
+                ids = [machine.ids(len(c["options"]), space=mode in ("devil", "alone_reason", "told_reason")) for c in block]
                 prob = machine.letter([model_input(machine, BASE, c, x) for c, x in zip(block, texts)], ids)
                 for c, pr, a in zip(block, prob, arguments):
                     f.write(json.dumps({"id": c["id"], "prob": [round(x, 6) for x in pr], "correct_option": c["correct_option"],

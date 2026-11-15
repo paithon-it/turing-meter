@@ -99,3 +99,12 @@ def test_claude_keeps_the_arguments_and_reads_the_letter(monkeypatch):
     assert list(seen["schema"]["properties"]) == ["arguments", "answer"] and "against my answer" in seen["text"]
     line, _ = devil_claude.ask(c, "told", "claude-haiku-5-5", "low")
     assert list(seen["schema"]["properties"]) == ["answer"] and "I think the answer is C." in seen["text"]
+
+
+def test_the_reasoning_controls_match_the_article_and_the_devil():
+    c = {**QUESTION, "id": "q1|C", "question_id": "q1", "hypothesis": "C"}
+    assert devil.prompt(QUESTION, "alone_reason") == format_prompt(QUESTION, "reason")
+    told = devil.prompt(c, "told_reason")
+    assert "I think the answer is C." in told and "Think step by step, briefly." in told
+    assert told.endswith("Answer: Y, where Y is the letter of the correct option (A to D).")
+    assert devil.prompt(c, "devil").endswith(told.split("briefly. ", 1)[1])      # the same closing line as the devil
