@@ -1,0 +1,7 @@
+runner: src pyproject.toml
+tasks: tasks
+analysis: analysis
+experiments: experiments
+deploy: .github :(glob)**/*.sh :(glob)**/Dockerfile :(glob)**/docker-compose*.yml
+tooling: .githooks .claude :(glob)**/CLAUDE.md
+exclude: README.md README.it.md LICENSE uv.lock docs/** **/README.md **/README.it.md **/PROTOCOL.md **/PROTOCOL.it.md analysis/RESULTS.md scripts/test/** tests/** **/test/** **/tests/** **/results/** **/closed-results/** **/devil-results/** **/*.png **/*.svg
