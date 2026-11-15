@@ -657,3 +657,18 @@ chiamata per item: la variabilità della macchina fra una chiamata e l'altra non
 **Dove va nell'articolo.** Se H3 passa per almeno una macchina, nel corpo;
 altrimenti nell'appendice di ciò che non è andato. In tutti e due i casi con i
 numeri delle tre ipotesi per le due macchine.
+
+**Deviazioni, lo stesso giorno, dopo le corse di Claude Haiku 5.5 e prima di
+quella di Llama.** I risultati di Haiku erano già visti; nessuna delle due scelte
+dipende da loro.
+
+- *Llama a 8 bit.* I pesi bf16 (16 GB) avrebbero lasciato 2 GB liberi sul
+  disco della macchina con la GPU, che è la macchina di lavoro di una persona.
+  Llama gira con i pesi FP8 dello stesso modello
+  (`RedHatAI/Meta-Llama-3.1-8B-Instruct-FP8`, 9 GB, pesi e attivazioni a 8 bit).
+- *Haiku da sola, di nuovo.* La condizione da sola veniva da una corsa del 14
+  novembre, le altre due da oggi: una differenza fra due corse potrebbe passare
+  per un effetto delle condizioni. Haiku da sola viene interrogata di nuovo oggi
+  con lo stesso prompt (`closed-results/chatbench__haiku-5.5-rerun__low.jsonl`).
+  È un controllo deciso dopo aver visto i risultati, e si riporta come tale: le
+  prove del protocollo restano sulla corsa indicata sopra.

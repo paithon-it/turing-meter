@@ -163,6 +163,9 @@ MACHINES = {   # name → files of the three conditions
                      RESULTS / "chatbench-devil__llama-3.1-8b__devil.jsonl"),
     "haiku-5.5": (Path("closed-results/chatbench__haiku-5.5__low.jsonl"), RESULTS / "chatbench-devil__haiku-5.5__told.jsonl",
                   RESULTS / "chatbench-devil__haiku-5.5__devil.jsonl"),
+    # a check decided after the results (PROTOCOL.md): the condition alone asked again on the same day
+    "haiku-5.5, alone asked again": (Path("closed-results/chatbench__haiku-5.5-rerun__low.jsonl"),
+                                     RESULTS / "chatbench-devil__haiku-5.5__told.jsonl", RESULTS / "chatbench-devil__haiku-5.5__devil.jsonl"),
 }
 
 

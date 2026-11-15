@@ -654,3 +654,17 @@ of the machine between calls is not in the intervals.
 **Where it goes in the article.** If H3 passes for at least one machine, in
 the body; otherwise in the appendix of what did not work. Either way with the
 numbers of all three hypotheses for both machines.
+
+**Deviations, the same day, after Claude Haiku 5.5's runs and before Llama's.**
+Haiku's results had been seen; neither change depends on them.
+
+- *Llama in 8 bits.* The bf16 weights (16 GB) would have left 2 GB free on the
+  disk of the GPU machine, which is someone's work machine. Llama runs with the
+  FP8 weights of the same model (`RedHatAI/Meta-Llama-3.1-8B-Instruct-FP8`,
+  9 GB, weights and activations in 8 bits).
+- *Haiku alone, again.* The condition alone came from a run of 14 November,
+  the other two from today: a difference between runs could pass for an effect
+  of the conditions. Haiku alone is asked again today with the same prompt
+  (`closed-results/chatbench__haiku-5.5-rerun__low.jsonl`). It is a check,
+  decided after seeing the results, and is reported as such: the tests of the
+  protocol stay on the run named above.
