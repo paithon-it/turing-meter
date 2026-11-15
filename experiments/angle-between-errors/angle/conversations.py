@@ -20,7 +20,8 @@
    net of binomial noise (Macmillan and Kaplan, 1985), alone and with the machine.
 8. The chat when the person started wrong: on the conversations with an answer, how much the chat beats
    the machine queried alone when the person's answer alone was right and when it was wrong; and how often
-   a wrong chat gives exactly the person's wrong answer.
+   a wrong chat gives exactly the person's wrong answer, against the trap of the question (the wrong
+   answers the other people chose on their own).
 9. A hundred questions: how many the people get wrong, how many the machine, and how many both, against
    what independent errors would give.
 10. A fourth factor in sensitivity over all trials, counting the mute chats as guesses: the contact factor
@@ -53,7 +54,7 @@ def trials(model: str) -> pd.DataFrame:
     pairs = sources.chatbench_pairs(BASE)
     machine = sources.chatbench_machine_alone(BASE, model)
     x = pairs[(pairs.model == model) & pairs.question_id.isin(machine.index)].dropna(subset=["acc", "acc_ai"]).copy()
-    conv = pd.read_json(BASE / "chatbench/full_study/conversations.json")
+    conv = sources.chatbench_conversations(BASE)
     conv = conv[conv.model == model].drop_duplicates(["worker_id", "question_id"])
     x = x.merge(conv[["worker_id", "question_id", "conv_has_answer", "conv_answer_letter"]], on=["worker_id", "question_id"], how="left")
     key = pd.read_csv(BASE / "chatbench/questions.csv").set_index("question_id")["answer"]
@@ -263,13 +264,44 @@ def started_wrong(x: pd.DataFrame, repetitions: int = 2000) -> dict:
         diffs.append(r - w)
     wrong = a[(a.acc == 0) & (a.chat_ok == 0)]
     same = float((wrong.conv_answer_letter == wrong.selected_answer).mean())
+    trap = _the_trap_of_the_question(wrong, repetitions)
     return {"trials_person_right": int((a.acc == 1).sum()), "trials_person_wrong": int((a.acc == 0).sum()),
             "chat_person_right": float(a[a.acc == 1].chat_ok.mean()), "alone_person_right": float(a[a.acc == 1].m_alone.mean()),
             "chat_person_wrong": float(a[a.acc == 0].chat_ok.mean()), "alone_person_wrong": float(a[a.acc == 0].m_alone.mean()),
             "lift_person_right": lr, "lift_person_wrong": lw, "difference": lr - lw,
             "difference_ci_people": [float(np.percentile(diffs, 2.5)), float(np.percentile(diffs, 97.5))],
             "wrong_chats_after_wrong_person": int(len(wrong)), "same_wrong_answer_as_person": same,
-            "same_wrong_answer_by_chance": 1 / 3}
+            "same_wrong_answer_by_chance": 1 / 3, "trap": trap}
+
+
+def _the_trap_of_the_question(wrong: pd.DataFrame, repetitions: int) -> dict:
+    """The reference for «the chat repeats the person's wrong answer» is not one in three: some wrong options
+    attract everybody. For each wrong chat after a wrong person, the share of the other people who got that
+    question wrong on their own and chose the chat's letter; the excess over it is what depends on the person.
+    Intervals with Poisson weights over people, and over people and questions (deviation of 15 November)."""
+    pairs = sources.chatbench_pairs(BASE)
+    others = pairs[pairs.acc == 0][["worker_id", "question_id", "selected_answer"]]
+    rows = []
+    for r in wrong[wrong.conv_answer_letter.isin(list("ABCD"))].itertuples():
+        o = others[(others.question_id == r.question_id) & (others.worker_id != r.worker_id)]
+        if len(o):
+            rows.append((r.worker_id, r.question_id, float(r.conv_answer_letter == r.selected_answer),
+                         float((o.selected_answer == r.conv_answer_letter).mean())))
+    d = pd.DataFrame(rows, columns=["w", "q", "observed", "reference"])
+    gap = (d.observed - d.reference).to_numpy()
+    gen = np.random.default_rng(SEED)
+    people, questions = d.w.unique(), d.q.unique()
+    by_people, by_both = [], []
+    for _ in range(repetitions):
+        wp = d.w.map(pd.Series(gen.poisson(1.0, people.size), index=people)).to_numpy(float)
+        wq = d.q.map(pd.Series(gen.poisson(1.0, questions.size), index=questions)).to_numpy(float)
+        if wp.sum() > 0:
+            by_people.append(np.average(gap, weights=wp))
+        if (wp * wq).sum() > 0:
+            by_both.append(np.average(gap, weights=wp * wq))
+    return {"cases": int(len(d)), "observed": float(d.observed.mean()), "reference": float(d.reference.mean()),
+            "excess": float(gap.mean()), "excess_ci_people": [float(np.percentile(by_people, 2.5)), float(np.percentile(by_people, 97.5))],
+            "excess_ci_people_and_questions": [float(np.percentile(by_both, 2.5)), float(np.percentile(by_both, 97.5))]}
 
 
 def hundred_questions(x: pd.DataFrame) -> dict:

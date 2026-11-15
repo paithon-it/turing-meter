@@ -551,3 +551,15 @@ chat are a selection. `angle/conversations.py`, `results/conversations.json`.
   answer. *A hundred questions*: errors of the people, of the machine and of
   both, against independent errors. *Contact*: the four-factor decomposition
   in d′ over all trials, under the two conventions for a mute chat.
+
+- **Later the same day, after a final review.** Two corrections. *Lowercase
+  letters*: ChatBench records thirteen chat answers in lowercase («c») and the
+  comparison with the key counted them as wrong; the letter is now normalized
+  where the conversations are read (`sources.chatbench_conversations`), and
+  `run_chatbench.py`, check 3 of `review.py` and `conversations.py` were run
+  again. With GPT-4o three trials change, with Llama one; no conclusion
+  changes. *The trap of the question*: whether a wrong chat repeats the
+  person's wrong answer is compared not with one in three but with the share of
+  the other people who, wrong on that question on their own, chose the chat's
+  letter; intervals with Poisson weights over people, and over people and
+  questions.

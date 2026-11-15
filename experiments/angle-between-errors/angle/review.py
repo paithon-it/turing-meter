@@ -433,7 +433,7 @@ def check_3(repetitions: int = REPETITIONS) -> dict:
     c = sources.chatbench_pairs(BASE)
     in_chat = sources.chatbench_machine_in_chat(BASE)
     source = json.loads((R / "chatbench-source.json").read_text())
-    conv = pd.read_json(BASE / "chatbench/full_study/conversations.json")
+    conv = sources.chatbench_conversations(BASE)
     key = pd.read_csv(BASE / "chatbench/questions.csv").set_index("question_id")["answer"]
     out = {}
     for model in ("gpt-4o", "llama-3.1-8b"):

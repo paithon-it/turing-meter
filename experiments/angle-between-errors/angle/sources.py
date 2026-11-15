@@ -72,10 +72,18 @@ def load_alpha_votes(base: Path) -> pd.DataFrame:
     return pd.DataFrame([{"id": r["id"], "h": r["votes_correct"] / r["votes"], "n": r["votes"]} for r in rows]).set_index("id")
 
 
+def chatbench_conversations(base: Path) -> pd.DataFrame:
+    """The conversations of ChatBench, with the chat's letter as the key writes it: a few are recorded in
+    lowercase («c») or with spaces, and compared as they are they would count as wrong (deviation of 15 November)."""
+    d = pd.read_json(base / "chatbench/full_study/conversations.json")
+    d["conv_answer_letter"] = d.conv_answer_letter.where(d.conv_answer_letter.isna(), d.conv_answer_letter.astype(str).str.strip().str.upper())
+    return d
+
+
 def chatbench_machine_in_chat(base: Path) -> pd.DataFrame:
     """The answer the machine gave in that conversation, where it gave one with a letter."""
     q = pd.read_csv(base / "chatbench/questions.csv").set_index("question_id")["answer"]
-    d = pd.read_json(base / "chatbench/full_study/conversations.json")
+    d = chatbench_conversations(base)
     d = d[(d.conv_has_answer == True) & d.conv_answer_letter.notna() & d.question_id.isin(q.index)].copy()  # noqa: E712
     d["m_ok"] = (d.conv_answer_letter == d.question_id.map(q)).astype(float)
     return d[["worker_id", "question_id", "model", "condition", "m_ok"]]
