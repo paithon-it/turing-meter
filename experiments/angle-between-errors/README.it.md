@@ -15,8 +15,9 @@ guardare i dati; ciò che è cambiato dopo sta nella sua sezione «Deviazioni».
 
 ## Come citare
 
-endjneer (2026). *Intelligenza apparente*. Versione 1. Zenodo.
-https://doi.org/10.5281/zenodo.24107649
+endjneer (2026). *Intelligenza apparente* (*Apparent Intelligence*). Zenodo.
+https://doi.org/10.5281/zenodo.24107648 (tutte le versioni; l'ultima è la versione in forma
+di paper, in italiano e in inglese)
 
 Codice e dati: https://github.com/paithon-it/turing-meter, cartella
 `experiments/angle-between-errors`.
@@ -85,6 +86,40 @@ OMP_NUM_THREADS=1 .venv/bin/python -m angle.review CARTELLA_RISULTATI_GPU   # po
 ```
 
 `summary.json` ha una riga per ipotesi del protocollo.
+
+## I modelli chiusi (aggiunta del 14-15 novembre 2026)
+
+Quattro modelli Claude (Haiku 5.5, Sonnet 5.5, Opus 5.5, Fable 5.2) hanno
+risposto da soli alle domande di ChatBench e αNLI, una domanda per chiamata,
+attraverso Claude Code in modalità headless (`claude -p`: nessuno strumento,
+nessun server MCP, nessuna impostazione ereditata, una cartella di lavoro vuota,
+la lettera vincolata alle opzioni da uno schema di risposta). Sui modelli più
+grandi il ragionamento non si spegne, quindi tutti e quattro hanno girato con
+impegno `low`. Non ci sono probabilità, solo verdetti, e le persone non hanno mai
+lavorato con questi modelli: la corsa dà k, l'angolo e il margine della coppia
+ideale sopra la macchina, non un turing. Esplorativa (protocollo, «Deviazioni
+del 14 novembre 2026»). Le risposte stanno in `closed-results/`, perché non si
+possono rifare uguali.
+
+```bash
+python -m closed.machines_claude probe claude-haiku-5-5                              # che cosa riceve il modello
+python -m closed.machines_claude run claude-opus-5-5 opus-5.5 chatbench,alphanli low  # riprende da dove si è fermato
+.venv/bin/python -m angle.frontier closed-results CARTELLA_RISULTATI_GPU              # scrive results/frontier.json
+```
+
+## Dentro le conversazioni (aggiunta del 15 novembre 2026)
+
+Che cosa succede nelle conversazioni di ChatBench, esplorativo e chiesto da due
+revisioni (protocollo, «Deviazioni del 15 novembre 2026»): dove vanno i punti fra
+la macchina da sola e la coppia, estrazione e filtro, quanto spesso le persone
+seguono la chat quando ha ragione e quando ha torto (contro un osservatore
+lineare senza gating), chi la segue sempre e chi mai contro persone tutte uguali,
+le persone divise per bravura (mediana su 300 divisioni a metà, in tutto e nella
+sola matematica), e il limite della regola del tre per un modello senza errori.
+
+```bash
+.venv/bin/python -m angle.conversations     # scrive results/conversations.json, circa mezzo minuto
+```
 
 ## Licenze
 

@@ -483,3 +483,59 @@ edge.
     It does not explain the angle (1.6-2.1 times) nor scenario F (2.4): there
     the mechanism remains not isolated. No new test, it is a reading of the
     literature.
+
+## Deviations of 14 November 2026
+
+Decided after all the results above, to answer one question: does the reading
+hold with machines much stronger than GPT-4o? Exploratory throughout.
+
+- **Four closed models.** Claude Haiku 5.5, Sonnet 5.5, Opus 5.5 and Fable 5.2
+  answer the ChatBench (396) and αNLI (1,532) items alone, with the `letter`
+  prompt unchanged, through Claude Code headless, at effort `low` (thinking
+  cannot be switched off on the larger models), one draw per item, the letter
+  constrained by a response schema. Verdicts only: the probability combiner of
+  H3 does not apply. No answer was lost.
+- **What is computed.** With the estimators of H1 and H7: k, φ, the useful
+  angle, and the margin of the ideal pair over the stronger of the two,
+  |S|/max(dH, dM) − 1, also at 90 degrees. On αNLI with the three readings of
+  the key of check 1 of 10 November (the story's key, without the stories where
+  most voters go against it, the majority as the key), for the closed and the
+  open models alike. `angle/frontier.py`, `results/frontier.json`.
+- **Limits known before reading the numbers.** On ChatBench the strongest
+  models make almost no errors, and with no errors neither d′ nor φ exists: the
+  accuracy is clipped at 0.9999, so k is a floor there. One draw per item, at
+  one effort level, through a subscription product rather than the API: the
+  model version is the one served on the day.
+
+## Deviations of 15 November 2026
+
+Asked for by two reviews of the article, after every result above. Exploratory
+and descriptive: no interval is calibrated, and the trials with an answer in the
+chat are a selection. `angle/conversations.py`, `results/conversations.json`.
+
+- **Where the points go.** The distance in accuracy between the machine alone
+  and the pair, split into the trials whose chat produced one of the options
+  (the conversation: chat minus machine alone; the decision: pair minus chat)
+  and the others. A partition of the trials, with no convention for the mute
+  chats. A decomposition in d′ over all the trials was tried first, counting
+  the mute chats as guesses: it depends on that convention (with the opposite
+  one the signs of e and f reverse), and it was dropped.
+- **Extraction and filter.** Tu = k·e·f on the trials with an answer, from the
+  sensitivities already in `results/chatbench-source.json`.
+- **Following the chat.** On the trials where the chat's letter differs from
+  the person's answer alone: following when the chat is right and when it is
+  wrong, with intervals resampling people, and people and questions together.
+  Against a linear observer that adds a fixed bonus to the chat's option,
+  calibrated on the pair's accuracy: it gives a similar difference, so the
+  difference alone is not evidence of gating.
+- **Always and never.** Shares of people with at least two disagreements who
+  always or never followed, against people with identical rates.
+- **Skill.** Half of each person's trials, drawn at random, classify; the other
+  half measure. Median over 300 draws, lowest and highest third with ties.
+  Each person had a single subject, so also within mathematics. A first single
+  draw had been read in the article and was replaced: it was an outlier, and
+  confounded with the subject.
+- **Zero errors.** For a model with no error on ChatBench the item resampling
+  cannot move the machine's accuracy: the bound comes from the rule of three
+  (an error rate up to 3/396), with the person's sensitivity at its point and
+  at the high end of its interval.
