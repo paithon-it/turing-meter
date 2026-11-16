@@ -1383,6 +1383,26 @@ that the permutation does not move k and does not exclude that the model
 remembers the content. With one error on the permuted items, Fable's k
 becomes estimable there: 3.90 (3.27 to 5.49). The αNLI part runs on the L4.
 
+*Outcome on αNLI (16 November 2026, 10 × 1,532 forward passes, none missing;
+`results/contamination.json`, answers mapped back in `contamination-results/`).*
+The run started at 11:28 UTC, after the L4 had been free for ten minutes
+(`aspetta.sh`). Eight machines finished; two failed and were run again at
+19:30 UTC with the same code and data: qwen3.5-9b, whose download was reset
+by the network, and qwen3.8-27b, which did not fit in memory with the default
+settings and was run with `MEM_GPU=0.98 MAX_LEN=2048`, the settings of its
+original αNLI run (`gpu/run_rest2.sh`). Accuracy original minus swapped, in
+points: gemma-4-26b +1.0 (−0.3 to +2.3), granite-3.3-8b +0.1, olmo-3-7b −0.3,
+phi-3.5-mini +1.1, qwen2.5-3b −2.6 (−6.2 to +0.9), qwen2.5-7b −1.0, qwen3-8b
+−1.0, qwen3.5-9b +0.6, qwen3.8-27b −0.5, smollm3-3b +1.1. The criterion passes
+for none of the ten. Rule applied: the article says that the swap does not
+move k (it moves by at most 0.07, qwen2.5-3b 0.44 to 0.50) and does not
+exclude that the models remember the stories. Added after, descriptive: the
+stories that change outcome go from 109 (qwen3.8-27b) to 714 (qwen2.5-3b) of
+1,532, split between the two directions (the exact sign test never goes below
+p = 0.14); qwen2.5-3b and qwen3-8b choose the second position in about 71
+and 64 percent of the stories, before and after the swap, whatever it holds
+(`second_position_share`, also added after).
+
 ## After the critical review (v4): outcome of the audit and of A3, A5, A6, A9 (16 November 2026)
 
 **A8, the grid.** All the analyses that use the angle were rerun with exact

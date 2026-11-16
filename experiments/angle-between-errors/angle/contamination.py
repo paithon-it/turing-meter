@@ -129,6 +129,9 @@ def analyse() -> None:
             mapped = _map_back(GPU, "alphanli", "alphanli-swapped", name, "letter")
             r = {"machine": name, "mode": "letter", **paired(Path("gpu-results") / f"alphanli__{name}__letter.jsonl", mapped)}
             r["on_permuted"] = frontier._alphanli(("original", MAPPED, name, "letter", False))
+            # added after the protocol, descriptive: how often the machine picks the second position, before and after the swap
+            second = lambda p: float(np.mean([int(np.argmax(json.loads(l)["prob"])) == 1 for l in open(p, encoding="utf-8")]))
+            r["second_position_share"] = {"original": second(Path("gpu-results") / f"alphanli__{name}__letter.jsonl"), "swapped": second(src)}
             out["alphanli"].append(r)
     Path("results/contamination.json").write_text(json.dumps(out, indent=1))
     for task in ("chatbench", "alphanli"):
