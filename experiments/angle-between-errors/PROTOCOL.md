@@ -1251,3 +1251,112 @@ is not done.
 **Rule for the article.** Table 24 and appendix D use these verdicts. If one
 differs from version 3 (H3 on ChatBench is the expected case), the work stops
 and the author decides how it is written.
+
+## After the critical review (v4): the new measures (written 16 November 2026, before computing them)
+
+They run after A8, on the results rerun with the corrected estimator. No
+model is called, except in A11, which waits for the author's approval. All
+the bootstraps: Poisson weights, 2,000 replicas, seed 534, unless the
+analysis they extend uses others (then the same as that analysis).
+
+**A1, intervals for the margin and the two ceilings.** For the comparisons of
+tables 5 (the two ChatBench pairs), 7 (today's Claude models on ChatBench)
+and 8 (αNLI): the margin of the ideal pair over the stronger of the two, with
+shared cues, |S|(φ)/max(d_H, d_M) − 1, and with the verdict only (the
+machine's verdict to a person with graded cues, and the other way round,
+`verdict.pair`). `measure.compare` keeps the replicas of (d_H, d_M, ρ); the
+shared-cue margin is computed on each. The verdict-only margin is computed
+on a grid of k and φ at the comparison's d_H and interpolated on each
+replica; at the point estimate the interpolation must differ from the direct
+computation by less than 0.1 points of margin, otherwise the grid is
+refined. No hypothesis. Rule: every margin in tables 5, 7 and 8 has its
+interval; in the prose a margin never appears without it; a margin whose
+interval reaches zero is written as not distinguishable from zero.
+
+**A2, the margin in correct answers.** For each margin of A1: the accuracy of
+an observer with sensitivity d_stronger·(1 + margin), minus that of the
+stronger, with the same number of options; on each replica. Rule: a column
+"in correct answers" in the tables; in the prose only for the figure that
+matters.
+
+**A3, the errors removed.** The share of the machine's errors removed by the
+ideal pair with shared cues at 90 degrees. Claim to check: for large k the
+ratio of the pair's errors to the machine's tends to exp(−d_H²/4) in a choice
+among m options (from the asymptotics of the error, which goes like
+(m − 1)·Φ(−d/√2)), so it depends only on the person; with the yes/no
+convention d′ = 2z(a), exp(−d_H²/8). Done analytically and numerically, for
+m = 2 and 4, d_H from 0.5 to 2, k from 1 to 20. Criterion: "it does not depend
+on k" is written only where the relative gap from the limit is below 5
+percent; elsewhere the dependence is stated. It is a property of the model.
+
+**A4, the weight of evidence.** W = d′²/2 (in nats; 1 nat = 10/ln 10 ≈ 4.34
+decibans) for H, M and S, and ΔW_SH = W_S − W_H, ΔW_SM = W_S − W_M, with
+intervals from the replicas of A1. Convention: in the equal-variance Gaussian
+model d′²/2 is the expected log-likelihood ratio between the two classes for
+one observation; in a choice among m options it is the same quantity for the
+correct option against each wrong one, a convention and not the information
+of the choice. No hypothesis. Rule: ΔW stands next to the turing; the zones
+are also given by the signs of ΔW_SH and ΔW_SM.
+
+**A5, the crowd.** ChatBench, condition answer-first, GPT-4o and Llama: the
+ceiling of a large crowd whose members have sensitivity d′ and pairwise
+correlation ρ is d′/√ρ (classic, for pooled graded evidence and equal
+sensitivities). With ρ_HH and ρ_SS from "Two people with the chat beside
+them", Tu_crowd = Tu·√(ρ_HH/ρ_SS). One bootstrap over people and questions
+carries d′_H, d′_S and the two ρ with the same weights. Hypothesis (from the
+review brief): the crowd gains less than the single person, Tu_crowd/Tu < 1.
+Criterion: the upper end of the interval of Tu_crowd/Tu below 1. Rule: if it
+passes, the article says the crowd gains less than the single person, with
+the numbers; if not, that the crowd's gain is not distinguishable from the
+single person's. Either way it is a consequence of the model on measured
+inputs, and the angles between people are those of a test that did not pass.
+
+**A6, the person as a verifier.** In the disagreements of table 16 (the chat
+gives a letter among the options, different from the person's answer alone),
+following the chat is the answer "the chat is right": d_v = z(follow | chat
+right) − z(follow | chat wrong). The observer without gating
+(`conversations.linear_observer`, a fixed bonus calibrated on the pair's
+accuracy) gives d_v0. Premium = d_v − d_v0, interval from the bootstrap of
+people and questions on d_v; d_v0 is computed once at the point (its
+sampling error is not carried, declared). Per declared confidence of the
+answer alone, only where there are at least 30 disagreements with the chat
+wrong. Hypothesis: the person verifies beyond a fixed bonus, premium > 0.
+Criterion: lower end above zero. Rule: if it fails, the text says that the
+person is not distinguishable from an observer with a fixed weight, and the
+word "premium" does not appear.
+
+**A7, calibration with heterogeneous questions.** One new scenario H, like A
+plus: the difficulty changes from question to question (the correct
+option's mean shifted by δ_q ~ N(0, 0.5²), the same for person and machine),
+and on each question one wrong option attracts (its mean raised by 0.6 for
+everyone). The model of the article is then misspecified, and ρ has no
+generative true value: the turing is judged against its true value from the
+huge sample, with the criteria of the other scenarios (error at most 5
+percent, coverage between 90 and 98); the angle against the instrument's own
+value on the huge sample (coverage only). Rule: in appendix C as it comes.
+
+**A9, the devil's advocate.** (i) `devil.bootstrap` already resamples people
+and questions; check: the same with weights over the items (question ×
+answer given alone) instead of the questions, change of the intervals
+reported. (ii) The distinct calls per condition, counted from
+`devil-results/`. (iii) The two stacks: Llama 3.1 8B in FP8 on vLLM, letter
+only, against the Llama of ChatBench (accuracies recomputed on the same
+questions); Claude Haiku 5.5 through Claude Code. Rule: one sentence each in
+the body.
+
+**A11, contamination (runs only with the author's approval).** ChatBench's
+questions come from MMLU, αNLI is public since 2020. Test 1: the options
+permuted. ChatBench: the options rotate so that the correct one lands on
+another letter, chosen with SHA-256 of the seed 534 and the question, as in
+the random anchor; the four Claude models with the settings of the frontier
+run (4 × 396 calls). αNLI: the two hypotheses swap places; the eleven open
+models, letter only (11 × 1,532 forward passes on the L4). Measure: the
+accuracy original minus permuted, paired by question, with a bootstrap over
+questions; then k, the angle, the margin and the ceilings on the permuted
+questions. Criterion: the interval of the difference excludes zero. Rule: if
+it does, k and margin "on new questions" go next to the original ones; if
+not, the article says that the permutation does not move k and does not
+exclude that the model remembers the content. In every case the k of
+today's models is presented as an upper bound. With 396 correct answers out
+of 396 (Fable) the test gives at most a lower bound, and it is said. Test 2
+(questions reworded) is proposed only if test 1 shows an effect.

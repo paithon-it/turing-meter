@@ -1281,3 +1281,112 @@ repliche, e non si fa.
 **Regola per l'articolo.** La tabella 24 e l'appendice D usano questi verdetti.
 Se uno è diverso da quello della versione 3 (il caso atteso è H3 su ChatBench),
 il lavoro si ferma e decide l'autore come scriverlo.
+
+## Dopo la revisione critica (v4): le misure nuove (scritto il 16 novembre 2026, prima di calcolarle)
+
+Girano dopo A8, sui risultati rifatti con lo stimatore corretto. Non si chiama
+nessun modello, tranne in A11, che aspetta il via libera dell'autore. Tutti i
+bootstrap: pesi di Poisson, 2.000 repliche, seme 534, salvo quando l'analisi
+che estendono ne usa altri (allora gli stessi).
+
+**A1, intervalli per il margine e per i due tetti.** Per i confronti delle
+tabelle 5 (le due coppie di ChatBench), 7 (i modelli Claude di oggi su
+ChatBench) e 8 (αNLI): il margine della coppia ideale sopra il più forte dei
+due, con gli indizi in comune, |S|(φ)/max(d_H, d_M) − 1, e con il solo
+verdetto (il verdetto della macchina a una persona con gli indizi graduati, e
+il contrario, `verdict.pair`). `measure.compare` tiene le repliche di (d_H,
+d_M, ρ); il margine con gli indizi in comune si calcola su ciascuna. Quello
+con il solo verdetto si calcola su una griglia di k e φ al d_H del confronto
+e si interpola su ogni replica; nel punto stimato l'interpolazione deve
+differire dal calcolo diretto per meno di 0,1 punti di margine, altrimenti si
+infittisce la griglia. Nessuna ipotesi. Regola: ogni margine delle tabelle 5,
+7 e 8 ha il suo intervallo; nel testo un margine non compare mai senza; un
+margine il cui intervallo arriva a zero si scrive come non distinguibile da
+zero.
+
+**A2, il margine in risposte giuste.** Per ogni margine di A1: l'accuratezza
+di un osservatore con sensibilità d_più forte·(1 + margine), meno quella del
+più forte, con lo stesso numero di opzioni; su ogni replica. Regola: una
+colonna «in risposte giuste» nelle tabelle; nel testo solo per la cifra che
+conta.
+
+**A3, gli errori tolti.** La quota degli errori della macchina tolti dalla
+coppia ideale con gli indizi in comune a 90 gradi. Affermazione da
+verificare: per k grande il rapporto fra gli errori della coppia e quelli
+della macchina tende a exp(−d_H²/4) in una scelta fra m opzioni (dall'andamento
+asintotico dell'errore, che va come (m − 1)·Φ(−d/√2)), quindi dipende solo
+dalla persona; con la convenzione sì/no d′ = 2z(a), exp(−d_H²/8). Si fa per via
+analitica e numerica, per m = 2 e 4, d_H da 0,5 a 2, k da 1 a 20. Criterio:
+«non dipende da k» si scrive solo dove lo scarto relativo dal limite sta sotto
+il 5 per cento; altrove si dice la dipendenza. È una proprietà del modello.
+
+**A4, il peso dell'evidenza.** W = d′²/2 (in nat; 1 nat = 10/ln 10 ≈ 4,34
+deciban) per H, M e S, e ΔW_SH = W_S − W_H, ΔW_SM = W_S − W_M, con gli
+intervalli dalle repliche di A1. Convenzione: nel modello gaussiano a varianza
+uguale d′²/2 è il logaritmo atteso del rapporto di verosimiglianza fra le due
+classi per un'osservazione; in una scelta fra m opzioni è la stessa grandezza
+per l'opzione giusta contro ciascuna sbagliata, una convenzione e non
+l'informazione della scelta. Nessuna ipotesi. Regola: ΔW sta accanto al
+turing; le zone le danno anche i segni di ΔW_SH e ΔW_SM.
+
+**A5, la folla.** ChatBench, condizione in cui la persona risponde prima da
+sola, GPT-4o e Llama: il tetto di una folla grande i cui membri hanno
+sensibilità d′ e correlazione ρ a due a due è d′/√ρ (classico, per indizi
+graduati messi in comune e sensibilità uguali). Con ρ_HH e ρ_SS di «Due
+persone con la chat accanto», Tu_folla = Tu·√(ρ_HH/ρ_SS). Un solo bootstrap su
+persone e domande porta d′_H, d′_S e le due ρ con gli stessi pesi. Ipotesi
+(dal brief della revisione): la folla guadagna meno del singolo, Tu_folla/Tu <
+1. Criterio: l'estremo alto dell'intervallo di Tu_folla/Tu sotto 1. Regola: se
+passa, l'articolo dice che la folla guadagna meno del singolo, con i numeri;
+se no, che il guadagno della folla non si distingue da quello del singolo. In
+tutti e due i casi è una conseguenza del modello su ingressi misurati, e gli
+angoli fra le persone sono quelli di una prova che non è passata.
+
+**A6, la persona come verificatore.** Nei disaccordi della tabella 16 (la chat
+dà una lettera fra le opzioni, diversa dalla risposta della persona da sola),
+seguire la chat è la risposta «la chat ha ragione»: d_v = z(segue | la chat ha
+ragione) − z(segue | la chat sbaglia). L'osservatore senza gating
+(`conversations.linear_observer`, un bonus fisso tarato sull'accuratezza della
+coppia) dà d_v0. Premio = d_v − d_v0, con l'intervallo dal bootstrap di
+persone e domande su d_v; d_v0 si calcola una volta nel punto (il suo errore
+di campionamento non si porta, ed è dichiarato). Per livello di sicurezza
+dichiarata nella risposta da sola, solo dove ci sono almeno 30 disaccordi con
+la chat che sbaglia. Ipotesi: la persona verifica oltre un bonus fisso, premio
+> 0. Criterio: estremo basso sopra lo zero. Regola: se non passa, il testo
+dice che la persona non si distingue da un osservatore a peso fisso, e la
+parola «premio» non compare.
+
+**A7, taratura con domande eterogenee.** Una situazione nuova, H, come A più:
+la difficoltà cambia da domanda a domanda (la media dell'opzione giusta
+spostata di δ_q ~ N(0; 0,5²), uguale per persona e macchina), e in ogni
+domanda un'opzione sbagliata attira (la sua media alzata di 0,6 per tutti). Il
+modello dell'articolo è allora sbagliato, e ρ non ha un valore vero
+generativo: il turing si giudica contro il suo valore vero dal campione
+enorme, con i criteri delle altre situazioni (errore al più del 5 per cento,
+copertura fra 90 e 98); l'angolo contro il valore dello strumento stesso sul
+campione enorme (solo la copertura). Regola: in appendice C così come viene.
+
+**A9, l'avvocato del diavolo.** (i) `devil.bootstrap` ricampiona già persone e
+domande; controllo: lo stesso con i pesi sulle voci (domanda × risposta data
+da sola) invece che sulle domande, e la variazione degli intervalli. (ii) Le
+chiamate distinte per condizione, contate da `devil-results/`. (iii) I due
+stack: Llama 3.1 8B in FP8 su vLLM, sola lettera, contro il Llama di ChatBench
+(accuratezze rifatte sulle stesse domande); Claude Haiku 5.5 attraverso Claude
+Code. Regola: una frase ciascuno nel corpo.
+
+**A11, contaminazione (gira solo con il via libera dell'autore).** Le domande di
+ChatBench vengono da MMLU, αNLI è pubblico dal 2020. Prova 1: le opzioni
+permutate. ChatBench: le opzioni ruotano in modo che la giusta finisca su
+un'altra lettera, scelta con SHA-256 del seme 534 e della domanda, come
+nell'ancora casuale; i quattro modelli Claude con le impostazioni della corsa
+sui modelli di oggi (4 × 396 chiamate). αNLI: le due ipotesi si scambiano di
+posto; gli undici modelli aperti, sola lettera (11 × 1.532 passate sulla L4).
+Misura: l'accuratezza originale meno quella permutata, appaiata per domanda,
+con un bootstrap sulle domande; poi k, angolo, margine e tetti sulle domande
+permutate. Criterio: l'intervallo della differenza esclude lo zero. Regola: se
+lo esclude, k e margine «su domande nuove» vanno accanto agli originali; se
+no, l'articolo dice che la permutazione non sposta k e non esclude che il
+modello ricordi il contenuto. In ogni caso il k dei modelli di oggi si presenta
+come limite superiore. Con 396 risposte giuste su 396 (Fable) la prova dà al
+più un limite inferiore, e lo si dice. La prova 2 (domande riformulate) si
+propone solo se la prova 1 mostra un effetto.
