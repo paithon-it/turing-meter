@@ -1401,7 +1401,11 @@ stories that change outcome go from 109 (qwen3.8-27b) to 714 (qwen2.5-3b) of
 1,532, split between the two directions (the exact sign test never goes below
 p = 0.14); qwen2.5-3b and qwen3-8b choose the second position in about 71
 and 64 percent of the stories, before and after the swap, whatever it holds
-(`second_position_share`, also added after).
+(`second_position_share`, also added after). One limit: the original runs
+used an earlier vLLM, installed unpinned and whose version is not recorded
+(this run: 0.33.0). The changed stories mix the swap and the software; only
+the original stories run again with the same software would separate them
+(15,320 more passes, not run).
 
 ## After the critical review (v4): outcome of the audit and of A3, A5, A6, A9 (16 November 2026)
 
