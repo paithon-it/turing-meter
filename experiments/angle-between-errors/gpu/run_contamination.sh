@@ -4,7 +4,7 @@
 set -uo pipefail
 . gpu/environment.sh
 . "$RND/venv/bin/activate"
-export HF_HUB_DOWNLOAD_TIMEOUT=120 HF_HUB_ENABLE_HF_TRANSFER=0
+export HF_HUB_DOWNLOAD_TIMEOUT=120 HF_HUB_ENABLE_HF_TRANSFER=0 HF_HUB_DISABLE_XET=1   # the xet backend fails here ("Background writer channel closed")
 LIST=(
  "HuggingFaceTB/SmolLM3-3B|smollm3-3b"
  "Qwen/Qwen2.5-3B-Instruct-AWQ|qwen2.5-3b"
@@ -20,7 +20,10 @@ LIST=(
 for entry in "${LIST[@]}"; do
   IFS='|' read -r id name <<<"$entry"
   t0=$(date +%s); echo "=== $name $(date -u +%T)"
-  if ! timeout 2400 hf download "$id" > /dev/null 2>"$RND/hf-$name.err"; then echo "ERROR download $name"; tail -2 "$RND/hf-$name.err"; continue; fi
+  if ! timeout 2400 hf download "$id" > /dev/null 2>"$RND/hf-$name.err"; then
+    echo "ERROR download $name"; tail -2 "$RND/hf-$name.err"
+    rm -rf "$HF_HOME/hub/models--$(echo "$id" | sed 's#/#--#g')" "$HF_HOME/xet"; continue
+  fi
   timeout 5400 python3 gpu/machines_llm.py "$id" "$name" alphanli-swapped letter 2>&1 | grep -E '^(loaded|alphanli|Traceback|[A-Za-z]*Error)' || echo "ERROR run $name"
   rm -rf "$HF_HOME/hub/models--$(echo "$id" | sed 's#/#--#g')"
   echo "--- done $name in $(( $(date +%s) - t0 )) s"
