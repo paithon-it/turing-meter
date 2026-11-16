@@ -274,11 +274,11 @@ def estimate_from_evidence(rho: float, dh: float, dm: float, m: int, sd_dh: floa
         pc = np.sum(_WEIGHTS * norm.cdf(_NODES[None, :] + axis[:, None]) ** (m - 1), axis=1)
         zi = norm.ppf(np.clip(np.interp(d_i, axis, pc), 1e-4, 1 - 1e-4))
     zm = norm.ppf(np.clip(ok_b.mean(), 1e-4, 1 - 1e-4))
-    zu = np.linspace(-3.6, 3.6, 361)
-    idx = np.clip(np.round((zi - zu[0]) / (zu[1] - zu[0])).astype(int), 0, zu.size - 1)
-    weight = np.bincount(idx, minlength=zu.size).astype(float)
-    alive = weight > 0
-    expected = (bvn(zu[alive][None, :], zm, RHO_GRID[:, None]) * weight[alive]).sum(1) / weight.sum()
+    # the thresholds enter exactly, as in measure._fast_rho; up to version 3 of the article they
+    # were binned on a grid with step 0.02 (PROTOCOL, A8)
+    zu, inv = np.unique(np.round(zi, 6), return_inverse=True)
+    weight = np.bincount(inv, minlength=zu.size).astype(float)
+    expected = (bvn(zu[None, :], zm, RHO_GRID[:, None]) * weight).sum(1) / weight.sum()
     return float(np.interp((ok_a & ok_b).mean(), expected, RHO_GRID))
 
 
