@@ -1202,3 +1202,82 @@ repliche, pesi di Poisson su persone e domande).
   riceve la nostra risposta non si distingue dalla macchina che riceve una
   lettera a caso, e non attribuisce alla persona il guadagno sulla macchina da
   sola.
+
+## Dopo la revisione critica (v4): la verifica (scritto il 16 novembre 2026, prima di eseguirla)
+
+Una revisione critica della versione 3 dell'articolo ha chiesto di controllare
+che cosa era deciso prima, e come. Due analisi vengono per prime, perché le
+altre usano i loro risultati. Tutte e due girano sui dati già nel repository:
+non si chiama nessun modello.
+
+### A8, la griglia delle soglie
+
+**Il difetto.** Dichiarato in «T, la taratura»: la correlazione si calcola su
+una griglia di soglie a passi di 0,02 (`measure._fast_rho`, e la griglia `zu`
+in `sdt.estimate_from_evidence`). L'articolo dice che su ChatBench sposta
+l'angolo di meno di un grado.
+
+**Che cosa è stato controllato prima di scrivere questa sezione, solo su dati
+simulati.** Sui campioni enormi delle situazioni A ed E (un milione di prove),
+con la griglia lo strumento dà ρ = 0,163 e 0,287 contro i veri 0,20 e 0,30;
+con le soglie esatte nella sola misura, 0,194 e 0,297; con le soglie esatte
+nella misura e nella conversione, 0,196 e 0,297. La causa è la griglia, e
+nella situazione A vale circa due gradi, non meno di uno. Nessun dato reale è
+stato misurato con lo stimatore corretto prima del commit di questa sezione.
+
+**La correzione.** In tutti e due i punti le soglie si usano esatte (i valori
+distinti arrotondati a 10⁻⁶) invece di raggrupparle sulla griglia. Nient'altro
+cambia: gli stessi semi, gli stessi ricampionamenti, gli stessi punti della
+conversione.
+
+**Che cosa si riporta.** Tutte le analisi che usano l'angolo si rifanno con lo
+stimatore corretto (`analysis`, `run_chatbench`, `frontier`, `difficulty`,
+`review`, `verdict`, `summary`, `figure`; anche `calibration`). Per ogni
+confronto, l'angolo prima e dopo; per famiglia, lo spostamento mediano e il
+più grande. I criteri della taratura si valutano di nuovo.
+
+**Regola per l'articolo.** La versione 4 usa ovunque lo stimatore corretto, e
+lo spostamento va in appendice D in un capoverso, con i suoi numeri. Se cambia
+un verdetto della versione 3 (il conto degli intervalli sotto i 90 gradi in
+H1, H3, la tabella di H5, il segno della correlazione di rango in H7, gli
+angoli delle tabelle 5, 7 e 8 oltre i loro intervalli), il lavoro si ferma e
+decide l'autore prima di scrivere.
+
+### A12, le ipotesi H1-H5 con il criterio come scritto
+
+**Il problema.** Il protocollo dice: «Passa significa che l'intervallo al 95
+per cento soddisfa il criterio». `angle/summary.py` decide H3 confrontando due
+medie (riga 80) e H2 confrontando due mediane (riga 64), senza intervallo. Su
+ChatBench H3 «passa» con un errore medio di 0,0570 contro 0,0574. H1 dice «su
+ogni famiglia di dati» senza dire se per famiglia o per confronto.
+
+**Che cosa si calcola**, prima sui risultati della versione 3 (una verifica di
+ciò che l'articolo dice) e poi su quelli rifatti dopo A8. Bootstrap sui
+confronti, stratificato per famiglia di dati, 2.000 repliche, seme 534.
+
+- **H1.** Due letture, riportate tutte e due. Per confronto: quanti hanno
+  l'intervallo di φ sotto i 90 gradi (come nella versione 3). Per famiglia:
+  l'intervallo della mediana di φ sui confronti; la famiglia passa se
+  l'estremo alto sta sotto i 90.
+- **H2.** Per famiglia, la differenza fra la mediana di ρ macchina-macchina e
+  la mediana di ρ persona-macchina, con il suo intervallo; passa se l'estremo
+  basso sta sopra lo zero.
+- **H3.** La media sui confronti di e_φ − e_90 (gli errori assoluti delle due
+  previsioni), con il suo intervallo; passa se l'estremo alto sta sotto lo
+  zero. In tutto, senza HAIID e per famiglia. Le righe fra le due previsioni si
+  contano, senza intervallo: sono troppo poche.
+- **H4** non si conta come prova a sé: con ρ > 0 l'ideale all'angolo φ è più
+  basso che a 90 gradi, quindi ogni volta che la coppia batte la persona la
+  quota del guadagno all'angolo φ è più grande. Si riporta come conseguenza di
+  H1.
+- **H5** resta com'era nella versione 3 (già non passa).
+
+**Limite, dichiarato adesso.** Il bootstrap sui confronti non porta
+l'incertezza delle stime di ciascun confronto (il suo angolo ha un intervallo
+proprio): l'intervallo di H3 è troppo stretto, non troppo largo. Un
+ricampionamento a due livelli chiederebbe di rifare ogni confronto con le sue
+repliche, e non si fa.
+
+**Regola per l'articolo.** La tabella 24 e l'appendice D usano questi verdetti.
+Se uno è diverso da quello della versione 3 (il caso atteso è H3 su ChatBench),
+il lavoro si ferma e decide l'autore come scriverlo.

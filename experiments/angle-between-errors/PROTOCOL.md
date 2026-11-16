@@ -1173,3 +1173,81 @@ pre-registered (2,000 replicas, Poisson weights over people and questions).
 - **Rule.** Neither passes: the article says that the machine told our answer
   is not distinguishable from the machine told a random letter, and does not
   attribute the gain over the machine alone to the person.
+
+## After the critical review (v4): the audit (written 16 November 2026, before running it)
+
+A critical review of version 3 of the article asked to check what was decided
+before and how. Two analyses come first, because the others use their
+results. Both run on data already in the repository: no model is called.
+
+### A8, the grid of thresholds
+
+**The defect.** Declared in "T, the calibration": the correlation is computed
+on a grid of thresholds with step 0.02 (`measure._fast_rho`, and the grid `zu`
+in `sdt.estimate_from_evidence`). The article says that on ChatBench it shifts
+the angle by less than a degree.
+
+**What was checked before writing this, on simulated data only.** On the
+huge samples of scenarios A and E (one million trials), with the grid the
+instrument gives ρ = 0.163 and 0.287 against the true 0.20 and 0.30; with
+exact thresholds in the measure only, 0.194 and 0.297; with exact thresholds
+in the measure and in the conversion, 0.196 and 0.297. The grid is the cause,
+and in scenario A it is worth about two degrees, not less than one. No real
+data were measured with the corrected estimator before this section was
+committed.
+
+**The correction.** In both places the thresholds are used exactly (unique
+values rounded to 10⁻⁶) instead of being binned on the grid. Nothing else
+changes: the same seeds, the same resamples, the same conversion points.
+
+**What is reported.** All the analyses that use the angle are rerun with the
+corrected estimator (`analysis`, `run_chatbench`, `frontier`, `difficulty`,
+`review`, `verdict`, `summary`, `figure`; `calibration` as well). For each
+comparison: the angle before and after; per family, the median and the
+largest shift. The calibration criteria are evaluated again.
+
+**Rule for the article.** Version 4 uses the corrected estimator everywhere,
+and the shift goes in appendix D in one paragraph with its numbers. If a
+verdict of version 3 changes (the count of intervals below 90 degrees in H1,
+H3, the table of H5, the sign of the rank correlation in H7, the angles of
+tables 5, 7 and 8 beyond their intervals), the work stops and the author
+decides before anything is written.
+
+### A12, hypotheses H1-H5 with the criterion as written
+
+**The problem.** The protocol says: "Passes means that the 95 percent
+interval meets the criterion". `angle/summary.py` decides H3 by comparing two
+means (line 80) and H2 by comparing two medians (line 64), without an
+interval. On ChatBench H3 "passes" with a mean error of 0.0570 against 0.0574.
+H1 says "on every data family" without saying whether per family or per
+comparison.
+
+**What is computed**, first on the results of version 3 (an audit of what
+the article says) and then on those rerun after A8. Bootstrap over the
+comparisons, stratified by data family, 2,000 replicas, seed 534.
+
+- **H1.** Two readings, both reported. Per comparison: how many have the
+  interval of φ below 90 degrees (as in version 3). Per family: the interval
+  of the median φ over the comparisons; the family passes if its upper end is
+  below 90.
+- **H2.** Per family, the difference between the median ρ machine-machine and
+  the median ρ person-machine, with its interval; passes if the lower end is
+  above zero.
+- **H3.** The mean over the comparisons of e_φ − e_90 (the absolute errors of
+  the two predictions), with its interval; passes if the upper end is below
+  zero. Overall, without HAIID and per family. The rows between the two
+  predictions are counted, without an interval: there are too few.
+- **H4** is not counted as a test of its own: with ρ > 0 the ideal at φ is
+  lower than at 90 degrees, so whenever the pair beats the person the share of
+  the gain at φ is larger. It is reported as a consequence of H1.
+- **H5** stays as in version 3 (it already does not pass).
+
+**Limit, declared now.** The bootstrap over comparisons does not carry the
+uncertainty of each comparison's own estimates (its angle has its own
+interval): the interval of H3 is too narrow, not too wide. A two-level
+resampling would require rerunning every comparison with its replicas, and
+is not done.
+
+**Rule for the article.** Table 24 and appendix D use these verdicts. If one
+differs from version 3 (H3 on ChatBench is the expected case), the work stops
+and the author decides how it is written.
