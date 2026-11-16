@@ -1,0 +1,70 @@
+{
+ "protocol": "PROTOCOL.md, After the third review (cc0fc2d)",
+ "seed": 534,
+ "a13": {
+  "items": 396,
+  "changed": 28,
+  "errors_a": 31,
+  "errors_b": 25,
+  "errors_both": 14,
+  "acc_a": 0.9217171717171717,
+  "acc_b": 0.9368686868686869,
+  "rho_correct": 0.7806704937038221,
+  "rho": 0.8117993312192803,
+  "phi": 35.72789468611618,
+  "margin": 0.026880618662619815,
+  "margin_90": 0.3780037799136937,
+  "phi_ci": [
+   23.617070245581484,
+   50.25715885938639
+  ],
+  "margin_ci": [
+   1.6920191604674625e-05,
+   0.08089546156059728
+  ],
+  "repetitions": 2000,
+  "people_plus_haiku": {
+   "phi": 95.02077789545707,
+   "phi_ci": [
+    80.54293469141233,
+    116.57900624450906
+   ],
+   "margin": 0.11770500702365827,
+   "margin_90": 0.08072275671265405,
+   "margin_90_ci": [
+    0.057774483846620095,
+    0.10921310898523462
+   ]
+  }
+ },
+ "a14": {
+  "trials": 1493,
+  "with_answer": 1121,
+  "without_answer": 372,
+  "machine_alone": 0.8834583053217635,
+  "pair": 0.7736101808439384,
+  "conversation_with_answer": 0.00812499145673003,
+  "decision_with_answer": -0.04152712659075683,
+  "chats_without_answer": -0.07644598934379813,
+  "total": -0.1098481244778251,
+  "lost_silent_minus_lost_decision": 0.034918862753041305,
+  "repetitions": 2000,
+  "conversation_with_answer_ci": [
+   -0.013596265367857975,
+   0.029872801601755504
+  ],
+  "decision_with_answer_ci": [
+   -0.06821303699024049,
+   -0.01582445789892099
+  ],
+  "chats_without_answer_ci": [
+   -0.10930620968682275,
+   -0.04790473009126986
+  ],
+  "lost_silent_minus_lost_decision_ci": [
+   -0.002536228838285423,
+   0.07728076951610699
+  ],
+  "passes": false
+ }
+}

@@ -1526,3 +1526,15 @@ decision) lies above zero. Rule: if it does, the article keeps "the gain is
 lost more in the silent chats than in the decision", with the interval; if
 not, it says that the loss is split between the two, and the abstract and the
 summary change accordingly.
+
+*Outcome (16 November 2026, `results/third-review.json`).* A13: Haiku's two
+runs change outcome on 28 of 396 items; correlation of correctness 0.78,
+angle 35.7 degrees (23.6 to 50.3); margin of "Haiku plus Haiku" 2.7 percent
+(0.0 to 8.1), against "people plus Haiku" 8.1 percent at 90 degrees (5.8 to
+10.9) and 11.8 at the measured angle. The intervals overlap: by the rule, the
+article reads the person's margin against that of the machine asked again.
+The simulated conversion table of the correlation is built once at the point
+estimate and reused in the resamples (rebuilding it each time takes hours).
+A14: silent chats −7.6 points (−10.9 to −4.8), decision −4.2 (−6.8 to −1.6);
+their difference 3.5 points (−0.3 to +7.7) touches zero: the criterion does
+not pass, and the article says that the loss is split between the two.
