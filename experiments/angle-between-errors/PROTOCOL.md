@@ -1816,3 +1816,16 @@ median difference, and no longer says that the comparison remains to be
 done. If not, it says on which comparisons and by how much the two differ,
 the outcome goes to appendix D, and the verdicts on ChatBench that rest on
 those angles are read with it.
+
+*Correction to A18, before computing it (16 November 2026).* The paragraph
+above sends ρ_c through "the comparison's own conversion table". That table
+(`measure.conversion_table`, built by `sdt.estimate_from_evidence`) maps what
+the in-house estimator returns to the evidence correlation, so it also
+corrects the in-house estimator's own bias (few answers per person, the spread
+of the sensitivities). Applied to the mixed model it would correct a bias the
+mixed model does not have. ρ_c goes instead through the model's conversion
+alone, from the correlation of the correct answers to that of the evidence in
+a choice among four (`sdt.convert_rho_mafc` at the comparison's d_H and d_M).
+That step belongs to the model, is shared by both estimators and is not
+checked here. Added as descriptive: the in-house ρ_c before its table, next to
+the mixed model's ρ_c.
