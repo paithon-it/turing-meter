@@ -1137,5 +1137,28 @@
  "median_abs_diff_rho_c": 0.022338741792189226,
  "max_abs_diff_rho_c": 0.19364054817754717,
  "warnings": 4,
- "singular": 17
+ "singular": 17,
+ "gpt4o_by_machine_share": [
+  {
+   "machine_share_from": 0.0,
+   "machine_share_to": 0.5,
+   "questions": 42,
+   "trials": 154,
+   "people_accuracy": 0.43506493506493504
+  },
+  {
+   "machine_share_from": 0.5,
+   "machine_share_to": 0.98,
+   "questions": 49,
+   "trials": 178,
+   "people_accuracy": 0.4157303370786517
+  },
+  {
+   "machine_share_from": 0.98,
+   "machine_share_to": 1.0,
+   "questions": 299,
+   "trials": 1161,
+   "people_accuracy": 0.6210163652024118
+  }
+ ]
 }

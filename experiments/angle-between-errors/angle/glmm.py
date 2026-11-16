@@ -96,6 +96,19 @@ def export(folder: Path) -> None:
     print(len(meta), "comparisons exported to", folder)
 
 
+def _buckets(folder: Path, i: int) -> list[dict]:
+    """Added after, descriptive: the people's accuracy by the share of GPT-4o's samples that are right on the question."""
+    d = pd.read_csv(folder / f"{i:02d}.csv")
+    p, m = d[d.type == "person"], d[d.type == "machine"].set_index("question")
+    share = (m.succ / m.n).reindex(p.question).to_numpy()
+    out = []
+    for lo, hi in ((0.0, 0.5), (0.5, 0.98), (0.98, 1.01)):
+        s = (share >= lo) & (share < hi)
+        out.append({"machine_share_from": lo, "machine_share_to": min(hi, 1.0), "questions": int(p.question[s].nunique()),
+                    "trials": int(s.sum()), "people_accuracy": float(p.succ.to_numpy()[s].mean())})
+    return out
+
+
 def read(folder: Path) -> None:
     meta = json.loads((folder / "comparisons.json").read_text())
     fits = {f["i"]: f for f in json.loads((folder / "fits.json").read_text())}
@@ -117,6 +130,7 @@ def read(folder: Path) -> None:
            "median_abs_diff_phi": float(np.median(d)), "max_abs_diff_phi": float(d.max()),
            "median_abs_diff_rho_c": float(np.median(dr)), "max_abs_diff_rho_c": float(dr.max()),
            "warnings": sum(bool(r["glmm"]["warnings"]) for r in pre), "singular": sum(bool(r["glmm"]["singular"]) for r in pre)}
+    out["gpt4o_by_machine_share"] = _buckets(folder, next(r["i"] for r in pre if r["set"] == "table5" and r["machine"] == "gpt-4o"))
     Path("results/glmm.json").write_text(json.dumps(out, indent=1))
     for r in rows:
         print("%-8s %-15s %-7s in-house %6.1f (%5.1f %5.1f) rho_c %s | glmm %6.1f rho_c %.3f %s%s" % (
