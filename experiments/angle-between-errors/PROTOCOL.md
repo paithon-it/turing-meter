@@ -1702,3 +1702,56 @@ passes. For reference, the ideal pair of A13 gives 5.0 percent (2.2 to 10.5)
 and the ideal of three equal observers at A13's correlation 6.9. By the rule,
 the article gives the measured margin next to the ideal one, and says that
 "people plus Haiku" (8.1 percent at 90 degrees) is still an ideal.
+
+## After the sixth review (v4): A17, the position of the answer and the similarity among machines (written 16 November 2026, before computing it)
+
+**Why.** On αNLI the machines resemble each other more than they resemble the
+people (H2: median correlation of the correct answers 0.63 among machines,
+0.43 between person and machine). In A11, swapping the two hypotheses changes
+the outcome of 109 to 714 stories of 1,532, and two models choose the second
+position in about 71 and 64 percent of the stories whatever it holds. Two
+machines with the same preference for a position err together on the same
+stories: part of their similarity could come from there. The ten open models
+answered the stories in both orders (letter only), so the preference can be
+averaged out. No new calls.
+
+**Data.** For each of the ten open models with the letter only: the original
+run (`gpu-results/alphanli__NAME__letter.jsonl`) and the swapped one mapped
+back to the original order of the options
+(`contamination-results/alphanli__NAME__letter.jsonl`). The averaged machine
+answers, story by story, the option with the larger mean of the two
+probabilities; on an exact tie, the answer of the original order. The people:
+the votes per story with the original key, as in the map. The runs with
+reasoning have no swapped run and are left out; so are the Claude models.
+
+**Measures** (`angle/position.py`, `results/position.json`). The same
+quantities as H2: the tetrachoric correlation of the correct answers for every
+pair of the ten machines (45 pairs), and between the people's votes and each
+machine (10 comparisons), as in `measure.compare_votes`. Each one on three
+versions of the machines: original order, swapped order, averaged.
+- Δ_mm = median among machines, original, minus median among machines,
+  averaged.
+- D = median among machines minus median between person and machine, on the
+  averaged machines (and, for reference, on the original ones).
+- Intervals: 2,000 replicas, seed 534, a Poisson(1) weight on every story,
+  the same weights for every pair and comparison in the replica (αNLI has
+  only items to resample, as in A15).
+
+**Hypotheses and criteria.**
+- A17a, the reviewer's: a shared preference for a position inflates the
+  similarity among machines. Passes if the 2.5th percentile of Δ_mm is above
+  zero.
+- A17b, H2 without the position: on the averaged machines the machines still
+  resemble each other more than they resemble the people. Passes if the 2.5th
+  percentile of D (averaged) is above zero.
+
+**Rule for the text.** A17a: if it passes, the article says how much of the
+similarity among machines on αNLI comes from the position, with the numbers;
+if not, it says that averaging over the two orders does not move it. A17b: if
+it passes, the H2 verdict on αNLI stands, with the averaged numbers next to
+the original ones; if not, the article says that on αNLI, without the
+position, the machines do not stand out as more similar among themselves than
+to the people, and the H2 verdict on αNLI moves to appendix D. In both cases
+the limits are written: the two orders ran with different versions of vLLM
+(this changes the answers but cannot create a preference for a position), and
+the runs with reasoning are not covered.
