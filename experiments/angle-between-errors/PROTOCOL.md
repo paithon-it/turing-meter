@@ -1538,3 +1538,44 @@ estimate and reused in the resamples (rebuilding it each time takes hours).
 A14: silent chats −7.6 points (−10.9 to −4.8), decision −4.2 (−6.8 to −1.6);
 their difference 3.5 points (−0.3 to +7.7) touches zero: the criterion does
 not pass, and the article says that the loss is split between the two.
+
+## After the fourth review (v4): one more analysis and one correction (written 16 November 2026, before computing them)
+
+**A15, H1, H2 and H3 resampling people and questions.** A12 resampled the
+comparisons. But twenty machines measured against the same people on the same
+questions are not twenty independent observations, and each comparison's own
+uncertainty did not enter: the intervals of A12 are too narrow (the module
+said so). A15 resamples what was sampled. In each of 2,000 replicas, seed
+534, every person and every item of every task gets a Poisson(1) weight
+(ChatBench: workers and questions; HAIID: participants and items, task by
+task; αNLI: items only, since the votes per item do not tell people apart),
+and the same weights serve every comparison on that task. Every comparison is
+recomputed in the replica with the code of the map (`measure._one_pass` with
+the comparison's conversion table; the step of `compare_votes` for αNLI), and
+every pair of machines with the same item weights.
+- H1: the median angle of the family in the replica; passes if the 97.5th
+  percentile of the 2,000 medians is below 90 degrees.
+- H2: the median correlation between machines minus the median between
+  person and machine, per family; passes if the 2.5th percentile is above 0.
+- H3: the mean, over the comparisons of a set, of |d_combo − pred_φ| −
+  |d_combo − pred_90|; passes if the 97.5th percentile is below 0 (sets as in
+  A12: all, without HAIID, each family). The combiner is not refitted in the
+  replica: its choices are reweighted, as in `combiner.margin`. The two
+  predictions follow the replica's d_H, d_M and ρ through their first-order
+  expansion around the point, with derivatives by central differences on the
+  same simulation (fixed seed, steps 0.05 in d and in ρ): refitting and
+  re-simulating in every replica would take days on this machine.
+Rule for the article: where A15 and A12 disagree, A15 holds, and the article
+says that the verdicts of A12 rested on intervals that were too narrow. A
+verdict that passes in A12 and not in A15 becomes "does not stand out" in the
+text, with the A15 interval, and goes to appendix D.
+
+**A13 as written (correction).** The protocol of A13 asked for the margin of
+"Haiku plus Haiku" with k = 1. The code took each run's own sensitivity and
+the better run as the reference: the difference between the two accuracies
+is noise, and the margin came out too small (2.7 percent). Corrected: one
+sensitivity for both, from the mean accuracy of the two runs; the correlation
+converted at that sensitivity; margin sqrt(2/(1+ρ)) − 1; interval over the
+items as before, recomputing the sensitivity and ρ in each resample. The
+same rule for the article as in A13. There are two identical runs, not three:
+the majority of three would need a new run.
