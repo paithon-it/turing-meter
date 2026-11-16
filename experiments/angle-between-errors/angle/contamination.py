@@ -22,6 +22,7 @@ from __future__ import annotations
 import hashlib
 import json
 import sys
+from math import comb
 from pathlib import Path
 
 import numpy as np
@@ -100,9 +101,13 @@ def paired(original: Path, permuted: Path, seed: int = SEED, repetitions: int = 
     rng = np.random.default_rng(seed)
     boots = [d[rng.integers(0, d.size, d.size)].mean() for _ in range(repetitions)]
     lo, hi = np.percentile(boots, [2.5, 97.5])
+    worse, better = int((d > 0).sum()), int((d < 0).sum())
+    n = worse + better
+    # added after the protocol: with few changed items the bootstrap is optimistic; the exact two-sided sign test
+    sign_p = min(1.0, 2 * sum(comb(n, j) for j in range(max(worse, better), n + 1)) / 2 ** n) if n else 1.0
     return {"items": len(ids), "acc_original": float(np.mean([a[i] for i in ids])), "acc_permuted": float(np.mean([b[i] for i in ids])),
-            "difference": float(d.mean()), "difference_ci": [float(lo), float(hi)], "changed": int((d != 0).sum()),
-            "passes": bool(lo > 0 or hi < 0)}
+            "difference": float(d.mean()), "difference_ci": [float(lo), float(hi)], "changed": n, "worse": worse, "better": better,
+            "sign_test_p": sign_p, "passes": bool(lo > 0 or hi < 0)}
 
 
 def analyse() -> None:
@@ -114,6 +119,9 @@ def analyse() -> None:
             continue
         r = {"machine": name, "mode": "low", **paired(CLOSED / f"chatbench__{name}__low.jsonl", mapped)}
         r["on_permuted"] = frontier._chatbench((MAPPED, name, "low", None))
+        rerun = CLOSED / f"chatbench__{name}-rerun__low.jsonl"
+        if rerun.exists():   # added after the protocol: the same items asked again, unpermuted, as a reference
+            r["reference_rerun"] = paired(CLOSED / f"chatbench__{name}__low.jsonl", rerun)
         out["chatbench"].append(r)
     if GPU.exists():
         for src in sorted(GPU.glob("alphanli-swapped__*__letter.jsonl")):

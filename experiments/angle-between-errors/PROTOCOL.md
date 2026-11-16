@@ -1368,6 +1368,21 @@ original order of the options, the paired difference and its bootstrap) and
 models with letter-only results on αNLI are ten, not eleven (10 × 1,532
 forward passes); the ten are run.
 
+*Outcome on ChatBench (16 November 2026, 1,584 calls, none missing;
+`results/contamination.json`).* Accuracy on the 396 items, original then
+permuted: Haiku 0.922 and 0.932 (difference −0.010, −0.035 to +0.015), Sonnet
+0.985 and 0.975 (+0.010, +0.003 to +0.020), Opus 0.987 and 0.990 (−0.003),
+Fable 1.000 and 0.997 (+0.003). As written, the criterion passes for Sonnet
+only. Added after, both descriptive: Sonnet's difference rests on 4 items,
+all right before and wrong after, and the exact sign test gives p = 0.125;
+Haiku asked the same unpermuted items a second time (the existing rerun,
+`chatbench__haiku-5.5-rerun__low.jsonl`) changes 28 items, as many as the permutation (28, 12 worse and 16
+better). Rule applied: for Sonnet k and margin on the permuted items go next
+to the original ones (k 2.93 against 3.17); for the others the article says
+that the permutation does not move k and does not exclude that the model
+remembers the content. With one error on the permuted items, Fable's k
+becomes estimable there: 3.90 (3.27 to 5.49). The αNLI part runs on the L4.
+
 ## After the critical review (v4): outcome of the audit and of A3, A5, A6, A9 (16 November 2026)
 
 **A8, the grid.** All the analyses that use the angle were rerun with exact
