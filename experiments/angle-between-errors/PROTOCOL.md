@@ -1690,3 +1690,15 @@ the majority of three, measured on the verdicts, does not stand out from a
 single run, and the hypothesis goes to appendix D. In both cases "people plus
 Haiku" remains an ideal, and the article says that a measured margin and an
 ideal one are not the same kind of number.
+
+*Outcome of A16 (16 November 2026, 396 calls in 301 seconds, none missing;
+`results/third-run.json`, code `angle/third_run.py`).* Accuracy of the three
+runs 92.2, 93.7 and 91.9 percent, mean 92.6; majority of three 93.8. The three
+runs give the same letter on 354 items, two against one on 41, three
+different letters on 1; the outcome changes among the runs on 39 items, and
+the majority gets 26.3 of them right (the tie counted by expectation).
+Measured margin of the majority 4.3 percent (0.6 to 8.8): the criterion
+passes. For reference, the ideal pair of A13 gives 5.0 percent (2.2 to 10.5)
+and the ideal of three equal observers at A13's correlation 6.9. By the rule,
+the article gives the measured margin next to the ideal one, and says that
+"people plus Haiku" (8.1 percent at 90 degrees) is still an ideal.

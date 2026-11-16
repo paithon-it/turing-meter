@@ -1,0 +1,38 @@
+{
+ "protocol": "PROTOCOL.md, After the fifth review (ed771d6)",
+ "seed": 534,
+ "repetitions": 2000,
+ "items": 396,
+ "missing": {
+  "haiku-5.5": 0,
+  "haiku-5.5-rerun": 0,
+  "haiku-5.5-rerun2": 0
+ },
+ "accuracy_runs": [
+  0.9217171717171717,
+  0.9368686868686869,
+  0.9191919191919192
+ ],
+ "accuracy_single": 0.9259259259259259,
+ "accuracy_majority": 0.9377104377104378,
+ "d_single": 2.661622904361291,
+ "d_majority": 2.776447127875824,
+ "margin": 0.043140680569882184,
+ "margin_ci": [
+  0.0056844876414647695,
+  0.08761840823071235
+ ],
+ "passes": true,
+ "split_3_0": 354,
+ "split_2_1": 41,
+ "split_1_1_1": 1,
+ "outcome_changes": 39,
+ "majority_right_of_changes": 26.333333333333336,
+ "ideal_pair": 0.05040324604855484,
+ "ideal_pair_ci": [
+  0.02172526467537018,
+  0.10535091205028026
+ ],
+ "ideal_three": 0.0689772056922422,
+ "rho_a13": 0.8126664027774244
+}
