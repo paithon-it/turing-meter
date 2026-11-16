@@ -1,7 +1,7 @@
 """A3: the share of the machine's errors that the ideal pair removes at 90 degrees, and its limit for large k.
 
 Pre-registered in PROTOCOL.md, "After the critical review (v4): the new measures". A property of the model,
-not a measurement: no data are read. Writes results/errors-removed.json.
+not a measurement: from the data only the accuracy of the article's person. Writes results/errors-removed.json.
 
 At 90 degrees the ideal pair with shared cues has |S| = sqrt(d_H² + d_M²), d_M = k·d_H. The ratio of the
 pair's errors to the machine's, e(|S|)/e(d_M), for large k:
@@ -71,9 +71,13 @@ def run() -> dict:
             ok = [x["k"] for x in r if all(y["relative_gap"] < GAP for y in r if y["k"] >= x["k"])]
             from_k[str(dh)] = min(ok) if ok else None
         out["conventions"][label] = {"rows": rows, "gap_below_criterion_from_k": from_k}
-    # the article's person: right 58 times in a hundred among four options
-    dh58 = sdt.d_from_accuracy(0.58, 4)
-    out["person_58_of_100"] = {"dh": dh58, "limit_ratio": limit(dh58, 4), "limit_removed": 1.0 - limit(dh58, 4),
+    # the article's person: the ChatBench group next to GPT-4o, right 57.7 times in a hundred among four options, the
+    # same person as the margin table (verdict.margin_table). Up to the fourth review this used exactly 0.58 (d_H 1.089
+    # against 1.080), and the two places of the article gave two limits for one person.
+    person = json.loads(Path("results/chatbench-source.json").read_text())
+    person = next(c for c in person["comparisons"] if c["machine"] == "gpt-4o" and c["subject"] == "all" and c["kind"] == "alone")
+    dh58 = person["dh"]
+    out["person_58_of_100"] = {"accuracy_alone": person["acc_h"], "dh": dh58, "limit_ratio": limit(dh58, 4), "limit_removed": 1.0 - limit(dh58, 4),
                                "by_k": [{"k": k, "removed": 1.0 - error(math.hypot(dh58, k * dh58), 4) / error(k * dh58, 4)} for k in KS if k * dh58 <= D_MAX]}
     return out
 

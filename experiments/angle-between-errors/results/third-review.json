@@ -66,5 +66,25 @@
    0.07728076951610699
   ],
   "passes": false
+ },
+ "a13_k1": {
+  "protocol": "PROTOCOL.md, After the fourth review (d75500f)",
+  "items": 396,
+  "d": 2.6928800131616977,
+  "rho_correct": 0.7806704937038221,
+  "rho": 0.8126664027774244,
+  "phi": 35.64272970455676,
+  "margin": 0.05040324604855484,
+  "phi_ci": [
+   23.67312721095371,
+   50.43685252093622
+  ],
+  "margin_ci": [
+   0.02172526467537018,
+   0.10535091205028026
+  ],
+  "repetitions": 2000,
+  "identical_runs": 2,
+  "note": "two identical runs: the majority of three would need a third"
  }
 }
