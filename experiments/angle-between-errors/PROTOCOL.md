@@ -1498,3 +1498,31 @@ version 3). The angle against the instrument's own value on a huge sample
 (71.6 degrees): mean estimate 71.8, coverage 98.3 percent. With difficulty
 changing from question to question and an attractive wrong option the
 instrument keeps its behaviour.
+
+## After the third review (v4): two more analyses (written 16 November 2026, before computing them)
+
+**A13, the machine asked again.** Haiku 5.5 answered the 396 ChatBench items
+twice, unpermuted (`chatbench__haiku-5.5__low.jsonl` and
+`chatbench__haiku-5.5-rerun__low.jsonl`), and changes outcome on 28 of them.
+A second call is then a second opinion whose errors are only partly the same.
+Measure: the correlation between the correctness of the two runs on the same
+items (tetrachoric, as between two machines in `machine_vs_machine`), its
+angle, and the margin of the ideal pair "Haiku plus Haiku" (k = 1, formula 2
+at that angle), next to the margin of the ideal pair "people plus Haiku" at
+the measured angle and at 90 degrees (frontier, table 7). Intervals: 2,000
+resamples of the items, seed 534. Descriptive, no criterion. Rule for the
+article: the margin of the person is reported next to that of the machine
+asked again; if the second is as large as the first or larger (overlapping
+intervals included), the article says that the cheapest second opinion is the
+machine asked again, and that the person's margin must be read against it.
+
+**A14, an interval for where the points go.** The decomposition of the gap
+between the pair and the machine alone with GPT-4o (`where_points_go`: the
+conversation, the decision, the chats without an answer among the options)
+is recomputed on 2,000 resamples with Poisson weights over people and over
+questions, seed 534, as the other intervals of ChatBench. Criterion: the
+interval of (points lost in the silent chats) minus (points lost in the
+decision) lies above zero. Rule: if it does, the article keeps "the gain is
+lost more in the silent chats than in the decision", with the interval; if
+not, it says that the loss is split between the two, and the abstract and the
+summary change accordingly.
