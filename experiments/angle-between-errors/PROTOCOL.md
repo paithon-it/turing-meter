@@ -1771,3 +1771,48 @@ taking it away leaves the errors that come from the content, which the
 machines share more. Deviation: the rule for the text of A17a said "averaging
 does not move it" for a criterion that does not pass; it did not foresee the
 opposite sign, and the article says what was found, that averaging raises it.
+
+## After the sixth review (v4): A18, the angle against a probit mixed model (written 16 November 2026, before computing it)
+
+**Why.** The estimator of the angle is ours: a tetrachoric correlation with
+each person's shrunk threshold, one correlation per comparison, then a
+simulated conversion table. The second calculation from the raw data covered
+accuracies and counts, not the angle. The reviewer asks for a standard method
+on the same data: a probit model with mixed effects. The author approved
+running R on the L4's CPU, in `~/rnd`, removed at the end.
+
+**Model.** For each comparison, the people's answers alone and the machine's
+answers are stacked, and fitted with `lme4::glmer`, binomial family with
+probit link, Laplace approximation:
+`y ~ 0 + type + (0 + type | question) + (0 + is_person | worker)`. The
+machine contributes one row per question: 0 or 1 for the open and the Claude
+models; for GPT-4o and Llama 3.1 8B of table 5, the correct answers out of the
+samples ChatBench gives (`free_text_acc` × `free_text_count` out of
+`free_text_count`). The quantity compared is the one the in-house estimator
+targets, the correlation of the correct answers of a person and the machine on
+the same question: ρ_c = c / sqrt((1 + σ_p²)(1 + σ_m²)), with σ_p² and σ_m² the
+variances of the question effects for people and machine and c their
+covariance (identified even when σ_m alone is not, with one answer per
+question). ρ_c then goes through the comparison's own conversion table, at its
+d_H and d_M, to ρ and the angle. The conversion is the same for the two
+estimators and is not checked here.
+
+**Comparisons.** ChatBench, all subjects, people alone: the 20 of the map (the
+ten open models, letter and reasoning, against all the people); Haiku, Sonnet
+and Opus (`frontier.json`, against all the people; Fable has no errors and is
+left out); GPT-4o and Llama 3.1 8B of table 5, each against its own group of
+people. 25 comparisons. Code: `angle/glmm.py` (exports the data, reads the
+fits back, converts) and `angle/glmm.R`; result `results/glmm.json`.
+
+**Hypothesis and criterion.** The in-house estimator agrees with the standard
+one: for every comparison the angle from the mixed model lies within the 95
+percent interval of the in-house angle. Descriptive: the median and the
+largest absolute difference, in degrees and in ρ_c; convergence warnings and
+singular fits, reported as they come.
+
+**Rule for the text.** If it passes, the article says that on ChatBench a
+probit mixed model gives the same angles within the intervals, with the
+median difference, and no longer says that the comparison remains to be
+done. If not, it says on which comparisons and by how much the two differ,
+the outcome goes to appendix D, and the verdicts on ChatBench that rest on
+those angles are read with it.
