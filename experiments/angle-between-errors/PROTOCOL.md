@@ -1755,3 +1755,19 @@ to the people, and the H2 verdict on αNLI moves to appendix D. In both cases
 the limits are written: the two orders ran with different versions of vLLM
 (this changes the answers but cannot create a preference for a position), and
 the runs with reasoning are not covered.
+
+*Outcome of A17 (16 November 2026, `results/position.json`, code
+`angle/position.py`).* On the ten open models with the letter only, median
+correlation among machines 0.62 with the original order, 0.62 with the swapped
+one, 0.70 averaged over the two; between person and machine 0.42, 0.42 and
+0.46. A17a does not pass, and the difference goes the other way: averaging
+over the two orders raises the similarity among machines, Δ_mm = −0.08 (−0.10
+to −0.04). A17b passes: on the averaged machines D = 0.24 (0.19 to 0.27),
+against 0.20 (0.17 to 0.25) on the original ones. Added after, descriptive:
+averaging raises every machine's accuracy, from 0.2 points (qwen3.8-27b) to
+5.9 (qwen2.5-3b). One reading, not tested: the preference for a position
+differs from model to model, so it adds errors of each model's own, and
+taking it away leaves the errors that come from the content, which the
+machines share more. Deviation: the rule for the text of A17a said "averaging
+does not move it" for a criterion that does not pass; it did not foresee the
+opposite sign, and the article says what was found, that averaging raises it.
