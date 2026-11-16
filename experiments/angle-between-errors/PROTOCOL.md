@@ -1361,6 +1361,13 @@ today's models is presented as an upper bound. With 396 correct answers out
 of 396 (Fable) the test gives at most a lower bound, and it is said. Test 2
 (questions reworded) is proposed only if test 1 shows an effect.
 
+*Before any call (16 November 2026, after the author's approval):* the code is
+`angle/contamination.py` (the permuted banks, the answers mapped back to the
+original order of the options, the paired difference and its bootstrap) and
+`gpu/run_contamination.sh`. One correction to the paragraph above: the open
+models with letter-only results on αNLI are ten, not eleven (10 × 1,532
+forward passes); the ten are run.
+
 ## After the critical review (v4): outcome of the audit and of A3, A5, A6, A9 (16 November 2026)
 
 **A8, the grid.** All the analyses that use the angle were rerun with exact
