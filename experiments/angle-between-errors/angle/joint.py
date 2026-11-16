@@ -208,6 +208,18 @@ def _weights(r: int) -> dict:
 
 
 def _one(j, W) -> dict | None:
+    """One comparison in one replica. A comparison that falls to or below chance in a replica is left out of that
+    replica only, and counted (`failed_cells`), as measure.compare already does with its own resamples (`_one_pass`
+    returns None). A negative sensitivity raises in `sdt.ideal`, and here counts the same way."""
+    try:
+        return _one_cell(j, W)
+    except ValueError as e:
+        if "sensitivit" in str(e):
+            return None
+        raise
+
+
+def _one_cell(j, W) -> dict | None:
     if j["kind"] == "trials":
         out = _one_pass(j["p"], j["m"], W[(j["task"], "people")][j["pi"]], W[(j["task"], "items")][j["ii"]], _conv(j["conv"]))
         if out is None:
@@ -323,8 +335,33 @@ def main(argv=None) -> None:
         ci = _ci(np.nanmean(err_r[:, s], axis=1))
         out["h3"][name] = {"comparisons": int(s.sum()), "mean_difference": float(err_0[s].mean()), "mean_difference_ci": ci,
                            "better_phi": int((err_0[s] < 0).sum()), "passes": bool(ci[1] < 0)}
+    failed = np.isnan(A["phi"]).sum(axis=0)
     out["per_comparison"] = [{"label": j["label"], "family": j["family"], "phi": float(point["phi"][i]), "phi_ci": _ci(A["phi"][:, i]),
-                              "slopes": j["slopes"]} for i, j in enumerate(JOBS)]
+                              "failed_replicas": int(failed[i]), "slopes": j["slopes"]} for i, j in enumerate(JOBS)]
+    out["failed_by_family"] = {f: {"cells": int(failed[fam == f].sum()), "comparisons_that_fail": int((failed[fam == f] > 0).sum()),
+                                   "comparisons": int((fam == f).sum())} for f in FAMILIES if (fam == f).any()}
+    # added after the protocol: the same verdicts with only the comparisons that never fall below chance in a replica
+    # (all of HAIID falls there sometimes, with 32 items per task: the check covers ChatBench and αNLI)
+    keep = failed == 0
+    out["never_failing"] = {"h1": {}, "h3": {}}
+    for f in FAMILIES:
+        s = (fam == f) & keep
+        if s.any():
+            ci = _ci(np.nanmedian(A["phi"][:, s], axis=1))
+            out["never_failing"]["h1"][f] = {"comparisons": int(s.sum()), "phi_median": float(np.median(point["phi"][s])), "phi_median_ci": ci,
+                                             "family_passes": bool(ci[1] < 90)}
+    out["never_failing"]["h2"] = {}
+    for f in FAMILIES:
+        s, ps = (fam == f) & keep, pfam == f
+        if s.any() and ps.any():
+            ci2 = _ci(np.nanmedian(A["pairs"][:, ps], axis=1) - np.nanmedian(A["rho_correct"][:, s], axis=1))
+            out["never_failing"]["h2"][f] = {"comparisons": int(s.sum()), "difference_ci": ci2, "passes": bool(ci2[0] > 0)}
+    for name, s0 in sets.items():
+        s = s0 & keep
+        if s.any():
+            ci = _ci(np.nanmean(err_r[:, s], axis=1))
+            out["never_failing"]["h3"][name] = {"comparisons": int(s.sum()), "mean_difference": float(err_0[s].mean()), "mean_difference_ci": ci,
+                                                "passes": bool(ci[1] < 0)}
     out["seconds"] = round(time.time() - t0)
     (R / "joint.json").write_text(json.dumps(out, indent=1, ensure_ascii=False))
     for k in ("h1", "h2", "h3"):

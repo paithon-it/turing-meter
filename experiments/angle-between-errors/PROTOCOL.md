@@ -1579,3 +1579,48 @@ converted at that sensitivity; margin sqrt(2/(1+ρ)) − 1; interval over the
 items as before, recomputing the sensitivity and ρ in each resample. The
 same rule for the article as in A13. There are two identical runs, not three:
 the majority of three would need a new run.
+
+*Outcome of the correction of A13 (16 November 2026, `results/third-review.json`,
+key `a13_k1`).* One sensitivity for the two runs (d′ 2.69); correlation of
+correctness 0.78, angle 35.6 degrees (23.7 to 50.4); margin of "Haiku plus
+Haiku" 5.0 percent (2.2 to 10.5), against 2.7 with the code of A13. Next to
+"people plus Haiku", 8.1 percent at 90 degrees (5.8 to 10.9), the intervals
+overlap more than before: the rule gives the same reading.
+
+**A deviation found with the fourth review: A3 on the article's person.** A3
+computed the errors removed for a person right exactly 58 times in a hundred
+(d′ 1.089), while the margin table of the article (`verdict.margin_table`)
+uses the ChatBench group next to GPT-4o, right 57.7 times (d′ 1.080). The two
+places of the article gave two limits for one person (25.7 and 25.3 percent).
+A3 now reads the person from `results/chatbench-source.json`: limit 25.3
+percent, 31.3 with k = 1, 28.2 with k = 2.
+
+*Outcome of A15 (16 November 2026, `results/joint.json`, code `angle/joint.py`
+at `4008516`).* At the point every comparison gives `map.json` back. With
+people and items resampled together:
+- H1: the median angle passes on ChatBench (81 degrees, 74 to 87), αNLI (64,
+  62 to 66) and the HAIID texts (65, 53 to 71); on the HAIID images (78, 63 to
+  93) it does not. A12 gave 72 to 87 there, and passed.
+- H2: passes on ChatBench, αNLI and the HAIID texts; on the HAIID images the
+  difference runs from −0.35 to +0.74 and does not. A12 passed there.
+- H3: the same verdicts as A12, with wider intervals (all: −0.13 to −0.08;
+  without HAIID: −0.14 to −0.11; αNLI and the HAIID texts pass; ChatBench and
+  the HAIID images do not).
+By the rule, the article says that the two verdicts on the HAIID images do not
+stand out, and moves them to appendix D.
+
+Deviation, found while running: a comparison that falls to chance in a
+replica (accuracy at or below 1/m, or a negative sensitivity of one class) is
+left out of that replica only, as `measure.compare` already did with its own
+resamples (one HAIID comparison kept 864 of its 2,000). It happens only on
+HAIID, with 32 items per task: 9,040 cells of 68,000 there (13 percent),
+none on ChatBench or αNLI; the first run stopped on it, the second ran with
+this rule. A check added after the protocol, with only the comparisons that
+never fall to chance, covers ChatBench and αNLI and gives the same verdicts.
+
+**The chat figure from the results.** The article's tree of a hundred trials
+with GPT-4o had its numbers written in the figure's script. They now come from
+`results/chat-branches.json` (`python -m angle.conversations branches`). One
+number changes: the machine alone in the branch where the chat gives another
+letter is 26.85 per hundred trials, which rounds to 26.8; the script had 26.9,
+from rounding an already rounded value.
