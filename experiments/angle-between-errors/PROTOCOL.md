@@ -1829,3 +1829,24 @@ a choice among four (`sdt.convert_rho_mafc` at the comparison's d_H and d_M).
 That step belongs to the model, is shared by both estimators and is not
 checked here. Added as descriptive: the in-house ρ_c before its table, next to
 the mixed model's ρ_c.
+
+*Outcome of A18 (16 November 2026, `results/glmm.json`, code `angle/glmm.py`
+and `angle/glmm.R`; R 4.5.3, lme4 2.0.6, on the L4's CPU).* The criterion does
+not pass: 24 of 25 angles from the mixed model lie within the in-house
+intervals, and one does not, GPT-4o of table 5: 88.3 degrees against 74.9
+(58.8 to 85.9). Over the 25, the absolute difference has median 1.4 degrees
+and maximum 13.4 (GPT-4o); in ρ_c, median 0.022. 17 fits are singular and 4
+end with a convergence warning: with one answer per question the machine's
+own variance is not identified, as written above, while ρ_c is. Added after,
+descriptive: ChatBench gives about 50 answers of GPT-4o per question, almost
+all right or all wrong, and the mixed model, which gives the machine a normal
+question effect, puts the questions GPT-4o always misses at an extreme of that
+scale, where people do no worse than on the questions where it hesitates
+(people right 43.5 percent where GPT-4o is right in fewer than half of its
+answers, 41.6 where it is right in half to 98 percent, 62.1 above). With one
+answer per question, the majority of the samples, the two estimators agree:
+GPT-4o 75.6 in-house and 74.9 with the mixed model, Llama 3.1 8B 74.1 and
+74.1. By the rule, the article says that GPT-4o's angle in table 5 depends on
+how its repeated answers are read, 75 or 88 degrees, and reads the ceiling of
+the ideal pair with GPT-4o between the value at the measured angle (2.2
+percent) and the one at 90 degrees (10.2).
