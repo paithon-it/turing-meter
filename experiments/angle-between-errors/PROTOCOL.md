@@ -1648,3 +1648,45 @@ with GPT-4o had its numbers written in the figure's script. They now come from
 number changes: the machine alone in the branch where the chat gives another
 letter is 26.85 per hundred trials, which rounds to 26.8; the script had 26.9,
 from rounding an already rounded value.
+
+## After the fifth review (v4): A16, the third run of Haiku (written 16 November 2026, before running it)
+
+**Why.** A13 reads Haiku's two runs as two opinions, but the margin of
+"Haiku plus Haiku" (5.0 percent with k = 1) is an ideal: it assumes graded
+evidence, and the Claude models give only a verdict. With two verdicts the 28
+items on which the runs disagree are a tie. A third run gives the majority of
+three, a number measured on the verdicts, with no Gaussian assumption. The
+author approved the 396 calls on 16 November 2026, on the reviewer's advice.
+
+**Data.** Haiku 5.5 on the 396 ChatBench items, unpermuted, with the code and
+settings of the two existing runs (`closed/machines_claude.py`, effort low):
+`python -m closed.machines_claude run claude-haiku-5-5 haiku-5.5-rerun2
+chatbench low`, saved as `closed-results/chatbench__haiku-5.5-rerun2__low.jsonl`.
+The analysis uses the items answered in all three runs; missing answers are
+reported.
+
+**Measures** (`angle/third_run.py`, `results/third-run.json`).
+- The accuracy of each run, and of the majority of three: the letter given by
+  at least two runs. When the three letters all differ, the item counts by
+  expectation, as a tie broken at random: 1/3 if one of the three is right.
+- The measured margin of the majority, in sensitivity: d(majority) / d(single)
+  − 1, with d from the accuracy in a choice among four (`sdt.d_from_accuracy`,
+  m = 4) and "single" the mean accuracy of the three runs (one machine, one
+  sensitivity, as A13 with k = 1).
+- Its interval: 2,000 resamples of the items, seed 534, the three runs
+  resampled together.
+- Descriptive: the number of items on which the three runs split 3-0, 2-1 and
+  1-1-1; the ideal of three equal observers at A13's correlation,
+  sqrt(3/(1 + 2ρ)) − 1, for reference.
+
+**Hypothesis and criterion.** The majority of three is better than a single
+run: the 2.5th percentile of the measured margin is above zero.
+
+**Rule for the text.** The measured margin goes next to the ideal one wherever
+the article gives "Haiku plus Haiku" (§2, appendix D), with its interval and
+the words "measured" and "ideal". If the criterion passes, the article says
+how much the majority of three gains, measured. If it does not, it says that
+the majority of three, measured on the verdicts, does not stand out from a
+single run, and the hypothesis goes to appendix D. In both cases "people plus
+Haiku" remains an ideal, and the article says that a measured margin and an
+ideal one are not the same kind of number.
