@@ -1390,3 +1390,84 @@ modello ricordi il contenuto. In ogni caso il k dei modelli di oggi si presenta
 come limite superiore. Con 396 risposte giuste su 396 (Fable) la prova dà al
 più un limite inferiore, e lo si dice. La prova 2 (domande riformulate) si
 propone solo se la prova 1 mostra un effetto.
+
+## Dopo la revisione critica (v4): esito della verifica e di A3, A5, A6, A9 (16 novembre 2026)
+
+**A8, la griglia.** Tutte le analisi che usano l'angolo sono state rifatte con
+le soglie esatte (`analysis`, `run_chatbench`, `analysis_vision`, `frontier`,
+`devil`, `difficulty`, `review`, `full_evidence`, `summary`, `figure`,
+`verdict`, `calibration`). I dati di model-vs-human mancavano dalla copia
+locale e sono stati riscaricati dal repository degli autori (90 file CSV)
+prima di `analysis_vision`.
+- Sui campioni enormi della taratura lo strumento ora dà il valore vero:
+  situazione A ρ = 0,196 (vero 0,20; era 0,163), angolo 78,7 gradi (vero
+  78,5; era 80,6); E 0,297 (0,30); F 0,449 (0,45). Errori, coperture e
+  verdetti della taratura praticamente invariati (copertura sempre sopra il
+  98 per cento in cinque situazioni su sei).
+- Spostamento dell'angolo, per famiglia (mediana; estremi): ChatBench −0,02
+  (da −1,9 a +3,1); le due coppie di ChatBench −0,16 (da −3,0 a +1,4);
+  immagini di HAIID −0,3 (da −1,6 a +0,1); testo di HAIID +0,02 (da −0,03 a
+  +0,55); αNLI 0 (lì non ci sono soglie personali); i 689 confronti sulle
+  immagini 0 (mediana). Nessun angolo esce dal suo intervallo della versione
+  3, tranne Fable 5.2 su ChatBench, che non ha errori: il suo angolo non si
+  stima, e la stima sta su un bordo della tabella di conversione prima e dopo
+  (8,1 e 126,9 gradi).
+- Tabella 5: GPT-4o 74,5 → 74,9 gradi (58,8-85,9), Llama 75,1 → 74,6
+  (62,3-82,0).
+- **Cambiano due verdetti della versione 3**, tutti e due senza cambiarne la
+  lettura: in H1 i confronti di ChatBench con l'intervallo sotto i 90 gradi
+  passano da 7 a 8 su 20; in H7 la correlazione di rango su ChatBench con il
+  ragionamento passa da −0,02 a +0,10 (p 0,97 → 0,79). Si spostano altri
+  numeri citati nell'articolo: senza il modello aperto più forte, ChatBench a
+  sola lettera, −0,63 (p 0,08) → −0,58 (p 0,11); la tendenza sulle immagini
+  −0,45 (p 0,19) → −0,62 (p 0,06), che resta non distinguibile dal caso al 5
+  per cento; intervalli sotto i 90 gradi sulle immagini 374 → 380 su 689;
+  stime al bordo della tabella 30 → 29.
+- **Regola.** È cambiato un verdetto: il lavoro si ferma, e decide l'autore
+  come scriverlo.
+
+**A12, H1-H3 con l'intervallo** (verdetti identici sui risultati della
+versione 3 e su quelli rifatti; numeri di quelli rifatti).
+- H1 per famiglia: passano tutte e quattro (mediana di φ con il suo
+  intervallo): ChatBench 81,4 (79,8-84,6), αNLI 64,4 (59,6-65,3), testo di
+  HAIID 64,8 (57,6-70,9), immagini di HAIID 78,3 (71,6-86,9). Per confronto:
+  8 su 20, 20 su 20, 16 su 18, 8 su 16.
+- H2: passa nelle quattro famiglie.
+- H3: passa in tutto (media di e_φ − e_90 = −0,104, da −0,123 a −0,084), senza
+  HAIID (−0,124), su αNLI (−0,247) e sul testo di HAIID (−0,147); **non passa**
+  su ChatBench (−0,001, da −0,020 a +0,017) né sulle immagini di HAIID
+  (−0,004, da −0,041 a +0,034). La versione 3 mostrava il pareggio di
+  ChatBench nella sua tabella; `summary.py` aveva scritto «passa».
+- **Regola.** H3 differisce da ciò che diceva `summary.json` per due famiglie:
+  decide l'autore come scriverlo.
+
+**A3, gli errori tolti.** Con quattro opzioni e la persona dell'articolo (58
+risposte giuste su cento, d_H = 1,09), la coppia ideale a 90 gradi toglie il
+31,6 per cento degli errori della macchina con k = 1, il 28,5 con k = 2, il
+27,6 con k = 3, il 26,8 con k = 5, verso il limite 1 − exp(−d_H²/4) = 25,7.
+Lo scarto dal limite scende sotto il 5 per cento da k = 1,5-2 in poi, per d_H
+fra 1 e 1,25; fino a k = 3 per d_H = 2. «Circa un quarto qualunque sia k»
+vale da k ≈ 2, non per ogni k. Una proprietà del modello.
+
+**A5, la folla: non passa.** Tu_folla/Tu, GPT-4o 1,04 (0,51-2,68), Llama 0,86
+(0,50-1,51); Tu_folla 1,72 (0,87-4,40) e 1,20 (0,72-2,05) contro 1,65 e 1,40
+del singolo. Con GPT-4o, in 145 repliche su 2.000 la correlazione fra due
+persone con la chat non è positiva: il tetto della folla è allora illimitato e
+quelle repliche restano fuori, quindi l'estremo alto vero è ancora più alto.
+Il guadagno della folla non si distingue da quello del singolo.
+
+**A6, il verificatore: non passa.** d_v: GPT-4o 1,07 (0,47-1,72) contro 1,01
+del peso fisso, premio +0,06 (da −0,53 a +0,72); Llama 0,67 (0,13-1,23)
+contro 1,03, premio −0,36 (da −0,90 a +0,20). Per livello di sicurezza
+dichiarata, dove i casi bastano, nessun livello passa. La persona non si
+distingue da un osservatore a peso fisso.
+
+**A9, l'avvocato del diavolo.** (i) Con i pesi sulle voci invece che sulle
+domande gli intervalli si stringono (dall'80 al 100 per cento della
+larghezza): il ricampionamento della versione 3 era quello prudente. (ii)
+Chiamate distinte: 1.038 in ogni condizione con una lettera nella domanda (la
+risposta della persona, l'avvocato del diavolo, l'ancora), 396 per la
+macchina da sola; dietro, 2.903 prove. (iii) I due Llama, sulle stesse 396
+domande: in FP8 con la sola lettera 45,2 per cento; il Llama di ChatBench con
+la sola lettera 41,5, in testo libero 63,9. La distanza dal 67 per cento
+dell'articolo viene soprattutto dal formato della risposta, non dallo stack.

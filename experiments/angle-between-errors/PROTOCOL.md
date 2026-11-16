@@ -1360,3 +1360,82 @@ exclude that the model remembers the content. In every case the k of
 today's models is presented as an upper bound. With 396 correct answers out
 of 396 (Fable) the test gives at most a lower bound, and it is said. Test 2
 (questions reworded) is proposed only if test 1 shows an effect.
+
+## After the critical review (v4): outcome of the audit and of A3, A5, A6, A9 (16 November 2026)
+
+**A8, the grid.** All the analyses that use the angle were rerun with exact
+thresholds (`analysis`, `run_chatbench`, `analysis_vision`, `frontier`,
+`devil`, `difficulty`, `review`, `full_evidence`, `summary`, `figure`,
+`verdict`, `calibration`). The model-vs-human data were missing from the
+local copy and were downloaded again from the authors' repository (90 CSV
+files) before `analysis_vision` ran.
+- On the huge samples of the calibration the instrument now gives the true
+  value: scenario A ρ = 0.196 (true 0.20; it was 0.163), angle 78.7 degrees
+  (true 78.5; it was 80.6); E 0.297 (0.30); F 0.449 (0.45). The bias, the
+  coverage and the verdicts of the calibration are practically unchanged
+  (coverage still above 98 percent in five scenarios of six).
+- Shift of the angle, per family (median; extremes): ChatBench −0.02 (−1.9 to
+  +3.1); the two ChatBench pairs −0.16 (−3.0 to +1.4); HAIID images −0.3 (−1.6
+  to +0.1); HAIID text +0.02 (−0.03 to +0.55); αNLI 0 (no personal
+  thresholds there); the 689 vision comparisons 0 (median). No angle leaves
+  its version-3 interval, except Fable 5.2 on ChatBench, which has no errors:
+  its angle cannot be estimated, and the estimate sits on an edge of the
+  conversion table before and after (8.1 and 126.9 degrees).
+- Table 5: GPT-4o 74.5 → 74.9 degrees (58.8–85.9), Llama 75.1 → 74.6
+  (62.3–82.0).
+- **Two verdicts of version 3 change**, both without changing their reading:
+  in H1 the ChatBench comparisons with the interval below 90 degrees go from 7
+  to 8 of 20; in H7 the rank correlation on ChatBench with reasoning goes from
+  −0.02 to +0.10 (p 0.97 → 0.79). Other numbers quoted in the article move:
+  without the strongest open model, ChatBench letter only, −0.63 (p 0.08) →
+  −0.58 (p 0.11); the vision trend −0.45 (p 0.19) → −0.62 (p 0.06), still not
+  distinguishable from chance at 5 percent; vision intervals below 90 degrees
+  374 → 380 of 689; estimates at the edge of the table 30 → 29.
+- **Rule.** A verdict changed: the work stops, and the author decides how it
+  is written.
+
+**A12, H1-H3 with the interval** (identical verdicts on the results of
+version 3 and on the rerun ones; numbers of the rerun).
+- H1 per family: all four pass (median φ with its interval): ChatBench 81.4
+  (79.8–84.6), αNLI 64.4 (59.6–65.3), HAIID text 64.8 (57.6–70.9), HAIID
+  images 78.3 (71.6–86.9). Per comparison: 8 of 20, 20 of 20, 16 of 18, 8 of
+  16.
+- H2: passes in the four families.
+- H3: passes overall (mean e_φ − e_90 = −0.104, from −0.123 to −0.084),
+  without HAIID (−0.124), on αNLI (−0.247) and on HAIID text (−0.147); **does
+  not pass** on ChatBench (−0.001, from −0.020 to +0.017) nor on HAIID images
+  (−0.004, from −0.041 to +0.034). Version 3 showed the ChatBench tie in its
+  table; `summary.py` had written "passes".
+- **Rule.** H3 differs from what `summary.json` said for two families: the
+  author decides how it is written.
+
+**A3, the errors removed.** With four options and the article's person (58
+correct answers in a hundred, d_H = 1.09), the ideal pair at 90 degrees
+removes 31.6 percent of the machine's errors with k = 1, 28.5 with k = 2,
+27.6 with k = 3, 26.8 with k = 5, towards the limit 1 − exp(−d_H²/4) = 25.7.
+The gap from the limit is below 5 percent from k = 1.5–2 on, for d_H between
+1 and 1.25; up to k = 3 for d_H = 2. "About a quarter whatever k is" holds
+from k ≈ 2, not for every k. A property of the model.
+
+**A5, the crowd: does not pass.** Tu_crowd/Tu, GPT-4o 1.04 (0.51–2.68), Llama
+0.86 (0.50–1.51); Tu_crowd 1.72 (0.87–4.40) and 1.20 (0.72–2.05) against the
+single person's 1.65 and 1.40. With GPT-4o, in 145 replicas of 2,000 the
+correlation between two people with the chat is not positive: the crowd's
+ceiling is then unbounded and those replicas are left out, so the true upper
+end is higher still. The crowd's gain is not distinguishable from the single
+person's.
+
+**A6, the verifier: does not pass.** d_v: GPT-4o 1.07 (0.47–1.72) against the
+fixed weight's 1.01, premium +0.06 (−0.53 to +0.72); Llama 0.67 (0.13–1.23)
+against 1.03, premium −0.36 (−0.90 to +0.20). By declared confidence, where
+there are enough cases, no level passes. The person is not distinguishable
+from an observer with a fixed weight.
+
+**A9, the devil's advocate.** (i) With the weights on the items instead of the
+questions the intervals become narrower (80 to 100 percent of the width): the
+version-3 resampling was the prudent one. (ii) Distinct calls: 1,038 in each
+condition with a letter in the prompt (told, devil, anchor), 396 for the
+machine alone; behind them, 2,903 trials. (iii) The two Llamas, same 396
+questions: in FP8 with the letter only 45.2 percent; ChatBench's Llama asked
+for the letter only 41.5, in free text 63.9. The gap with the 67 percent of
+the article is mostly the answer format, not the stack.
