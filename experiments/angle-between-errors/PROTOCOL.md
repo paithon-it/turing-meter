@@ -1439,3 +1439,40 @@ machine alone; behind them, 2,903 trials. (iii) The two Llamas, same 396
 questions: in FP8 with the letter only 45.2 percent; ChatBench's Llama asked
 for the letter only 41.5, in free text 63.9. The gap with the 67 percent of
 the article is mostly the answer format, not the stack.
+
+## After the critical review (v4): outcome of A1, A2, A4, A7 (16 November 2026)
+
+**A1 and A2, margins and ceilings with their intervals** (`results/margins.json`).
+- Table 5. GPT-4o: margin of the ideal pair with shared cues 2.2 percent (0
+  to 8.3), that is +0.8 correct answers in a hundred (0 to 2.8); ceiling over
+  the machine 1.022 (1.000–1.083); verdict-only ceiling 1.000 (1.000–1.011).
+  Llama: 16.9 percent (5.9–26.4), +6.4 correct answers (2.3–9.5); 1.169
+  (1.059–1.270); verdict-only 1.096 (1.018–1.188). The verdict grid needed
+  no refinement with cubic interpolation (5 × 5; the point within 10⁻⁴ of the
+  direct computation).
+- Table 7, margin at 90 degrees from the interval of k. GPT-4o and Llama of
+  ChatBench against all the people who answered alone (59 percent): in
+  version 3 their k was computed outside the code; here it comes from the
+  data: GPT-4o k = 2.08 (1.81–2.41), margin 11.0 percent (8.3–14.3), +3.5
+  correct answers; Llama 1.23 (1.07–1.43), 28.8 percent (22.1–36.6), +10.6.
+  Haiku 5.5 8.1 (5.8–10.9), Sonnet 5.5 4.9 (3.1–6.7), Opus 5.5 4.4
+  (2.7–6.2). Fable 5.2, without errors: by the rule of three k ≥ 3.50 and a
+  margin of at most 4.0 percent at the point sensitivity of the people; with
+  the people at the high end of their interval, as table 21 reads the others,
+  k ≥ 3.13 and at most 5.0 percent, the figures of version 3.
+- Table 8 (αNLI): every margin with its interval, with the key of the story
+  and without the contested stories.
+
+**A4, the weight of evidence** (nats). GPT-4o: W_H 0.58, W_M 2.73, W_S 1.58;
+ΔW_SH +1.00 (0.71–1.31), ΔW_SM −1.15 (−1.72 to −0.67): augmentation. Llama:
+W_H 0.68, W_M 0.95, W_S 1.34; ΔW_SH +0.66 (0.41–0.94), ΔW_SM +0.39
+(0.10–0.67): synergy. The signs give the same zones as the turing, and no
+interval touches zero.
+
+**A7, heterogeneous questions** (`results/calibration-h.json`, 300
+replicas). The turing: error +1.2 percent (criterion met), coverage 99.0
+percent (criterion not met, by excess of prudence, as in five scenarios of
+version 3). The angle against the instrument's own value on a huge sample
+(71.6 degrees): mean estimate 71.8, coverage 98.3 percent. With difficulty
+changing from question to question and an attractive wrong option the
+instrument keeps its behaviour.

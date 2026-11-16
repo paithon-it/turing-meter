@@ -1471,3 +1471,40 @@ macchina da sola; dietro, 2.903 prove. (iii) I due Llama, sulle stesse 396
 domande: in FP8 con la sola lettera 45,2 per cento; il Llama di ChatBench con
 la sola lettera 41,5, in testo libero 63,9. La distanza dal 67 per cento
 dell'articolo viene soprattutto dal formato della risposta, non dallo stack.
+
+## Dopo la revisione critica (v4): esito di A1, A2, A4, A7 (16 novembre 2026)
+
+**A1 e A2, margini e tetti con i loro intervalli** (`results/margins.json`).
+- Tabella 5. GPT-4o: margine della coppia ideale con gli indizi in comune 2,2
+  per cento (da 0 a 8,3), cioè +0,8 risposte giuste su cento (da 0 a 2,8);
+  tetto sulla macchina 1,022 (1,000-1,083); tetto con il solo verdetto 1,000
+  (1,000-1,011). Llama: 16,9 per cento (5,9-26,4), +6,4 risposte giuste
+  (2,3-9,5); 1,169 (1,059-1,270); con il solo verdetto 1,096 (1,018-1,188).
+  Con l'interpolazione cubica la griglia del verdetto non ha avuto bisogno di
+  essere infittita (5 × 5; il punto entro 10⁻⁴ dal calcolo diretto).
+- Tabella 7, margine a 90 gradi dall'intervallo di k. GPT-4o e Llama di
+  ChatBench contro tutte le persone che hanno risposto da sole (59 per cento):
+  nella versione 3 il loro k era calcolato fuori dal codice; qui viene dai
+  dati: GPT-4o k = 2,08 (1,81-2,41), margine 11,0 per cento (8,3-14,3), +3,5
+  risposte giuste; Llama 1,23 (1,07-1,43), 28,8 per cento (22,1-36,6), +10,6.
+  Haiku 5.5 8,1 (5,8-10,9), Sonnet 5.5 4,9 (3,1-6,7), Opus 5.5 4,4 (2,7-6,2).
+  Fable 5.2, senza errori: con la regola del tre k ≥ 3,50 e un margine al più
+  del 4,0 per cento alla sensibilità puntuale delle persone; con le persone
+  all'estremo alto del loro intervallo, come la tabella 21 legge gli altri, k
+  ≥ 3,13 e al più il 5,0 per cento, le cifre della versione 3.
+- Tabella 8 (αNLI): ogni margine con il suo intervallo, con la chiave della
+  storia e senza le storie contestate.
+
+**A4, il peso dell'evidenza** (nat). GPT-4o: W_H 0,58, W_M 2,73, W_S 1,58;
+ΔW_SH +1,00 (0,71-1,31), ΔW_SM −1,15 (da −1,72 a −0,67): potenziamento.
+Llama: W_H 0,68, W_M 0,95, W_S 1,34; ΔW_SH +0,66 (0,41-0,94), ΔW_SM +0,39
+(0,10-0,67): sinergia. I segni danno le stesse zone del turing, e nessun
+intervallo tocca lo zero.
+
+**A7, domande eterogenee** (`results/calibration-h.json`, 300 repliche). Il
+turing: errore +1,2 per cento (criterio soddisfatto), copertura 99,0 per cento
+(criterio non soddisfatto, per eccesso di prudenza, come in cinque situazioni
+della versione 3). L'angolo contro il valore dello strumento stesso su un
+campione enorme (71,6 gradi): stima media 71,8, copertura 98,3 per cento. Con
+una difficoltà che cambia da domanda a domanda e un'opzione sbagliata che
+attira, lo strumento mantiene il suo comportamento.
