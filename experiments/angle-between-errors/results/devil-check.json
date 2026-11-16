@@ -1,0 +1,403 @@
+{
+ "bootstrap": {
+  "llama-3.1-8b": {
+   "trials": 2903,
+   "questions": 396,
+   "items": 1038,
+   "acc_alone": {
+    "point": 0.4698587667929728,
+    "people_and_questions": [
+     0.4124278423275853,
+     0.5304024060653254
+    ],
+    "people_and_items": [
+     0.42090976324125967,
+     0.5161337891492142
+    ],
+    "width_ratio": 0.8071572624726076
+   },
+   "acc_told": {
+    "point": 0.6166035136066138,
+    "people_and_questions": [
+     0.5719380889527133,
+     0.6582548492347366
+    ],
+    "people_and_items": [
+     0.569820790790813,
+     0.6587762367342079
+    ],
+    "width_ratio": 1.0305697949361177
+   },
+   "acc_devil": {
+    "point": 0.5666551842921116,
+    "people_and_questions": [
+     0.5156333024356112,
+     0.615703840446333
+    ],
+    "people_and_items": [
+     0.5197293655115894,
+     0.6150139839248159
+    ],
+    "width_ratio": 0.9521745391537464
+   },
+   "h1_told_minus_alone_person_wrong": {
+    "point": -0.34540859309182814,
+    "people_and_questions": [
+     -0.41559681226774364,
+     -0.27781001249609505
+    ],
+    "people_and_items": [
+     -0.4051593150485596,
+     -0.28966283079545896
+    ],
+    "width_ratio": 0.8382260451981667
+   },
+   "h2_devil_minus_told_person_wrong": {
+    "point": 0.5197978096040438,
+    "people_and_questions": [
+     0.45249142890672805,
+     0.5829146770335925
+    ],
+    "people_and_items": [
+     0.4598130015127598,
+     0.5801439275269957
+    ],
+    "width_ratio": 0.92261868756089
+   },
+   "h3_yield_devil": {
+    "point": 1.4090957449686816,
+    "people_and_questions": [
+     1.0946186719231343,
+     1.8869047314444523
+    ],
+    "people_and_items": [
+     1.1252627765653531,
+     1.8090145188167923
+    ],
+    "width_ratio": 0.8630111990920896
+   },
+   "yield_told": {
+    "point": 1.6259727308849588,
+    "people_and_questions": [
+     1.2877727639901884,
+     2.1459688872404246
+    ],
+    "people_and_items": [
+     1.3258947130607377,
+     2.064726166350811
+    ],
+    "width_ratio": 0.8609121310078933
+   }
+  },
+  "haiku-5.5": {
+   "trials": 2903,
+   "questions": 396,
+   "items": 1038,
+   "acc_alone": {
+    "point": 0.9345504650361695,
+    "people_and_questions": [
+     0.9026231410755865,
+     0.9611125567120363
+    ],
+    "people_and_items": [
+     0.9087879041389996,
+     0.9562122368439794
+    ],
+    "width_ratio": 0.8108190548483715
+   },
+   "acc_told": {
+    "point": 0.9652084050981743,
+    "people_and_questions": [
+     0.9439663182080752,
+     0.981066455916229
+    ],
+    "people_and_items": [
+     0.9485377394750308,
+     0.9795934648290907
+    ],
+    "width_ratio": 0.8370784388553498
+   },
+   "acc_devil": {
+    "point": 0.9707199448846021,
+    "people_and_questions": [
+     0.9513279076936471,
+     0.9862166398019415
+    ],
+    "people_and_items": [
+     0.9539758906619551,
+     0.9843075855878141
+    ],
+    "width_ratio": 0.8693836976279197
+   },
+   "h1_told_minus_alone_person_wrong": {
+    "point": 0.01263689974726201,
+    "people_and_questions": [
+     -0.014551205237747894,
+     0.04272985813811478
+    ],
+    "people_and_items": [
+     -0.010869565217391353,
+     0.03747200322065133
+    ],
+    "width_ratio": 0.8439362956801015
+   },
+   "h2_devil_minus_told_person_wrong": {
+    "point": 0.015164279696714411,
+    "people_and_questions": [
+     -0.009291327874484685,
+     0.04176105047011768
+    ],
+    "people_and_items": [
+     -0.008678779727683718,
+     0.03884581211729074
+    ],
+    "width_ratio": 0.9308986845663597
+   },
+   "h3_yield_devil": {
+    "point": 1.1783712195635678,
+    "people_and_questions": [
+     1.072324831705962,
+     1.3104234075457941
+    ],
+    "people_and_items": [
+     1.0857244792670366,
+     1.291766172608202
+    ],
+    "width_ratio": 0.865362980918326
+   },
+   "yield_told": {
+    "point": 1.142267639058383,
+    "people_and_questions": [
+     1.0341451661048449,
+     1.2712509926960391
+    ],
+    "people_and_items": [
+     1.0506756857288868,
+     1.2517222259212668
+    ],
+    "width_ratio": 0.8479190203073927
+   }
+  },
+  "llama-3.1-8b, all reasoning": {
+   "trials": 2903,
+   "questions": 396,
+   "items": 1038,
+   "acc_alone": {
+    "point": 0.7202893558387875,
+    "people_and_questions": [
+     0.6655887822641595,
+     0.7748368659578402
+    ],
+    "people_and_items": [
+     0.6757672679850384,
+     0.7632682473290476
+    ],
+    "width_ratio": 0.8009383449631221
+   },
+   "acc_told": {
+    "point": 0.7230451257320014,
+    "people_and_questions": [
+     0.6803679388351349,
+     0.7658766512755328
+    ],
+    "people_and_items": [
+     0.684497313493632,
+     0.762284724304336
+    ],
+    "width_ratio": 0.9097015799989289
+   },
+   "acc_devil": {
+    "point": 0.5666551842921116,
+    "people_and_questions": [
+     0.5156333024356112,
+     0.615703840446333
+    ],
+    "people_and_items": [
+     0.5197293655115894,
+     0.6150139839248159
+    ],
+    "width_ratio": 0.9521745391537464
+   },
+   "h1_told_minus_alone_person_wrong": {
+    "point": -0.18449873631002534,
+    "people_and_questions": [
+     -0.2480867293625914,
+     -0.12203571364589884
+    ],
+    "people_and_items": [
+     -0.24199836388271087,
+     -0.12468967946604025
+    ],
+    "width_ratio": 0.9306444993694387
+   },
+   "h2_devil_minus_told_person_wrong": {
+    "point": 0.10025273799494527,
+    "people_and_questions": [
+     0.03642742276225947,
+     0.16491357705293339
+    ],
+    "people_and_items": [
+     0.03656049558686472,
+     0.16168810397818695
+    ],
+    "width_ratio": 0.9738606395537868
+   },
+   "h3_yield_devil": {
+    "point": 0.6673613069138465,
+    "people_and_questions": [
+     0.5692345700745174,
+     0.7676285178615782
+    ],
+    "people_and_items": [
+     0.5792107554569018,
+     0.7627146698768631
+    ],
+    "width_ratio": 0.9249471390978056
+   },
+   "yield_told": {
+    "point": 1.0065909085576068,
+    "people_and_questions": [
+     0.9112187456333287,
+     1.1143135977064513
+    ],
+    "people_and_items": [
+     0.9183321322736887,
+     1.1040910230518846
+    ],
+    "width_ratio": 0.91464105998765
+   }
+  },
+  "haiku-5.5, alone asked again": {
+   "trials": 2903,
+   "questions": 396,
+   "items": 1038,
+   "acc_alone": {
+    "point": 0.94454013089907,
+    "people_and_questions": [
+     0.915709573138445,
+     0.9691841006016654
+    ],
+    "people_and_items": [
+     0.922253229981975,
+     0.9632347899777384
+    ],
+    "width_ratio": 0.7663753555176412
+   },
+   "acc_told": {
+    "point": 0.9652084050981743,
+    "people_and_questions": [
+     0.9439663182080752,
+     0.981066455916229
+    ],
+    "people_and_items": [
+     0.9485377394750308,
+     0.9795934648290907
+    ],
+    "width_ratio": 0.8370784388553498
+   },
+   "acc_devil": {
+    "point": 0.9707199448846021,
+    "people_and_questions": [
+     0.9513279076936471,
+     0.9862166398019415
+    ],
+    "people_and_items": [
+     0.9539758906619551,
+     0.9843075855878141
+    ],
+    "width_ratio": 0.8693836976279197
+   },
+   "h1_told_minus_alone_person_wrong": {
+    "point": 0.006739679865206405,
+    "people_and_questions": [
+     -0.02048385494097272,
+     0.03551522731049737
+    ],
+    "people_and_items": [
+     -0.016293311845286113,
+     0.03274415239543923
+    ],
+    "width_ratio": 0.8756833553185243
+   },
+   "h2_devil_minus_told_person_wrong": {
+    "point": 0.015164279696714411,
+    "people_and_questions": [
+     -0.009291327874484685,
+     0.04176105047011768
+    ],
+    "people_and_items": [
+     -0.008678779727683718,
+     0.03884581211729074
+    ],
+    "width_ratio": 0.9308986845663597
+   },
+   "h3_yield_devil": {
+    "point": 1.1341521535355061,
+    "people_and_questions": [
+     1.0268337218261294,
+     1.2638005931862546
+    ],
+    "people_and_items": [
+     1.040270882637284,
+     1.2453356888044051
+    ],
+    "width_ratio": 0.865373311425792
+   },
+   "yield_told": {
+    "point": 1.0994033809072479,
+    "people_and_questions": [
+     1.0,
+     1.2165157820852837
+    ],
+    "people_and_items": [
+     1.014648352752807,
+     1.2002045058357378
+    ],
+    "width_ratio": 0.8570098276246758
+   }
+  }
+ },
+ "calls": {
+  "chatbench-anchor__haiku-5.5__told.jsonl": {
+   "answers": 1038,
+   "distinct_items": 1038
+  },
+  "chatbench-devil__haiku-5.5__devil.jsonl": {
+   "answers": 1038,
+   "distinct_items": 1038
+  },
+  "chatbench-devil__haiku-5.5__told.jsonl": {
+   "answers": 1038,
+   "distinct_items": 1038
+  },
+  "chatbench-devil__llama-3.1-8b__devil.jsonl": {
+   "answers": 1038,
+   "distinct_items": 1038
+  },
+  "chatbench-devil__llama-3.1-8b__told.jsonl": {
+   "answers": 1038,
+   "distinct_items": 1038
+  },
+  "chatbench-devil__llama-3.1-8b__told_reason.jsonl": {
+   "answers": 1038,
+   "distinct_items": 1038
+  },
+  "chatbench__llama-3.1-8b__alone.jsonl": {
+   "answers": 396,
+   "distinct_items": 396
+  },
+  "chatbench__llama-3.1-8b__alone_reason.jsonl": {
+   "answers": 396,
+   "distinct_items": 396
+  }
+ },
+ "stacks": {
+  "questions": 396,
+  "llama_fp8_letter_only": 0.45202020202020204,
+  "chatbench_llama_letter_only_zero_shot": 0.4146969696969697,
+  "chatbench_llama_free_text": 0.6391060424971289,
+  "on_the_2903_trials": {
+   "llama_fp8_alone": 0.4698587667929728
+  }
+ }
+}
