@@ -7,13 +7,16 @@
 potrebbero fare insieme si vede davvero?**
 
 `turing-meter` è lo strumento di misura di
-[*Intelligenza apparente*](https://paithon.it/intelligenza-apparente/), articolo di paithon.it
-(doi:[10.5281/zenodo.24107649](https://doi.org/10.5281/zenodo.24107649)). L'articolo descrive
-l'intelligenza che si vede in un lavoro come la composizione ortogonale di una
-componente naturale e di una algoritmica, come la potenza attiva e quella reattiva
-in un circuito a corrente alternata: `|S| = sqrt(P^2 + Q^2)`. Questo repository
-legge quella legge come l'ideale di una persona che lavora con una macchina, e
-misura quanto le coppie reali ci si avvicinano.
+[*Intelligenza apparente*](https://paithon.it/intelligenza-apparente/), articolo di paithon.it,
+in italiano e con una traduzione in inglese
+(doi:[10.5281/zenodo.24107648](https://doi.org/10.5281/zenodo.24107648), tutte le versioni).
+L'articolo parte dalla sensibilità apparente della coppia ideale di Sorkin e Dai,
+`|S| = sqrt(dH^2 + dM^2)` quando gli errori dei due sono indipendenti, e ne prende
+il vocabolario dai circuiti a corrente alternata (potenza apparente, fattore di
+potenza). Congettura che l'intelligenza che si vede in un lavoro componga volontà e
+mestiere ad angolo retto, e lo strumento legge solo l'asse del mestiere. Questo
+repository legge la legge di `|S|` come l'ideale di una persona che lavora con una
+macchina, e misura quanto le coppie reali ci si avvicinano.
 
 > Stato: **in progettazione** (novembre 2026). Ci sono la specifica, lo schema
 > dei compiti, i calcoli di base, due analisi su dati pubblici e un primo
@@ -29,15 +32,15 @@ macchina da sola (`dM`), dalla persona con la macchina (`dS`). Ognuna è una
 sensibilità `d'` della teoria della rilevazione del segnale: zero al caso, nessun
 tetto.
 
-- **La sensibilità apparente** `|S| = sqrt(dH^2 + dM^2)` è il meglio che due menti
-  possono fare insieme quando sbagliano su casi diversi e mettono in comune tutta
-  la loro evidenza (Green e Swets 1966; Sorkin e Dai 1994). Le coppie di persone ci arrivano
-  vicino senza raggiungerlo (Bahrami et al. 2010). Ortogonali, in
-  questa lettura, vuol dire errori indipendenti. È la parte misurabile
-  dell'intelligenza apparente del titolo, la sua proiezione sul piano della tecnica
-  (il nome è cambiato il 15 novembre 2026; prima `|S|` si chiamava intelligenza
-  apparente).
-- **Il fattore di intelligenza** `eta = dS / |S|`: quanta parte della sensibilità
+- **La sensibilità apparente** `|S| = sqrt(dH^2 + dM^2)` è il `d'` dell'osservatore
+  ideale di Sorkin e Dai (1994): il meglio che due menti possono fare insieme quando
+  sbagliano su casi diversi e mettono in comune tutti gli indizi (Green e Swets
+  1966). Due persone che discutono ci arrivano solo se sono più o meno ugualmente
+  brave (Bahrami et al. 2010). Ortogonali, in questa lettura, vuol dire errori
+  indipendenti. È la parte misurabile dell'intelligenza apparente del titolo, la sua
+  proiezione sull'asse del mestiere (il nome è cambiato il 15 novembre 2026; prima
+  `|S|` si chiamava intelligenza apparente).
+- **Il fattore di intelligenza** (*efficienza* nell'articolo) `eta = dS / |S|`: quanta parte della sensibilità
   apparente si vede nel lavoro, come il fattore di potenza è la potenza attiva
   sull'apparente. 0 al caso, 1 all'ideale.
 - **La quota del guadagno** `g = (dS - dH) / (|S| - dH)`: quanto del guadagno
@@ -47,7 +50,10 @@ tetto.
   con la macchina. Una mente che lavora da sola vale 1 Tu: ogni mente è il
   campione di se stessa, come nei valori in per unità dell'elettrotecnica. Nella
   definizione non compare nessuna macchina; i valori appartengono a persone e
-  casi. `Tu^2` è il peso dell'evidenza che servirebbe a un osservatore ideale per
+  casi. `Tu` è un rapporto, quindi dipende dal suo campione, la persona: due turing
+  si confrontano solo se le persone di partenza sono le stesse, e per chi da solo
+  risponde quasi a caso il denominatore tende a zero (lì conviene guardare
+  `dS - dH`). `Tu^2` è il peso dell'evidenza che servirebbe a un osservatore ideale per
   fare come la coppia, diviso per quello che gli servirebbe per fare come la
   persona.
 - **I turing apparenti** `Tu_app = |S| / dH`: l'ideale nell'unità della persona,
@@ -101,26 +107,46 @@ su una sola scala latente) in [`analysis/`](analysis/).
 protocollo scritto prima di qualunque risultato (con le deviazioni, datate) e i
 risultati derivati. Misura l'angolo fra gli errori di persone e macchine sugli
 stessi casi, su quattro fonti pubbliche con le risposte caso per caso (ChatBench,
-ChaosNLI su αNLI, HAIID, model-vs-human), contro 24 macchine; quelle che le fonti
-non forniscono sono girate su una GPU da 24 GB. Che cosa regge meglio:
+ChaosNLI su αNLI, HAIID, model-vs-human), contro 28 macchine: quelle che le fonti
+non forniscono, dodici modelli a pesi aperti e dieci reti per la visione, sono
+girate su una GPU da 24 GB, e quattro modelli Claude di novembre 2026 hanno
+risposto da soli (nessuna persona ha mai lavorato con loro, quindi per quelli c'è
+un margine, non un turing). Che cosa regge meglio:
 
 - **Lo strumento è centrato dentro il suo modello.** In simulazione ritrova il
-  turing vero entro l'1% in 6 situazioni su 7, con intervalli prudenti:
-  l'intervallo al 95% contiene il vero nel 98-100% dei casi.
+  turing vero entro l'1,2% nelle sette situazioni soggette al criterio (su otto),
+  con intervalli prudenti: l'intervallo al 95% contiene il vero nel 98-100% dei
+  casi.
 - **Con GPT-4o le persone salgono, e la coppia frena la macchina.** Un gruppo di
-  persone vale 1,65 turing, e la coppia resta sotto la macchina a qualunque
-  morsetto (resa sulla macchina 0,76). Con Llama 3.1 8B, più debole, 1,40 turing,
-  e la coppia supera la macchina interrogata da sola (1,19), non quella della
-  conversazione (0,92). Sono analisi aggiunte dopo il protocollo.
+  persone passa dal 58 al 77 per cento di risposte giuste, 1,65 turing, e la coppia
+  resta sotto la macchina da sola (88%; resa sulla macchina 0,76). Con Llama 3.1 8B,
+  più debole, 1,40 turing, e la coppia supera la macchina interrogata da sola (resa
+  1,19), non quella della conversazione (0,92). Sono analisi aggiunte dopo il
+  protocollo.
+- **Dove la coppia perde punti.** Con GPT-4o la coppia sta 11 punti sotto la
+  macchina da sola: 7,6 si perdono nelle chat senza verdetto (la macchina scrive ma
+  non indica nessuna delle quattro opzioni) e 4,2 nella scelta finale della
+  persona. Quale perdita pesi di più i dati non lo dicono: l'intervallo della
+  differenza include lo zero.
+- **Il tetto di una coppia è una forbice.** Con GPT-4o la coppia ideale, nel
+  modello, non supera la macchina se riceve solo il verdetto, e la supera del 2,2%
+  con gli indizi messi in comune; senza modello, chi sapesse ogni volta a chi
+  credere arriverebbe al 93,4% di risposte giuste (il 17% sopra la macchina in
+  sensibilità). La coppia è rimasta sotto anche l'estremo basso.
 - **L'angolo non è retto dappertutto.** Su αNLI e sul testo di HAIID sta sotto i
-  90 gradi; su ChatBench non si distingue dal retto in 13 confronti su 20
-  (mediane fra 59 e 81 gradi). Su αNLI si chiude con la crescita delle macchine,
-  da 76 a 56 gradi.
-- **La formula prevede il tetto di una coppia, non il suo guadagno**, in una
-  prova debole.
+  90 gradi; su ChatBench l'intervallo sta tutto sotto i 90 gradi solo in 8
+  confronti su 20 (mediane fra 59 e 81 gradi per famiglia di dati). Su αNLI, con la
+  chiave, si chiude con la crescita dei modelli a pesi aperti, da 76 a 56 gradi; le
+  157 storie in cui la maggioranza dei lettori contraddice la chiave spiegano il
+  30-43% della discesa.
+- **La formula prevede il tetto di una coppia, non quale coppia guadagna di più**,
+  in una prova debole: l'angolo utile separa due tendenze, e nessuna è netta.
 
-Ogni risultato ha accanto quanto è solido, deciso prima dei numeri o aggiunto
-dopo, nell'articolo e nel protocollo.
+Ogni risultato ha accanto quanto è solido, deciso prima o aggiunto dopo i numeri,
+nell'articolo (appendice E) e nel protocollo. Una ventina di analisi successive è
+stata scritta prima di girare, ma non sono preregistrazioni in senso stretto, e
+nessun intervallo è corretto per i confronti multipli: un risultato isolato al
+limite va preso con prudenza.
 
 ## Principi
 
@@ -152,7 +178,8 @@ dopo, nell'articolo e nel protocollo.
 
 ## Come citare
 
-endjneer (2026). *Intelligenza apparente*. Versione 1. Zenodo. https://doi.org/10.5281/zenodo.24107649
+endjneer (2026). *Intelligenza apparente* (*Apparent Intelligence*). Versione 5. Zenodo. https://doi.org/10.5281/zenodo.24302609
+(il record contiene l'originale in italiano e una traduzione in inglese; tutte le versioni: https://doi.org/10.5281/zenodo.24107648)
 
 Codice e dati: https://github.com/paithon-it/turing-meter
 

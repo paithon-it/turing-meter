@@ -6,12 +6,16 @@
 do together actually shows?**
 
 `turing-meter` is the measuring instrument of
-[*Intelligenza apparente*](https://paithon.it/intelligenza-apparente/), an article in Italian on paithon.it
-(doi:[10.5281/zenodo.24107649](https://doi.org/10.5281/zenodo.24107649)). The article models
-the intelligence that shows in a piece of work as the orthogonal composition of a
-natural component and an algorithmic one, like active and reactive power in an AC
-circuit: `|S| = sqrt(P^2 + Q^2)`. This repository reads that law as the ideal of a
-person working with a machine, and measures how close real pairs get to it.
+[*Intelligenza apparente*](https://paithon.it/intelligenza-apparente/) (*Apparent Intelligence*),
+an article on paithon.it, in Italian with an English translation
+(doi:[10.5281/zenodo.24107648](https://doi.org/10.5281/zenodo.24107648), all versions).
+The article takes the apparent sensitivity of the ideal pair of Sorkin and Dai,
+`|S| = sqrt(dH^2 + dM^2)` when the errors of the two are independent, and borrows
+its vocabulary from AC circuits (apparent power, power factor). It conjectures that the
+intelligence that shows in a piece of work composes will and craft at right angles,
+and the instrument reads only the craft axis. This repository reads the law of `|S|`
+as the ideal of a person working with a machine, and measures how close real pairs
+get to it.
 
 > Status: **design stage** (November 2026). The specification, the schema, the
 > core computations, two reference analyses on public data and a first experiment
@@ -24,14 +28,15 @@ The same decisions are made three times: by the person alone (`dH`), by the
 machine alone (`dM`), by the person with the machine (`dS`). Each is a sensitivity
 `d'` of signal detection theory: zero at chance, no ceiling.
 
-- **The apparent sensitivity** `|S| = sqrt(dH^2 + dM^2)` is the best two minds can
-  do together when they err on different cases and combine all their evidence
-  (Green and Swets 1966; Sorkin and Dai 1994). Pairs of people fall short of it
-  (Bahrami et al. 2010). Orthogonal, in this reading, means
-  independent errors. It is the measurable part of the apparent intelligence of the
-  title, its projection on the plane of technique (the name changed on 15 November
-  2026; before, `|S|` itself was called apparent intelligence).
-- **The intelligence factor** `eta = dS / |S|`: how much of the apparent
+- **The apparent sensitivity** `|S| = sqrt(dH^2 + dM^2)` is the `d'` of the ideal
+  observer of Sorkin and Dai (1994): the best two minds can do together when they
+  err on different cases and pool all their cues (Green and Swets 1966). Two people
+  in discussion reach it only if they are about equally good (Bahrami et al. 2010).
+  Orthogonal, in this reading, means independent errors. It is the measurable part
+  of the apparent intelligence of the title, its projection on the craft axis (the
+  name changed on 15 November 2026; before, `|S|` itself was called apparent
+  intelligence).
+- **The intelligence factor** (*efficiency* in the article) `eta = dS / |S|`: how much of the apparent
   sensitivity shows in the work, as the power factor is real over apparent power.
   0 at chance, 1 at the ideal.
 - **The gain share** `g = (dS - dH) / (|S| - dH)`: how much of the possible gain
@@ -40,7 +45,10 @@ machine alone (`dM`), by the person with the machine (`dS`). Each is a sensitivi
 - **The turing** (Tu) `= dS / dH`: the same people on the same cases, alone and
   with the machine. A mind working alone is worth 1 Tu: every mind is its own
   standard, as in the per-unit values of electrical engineering. No machine
-  appears in the definition; the values belong to people and cases. `Tu^2` is the
+  appears in the definition; the values belong to people and cases. `Tu` is a ratio,
+  so it depends on its yardstick, the person: two turings are comparable only if the
+  people they start from are the same, and for someone who alone answers almost at
+  random the denominator tends to zero (there, look at `dS - dH`). `Tu^2` is the
   weight of evidence an ideal observer would need to do as well as the pair, over
   what it would need to do as well as the person.
 - **The apparent turings** `Tu_app = |S| / dH`: the ideal in the person's unit,
@@ -94,25 +102,44 @@ one latent scale) in [`analysis/`](analysis/).
 protocol written before any result (with its deviations, dated) and the derived
 results. It measures the angle between the errors of people and machines on the
 same items, on four public sources with item-level answers (ChatBench, ChaosNLI on
-αNLI, HAIID, model-vs-human), against 24 machines; the machines the sources do not
-provide were run on a 24 GB GPU. What holds best:
+αNLI, HAIID, model-vs-human), against 28 machines: those the sources do not
+provide, twelve open-weight models and ten vision networks, were run on a 24 GB
+GPU, and four Claude models of November 2026 answered alone (no person ever worked
+with them, so for those there is a margin, not a turing). What holds best:
 
 - **The instrument is centred within its model.** In simulation it recovers the
-  true turing within 1% in 6 situations out of 7, with cautious intervals: the
-  95% interval contains the true value 98-100% of the time.
+  true turing within 1.2% in the seven situations subject to the criterion (of
+  eight), with cautious intervals: the 95% interval contains the true value 98-100%
+  of the time.
 - **With GPT-4o people go up, and the pair holds the machine back.** A group of
-  people is worth 1.65 turings, and the pair stays below the machine at every
-  terminal (yield on the machine 0.76). With Llama 3.1 8B, weaker, 1.40 turings,
-  and the pair passes the machine queried alone (1.19), not the one of the
-  conversation (0.92). Both are analyses added after the protocol.
+  people goes from 58 to 77 percent correct, 1.65 turings, and the pair stays
+  below the machine alone (88%; yield on the machine 0.76). With Llama 3.1 8B,
+  weaker, 1.40 turings, and the pair passes the machine queried alone (yield 1.19),
+  not the one of the conversation (0.92). Both are analyses added after the
+  protocol.
+- **Where the pair loses points.** With GPT-4o the pair is 11 points below the
+  machine alone: 7.6 are lost in chats without a verdict (the machine writes but
+  never names one of the four options) and 4.2 in the person's final choice. Which
+  loss weighs more the data do not say: the interval of the difference includes
+  zero.
+- **The ceiling of a pair is a range.** With GPT-4o the ideal pair, under the model,
+  does not beat the machine if it receives only the verdict, and beats it by 2.2%
+  with pooled cues; without a model, someone who always knew whom to believe would
+  reach 93.4% correct (17% above the machine in sensitivity). The pair fell short
+  even of the lower end.
 - **The angle is not right everywhere.** On αNLI and on HAIID's text it is below
-  90 degrees; on ChatBench it cannot be told from 90 in 13 comparisons out of 20
-  (medians between 59 and 81 degrees). On αNLI it closes as the machines grow,
-  from 76 to 56 degrees.
-- **The formula predicts the ceiling of a pair, not its gain**, in a weak test.
+  90 degrees; on ChatBench the interval is entirely below 90 in only 8 comparisons
+  out of 20 (medians between 59 and 81 degrees by data family). On αNLI, with the
+  answer key, it closes as the open-weight models grow, from 76 to 56 degrees; the
+  157 stories where most readers contradict the key explain 30-43% of the descent.
+- **The formula predicts the ceiling of a pair, not which pair gains most**, in a
+  weak test: the useful angle separates two tendencies, and neither is clear-cut.
 
-Every result comes with how solid it is, decided before the numbers or added
-after them, in the article and in the protocol.
+Every result comes with how solid it is, pre-specified or added after the numbers,
+in the article (Appendix E) and in the protocol. About twenty later analyses were
+written down before they ran, but they are not pre-registrations in the strict
+sense, and no interval is corrected for multiple comparisons: an isolated result at
+the margin should be taken with caution.
 
 ## Principles
 
@@ -142,7 +169,8 @@ after them, in the article and in the protocol.
 
 ## How to cite
 
-endjneer (2026). *Intelligenza apparente*. Version 1. Zenodo. https://doi.org/10.5281/zenodo.24107649
+endjneer (2026). *Intelligenza apparente* (*Apparent Intelligence*). Version 5. Zenodo. https://doi.org/10.5281/zenodo.24302609
+(the record holds the Italian original and an English translation; all versions: https://doi.org/10.5281/zenodo.24107648)
 
 Code and data: https://github.com/paithon-it/turing-meter
 
