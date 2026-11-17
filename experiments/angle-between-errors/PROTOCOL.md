@@ -1850,3 +1850,92 @@ GPT-4o 75.6 in-house and 74.9 with the mixed model, Llama 3.1 8B 74.1 and
 how its repeated answers are read, 75 or 88 degrees, and reads the ceiling of
 the ideal pair with GPT-4o between the value at the measured angle (2.2
 percent) and the one at 90 degrees (10.2).
+
+## After the fifth review (v4): A19, what the person wrote first in the silent chats (written 17 November 2026, before computing it)
+
+Written after every result above and before computing anything below. Looked
+at before writing it: the column names of ChatBench's conversations and the
+count of messages by role (User, AI); no message was read and nothing below
+was counted. The code (`angle/first_message.py`) is written and tested on
+synthetic data first (`tests/test_first_message.py`); this section and the
+code are committed and pushed before the run.
+
+**The question.** With GPT-4o the pair loses 7.6 points in the 372 trials whose
+chat gave none of the four letters (330 with no answer by ChatBench's
+annotation, 42 with an answer outside the options). The fifth review suggests
+a simple check: how often did the person, in the first message, copy the
+question without the options, or write very little? If the silent chats begin
+that way more often than the chats that gave a letter, part of the loss lies in
+how the question reached the machine.
+
+**Data.** The 1,493 GPT-4o trials of `conversations.trials("gpt-4o")`, in
+three groups by ChatBench's annotation: with a letter (`letter`, 1,121),
+silent (`conv_has_answer` false, 330), the others (an answer outside the
+options, 42). The conversation as in `mute_chats.mute`. The *first message* is
+the first message with role User whose text is not empty; trials without one
+are counted apart ("no message").
+
+**Measures.**
+
+1. *The options in the first message.* An option is *usable* if, normalized as
+   in `mute_chats.normalize`, it is at least two characters long and does not
+   itself appear as a whole token in the normalized question: an option the
+   question already contains says nothing about whether the person pasted the
+   options. A trial is *classifiable* if it has a first message and at least
+   two usable options. A classifiable trial has the *options missing* if none
+   of its usable options appears in the first message as a whole token (no
+   letter or digit on either side, as in `mute_chats.named_options`), the
+   *options present* otherwise.
+2. *A short first message*: normalized, shorter than half the normalized
+   question. Over the trials with a first message.
+3. The differences silent minus letter of the two shares.
+
+**Uncertainty.** 95% percentile intervals, 2,000 replicas with Poisson weights
+over people and over questions (their product on each trial), seed 534, as in
+A14.
+
+**Hypotheses and criteria.**
+
+- *A19a, primary*: the first message lacks the options more often in the
+  silent chats than in the chats with a letter. Passes if the interval of the
+  difference lies above zero.
+- *A19b*: the first message is short more often in the silent chats than in
+  the chats with a letter. Same criterion.
+
+No correction for multiplicity.
+
+**Descriptive, no criterion.**
+
+- The same shares in the 42 trials with an answer outside the options, and in
+  the three groups of Llama 3.1 8B's arm (point estimates).
+- The other way round: among the classifiable trials, the share of silent
+  chats when the options are missing and when they are present.
+- The 7.6 points split by what came first: the term `chats_without_answer` of
+  `conversations.where_points_go` is a sum over its trials, and is split
+  additively into the 42 with an answer outside the options and the silent
+  chats with no message, with the options missing, with the options present,
+  and not classifiable. Each part is its share of the 1,493 trials times the
+  mean of (the person's answer with the chat − the machine alone) on its
+  trials; the parts add up to the 7.6 points. With intervals from the same
+  replicas, and in each part the accuracy of the people with the chat and of
+  the machine alone.
+- *A check of the matching.* 20 classifiable GPT-4o trials with the options
+  missing and 20 with the options present, drawn with seed 534, are read with
+  the question, the options and the first message, by the analyst (an AI
+  assistant, who sees the classification), and each is marked as right or
+  wrong on whether the options are in the message. The agreement is reported.
+
+**What it cannot say.** It compares trials selected by how the conversation
+went: a person who does not paste the options may differ in effort, skill or
+question, and a question written with formulas is harder to paste. An
+association, not a cause. The matching misses options the person rewrote in
+other words or in another notation, and counts them as missing; the check
+above measures how often.
+
+**Rule for the text.** If A19a passes, the paragraph of §2 on the silent chats
+gets one sentence with the two shares and the words "an association, not a
+cause", and appendix B gets the numbers and the split of the 7.6 points. If it
+fails, the outcome goes to appendix D and to the list of what did not pass,
+and §2 does not change. A19b is reported next to A19a in the same place and
+does not move anything into the body on its own. The body stays under 7,000
+words.
