@@ -1989,3 +1989,23 @@ short message read the same way as the options: among the trials with a first me
 of the question. On a long problem almost any first message is short, and long problems may also be the harder
 ones; without a comparison within the same question, between different people, the measure mixes who writes
 little with what they were given. No further analysis on this.
+
+*Added after the outcome of A18 (17 November 2026, on two further reviews of the article; descriptive, no
+criterion; `angle/after_a18.py`, `results/after-a18.json`).* First computed by hand while weighing a review that
+proposed them, then written as code. (i) GPT-4o in table 5, the raw frequencies against the model with the
+comparison's sensitivities: errors in common 6.59 per hundred trials and the machine wrong in 15.6 percent of the
+trials where the person is wrong (4.93 if independent); the model gives 6.71 and 15.9 at the in-house angle
+(74.9 degrees), 5.12 and 12.1 at the mixed model's (88.3), 4.93 and 11.7 at 90. The raw frequencies stand with
+the in-house angle. The mixed model's fit for GPT-4o has no warning and is not singular; the machine's variance
+over questions is 26.3, the near-identical answers per question read as a normal effect. (ii) The verdict-only
+ceiling with GPT-4o: 1.000 at 74.9 degrees, 1.010 at 88.3 (3.1 percent of the machine's errors removed), 1.013
+at 90. (iii) GPT-4o asked again, from ChatBench's answers per question (median 50, 396 questions): two answers
+drawn without replacement differ in correctness on 5.4 percent of the questions (4.2–6.7), the angle between them
+is 16.9 degrees (13.4–20.8) and the ideal pair "GPT-4o plus GPT-4o" (k = 1, as A13) promises 1.1 percent
+(0.7–1.7); Llama 3.1 8B 20.6 percent, 36.4 degrees, 5.3 percent. The conversion table goes to an evidence
+correlation of 0.99 here, because GPT-4o's lies beyond the article's 0.95. ChatBench's answers were sampled
+with settings that are not ours, unlike Haiku's two runs. **Text.** The article reads GPT-4o's first ceiling
+at the in-house angle, 2.2 percent (0 to 8.3), and gives the mixed model's 88 degrees in appendix D with the
+raw frequencies, the verdict-only ceiling at that angle and the fit diagnostics; A18's criterion stays reported
+as not passed. "The machine asked again" as the cheapest second opinion is said of Haiku, and GPT-4o's numbers go
+to appendix D. This reading was chosen after these checks.

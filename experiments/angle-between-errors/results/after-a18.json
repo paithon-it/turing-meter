@@ -1,0 +1,108 @@
+{
+ "protocol": "PROTOCOL.md, Added after the outcome of A18 (descriptive, no criterion)",
+ "seed": 534,
+ "gpt4o_table5": {
+  "n_trials": 1493,
+  "dh": 1.0804292128613333,
+  "dm": 2.338109471925133,
+  "data": {
+   "both_wrong": 0.06590919653497397,
+   "both_if_independent": 0.04925506318952928,
+   "machine_wrong_if_person_wrong": 0.15594679940842496
+  },
+  "model": {
+   "in_house": {
+    "phi": 74.91981834993112,
+    "both_wrong": 0.067121,
+    "machine_wrong_if_person_wrong": 0.15902963043694587
+   },
+   "mixed_model": {
+    "phi": 88.34922074246515,
+    "both_wrong": 0.0512205,
+    "machine_wrong_if_person_wrong": 0.12124529681964999
+   },
+   "ninety": {
+    "phi": 90.0,
+    "both_wrong": 0.049303,
+    "machine_wrong_if_person_wrong": 0.11663869164428074
+   }
+  },
+  "verdict_ceiling": {
+   "in_house": {
+    "phi": 74.91981834993112,
+    "over_machine": 1.0002358436889736,
+    "errors_removed": 0.0007284877293006753
+   },
+   "mixed_model": {
+    "phi": 88.34922074246515,
+    "over_machine": 1.010234224280996,
+    "errors_removed": 0.03126114026556437
+   },
+   "ninety": {
+    "phi": 90.0,
+    "over_machine": 1.013007824255052,
+    "errors_removed": 0.03960996599523159
+   }
+  },
+  "mixed_model_fit": {
+   "warnings": [],
+   "singular": false,
+   "sigma_m2": 26.3068246496395,
+   "sigma_p2": 0.31063321406378,
+   "rho_c": 0.0232687176796049,
+   "rho_c_in_house": 0.21690926585715206
+  }
+ },
+ "asked_again": {
+  "gpt-4o": {
+   "questions": 396,
+   "answers_median": 50.0,
+   "all_same": 0.7676767676767676,
+   "accuracy": 0.8699760827195893,
+   "differ": 0.05415183681790158,
+   "rho_correct": 0.9483979392384909,
+   "rho": 0.9568688070229562,
+   "phi": 16.88911245698915,
+   "margin": 0.010960395921236321,
+   "at_table_top": false,
+   "differ_ci": [
+    0.04187588197499948,
+    0.06682576885729628
+   ],
+   "phi_ci": [
+    13.408517102488208,
+    20.84573589993057
+   ],
+   "margin_ci": [
+    0.006885105448599832,
+    0.01677749623761074
+   ],
+   "replicas_at_table_top": 0
+  },
+  "llama-3.1-8b": {
+   "questions": 396,
+   "answers_median": 50.0,
+   "all_same": 0.351010101010101,
+   "accuracy": 0.6391060424971289,
+   "differ": 0.20561384908993058,
+   "rho_correct": 0.771204955858115,
+   "rho": 0.8045786150121933,
+   "phi": 36.430420533007535,
+   "margin": 0.052754471142371084,
+   "at_table_top": false,
+   "differ_ci": [
+    0.1861757497736305,
+    0.22567619944613063
+   ],
+   "phi_ci": [
+    33.166838858312104,
+    39.92835509370998
+   ],
+   "margin_ci": [
+    0.04340000597739555,
+    0.06393586972547999
+   ],
+   "replicas_at_table_top": 0
+  }
+ }
+}
