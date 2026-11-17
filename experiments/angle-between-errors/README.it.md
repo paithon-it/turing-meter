@@ -16,9 +16,10 @@ Le analisi da A13 ad A19 e gli esiti di A11 stanno solo in `PROTOCOL.md`, che pe
 
 ## Come citare
 
-endjneer (2026). *Intelligenza apparente* (*Apparent Intelligence*). Zenodo.
-https://doi.org/10.5281/zenodo.24107648 (tutte le versioni; l'ultima è la versione in forma
-di paper, in italiano e in inglese)
+endjneer (2026). *Intelligenza apparente* (*Apparent Intelligence*). Versione 5. Zenodo.
+https://doi.org/10.5281/zenodo.24302609 (il record contiene l'originale in italiano e una
+traduzione in inglese). Tutte le versioni, sempre l'ultima:
+https://doi.org/10.5281/zenodo.24107648
 
 Codice e dati: https://github.com/paithon-it/turing-meter, cartella
 `experiments/angle-between-errors`.
