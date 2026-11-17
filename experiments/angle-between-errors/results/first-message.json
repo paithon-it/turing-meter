@@ -51,6 +51,8 @@
   "diff_short": 0.35537804449490445,
   "silent_given_missing": 0.24082934609250398,
   "silent_given_present": 0.10240963855421686,
+  "silent_given_short": 0.4019607843137255,
+  "silent_given_not_short": 0.1271617497456765,
   "parts": {
    "outside": {
     "points": -0.0023040857334226394,
@@ -104,6 +106,14 @@
    "chats_without_answer": [
     -0.10930620968682277,
     -0.047904730091269894
+   ],
+   "silent_given_short": [
+    0.3068558294286727,
+    0.49894722071507414
+   ],
+   "silent_given_not_short": [
+    0.08831122688338397,
+    0.17425162854827733
    ],
    "silent_missing": [
     0.8844082136863696,
@@ -200,6 +210,8 @@
   "diff_short": 0.29109009116877343,
   "silent_given_missing": 0.27843803056027167,
   "silent_given_present": 0.11042944785276074,
+  "silent_given_short": 0.4276729559748428,
+  "silent_given_not_short": 0.170995670995671,
   "parts": {
    "outside": {
     "points": 0.002469664525339041,

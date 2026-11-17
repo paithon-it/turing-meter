@@ -16,6 +16,7 @@ machine errors, measured on ChatBench, ChaosNLI (αNLI), HAIID and
 model-vs-human, against 24 machines. Hypotheses and criteria are in
 `PROTOCOL.md`, written before looking at the data (the Italian original is
 `PROTOCOL.it.md`); what changed afterwards is in its "Deviations" section.
+Analyses A13 to A19 and the outcomes of A11 are in `PROTOCOL.md` only.
 
 ## How to cite
 

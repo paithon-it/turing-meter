@@ -111,6 +111,9 @@ def stats(x: pd.DataFrame, w: np.ndarray) -> dict:
     silent = g == "silent"
     out["silent_given_missing"] = _share(silent, cls & missing, w)
     out["silent_given_present"] = _share(silent, cls & ~missing, w)
+    # added after the outcome, on a further review: the short message read the same way as the options
+    out["silent_given_short"] = _share(silent, msg & short, w)
+    out["silent_given_not_short"] = _share(silent, msg & ~short, w)
     acc, alone = x.acc_ai.to_numpy(float), x.m_alone.to_numpy(float)
     masks = {"outside": g == "outside", "silent_no_message": silent & ~msg, "silent_missing": silent & missing,
              "silent_present": silent & cls & ~missing, "silent_not_classifiable": silent & msg & ~cls}
@@ -144,7 +147,8 @@ def intervals(x: pd.DataFrame) -> dict:
         w = (rng.poisson(1.0, people.max() + 1)[people] * rng.poisson(1.0, questions.max() + 1)[questions]).astype(float)
         runs.append(stats(x, w))
     out = {k: _ci([r[k] for r in runs]) for k in ("diff_missing", "diff_short", "silent_given_missing",
-                                                   "silent_given_present", "chats_without_answer")}
+                                                   "silent_given_present", "chats_without_answer",
+                                                   "silent_given_short", "silent_given_not_short")}
     for gname in ("silent", "letter", "outside"):
         for k in ("missing", "short"):
             out[f"{gname}_{k}"] = _ci([r[gname][k] for r in runs])

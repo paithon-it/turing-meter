@@ -4,6 +4,10 @@ Written on 9 November 2026 **before** computing any result. Its purpose is to
 avoid choosing the analyses after seeing the numbers. Whatever changes later is
 recorded at the end, in the "Deviations" section, with the reason.
 
+> The Italian original is `PROTOCOL.it.md`, of which the first part of this file is the translation. From the
+> section "After the third review (v4)" on (analyses A13 to A19), and for the outcomes of A11, this English text
+> is the original, published before each computation, and it has no Italian translation.
+
 ## The problem
 
 Article 534 defines the angle φ between the errors of a person and those of a
@@ -1977,3 +1981,11 @@ of the 330 silent chats, 1,065 of the 1,121 with a letter.
 - **Where it goes.** A19a passed, so by the rule: one sentence in the
   paragraph of §2 on the silent chats, with the shares of A19a and A19b and
   "an association, not a cause"; the numbers and the split in appendix B.
+
+*Added after the outcome of A19 (17 November 2026, on a further review; descriptive, no criterion).* The
+short message read the same way as the options: among the trials with a first message, the chat stays silent
+40.2 percent of the time when the message is short (30.7–49.9) and 12.7 when it is not (8.8–17.4); Llama 3.1 8B
+42.8 and 17.1. A limit the outcome above did not state: "shorter than half the question" depends on the length
+of the question. On a long problem almost any first message is short, and long problems may also be the harder
+ones; without a comparison within the same question, between different people, the measure mixes who writes
+little with what they were given. No further analysis on this.

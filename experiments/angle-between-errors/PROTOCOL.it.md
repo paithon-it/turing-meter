@@ -1,6 +1,8 @@
 # Protocollo: l'angolo fra gli errori, misurato
 
 > Testo originale, in italiano, scritto prima dei risultati. Rispetto all'originale sono cambiati soltanto i nomi di file, moduli, funzioni e chiavi, ora in inglese come il codice; la traduzione è in [`PROTOCOL.md`](PROTOCOL.md).
+>
+> **Le analisi da A13 ad A19, e gli esiti di A11, stanno solo in inglese.** Dalla sezione «After the third review (v4)» in poi il protocollo è stato scritto e pubblicato prima di ogni calcolo direttamente in [`PROTOCOL.md`](PROTOCOL.md), e qui non è tradotto; lo stesso vale per gli esiti di A11 su ChatBench e su αNLI. Per tutto questo fa fede il testo inglese.
 
 Scritto il 9 novembre 2026 **prima** di calcolare qualunque risultato. Serve a
 non scegliere le analisi dopo aver visto i numeri. Ciò che cambia dopo si
@@ -1508,3 +1510,16 @@ della versione 3). L'angolo contro il valore dello strumento stesso su un
 campione enorme (71,6 gradi): stima media 71,8, copertura 98,3 per cento. Con
 una difficoltà che cambia da domanda a domanda e un'opzione sbagliata che
 attira, lo strumento mantiene il suo comportamento.
+
+## Le sezioni successive, solo in inglese
+
+Da qui in avanti il protocollo sta soltanto in [`PROTOCOL.md`](PROTOCOL.md), che fa fede: ogni sezione è stata
+pubblicata prima del calcolo che descrive, e l'esito è scritto sotto.
+
+- *After the critical review (v4): the new measures*, sotto A11: gli esiti della prova sulla contaminazione, su
+  ChatBench e su αNLI (la sezione qui sopra si ferma al protocollo).
+- *After the third review (v4)*: A13, la macchina interrogata di nuovo; A14, l'intervallo di dove vanno i punti.
+- *After the fourth review (v4)*: A15, le ipotesi ricampionando persone e domande; la correzione di A13 (k = 1).
+- *After the fifth review (v4)*: A16, la terza corsa di Haiku; A19, il primo messaggio della persona nelle chat mute.
+- *After the sixth review (v4)*: A17, la posizione della risposta e la somiglianza fra le macchine; A18, l'angolo
+  contro un modello probit a effetti misti.
