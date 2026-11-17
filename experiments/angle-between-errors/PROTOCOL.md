@@ -1939,3 +1939,41 @@ fails, the outcome goes to appendix D and to the list of what did not pass,
 and §2 does not change. A19b is reported next to A19a in the same place and
 does not move anything into the body on its own. The body stays under 7,000
 words.
+
+*Outcome of A19 (17 November 2026, protocol on the server at 00:15:31Z,
+`4c57637`; `results/first-message.json`, code `angle/first_message.py`).*
+Every trial has a first message from the person: none falls in "no message"
+(the 60 silent chats counted apart in B lack a message from the machine, not
+from the person). Classifiable: 319
+of the 330 silent chats, 1,065 of the 1,121 with a letter.
+
+- **A19a passes.** First message without the options: 94.7 percent of the
+  silent chats (88.4–98.8), 86.0 of the chats with a letter (80.4–91.0);
+  difference 8.7 points (1.8 to 14.9). In the 42 with an answer outside the
+  options, 36 of 36 classifiable.
+- **A19b passes.** First message shorter than half the question: 62.1 percent
+  of the silent chats (50.7–72.6), 26.6 of the chats with a letter
+  (20.4–33.4); difference 35.5 points (23.5 to 46.4).
+- *Descriptive.* Among the classifiable trials the chat stays silent 24.1
+  percent of the time when the options are missing (18.8–29.9) and 10.2 when
+  they are present (2.6–21.2). The 7.6 points: 6.7 in the silent chats with
+  the options missing (4.0 to 9.9; people with the chat 49.7 percent, machine
+  alone 82.7), 0.2 with the options present (17 trials), 0.5 not classifiable,
+  0.2 in the 42 with an answer outside the options. Llama 3.1 8B: options
+  missing 94.8 percent of the silent chats and 84.5 of those with a letter,
+  short 56.4 and 27.2; silent 27.8 percent when the options are missing, 11.0
+  when present.
+- *The check of the matching*, 40 read: 35 right. Of the 20 with the options
+  missing, 19 right and one matching error (an option written «WRONG , NOT
+  WRONG», with a space before the comma). Of the 20 with the options present,
+  16 right and 4 where the person names one option (a guess, or a question
+  about it) without the list: "present" overstates the pasted lists. The kind
+  of each mark was added to the results after reading.
+- **Reading.** Missing options are the rule in both groups, so they say
+  little on their own: most chats that gave a letter also began without them.
+  The split of the 7.6 points follows the composition (302 of the 330 silent
+  chats lack the options) and does not locate a cause. The larger difference
+  is in the length of the first message.
+- **Where it goes.** A19a passed, so by the rule: one sentence in the
+  paragraph of §2 on the silent chats, with the shares of A19a and A19b and
+  "an association, not a cause"; the numbers and the split in appendix B.

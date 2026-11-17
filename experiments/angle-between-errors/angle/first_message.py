@@ -191,8 +191,12 @@ def run() -> dict:
     check = RESULTS / "first-message-check.json"
     if check.exists():
         marks = json.loads(check.read_text())
+        cat = x.set_index("id").category
         out["matching_check"] = {"read": len(marks), "right": int(sum(v == "right" for v in marks.values())),
-                                 "wrong": [k for k, v in marks.items() if v != "right"]}
+                                 "wrong": [k for k, v in marks.items() if v != "right"],
+                                 # added after reading: the kind of each wrong mark, by the classification it corrects
+                                 "marks": {f"{c}: {v}": int(sum(1 for k, vv in marks.items() if vv == v and cat[k] == c))
+                                           for c in ("missing", "present") for v in sorted(set(marks.values()))}}
     return out
 
 

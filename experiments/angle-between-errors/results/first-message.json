@@ -1,0 +1,258 @@
+{
+ "protocol": "PROTOCOL.md, After the fifth review (v4): A19",
+ "seed": 534,
+ "replicas": 2000,
+ "gpt4o": {
+  "counts": {
+   "silent": {
+    "no message": 0,
+    "not classifiable": 11,
+    "missing": 302,
+    "present": 17,
+    "trials": 330,
+    "short": 205
+   },
+   "letter": {
+    "no message": 0,
+    "not classifiable": 56,
+    "missing": 916,
+    "present": 149,
+    "trials": 1121,
+    "short": 298
+   },
+   "outside": {
+    "no message": 0,
+    "not classifiable": 6,
+    "missing": 36,
+    "present": 0,
+    "trials": 42,
+    "short": 7
+   }
+  },
+  "silent": {
+   "missing": 0.9467084639498433,
+   "short": 0.6212121212121212,
+   "no_message": 0.0,
+   "not_classifiable": 0.03333333333333333
+  },
+  "letter": {
+   "missing": 0.860093896713615,
+   "short": 0.26583407671721676,
+   "no_message": 0.0,
+   "not_classifiable": 0.049955396966993755
+  },
+  "outside": {
+   "missing": 1.0,
+   "short": 0.16666666666666666,
+   "no_message": 0.0,
+   "not_classifiable": 0.14285714285714285
+  },
+  "diff_missing": 0.08661456723622829,
+  "diff_short": 0.35537804449490445,
+  "silent_given_missing": 0.24082934609250398,
+  "silent_given_present": 0.10240963855421686,
+  "parts": {
+   "outside": {
+    "points": -0.0023040857334226394,
+    "share": 0.02813127930341594,
+    "people_with_chat": 0.47619047619047616,
+    "machine_alone": 0.5580952380952381
+   },
+   "silent_no_message": {
+    "points": 0.0,
+    "share": 0.0,
+    "people_with_chat": NaN,
+    "machine_alone": NaN
+   },
+   "silent_missing": {
+    "points": -0.06685456268606206,
+    "share": 0.20227729403884795,
+    "people_with_chat": 0.4966887417218543,
+    "machine_alone": 0.827198218842022
+   },
+   "silent_present": {
+    "points": -0.0019423978566644345,
+    "share": 0.011386470194239785,
+    "people_with_chat": 0.7647058823529411,
+    "machine_alone": 0.9352941176470588
+   },
+   "silent_not_classifiable": {
+    "points": -0.005344943067649028,
+    "share": 0.007367716008037508,
+    "people_with_chat": 0.2727272727272727,
+    "machine_alone": 0.9981818181818182
+   }
+  },
+  "chats_without_answer": -0.07644598934379816,
+  "ci": {
+   "diff_missing": [
+    0.018337639331917985,
+    0.14885794961679688
+   ],
+   "diff_short": [
+    0.23457614314143202,
+    0.46441305795492865
+   ],
+   "silent_given_missing": [
+    0.18810942225335242,
+    0.2986057167051636
+   ],
+   "silent_given_present": [
+    0.026143790849673203,
+    0.21244693297676745
+   ],
+   "chats_without_answer": [
+    -0.10930620968682277,
+    -0.047904730091269894
+   ],
+   "silent_missing": [
+    0.8844082136863696,
+    0.9876558376558376
+   ],
+   "silent_short": [
+    0.5073907983020677,
+    0.7256790582003746
+   ],
+   "letter_missing": [
+    0.8040210576903466,
+    0.9100917994535016
+   ],
+   "letter_short": [
+    0.20385864665641404,
+    0.3336575324212796
+   ],
+   "outside_missing": [
+    1.0,
+    1.0
+   ],
+   "outside_short": [
+    0.0,
+    0.371813725490196
+   ],
+   "part_outside": [
+    -0.01113276250407223,
+    0.006171362762477836
+   ],
+   "part_silent_no_message": [
+    0.0,
+    0.0
+   ],
+   "part_silent_missing": [
+    -0.09901966952867414,
+    -0.03995343401228742
+   ],
+   "part_silent_present": [
+    -0.006720678739101273,
+    0.0007244138479904477
+   ],
+   "part_silent_not_classifiable": [
+    -0.015399357903117066,
+    0.0
+   ]
+  }
+ },
+ "llama": {
+  "counts": {
+   "silent": {
+    "no message": 0,
+    "not classifiable": 16,
+    "missing": 328,
+    "present": 18,
+    "trials": 362,
+    "short": 204
+   },
+   "letter": {
+    "no message": 0,
+    "not classifiable": 33,
+    "missing": 791,
+    "present": 145,
+    "trials": 969,
+    "short": 264
+   },
+   "outside": {
+    "no message": 0,
+    "not classifiable": 11,
+    "missing": 59,
+    "present": 0,
+    "trials": 70,
+    "short": 9
+   }
+  },
+  "silent": {
+   "missing": 0.9479768786127167,
+   "short": 0.56353591160221,
+   "no_message": 0.0,
+   "not_classifiable": 0.04419889502762431
+  },
+  "letter": {
+   "missing": 0.8450854700854701,
+   "short": 0.2724458204334365,
+   "no_message": 0.0,
+   "not_classifiable": 0.034055727554179564
+  },
+  "outside": {
+   "missing": 1.0,
+   "short": 0.12857142857142856,
+   "no_message": 0.0,
+   "not_classifiable": 0.15714285714285714
+  },
+  "diff_missing": 0.10289140852724665,
+  "diff_short": 0.29109009116877343,
+  "silent_given_missing": 0.27843803056027167,
+  "silent_given_present": 0.11042944785276074,
+  "parts": {
+   "outside": {
+    "points": 0.002469664525339041,
+    "share": 0.049964311206281226,
+    "people_with_chat": 0.5571428571428572,
+    "machine_alone": 0.5077142857142858
+   },
+   "silent_no_message": {
+    "points": 0.0,
+    "share": 0.0,
+    "people_with_chat": NaN,
+    "machine_alone": NaN
+   },
+   "silent_missing": {
+    "points": 0.01579885647191517,
+    "share": 0.23411848679514632,
+    "people_with_chat": 0.5884146341463414,
+    "machine_alone": 0.5209323234233135
+   },
+   "silent_present": {
+    "points": -0.002198429693076374,
+    "share": 0.01284796573875803,
+    "people_with_chat": 0.5,
+    "machine_alone": 0.6711111111111111
+   },
+   "silent_not_classifiable": {
+    "points": -0.0033404710920770875,
+    "share": 0.011420413990007138,
+    "people_with_chat": 0.4375,
+    "machine_alone": 0.73
+   }
+  },
+  "chats_without_answer": 0.012729620212100749
+ },
+ "a19a_passes": true,
+ "a19b_passes": true,
+ "matching_check": {
+  "read": 40,
+  "right": 35,
+  "wrong": [
+   "Y6RS9CH7G4|moral_scenarios-redux-22",
+   "4ARMRC9MIR|conceptual_physics-redux-51",
+   "WEZ8EDR73E|high_school_mathematics-redux-34",
+   "L7FZ60X8C7|high_school_mathematics-redux-50",
+   "SQ4WBLGSAC|conceptual_physics-redux-48"
+  ],
+  "marks": {
+   "missing: matching error": 1,
+   "missing: one option only": 0,
+   "missing: right": 19,
+   "present: matching error": 0,
+   "present: one option only": 4,
+   "present: right": 16
+  }
+ }
+}
