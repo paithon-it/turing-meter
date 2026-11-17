@@ -12,8 +12,6 @@ from scipy.stats import norm
 
 from . import sdt
 
-_Z_GRID = np.linspace(-3.6, 3.6, 361)
-
 
 @dataclass
 class Trials:
@@ -34,12 +32,16 @@ def _d(a: float, m: int) -> float:
 
 
 def _fast_rho(y, zp, zm, m_c, w):
-    """Like sdt.rho_personal_thresholds, with the thresholds already computed and a grid of z."""
+    """Like sdt.rho_personal_thresholds, with the thresholds already computed.
+
+    The thresholds enter exactly (distinct values rounded to 1e-6). Up to version 3 of the article
+    they were binned on a grid with step 0.02, which biased ρ downward (PROTOCOL, A8).
+    """
     observed = np.sum(w * y * m_c) / np.sum(w)
-    idx = np.clip(np.round((zp - _Z_GRID[0]) / (_Z_GRID[1] - _Z_GRID[0])).astype(int), 0, _Z_GRID.size - 1)
-    weight = np.bincount(idx, weights=w, minlength=_Z_GRID.size)
+    zu, inv = np.unique(np.round(zp, 6), return_inverse=True)
+    weight = np.bincount(inv, weights=w, minlength=zu.size)
     alive = weight > 0
-    expected = (sdt.bvn(_Z_GRID[alive][None, :], zm, sdt.RHO_GRID[:, None]) * weight[alive]).sum(1) / weight.sum()
+    expected = (sdt.bvn(zu[alive][None, :], zm, sdt.RHO_GRID[:, None]) * weight[alive]).sum(1) / weight.sum()
     return float(np.interp(observed, expected, sdt.RHO_GRID))
 
 

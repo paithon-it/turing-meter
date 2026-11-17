@@ -4,6 +4,10 @@ Written on 9 November 2026 **before** computing any result. Its purpose is to
 avoid choosing the analyses after seeing the numbers. Whatever changes later is
 recorded at the end, in the "Deviations" section, with the reason.
 
+> The Italian original is `PROTOCOL.it.md`, of which the first part of this file is the translation. From the
+> section "After the third review (v4)" on (analyses A13 to A19), and for the outcomes of A11, this English text
+> is the original, published before each computation, and it has no Italian translation.
+
 ## The problem
 
 Article 534 defines the angle φ between the errors of a person and those of a
@@ -1066,3 +1070,942 @@ sample read and the readings in `results/mute-chats-sample.jsonl` and
   check in one sentence, and the numbers go in the appendix.
 - *Note.* Reader 1 keyed its answers by line number of the sample file; they
   were mapped to the ids in `results/mute-chats-labels.json`.
+
+## The random anchor (written 15 November 2026, before any run)
+
+Written after every result above and before any call to a machine in the new
+condition. The code (`angle/anchor.py`, `closed/anchor_claude.py`) was written
+and tested on synthetic trials first (`tests/test_anchor.py`); this section and
+the code are committed and pushed before the run.
+
+**The question.** Told «I think the answer is X», with X the person's answer,
+Claude Haiku 5.5 is more accurate than alone (96.5 against 93.5 percent; d′
+ratio 1.14, 1.10 against Haiku alone asked again). Two explanations predict the
+same gain. Either the person's answer carries information the machine uses, or
+any candidate written in the prompt makes the machine check it (a format
+effect, a kind of verification the prompt induces), whatever the candidate is.
+A letter drawn at random separates them: it has the format and none of the
+person's information.
+
+**Data and items.** The 1,038 items of the devil's advocate (each distinct pair
+of question and answer given alone), the same 2,903 trials. For each item a
+letter R is drawn uniformly among the four options, fixed by the item's id and
+the seed 534 (`anchor.anchor_letter`, SHA-256, not Python's hash), independently
+of the person's answer and of the key: right one time in four, and equal to the
+person's letter in 254 items, as chance gives. Items in
+`data/items/chatbench-anchor.jsonl`.
+
+**Condition.** *R, the random anchor*: the prompt of the told condition,
+unchanged (`devil.prompt(c, "told")`), with X replaced by R. Claude Haiku 5.5
+through Claude Code in headless mode, effort `low`, the one-field schema, one
+call per item, as in `closed/devil_claude.py`. The other conditions are the
+runs already in the repository: alone (the run named by the devil's protocol,
+and the one asked again), told. An item not answered is dropped from all
+conditions.
+
+**Measures.** On the 2,903 trials:
+
+1. The accuracy and d′ (four options) of the machine alone, told and anchored.
+2. Accuracy when the letter in the prompt is right and when it is wrong, for the
+   told and the anchored machine; the machine alone on the same splits.
+3. The pull of a wrong letter: how often the machine gives the letter it was
+   told when that letter is wrong, minus how often it gives it alone.
+4. The told machine as the random letter predicts it: the anchored accuracy
+   with a right letter times the person's accuracy, plus the anchored accuracy
+   with a wrong letter times its complement. A told accuracy above the
+   prediction would say the person's answers carry something a random letter
+   with the same correctness does not; below, that the person's wrong answers
+   pull harder than random wrong letters (they are plausible distractors).
+
+**Hypotheses and criteria.** 95% percentile intervals, 2,000 replicas
+resampling people and questions together (Poisson weights), as in the devil's
+advocate.
+
+- *R1, the format*: the anchored machine is more sensitive than the machine
+  alone, d′_R / d′_0 above one. Passes if the interval lies above one with both
+  runs of Haiku alone.
+- *R2, the person's answer*: the told machine is more sensitive than the
+  anchored machine, d′_A / d′_R above one. Passes if the interval lies above
+  one.
+- *Reported whatever happens*, with no criterion: measures 2-4.
+
+**What it can and cannot say.** The told and anchored runs are on the same day
+and the same items, so the variability between runs weighs less on R2 than on
+the comparison with the machine alone (between the two runs of Haiku alone 28
+of 396 questions change outcome); it is still not in the intervals. The
+expected differences are small (the told and alone accuracies differ by three
+points), and R2 may not have the power to pass even if the person's answer
+helps: then measure 4 says more than the test.
+
+**Where it goes in the article.** The article says that, for a machine that is
+not sycophantic, the person's answer is one more hypothesis to check.
+
+- R2 passes: the sentence stays, with the ratio of R2.
+- R2 fails, R1 passes: the article says that the gain comes from the format, a
+  candidate in the prompt, and not from the person's answer.
+- Neither passes: the article says that the machine told our answer is not
+  distinguishable from the machine told a random letter, and the gain over the
+  machine alone is not attributed to the person.
+
+In every case, the numbers in the appendix of the article.
+
+## The random anchor: outcome (15 November 2026)
+
+Results in `results/anchor.json`; the answers in
+`devil-results/chatbench-anchor__haiku-5.5__told.jsonl` (1,038 items, none
+missing, 219 output tokens per answer on average). Intervals as
+pre-registered (2,000 replicas, Poisson weights over people and questions).
+
+- **Accuracy** on the 2,903 trials: alone 93.5 (asked again 94.5), told 96.5,
+  anchored 96.1. The random letter is the key in 22 percent of the trials.
+- **R1, the format, fails as written.** d′_R / d′_0 = 1.12 (1.01–1.24) against
+  the protocol's run alone, 1.08 (0.98–1.19) against Haiku alone asked again on
+  the same day as the told and anchored runs. The criterion asked for both.
+- **R2, the person's answer, fails.** d′_A / d′_R = 1.02 (0.94–1.11).
+- **Measure 2.** Told: 97.1 with the person's letter right, 95.6 with it
+  wrong. Anchored: 94.2 with the random letter right, 96.6 with it wrong. Alone
+  on the same splits: 92.8 and 94.4 (by the person's letter), 90.5 and 94.3
+  (by the random letter).
+- **Measure 3, the pull of a wrong letter.** Told −0.7 points (−2.8 to +1.2),
+  anchored −0.9 (−2.8 to +0.8); with Haiku alone asked again, −0.1 and −0.2.
+  A wrong letter does not attract Haiku, whether the person's or random.
+- **Measure 4.** The told accuracy predicted from the anchored machine is
+  95.2; the observed 96.5; difference +1.3 points (−0.6 to +3.6).
+- **Descriptive.** Output tokens per answer: alone about 175, told 217,
+  anchored 219. On the 254 items where the random letter equals the person's
+  the two prompts are identical; Haiku's letter differs in 7.
+- **Rule.** Neither passes: the article says that the machine told our answer
+  is not distinguishable from the machine told a random letter, and does not
+  attribute the gain over the machine alone to the person.
+
+## After the critical review (v4): the audit (written 16 November 2026, before running it)
+
+A critical review of version 3 of the article asked to check what was decided
+before and how. Two analyses come first, because the others use their
+results. Both run on data already in the repository: no model is called.
+
+### A8, the grid of thresholds
+
+**The defect.** Declared in "T, the calibration": the correlation is computed
+on a grid of thresholds with step 0.02 (`measure._fast_rho`, and the grid `zu`
+in `sdt.estimate_from_evidence`). The article says that on ChatBench it shifts
+the angle by less than a degree.
+
+**What was checked before writing this, on simulated data only.** On the
+huge samples of scenarios A and E (one million trials), with the grid the
+instrument gives ρ = 0.163 and 0.287 against the true 0.20 and 0.30; with
+exact thresholds in the measure only, 0.194 and 0.297; with exact thresholds
+in the measure and in the conversion, 0.196 and 0.297. The grid is the cause,
+and in scenario A it is worth about two degrees, not less than one. No real
+data were measured with the corrected estimator before this section was
+committed.
+
+**The correction.** In both places the thresholds are used exactly (unique
+values rounded to 10⁻⁶) instead of being binned on the grid. Nothing else
+changes: the same seeds, the same resamples, the same conversion points.
+
+**What is reported.** All the analyses that use the angle are rerun with the
+corrected estimator (`analysis`, `run_chatbench`, `frontier`, `difficulty`,
+`review`, `verdict`, `summary`, `figure`; `calibration` as well). For each
+comparison: the angle before and after; per family, the median and the
+largest shift. The calibration criteria are evaluated again.
+
+**Rule for the article.** Version 4 uses the corrected estimator everywhere,
+and the shift goes in appendix D in one paragraph with its numbers. If a
+verdict of version 3 changes (the count of intervals below 90 degrees in H1,
+H3, the table of H5, the sign of the rank correlation in H7, the angles of
+tables 5, 7 and 8 beyond their intervals), the work stops and the author
+decides before anything is written.
+
+### A12, hypotheses H1-H5 with the criterion as written
+
+**The problem.** The protocol says: "Passes means that the 95 percent
+interval meets the criterion". `angle/summary.py` decides H3 by comparing two
+means (line 80) and H2 by comparing two medians (line 64), without an
+interval. On ChatBench H3 "passes" with a mean error of 0.0570 against 0.0574.
+H1 says "on every data family" without saying whether per family or per
+comparison.
+
+**What is computed**, first on the results of version 3 (an audit of what
+the article says) and then on those rerun after A8. Bootstrap over the
+comparisons, stratified by data family, 2,000 replicas, seed 534.
+
+- **H1.** Two readings, both reported. Per comparison: how many have the
+  interval of φ below 90 degrees (as in version 3). Per family: the interval
+  of the median φ over the comparisons; the family passes if its upper end is
+  below 90.
+- **H2.** Per family, the difference between the median ρ machine-machine and
+  the median ρ person-machine, with its interval; passes if the lower end is
+  above zero.
+- **H3.** The mean over the comparisons of e_φ − e_90 (the absolute errors of
+  the two predictions), with its interval; passes if the upper end is below
+  zero. Overall, without HAIID and per family. The rows between the two
+  predictions are counted, without an interval: there are too few.
+- **H4** is not counted as a test of its own: with ρ > 0 the ideal at φ is
+  lower than at 90 degrees, so whenever the pair beats the person the share of
+  the gain at φ is larger. It is reported as a consequence of H1.
+- **H5** stays as in version 3 (it already does not pass).
+
+**Limit, declared now.** The bootstrap over comparisons does not carry the
+uncertainty of each comparison's own estimates (its angle has its own
+interval): the interval of H3 is too narrow, not too wide. A two-level
+resampling would require rerunning every comparison with its replicas, and
+is not done.
+
+**Rule for the article.** Table 24 and appendix D use these verdicts. If one
+differs from version 3 (H3 on ChatBench is the expected case), the work stops
+and the author decides how it is written.
+
+## After the critical review (v4): the new measures (written 16 November 2026, before computing them)
+
+They run after A8, on the results rerun with the corrected estimator. No
+model is called, except in A11, which waits for the author's approval. All
+the bootstraps: Poisson weights, 2,000 replicas, seed 534, unless the
+analysis they extend uses others (then the same as that analysis).
+
+**A1, intervals for the margin and the two ceilings.** For the comparisons of
+tables 5 (the two ChatBench pairs), 7 (today's Claude models on ChatBench)
+and 8 (αNLI): the margin of the ideal pair over the stronger of the two, with
+shared cues, |S|(φ)/max(d_H, d_M) − 1, and with the verdict only (the
+machine's verdict to a person with graded cues, and the other way round,
+`verdict.pair`). `measure.compare` keeps the replicas of (d_H, d_M, ρ); the
+shared-cue margin is computed on each. The verdict-only margin is computed
+on a grid of k and φ at the comparison's d_H and interpolated on each
+replica; at the point estimate the interpolation must differ from the direct
+computation by less than 0.1 points of margin, otherwise the grid is
+refined. No hypothesis. Rule: every margin in tables 5, 7 and 8 has its
+interval; in the prose a margin never appears without it; a margin whose
+interval reaches zero is written as not distinguishable from zero.
+
+**A2, the margin in correct answers.** For each margin of A1: the accuracy of
+an observer with sensitivity d_stronger·(1 + margin), minus that of the
+stronger, with the same number of options; on each replica. Rule: a column
+"in correct answers" in the tables; in the prose only for the figure that
+matters.
+
+**A3, the errors removed.** The share of the machine's errors removed by the
+ideal pair with shared cues at 90 degrees. Claim to check: for large k the
+ratio of the pair's errors to the machine's tends to exp(−d_H²/4) in a choice
+among m options (from the asymptotics of the error, which goes like
+(m − 1)·Φ(−d/√2)), so it depends only on the person; with the yes/no
+convention d′ = 2z(a), exp(−d_H²/8). Done analytically and numerically, for
+m = 2 and 4, d_H from 0.5 to 2, k from 1 to 20. Criterion: "it does not depend
+on k" is written only where the relative gap from the limit is below 5
+percent; elsewhere the dependence is stated. It is a property of the model.
+
+**A4, the weight of evidence.** W = d′²/2 (in nats; 1 nat = 10/ln 10 ≈ 4.34
+decibans) for H, M and S, and ΔW_SH = W_S − W_H, ΔW_SM = W_S − W_M, with
+intervals from the replicas of A1. Convention: in the equal-variance Gaussian
+model d′²/2 is the expected log-likelihood ratio between the two classes for
+one observation; in a choice among m options it is the same quantity for the
+correct option against each wrong one, a convention and not the information
+of the choice. No hypothesis. Rule: ΔW stands next to the turing; the zones
+are also given by the signs of ΔW_SH and ΔW_SM.
+
+**A5, the crowd.** ChatBench, condition answer-first, GPT-4o and Llama: the
+ceiling of a large crowd whose members have sensitivity d′ and pairwise
+correlation ρ is d′/√ρ (classic, for pooled graded evidence and equal
+sensitivities). With ρ_HH and ρ_SS from "Two people with the chat beside
+them", Tu_crowd = Tu·√(ρ_HH/ρ_SS). One bootstrap over people and questions
+carries d′_H, d′_S and the two ρ with the same weights. Hypothesis (from the
+review brief): the crowd gains less than the single person, Tu_crowd/Tu < 1.
+Criterion: the upper end of the interval of Tu_crowd/Tu below 1. Rule: if it
+passes, the article says the crowd gains less than the single person, with
+the numbers; if not, that the crowd's gain is not distinguishable from the
+single person's. Either way it is a consequence of the model on measured
+inputs, and the angles between people are those of a test that did not pass.
+
+**A6, the person as a verifier.** In the disagreements of table 16 (the chat
+gives a letter among the options, different from the person's answer alone),
+following the chat is the answer "the chat is right": d_v = z(follow | chat
+right) − z(follow | chat wrong). The observer without gating
+(`conversations.linear_observer`, a fixed bonus calibrated on the pair's
+accuracy) gives d_v0. Premium = d_v − d_v0, interval from the bootstrap of
+people and questions on d_v; d_v0 is computed once at the point (its
+sampling error is not carried, declared). Per declared confidence of the
+answer alone, only where there are at least 30 disagreements with the chat
+wrong. Hypothesis: the person verifies beyond a fixed bonus, premium > 0.
+Criterion: lower end above zero. Rule: if it fails, the text says that the
+person is not distinguishable from an observer with a fixed weight, and the
+word "premium" does not appear.
+
+**A7, calibration with heterogeneous questions.** One new scenario H, like A
+plus: the difficulty changes from question to question (the correct
+option's mean shifted by δ_q ~ N(0, 0.5²), the same for person and machine),
+and on each question one wrong option attracts (its mean raised by 0.6 for
+everyone). The model of the article is then misspecified, and ρ has no
+generative true value: the turing is judged against its true value from the
+huge sample, with the criteria of the other scenarios (error at most 5
+percent, coverage between 90 and 98); the angle against the instrument's own
+value on the huge sample (coverage only). Rule: in appendix C as it comes.
+
+**A9, the devil's advocate.** (i) `devil.bootstrap` already resamples people
+and questions; check: the same with weights over the items (question ×
+answer given alone) instead of the questions, change of the intervals
+reported. (ii) The distinct calls per condition, counted from
+`devil-results/`. (iii) The two stacks: Llama 3.1 8B in FP8 on vLLM, letter
+only, against the Llama of ChatBench (accuracies recomputed on the same
+questions); Claude Haiku 5.5 through Claude Code. Rule: one sentence each in
+the body.
+
+**A11, contamination (runs only with the author's approval).** ChatBench's
+questions come from MMLU, αNLI is public since 2020. Test 1: the options
+permuted. ChatBench: the options rotate so that the correct one lands on
+another letter, chosen with SHA-256 of the seed 534 and the question, as in
+the random anchor; the four Claude models with the settings of the frontier
+run (4 × 396 calls). αNLI: the two hypotheses swap places; the eleven open
+models, letter only (11 × 1,532 forward passes on the L4). Measure: the
+accuracy original minus permuted, paired by question, with a bootstrap over
+questions; then k, the angle, the margin and the ceilings on the permuted
+questions. Criterion: the interval of the difference excludes zero. Rule: if
+it does, k and margin "on new questions" go next to the original ones; if
+not, the article says that the permutation does not move k and does not
+exclude that the model remembers the content. In every case the k of
+today's models is presented as an upper bound. With 396 correct answers out
+of 396 (Fable) the test gives at most a lower bound, and it is said. Test 2
+(questions reworded) is proposed only if test 1 shows an effect.
+
+*Before any call (16 November 2026, after the author's approval):* the code is
+`angle/contamination.py` (the permuted banks, the answers mapped back to the
+original order of the options, the paired difference and its bootstrap) and
+`gpu/run_contamination.sh`. One correction to the paragraph above: the open
+models with letter-only results on αNLI are ten, not eleven (10 × 1,532
+forward passes); the ten are run.
+
+*Outcome on ChatBench (16 November 2026, 1,584 calls, none missing;
+`results/contamination.json`).* Accuracy on the 396 items, original then
+permuted: Haiku 0.922 and 0.932 (difference −0.010, −0.035 to +0.015), Sonnet
+0.985 and 0.975 (+0.010, +0.003 to +0.020), Opus 0.987 and 0.990 (−0.003),
+Fable 1.000 and 0.997 (+0.003). As written, the criterion passes for Sonnet
+only. Added after, both descriptive: Sonnet's difference rests on 4 items,
+all right before and wrong after, and the exact sign test gives p = 0.125;
+Haiku asked the same unpermuted items a second time (the existing rerun,
+`chatbench__haiku-5.5-rerun__low.jsonl`) changes 28 items, as many as the permutation (28, 12 worse and 16
+better). Rule applied: for Sonnet k and margin on the permuted items go next
+to the original ones (k 2.93 against 3.17); for the others the article says
+that the permutation does not move k and does not exclude that the model
+remembers the content. With one error on the permuted items, Fable's k
+becomes estimable there: 3.90 (3.27 to 5.49). The αNLI part runs on the L4.
+
+*Outcome on αNLI (16 November 2026, 10 × 1,532 forward passes, none missing;
+`results/contamination.json`, answers mapped back in `contamination-results/`).*
+The run started at 11:28 UTC, after the L4 had been free for ten minutes
+(`aspetta.sh`). Eight machines finished; two failed and were run again at
+19:30 UTC with the same code and data: qwen3.5-9b, whose download was reset
+by the network, and qwen3.8-27b, which did not fit in memory with the default
+settings and was run with `MEM_GPU=0.98 MAX_LEN=2048`, the settings of its
+original αNLI run (`gpu/run_rest2.sh`). Accuracy original minus swapped, in
+points: gemma-4-26b +1.0 (−0.3 to +2.3), granite-3.3-8b +0.1, olmo-3-7b −0.3,
+phi-3.5-mini +1.1, qwen2.5-3b −2.6 (−6.2 to +0.9), qwen2.5-7b −1.0, qwen3-8b
+−1.0, qwen3.5-9b +0.6, qwen3.8-27b −0.5, smollm3-3b +1.1. The criterion passes
+for none of the ten. Rule applied: the article says that the swap does not
+move k (it moves by at most 0.07, qwen2.5-3b 0.44 to 0.50) and does not
+exclude that the models remember the stories. Added after, descriptive: the
+stories that change outcome go from 109 (qwen3.8-27b) to 714 (qwen2.5-3b) of
+1,532, split between the two directions (the exact sign test never goes below
+p = 0.14); qwen2.5-3b and qwen3-8b choose the second position in about 71
+and 64 percent of the stories, before and after the swap, whatever it holds
+(`second_position_share`, also added after). One limit: the original runs
+used an earlier vLLM, installed unpinned and whose version is not recorded
+(this run: 0.33.0). The changed stories mix the swap and the software; only
+the original stories run again with the same software would separate them
+(15,320 more passes, not run).
+
+## After the critical review (v4): outcome of the audit and of A3, A5, A6, A9 (16 November 2026)
+
+**A8, the grid.** All the analyses that use the angle were rerun with exact
+thresholds (`analysis`, `run_chatbench`, `analysis_vision`, `frontier`,
+`devil`, `difficulty`, `review`, `full_evidence`, `summary`, `figure`,
+`verdict`, `calibration`). The model-vs-human data were missing from the
+local copy and were downloaded again from the authors' repository (90 CSV
+files) before `analysis_vision` ran.
+- On the huge samples of the calibration the instrument now gives the true
+  value: scenario A ρ = 0.196 (true 0.20; it was 0.163), angle 78.7 degrees
+  (true 78.5; it was 80.6); E 0.297 (0.30); F 0.449 (0.45). The bias, the
+  coverage and the verdicts of the calibration are practically unchanged
+  (coverage still above 98 percent in five scenarios of six).
+- Shift of the angle, per family (median; extremes): ChatBench −0.02 (−1.9 to
+  +3.1); the two ChatBench pairs −0.16 (−3.0 to +1.4); HAIID images −0.3 (−1.6
+  to +0.1); HAIID text +0.02 (−0.03 to +0.55); αNLI 0 (no personal
+  thresholds there); the 689 vision comparisons 0 (median). No angle leaves
+  its version-3 interval, except Fable 5.2 on ChatBench, which has no errors:
+  its angle cannot be estimated, and the estimate sits on an edge of the
+  conversion table before and after (8.1 and 126.9 degrees).
+- Table 5: GPT-4o 74.5 → 74.9 degrees (58.8–85.9), Llama 75.1 → 74.6
+  (62.3–82.0).
+- **Two verdicts of version 3 change**, both without changing their reading:
+  in H1 the ChatBench comparisons with the interval below 90 degrees go from 7
+  to 8 of 20; in H7 the rank correlation on ChatBench with reasoning goes from
+  −0.02 to +0.10 (p 0.97 → 0.79). Other numbers quoted in the article move:
+  without the strongest open model, ChatBench letter only, −0.63 (p 0.08) →
+  −0.58 (p 0.11); the vision trend −0.45 (p 0.19) → −0.62 (p 0.06), still not
+  distinguishable from chance at 5 percent; vision intervals below 90 degrees
+  374 → 380 of 689; estimates at the edge of the table 30 → 29.
+- **Rule.** A verdict changed: the work stops, and the author decides how it
+  is written.
+
+**A12, H1-H3 with the interval** (identical verdicts on the results of
+version 3 and on the rerun ones; numbers of the rerun).
+- H1 per family: all four pass (median φ with its interval): ChatBench 81.4
+  (79.8–84.6), αNLI 64.4 (59.6–65.3), HAIID text 64.8 (57.6–70.9), HAIID
+  images 78.3 (71.6–86.9). Per comparison: 8 of 20, 20 of 20, 16 of 18, 8 of
+  16.
+- H2: passes in the four families.
+- H3: passes overall (mean e_φ − e_90 = −0.104, from −0.123 to −0.084),
+  without HAIID (−0.124), on αNLI (−0.247) and on HAIID text (−0.147); **does
+  not pass** on ChatBench (−0.001, from −0.020 to +0.017) nor on HAIID images
+  (−0.004, from −0.041 to +0.034). Version 3 showed the ChatBench tie in its
+  table; `summary.py` had written "passes".
+- **Rule.** H3 differs from what `summary.json` said for two families: the
+  author decides how it is written.
+
+**A3, the errors removed.** With four options and the article's person (58
+correct answers in a hundred, d_H = 1.09), the ideal pair at 90 degrees
+removes 31.6 percent of the machine's errors with k = 1, 28.5 with k = 2,
+27.6 with k = 3, 26.8 with k = 5, towards the limit 1 − exp(−d_H²/4) = 25.7.
+The gap from the limit is below 5 percent from k = 1.5–2 on, for d_H between
+1 and 1.25; up to k = 3 for d_H = 2. "About a quarter whatever k is" holds
+from k ≈ 2, not for every k. A property of the model.
+
+**A5, the crowd: does not pass.** Tu_crowd/Tu, GPT-4o 1.04 (0.51–2.68), Llama
+0.86 (0.50–1.51); Tu_crowd 1.72 (0.87–4.40) and 1.20 (0.72–2.05) against the
+single person's 1.65 and 1.40. With GPT-4o, in 145 replicas of 2,000 the
+correlation between two people with the chat is not positive: the crowd's
+ceiling is then unbounded and those replicas are left out, so the true upper
+end is higher still. The crowd's gain is not distinguishable from the single
+person's.
+
+**A6, the verifier: does not pass.** d_v: GPT-4o 1.07 (0.47–1.72) against the
+fixed weight's 1.01, premium +0.06 (−0.53 to +0.72); Llama 0.67 (0.13–1.23)
+against 1.03, premium −0.36 (−0.90 to +0.20). By declared confidence, where
+there are enough cases, no level passes. The person is not distinguishable
+from an observer with a fixed weight.
+
+**A9, the devil's advocate.** (i) With the weights on the items instead of the
+questions the intervals become narrower (80 to 100 percent of the width): the
+version-3 resampling was the prudent one. (ii) Distinct calls: 1,038 in each
+condition with a letter in the prompt (told, devil, anchor), 396 for the
+machine alone; behind them, 2,903 trials. (iii) The two Llamas, same 396
+questions: in FP8 with the letter only 45.2 percent; ChatBench's Llama asked
+for the letter only 41.5, in free text 63.9. The gap with the 67 percent of
+the article is mostly the answer format, not the stack.
+
+## After the critical review (v4): outcome of A1, A2, A4, A7 (16 November 2026)
+
+**A1 and A2, margins and ceilings with their intervals** (`results/margins.json`).
+- Table 5. GPT-4o: margin of the ideal pair with shared cues 2.2 percent (0
+  to 8.3), that is +0.8 correct answers in a hundred (0 to 2.8); ceiling over
+  the machine 1.022 (1.000–1.083); verdict-only ceiling 1.000 (1.000–1.011).
+  Llama: 16.9 percent (5.9–26.4), +6.4 correct answers (2.3–9.5); 1.169
+  (1.059–1.270); verdict-only 1.096 (1.018–1.188). The verdict grid needed
+  no refinement with cubic interpolation (5 × 5; the point within 10⁻⁴ of the
+  direct computation).
+- Table 7, margin at 90 degrees from the interval of k. GPT-4o and Llama of
+  ChatBench against all the people who answered alone (59 percent): in
+  version 3 their k was computed outside the code; here it comes from the
+  data: GPT-4o k = 2.08 (1.81–2.41), margin 11.0 percent (8.3–14.3), +3.5
+  correct answers; Llama 1.23 (1.07–1.43), 28.8 percent (22.1–36.6), +10.6.
+  Haiku 5.5 8.1 (5.8–10.9), Sonnet 5.5 4.9 (3.1–6.7), Opus 5.5 4.4
+  (2.7–6.2). Fable 5.2, without errors: by the rule of three k ≥ 3.50 and a
+  margin of at most 4.0 percent at the point sensitivity of the people; with
+  the people at the high end of their interval, as table 21 reads the others,
+  k ≥ 3.13 and at most 5.0 percent, the figures of version 3.
+- Table 8 (αNLI): every margin with its interval, with the key of the story
+  and without the contested stories.
+
+**A4, the weight of evidence** (nats). GPT-4o: W_H 0.58, W_M 2.73, W_S 1.58;
+ΔW_SH +1.00 (0.71–1.31), ΔW_SM −1.15 (−1.72 to −0.67): augmentation. Llama:
+W_H 0.68, W_M 0.95, W_S 1.34; ΔW_SH +0.66 (0.41–0.94), ΔW_SM +0.39
+(0.10–0.67): synergy. The signs give the same zones as the turing, and no
+interval touches zero.
+
+**A7, heterogeneous questions** (`results/calibration-h.json`, 300
+replicas). The turing: error +1.2 percent (criterion met), coverage 99.0
+percent (criterion not met, by excess of prudence, as in five scenarios of
+version 3). The angle against the instrument's own value on a huge sample
+(71.6 degrees): mean estimate 71.8, coverage 98.3 percent. With difficulty
+changing from question to question and an attractive wrong option the
+instrument keeps its behaviour.
+
+## After the third review (v4): two more analyses (written 16 November 2026, before computing them)
+
+**A13, the machine asked again.** Haiku 5.5 answered the 396 ChatBench items
+twice, unpermuted (`chatbench__haiku-5.5__low.jsonl` and
+`chatbench__haiku-5.5-rerun__low.jsonl`), and changes outcome on 28 of them.
+A second call is then a second opinion whose errors are only partly the same.
+Measure: the correlation between the correctness of the two runs on the same
+items (tetrachoric, as between two machines in `machine_vs_machine`), its
+angle, and the margin of the ideal pair "Haiku plus Haiku" (k = 1, formula 2
+at that angle), next to the margin of the ideal pair "people plus Haiku" at
+the measured angle and at 90 degrees (frontier, table 7). Intervals: 2,000
+resamples of the items, seed 534. Descriptive, no criterion. Rule for the
+article: the margin of the person is reported next to that of the machine
+asked again; if the second is as large as the first or larger (overlapping
+intervals included), the article says that the cheapest second opinion is the
+machine asked again, and that the person's margin must be read against it.
+
+**A14, an interval for where the points go.** The decomposition of the gap
+between the pair and the machine alone with GPT-4o (`where_points_go`: the
+conversation, the decision, the chats without an answer among the options)
+is recomputed on 2,000 resamples with Poisson weights over people and over
+questions, seed 534, as the other intervals of ChatBench. Criterion: the
+interval of (points lost in the silent chats) minus (points lost in the
+decision) lies above zero. Rule: if it does, the article keeps "the gain is
+lost more in the silent chats than in the decision", with the interval; if
+not, it says that the loss is split between the two, and the abstract and the
+summary change accordingly.
+
+*Outcome (16 November 2026, `results/third-review.json`).* A13: Haiku's two
+runs change outcome on 28 of 396 items; correlation of correctness 0.78,
+angle 35.7 degrees (23.6 to 50.3); margin of "Haiku plus Haiku" 2.7 percent
+(0.0 to 8.1), against "people plus Haiku" 8.1 percent at 90 degrees (5.8 to
+10.9) and 11.8 at the measured angle. The intervals overlap: by the rule, the
+article reads the person's margin against that of the machine asked again.
+The simulated conversion table of the correlation is built once at the point
+estimate and reused in the resamples (rebuilding it each time takes hours).
+A14: silent chats −7.6 points (−10.9 to −4.8), decision −4.2 (−6.8 to −1.6);
+their difference 3.5 points (−0.3 to +7.7) touches zero: the criterion does
+not pass, and the article says that the loss is split between the two.
+
+## After the fourth review (v4): one more analysis and one correction (written 16 November 2026, before computing them)
+
+**A15, H1, H2 and H3 resampling people and questions.** A12 resampled the
+comparisons. But twenty machines measured against the same people on the same
+questions are not twenty independent observations, and each comparison's own
+uncertainty did not enter: the intervals of A12 are too narrow (the module
+said so). A15 resamples what was sampled. In each of 2,000 replicas, seed
+534, every person and every item of every task gets a Poisson(1) weight
+(ChatBench: workers and questions; HAIID: participants and items, task by
+task; αNLI: items only, since the votes per item do not tell people apart),
+and the same weights serve every comparison on that task. Every comparison is
+recomputed in the replica with the code of the map (`measure._one_pass` with
+the comparison's conversion table; the step of `compare_votes` for αNLI), and
+every pair of machines with the same item weights.
+- H1: the median angle of the family in the replica; passes if the 97.5th
+  percentile of the 2,000 medians is below 90 degrees.
+- H2: the median correlation between machines minus the median between
+  person and machine, per family; passes if the 2.5th percentile is above 0.
+- H3: the mean, over the comparisons of a set, of |d_combo − pred_φ| −
+  |d_combo − pred_90|; passes if the 97.5th percentile is below 0 (sets as in
+  A12: all, without HAIID, each family). The combiner is not refitted in the
+  replica: its choices are reweighted, as in `combiner.margin`. The two
+  predictions follow the replica's d_H, d_M and ρ through their first-order
+  expansion around the point, with derivatives by central differences on the
+  same simulation (fixed seed, steps 0.05 in d and in ρ): refitting and
+  re-simulating in every replica would take days on this machine.
+Rule for the article: where A15 and A12 disagree, A15 holds, and the article
+says that the verdicts of A12 rested on intervals that were too narrow. A
+verdict that passes in A12 and not in A15 becomes "does not stand out" in the
+text, with the A15 interval, and goes to appendix D.
+
+**A13 as written (correction).** The protocol of A13 asked for the margin of
+"Haiku plus Haiku" with k = 1. The code took each run's own sensitivity and
+the better run as the reference: the difference between the two accuracies
+is noise, and the margin came out too small (2.7 percent). Corrected: one
+sensitivity for both, from the mean accuracy of the two runs; the correlation
+converted at that sensitivity; margin sqrt(2/(1+ρ)) − 1; interval over the
+items as before, recomputing the sensitivity and ρ in each resample. The
+same rule for the article as in A13. There are two identical runs, not three:
+the majority of three would need a new run.
+
+*Outcome of the correction of A13 (16 November 2026, `results/third-review.json`,
+key `a13_k1`).* One sensitivity for the two runs (d′ 2.69); correlation of
+correctness 0.78, angle 35.6 degrees (23.7 to 50.4); margin of "Haiku plus
+Haiku" 5.0 percent (2.2 to 10.5), against 2.7 with the code of A13. Next to
+"people plus Haiku", 8.1 percent at 90 degrees (5.8 to 10.9), the intervals
+overlap more than before: the rule gives the same reading.
+
+**A deviation found with the fourth review: A3 on the article's person.** A3
+computed the errors removed for a person right exactly 58 times in a hundred
+(d′ 1.089), while the margin table of the article (`verdict.margin_table`)
+uses the ChatBench group next to GPT-4o, right 57.7 times (d′ 1.080). The two
+places of the article gave two limits for one person (25.7 and 25.3 percent).
+A3 now reads the person from `results/chatbench-source.json`: limit 25.3
+percent, 31.3 with k = 1, 28.2 with k = 2.
+
+*Outcome of A15 (16 November 2026, `results/joint.json`, code `angle/joint.py`
+at `4008516`).* At the point every comparison gives `map.json` back. With
+people and items resampled together:
+- H1: the median angle passes on ChatBench (81 degrees, 74 to 87), αNLI (64,
+  62 to 66) and the HAIID texts (65, 53 to 71); on the HAIID images (78, 63 to
+  93) it does not. A12 gave 72 to 87 there, and passed.
+- H2: passes on ChatBench, αNLI and the HAIID texts; on the HAIID images the
+  difference runs from −0.35 to +0.74 and does not. A12 passed there.
+- H3: the same verdicts as A12, with wider intervals (all: −0.13 to −0.08;
+  without HAIID: −0.14 to −0.11; αNLI and the HAIID texts pass; ChatBench and
+  the HAIID images do not).
+By the rule, the article says that the two verdicts on the HAIID images do not
+stand out, and moves them to appendix D.
+
+Deviation, found while running: a comparison that falls to chance in a
+replica (accuracy at or below 1/m, or a negative sensitivity of one class) is
+left out of that replica only, as `measure.compare` already did with its own
+resamples (one HAIID comparison kept 864 of its 2,000). It happens only on
+HAIID, with 32 items per task: 9,040 cells of 68,000 there (13 percent),
+none on ChatBench or αNLI; the first run stopped on it, the second ran with
+this rule. A check added after the protocol, with only the comparisons that
+never fall to chance, covers ChatBench and αNLI and gives the same verdicts.
+
+**The chat figure from the results.** The article's tree of a hundred trials
+with GPT-4o had its numbers written in the figure's script. They now come from
+`results/chat-branches.json` (`python -m angle.conversations branches`). One
+number changes: the machine alone in the branch where the chat gives another
+letter is 26.85 per hundred trials, which rounds to 26.8; the script had 26.9,
+from rounding an already rounded value.
+
+## After the fifth review (v4): A16, the third run of Haiku (written 16 November 2026, before running it)
+
+**Why.** A13 reads Haiku's two runs as two opinions, but the margin of
+"Haiku plus Haiku" (5.0 percent with k = 1) is an ideal: it assumes graded
+evidence, and the Claude models give only a verdict. With two verdicts the 28
+items on which the runs disagree are a tie. A third run gives the majority of
+three, a number measured on the verdicts, with no Gaussian assumption. The
+author approved the 396 calls on 16 November 2026, on the reviewer's advice.
+
+**Data.** Haiku 5.5 on the 396 ChatBench items, unpermuted, with the code and
+settings of the two existing runs (`closed/machines_claude.py`, effort low):
+`python -m closed.machines_claude run claude-haiku-5-5 haiku-5.5-rerun2
+chatbench low`, saved as `closed-results/chatbench__haiku-5.5-rerun2__low.jsonl`.
+The analysis uses the items answered in all three runs; missing answers are
+reported.
+
+**Measures** (`angle/third_run.py`, `results/third-run.json`).
+- The accuracy of each run, and of the majority of three: the letter given by
+  at least two runs. When the three letters all differ, the item counts by
+  expectation, as a tie broken at random: 1/3 if one of the three is right.
+- The measured margin of the majority, in sensitivity: d(majority) / d(single)
+  − 1, with d from the accuracy in a choice among four (`sdt.d_from_accuracy`,
+  m = 4) and "single" the mean accuracy of the three runs (one machine, one
+  sensitivity, as A13 with k = 1).
+- Its interval: 2,000 resamples of the items, seed 534, the three runs
+  resampled together.
+- Descriptive: the number of items on which the three runs split 3-0, 2-1 and
+  1-1-1; the ideal of three equal observers at A13's correlation,
+  sqrt(3/(1 + 2ρ)) − 1, for reference.
+
+**Hypothesis and criterion.** The majority of three is better than a single
+run: the 2.5th percentile of the measured margin is above zero.
+
+**Rule for the text.** The measured margin goes next to the ideal one wherever
+the article gives "Haiku plus Haiku" (§2, appendix D), with its interval and
+the words "measured" and "ideal". If the criterion passes, the article says
+how much the majority of three gains, measured. If it does not, it says that
+the majority of three, measured on the verdicts, does not stand out from a
+single run, and the hypothesis goes to appendix D. In both cases "people plus
+Haiku" remains an ideal, and the article says that a measured margin and an
+ideal one are not the same kind of number.
+
+*Outcome of A16 (16 November 2026, 396 calls in 301 seconds, none missing;
+`results/third-run.json`, code `angle/third_run.py`).* Accuracy of the three
+runs 92.2, 93.7 and 91.9 percent, mean 92.6; majority of three 93.8. The three
+runs give the same letter on 354 items, two against one on 41, three
+different letters on 1; the outcome changes among the runs on 39 items, and
+the majority gets 26.3 of them right (the tie counted by expectation).
+Measured margin of the majority 4.3 percent (0.6 to 8.8): the criterion
+passes. For reference, the ideal pair of A13 gives 5.0 percent (2.2 to 10.5)
+and the ideal of three equal observers at A13's correlation 6.9. By the rule,
+the article gives the measured margin next to the ideal one, and says that
+"people plus Haiku" (8.1 percent at 90 degrees) is still an ideal.
+
+## After the sixth review (v4): A17, the position of the answer and the similarity among machines (written 16 November 2026, before computing it)
+
+**Why.** On αNLI the machines resemble each other more than they resemble the
+people (H2: median correlation of the correct answers 0.63 among machines,
+0.43 between person and machine). In A11, swapping the two hypotheses changes
+the outcome of 109 to 714 stories of 1,532, and two models choose the second
+position in about 71 and 64 percent of the stories whatever it holds. Two
+machines with the same preference for a position err together on the same
+stories: part of their similarity could come from there. The ten open models
+answered the stories in both orders (letter only), so the preference can be
+averaged out. No new calls.
+
+**Data.** For each of the ten open models with the letter only: the original
+run (`gpu-results/alphanli__NAME__letter.jsonl`) and the swapped one mapped
+back to the original order of the options
+(`contamination-results/alphanli__NAME__letter.jsonl`). The averaged machine
+answers, story by story, the option with the larger mean of the two
+probabilities; on an exact tie, the answer of the original order. The people:
+the votes per story with the original key, as in the map. The runs with
+reasoning have no swapped run and are left out; so are the Claude models.
+
+**Measures** (`angle/position.py`, `results/position.json`). The same
+quantities as H2: the tetrachoric correlation of the correct answers for every
+pair of the ten machines (45 pairs), and between the people's votes and each
+machine (10 comparisons), as in `measure.compare_votes`. Each one on three
+versions of the machines: original order, swapped order, averaged.
+- Δ_mm = median among machines, original, minus median among machines,
+  averaged.
+- D = median among machines minus median between person and machine, on the
+  averaged machines (and, for reference, on the original ones).
+- Intervals: 2,000 replicas, seed 534, a Poisson(1) weight on every story,
+  the same weights for every pair and comparison in the replica (αNLI has
+  only items to resample, as in A15).
+
+**Hypotheses and criteria.**
+- A17a, the reviewer's: a shared preference for a position inflates the
+  similarity among machines. Passes if the 2.5th percentile of Δ_mm is above
+  zero.
+- A17b, H2 without the position: on the averaged machines the machines still
+  resemble each other more than they resemble the people. Passes if the 2.5th
+  percentile of D (averaged) is above zero.
+
+**Rule for the text.** A17a: if it passes, the article says how much of the
+similarity among machines on αNLI comes from the position, with the numbers;
+if not, it says that averaging over the two orders does not move it. A17b: if
+it passes, the H2 verdict on αNLI stands, with the averaged numbers next to
+the original ones; if not, the article says that on αNLI, without the
+position, the machines do not stand out as more similar among themselves than
+to the people, and the H2 verdict on αNLI moves to appendix D. In both cases
+the limits are written: the two orders ran with different versions of vLLM
+(this changes the answers but cannot create a preference for a position), and
+the runs with reasoning are not covered.
+
+*Outcome of A17 (16 November 2026, `results/position.json`, code
+`angle/position.py`).* On the ten open models with the letter only, median
+correlation among machines 0.62 with the original order, 0.62 with the swapped
+one, 0.70 averaged over the two; between person and machine 0.42, 0.42 and
+0.46. A17a does not pass, and the difference goes the other way: averaging
+over the two orders raises the similarity among machines, Δ_mm = −0.08 (−0.10
+to −0.04). A17b passes: on the averaged machines D = 0.24 (0.19 to 0.27),
+against 0.20 (0.17 to 0.25) on the original ones. Added after, descriptive:
+averaging raises every machine's accuracy, from 0.2 points (qwen3.8-27b) to
+5.9 (qwen2.5-3b). One reading, not tested: the preference for a position
+differs from model to model, so it adds errors of each model's own, and
+taking it away leaves the errors that come from the content, which the
+machines share more. Deviation: the rule for the text of A17a said "averaging
+does not move it" for a criterion that does not pass; it did not foresee the
+opposite sign, and the article says what was found, that averaging raises it.
+
+## After the sixth review (v4): A18, the angle against a probit mixed model (written 16 November 2026, before computing it)
+
+**Why.** The estimator of the angle is ours: a tetrachoric correlation with
+each person's shrunk threshold, one correlation per comparison, then a
+simulated conversion table. The second calculation from the raw data covered
+accuracies and counts, not the angle. The reviewer asks for a standard method
+on the same data: a probit model with mixed effects. The author approved
+running R on the L4's CPU, in `~/rnd`, removed at the end.
+
+**Model.** For each comparison, the people's answers alone and the machine's
+answers are stacked, and fitted with `lme4::glmer`, binomial family with
+probit link, Laplace approximation:
+`y ~ 0 + type + (0 + type | question) + (0 + is_person | worker)`. The
+machine contributes one row per question: 0 or 1 for the open and the Claude
+models; for GPT-4o and Llama 3.1 8B of table 5, the correct answers out of the
+samples ChatBench gives (`free_text_acc` × `free_text_count` out of
+`free_text_count`). The quantity compared is the one the in-house estimator
+targets, the correlation of the correct answers of a person and the machine on
+the same question: ρ_c = c / sqrt((1 + σ_p²)(1 + σ_m²)), with σ_p² and σ_m² the
+variances of the question effects for people and machine and c their
+covariance (identified even when σ_m alone is not, with one answer per
+question). ρ_c then goes through the comparison's own conversion table, at its
+d_H and d_M, to ρ and the angle. The conversion is the same for the two
+estimators and is not checked here.
+
+**Comparisons.** ChatBench, all subjects, people alone: the 20 of the map (the
+ten open models, letter and reasoning, against all the people); Haiku, Sonnet
+and Opus (`frontier.json`, against all the people; Fable has no errors and is
+left out); GPT-4o and Llama 3.1 8B of table 5, each against its own group of
+people. 25 comparisons. Code: `angle/glmm.py` (exports the data, reads the
+fits back, converts) and `angle/glmm.R`; result `results/glmm.json`.
+
+**Hypothesis and criterion.** The in-house estimator agrees with the standard
+one: for every comparison the angle from the mixed model lies within the 95
+percent interval of the in-house angle. Descriptive: the median and the
+largest absolute difference, in degrees and in ρ_c; convergence warnings and
+singular fits, reported as they come.
+
+**Rule for the text.** If it passes, the article says that on ChatBench a
+probit mixed model gives the same angles within the intervals, with the
+median difference, and no longer says that the comparison remains to be
+done. If not, it says on which comparisons and by how much the two differ,
+the outcome goes to appendix D, and the verdicts on ChatBench that rest on
+those angles are read with it.
+
+*Correction to A18, before computing it (16 November 2026).* The paragraph
+above sends ρ_c through "the comparison's own conversion table". That table
+(`measure.conversion_table`, built by `sdt.estimate_from_evidence`) maps what
+the in-house estimator returns to the evidence correlation, so it also
+corrects the in-house estimator's own bias (few answers per person, the spread
+of the sensitivities). Applied to the mixed model it would correct a bias the
+mixed model does not have. ρ_c goes instead through the model's conversion
+alone, from the correlation of the correct answers to that of the evidence in
+a choice among four (`sdt.convert_rho_mafc` at the comparison's d_H and d_M).
+That step belongs to the model, is shared by both estimators and is not
+checked here. Added as descriptive: the in-house ρ_c before its table, next to
+the mixed model's ρ_c.
+
+*Outcome of A18 (16 November 2026, `results/glmm.json`, code `angle/glmm.py`
+and `angle/glmm.R`; R 4.5.3, lme4 2.0.6, on the L4's CPU).* The criterion does
+not pass: 24 of 25 angles from the mixed model lie within the in-house
+intervals, and one does not, GPT-4o of table 5: 88.3 degrees against 74.9
+(58.8 to 85.9). Over the 25, the absolute difference has median 1.4 degrees
+and maximum 13.4 (GPT-4o); in ρ_c, median 0.022. 17 fits are singular and 4
+end with a convergence warning: with one answer per question the machine's
+own variance is not identified, as written above, while ρ_c is. Added after,
+descriptive: ChatBench gives about 50 answers of GPT-4o per question, almost
+all right or all wrong, and the mixed model, which gives the machine a normal
+question effect, puts the questions GPT-4o always misses at an extreme of that
+scale, where people do no worse than on the questions where it hesitates
+(people right 43.5 percent where GPT-4o is right in fewer than half of its
+answers, 41.6 where it is right in half to 98 percent, 62.1 above). With one
+answer per question, the majority of the samples, the two estimators agree:
+GPT-4o 75.6 in-house and 74.9 with the mixed model, Llama 3.1 8B 74.1 and
+74.1. By the rule, the article says that GPT-4o's angle in table 5 depends on
+how its repeated answers are read, 75 or 88 degrees, and reads the ceiling of
+the ideal pair with GPT-4o between the value at the measured angle (2.2
+percent) and the one at 90 degrees (10.2).
+
+## After the fifth review (v4): A19, what the person wrote first in the silent chats (written 17 November 2026, before computing it)
+
+Written after every result above and before computing anything below. Looked
+at before writing it: the column names of ChatBench's conversations and the
+count of messages by role (User, AI); no message was read and nothing below
+was counted. The code (`angle/first_message.py`) is written and tested on
+synthetic data first (`tests/test_first_message.py`); this section and the
+code are committed and pushed before the run.
+
+**The question.** With GPT-4o the pair loses 7.6 points in the 372 trials whose
+chat gave none of the four letters (330 with no answer by ChatBench's
+annotation, 42 with an answer outside the options). The fifth review suggests
+a simple check: how often did the person, in the first message, copy the
+question without the options, or write very little? If the silent chats begin
+that way more often than the chats that gave a letter, part of the loss lies in
+how the question reached the machine.
+
+**Data.** The 1,493 GPT-4o trials of `conversations.trials("gpt-4o")`, in
+three groups by ChatBench's annotation: with a letter (`letter`, 1,121),
+silent (`conv_has_answer` false, 330), the others (an answer outside the
+options, 42). The conversation as in `mute_chats.mute`. The *first message* is
+the first message with role User whose text is not empty; trials without one
+are counted apart ("no message").
+
+**Measures.**
+
+1. *The options in the first message.* An option is *usable* if, normalized as
+   in `mute_chats.normalize`, it is at least two characters long and does not
+   itself appear as a whole token in the normalized question: an option the
+   question already contains says nothing about whether the person pasted the
+   options. A trial is *classifiable* if it has a first message and at least
+   two usable options. A classifiable trial has the *options missing* if none
+   of its usable options appears in the first message as a whole token (no
+   letter or digit on either side, as in `mute_chats.named_options`), the
+   *options present* otherwise.
+2. *A short first message*: normalized, shorter than half the normalized
+   question. Over the trials with a first message.
+3. The differences silent minus letter of the two shares.
+
+**Uncertainty.** 95% percentile intervals, 2,000 replicas with Poisson weights
+over people and over questions (their product on each trial), seed 534, as in
+A14.
+
+**Hypotheses and criteria.**
+
+- *A19a, primary*: the first message lacks the options more often in the
+  silent chats than in the chats with a letter. Passes if the interval of the
+  difference lies above zero.
+- *A19b*: the first message is short more often in the silent chats than in
+  the chats with a letter. Same criterion.
+
+No correction for multiplicity.
+
+**Descriptive, no criterion.**
+
+- The same shares in the 42 trials with an answer outside the options, and in
+  the three groups of Llama 3.1 8B's arm (point estimates).
+- The other way round: among the classifiable trials, the share of silent
+  chats when the options are missing and when they are present.
+- The 7.6 points split by what came first: the term `chats_without_answer` of
+  `conversations.where_points_go` is a sum over its trials, and is split
+  additively into the 42 with an answer outside the options and the silent
+  chats with no message, with the options missing, with the options present,
+  and not classifiable. Each part is its share of the 1,493 trials times the
+  mean of (the person's answer with the chat − the machine alone) on its
+  trials; the parts add up to the 7.6 points. With intervals from the same
+  replicas, and in each part the accuracy of the people with the chat and of
+  the machine alone.
+- *A check of the matching.* 20 classifiable GPT-4o trials with the options
+  missing and 20 with the options present, drawn with seed 534, are read with
+  the question, the options and the first message, by the analyst (an AI
+  assistant, who sees the classification), and each is marked as right or
+  wrong on whether the options are in the message. The agreement is reported.
+
+**What it cannot say.** It compares trials selected by how the conversation
+went: a person who does not paste the options may differ in effort, skill or
+question, and a question written with formulas is harder to paste. An
+association, not a cause. The matching misses options the person rewrote in
+other words or in another notation, and counts them as missing; the check
+above measures how often.
+
+**Rule for the text.** If A19a passes, the paragraph of §2 on the silent chats
+gets one sentence with the two shares and the words "an association, not a
+cause", and appendix B gets the numbers and the split of the 7.6 points. If it
+fails, the outcome goes to appendix D and to the list of what did not pass,
+and §2 does not change. A19b is reported next to A19a in the same place and
+does not move anything into the body on its own. The body stays under 7,000
+words.
+
+*Outcome of A19 (17 November 2026, protocol on the server at 00:15:31Z,
+`4c57637`; `results/first-message.json`, code `angle/first_message.py`).*
+Every trial has a first message from the person: none falls in "no message"
+(the 60 silent chats counted apart in B lack a message from the machine, not
+from the person). Classifiable: 319
+of the 330 silent chats, 1,065 of the 1,121 with a letter.
+
+- **A19a passes.** First message without the options: 94.7 percent of the
+  silent chats (88.4–98.8), 86.0 of the chats with a letter (80.4–91.0);
+  difference 8.7 points (1.8 to 14.9). In the 42 with an answer outside the
+  options, 36 of 36 classifiable.
+- **A19b passes.** First message shorter than half the question: 62.1 percent
+  of the silent chats (50.7–72.6), 26.6 of the chats with a letter
+  (20.4–33.4); difference 35.5 points (23.5 to 46.4).
+- *Descriptive.* Among the classifiable trials the chat stays silent 24.1
+  percent of the time when the options are missing (18.8–29.9) and 10.2 when
+  they are present (2.6–21.2). The 7.6 points: 6.7 in the silent chats with
+  the options missing (4.0 to 9.9; people with the chat 49.7 percent, machine
+  alone 82.7), 0.2 with the options present (17 trials), 0.5 not classifiable,
+  0.2 in the 42 with an answer outside the options. Llama 3.1 8B: options
+  missing 94.8 percent of the silent chats and 84.5 of those with a letter,
+  short 56.4 and 27.2; silent 27.8 percent when the options are missing, 11.0
+  when present.
+- *The check of the matching*, 40 read: 35 right. Of the 20 with the options
+  missing, 19 right and one matching error (an option written «WRONG , NOT
+  WRONG», with a space before the comma). Of the 20 with the options present,
+  16 right and 4 where the person names one option (a guess, or a question
+  about it) without the list: "present" overstates the pasted lists. The kind
+  of each mark was added to the results after reading.
+- **Reading.** Missing options are the rule in both groups, so they say
+  little on their own: most chats that gave a letter also began without them.
+  The split of the 7.6 points follows the composition (302 of the 330 silent
+  chats lack the options) and does not locate a cause. The larger difference
+  is in the length of the first message.
+- **Where it goes.** A19a passed, so by the rule: one sentence in the
+  paragraph of §2 on the silent chats, with the shares of A19a and A19b and
+  "an association, not a cause"; the numbers and the split in appendix B.
+
+*Added after the outcome of A19 (17 November 2026, on a further review; descriptive, no criterion).* The
+short message read the same way as the options: among the trials with a first message, the chat stays silent
+40.2 percent of the time when the message is short (30.7–49.9) and 12.7 when it is not (8.8–17.4); Llama 3.1 8B
+42.8 and 17.1. A limit the outcome above did not state: "shorter than half the question" depends on the length
+of the question. On a long problem almost any first message is short, and long problems may also be the harder
+ones; without a comparison within the same question, between different people, the measure mixes who writes
+little with what they were given. No further analysis on this.
+
+*Added after the outcome of A18 (17 November 2026, on two further reviews of the article; descriptive, no
+criterion; `angle/after_a18.py`, `results/after-a18.json`).* First computed by hand while weighing a review that
+proposed them, then written as code. (i) GPT-4o in table 5, the raw frequencies against the model with the
+comparison's sensitivities: errors in common 6.59 per hundred trials and the machine wrong in 15.6 percent of the
+trials where the person is wrong (4.93 if independent); the model gives 6.71 and 15.9 at the in-house angle
+(74.9 degrees), 5.12 and 12.1 at the mixed model's (88.3), 4.93 and 11.7 at 90. The raw frequencies stand with
+the in-house angle. The mixed model's fit for GPT-4o has no warning and is not singular; the machine's variance
+over questions is 26.3, the near-identical answers per question read as a normal effect. (ii) The verdict-only
+ceiling with GPT-4o: 1.000 at 74.9 degrees, 1.010 at 88.3 (3.1 percent of the machine's errors removed), 1.013
+at 90. (iii) GPT-4o asked again, from ChatBench's answers per question (median 50, 396 questions): two answers
+drawn without replacement differ in correctness on 5.4 percent of the questions (4.2–6.7), the angle between them
+is 16.9 degrees (13.4–20.8) and the ideal pair "GPT-4o plus GPT-4o" (k = 1, as A13) promises 1.1 percent
+(0.7–1.7); Llama 3.1 8B 20.6 percent, 36.4 degrees, 5.3 percent. The conversion table goes to an evidence
+correlation of 0.99 here, because GPT-4o's lies beyond the article's 0.95. ChatBench's answers were sampled
+with settings that are not ours, unlike Haiku's two runs. **Text.** The article reads GPT-4o's first ceiling
+at the in-house angle, 2.2 percent (0 to 8.3), and gives the mixed model's 88 degrees in appendix D with the
+raw frequencies, the verdict-only ceiling at that angle and the fit diagnostics; A18's criterion stays reported
+as not passed. "The machine asked again" as the cheapest second opinion is said of Haiku, and GPT-4o's numbers go
+to appendix D. This reading was chosen after these checks.

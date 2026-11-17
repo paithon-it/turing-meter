@@ -1,6 +1,8 @@
 # Protocollo: l'angolo fra gli errori, misurato
 
 > Testo originale, in italiano, scritto prima dei risultati. Rispetto all'originale sono cambiati soltanto i nomi di file, moduli, funzioni e chiavi, ora in inglese come il codice; la traduzione è in [`PROTOCOL.md`](PROTOCOL.md).
+>
+> **Le analisi da A13 ad A19, e gli esiti di A11, stanno solo in inglese.** Dalla sezione «After the third review (v4)» in poi il protocollo è stato scritto e pubblicato prima di ogni calcolo direttamente in [`PROTOCOL.md`](PROTOCOL.md), e qui non è tradotto; lo stesso vale per gli esiti di A11 su ChatBench e su αNLI. Per tutto questo fa fede il testo inglese.
 
 Scritto il 9 novembre 2026 **prima** di calcolare qualunque risultato. Serve a
 non scegliere le analisi dopo aver visto i numeri. Ciò che cambia dopo si
@@ -1085,3 +1087,439 @@ campione letto e le letture in `results/mute-chats-sample.jsonl` e
   riporta il controllo in una frase, e i numeri vanno in appendice.
 - *Nota.* Il lettore 1 ha indicato le risposte con il numero di riga del file
   del campione; sono state riportate agli id in `results/mute-chats-labels.json`.
+
+## L'ancora casuale (scritto il 15 novembre 2026, prima di ogni esecuzione)
+
+Scritto dopo tutti i risultati qui sopra e prima di ogni chiamata a una
+macchina nella condizione nuova. Il codice (`angle/anchor.py`,
+`closed/anchor_claude.py`) è stato scritto e provato prima su prove sintetiche
+(`tests/test_anchor.py`); questa sezione e il codice sono committati e spinti
+prima dell'esecuzione.
+
+**La domanda.** Con la frase «I think the answer is X», dove X è la risposta
+della persona, Claude Haiku 5.5 risponde meglio che da sola (96,5 contro 93,5
+per cento; rapporto delle d′ 1,14, 1,10 contro Haiku da sola interrogata di
+nuovo). Due spiegazioni prevedono lo stesso guadagno. O la risposta della
+persona porta un'informazione che la macchina usa, o qualunque candidata
+scritta nella domanda spinge la macchina a controllarla (un effetto del
+formato, una verifica indotta dalla domanda), qualunque sia la candidata. Una
+lettera tirata a sorte le separa: ha il formato e nessuna informazione della
+persona.
+
+**Dati e prove.** Le 1.038 prove dell'avvocato del diavolo (ogni coppia
+distinta di domanda e risposta data da sola), le stesse 2.903 risposte. Per
+ogni prova una lettera R è estratta in modo uniforme fra le quattro opzioni,
+fissata dall'id della prova e dal seme 534 (`anchor.anchor_letter`, SHA-256, non
+l'hash di Python), indipendente dalla risposta della persona e dalla chiave:
+giusta una volta su quattro, e uguale alla lettera della persona in 254 prove,
+come dà il caso. Le prove in `data/items/chatbench-anchor.jsonl`.
+
+**Condizione.** *R, l'ancora casuale*: la domanda della condizione con la
+risposta, invariata (`devil.prompt(c, "told")`), con R al posto di X. Claude
+Haiku 5.5 attraverso Claude Code in modalità non interattiva, effort `low`, lo
+schema a un campo, una chiamata per prova, come in `closed/devil_claude.py`. Le
+altre condizioni sono le esecuzioni già nel repository: da sola (quella
+indicata dal protocollo dell'avvocato del diavolo, e quella rifatta), con la
+risposta. Una prova senza risposta esce da tutte le condizioni.
+
+**Misure.** Sulle 2.903 risposte:
+
+1. Accuratezza e d′ (quattro opzioni) della macchina da sola, con la risposta e
+   con l'ancora.
+2. L'accuratezza quando la lettera nella domanda è giusta e quando è sbagliata,
+   per la macchina con la risposta e con l'ancora; la macchina da sola sulle
+   stesse divisioni.
+3. L'attrazione di una lettera sbagliata: quante volte la macchina dà la lettera
+   ricevuta quando è sbagliata, meno quante volte la dà da sola.
+4. La macchina con la risposta come la prevede la lettera a caso: l'accuratezza
+   con l'ancora giusta per l'accuratezza della persona, più l'accuratezza con
+   l'ancora sbagliata per il suo complemento. Un'accuratezza con la risposta
+   sopra la previsione direbbe che le risposte della persona portano qualcosa
+   che una lettera a caso, giusta altrettanto spesso, non porta; sotto, che le
+   risposte sbagliate della persona attirano più di lettere sbagliate a caso
+   (sono distrattori plausibili).
+
+**Ipotesi e criteri.** Intervalli percentili al 95 per cento, 2.000 repliche
+ricampionando persone e domande insieme (pesi di Poisson), come
+nell'avvocato del diavolo.
+
+- *R1, il formato*: la macchina con l'ancora è più sensibile della macchina da
+  sola, d′_R / d′_0 sopra uno. Passa se l'intervallo sta sopra uno con tutte e
+  due le esecuzioni di Haiku da sola.
+- *R2, la risposta della persona*: la macchina con la risposta è più sensibile
+  della macchina con l'ancora, d′_A / d′_R sopra uno. Passa se l'intervallo sta
+  sopra uno.
+- *Riportate comunque*, senza criterio: le misure 2-4.
+
+**Che cosa può dire e che cosa no.** Le esecuzioni con la risposta e con
+l'ancora sono dello stesso giorno e sulle stesse prove, quindi la variabilità
+fra esecuzioni pesa su R2 meno che sul confronto con la macchina da sola (fra
+le due esecuzioni di Haiku da sola cambiano esito 28 domande su 396); negli
+intervalli comunque non c'è. Le differenze attese sono piccole (con la
+risposta e da sola le accuratezze distano tre punti), e R2 può non avere la
+potenza per passare anche se la risposta della persona aiuta: allora la misura
+4 dice più del test.
+
+**Dove va nell'articolo.** L'articolo dice che, per una macchina che non
+asseconda, la risposta della persona è un'ipotesi in più da controllare.
+
+- R2 passa: la frase resta, con il rapporto di R2.
+- R2 non passa, R1 passa: l'articolo dice che il guadagno viene dal formato,
+  una candidata nella domanda, e non dalla risposta della persona.
+- Nessuna delle due passa: l'articolo dice che la macchina che riceve la nostra
+  risposta non si distingue dalla macchina che riceve una lettera a caso, e il
+  guadagno sulla macchina da sola non si attribuisce alla persona.
+
+In ogni caso, i numeri nell'appendice dell'articolo.
+
+## L'ancora casuale: esito (15 novembre 2026)
+
+Risultati in `results/anchor.json`; le risposte in
+`devil-results/chatbench-anchor__haiku-5.5__told.jsonl` (1.038 prove, nessuna
+persa, in media 219 gettoni di risposta). Intervalli come scritto prima (2.000
+repliche, pesi di Poisson su persone e domande).
+
+- **Accuratezza** sulle 2.903 risposte: da sola 93,5 (rifatta 94,5), con la
+  risposta 96,5, con l'ancora 96,1. La lettera a caso è la chiave nel 22 per
+  cento delle risposte.
+- **R1, il formato, non passa come scritta.** d′_R / d′_0 = 1,12 (1,01-1,24)
+  contro l'esecuzione da sola del protocollo, 1,08 (0,98-1,19) contro Haiku da
+  sola interrogata di nuovo lo stesso giorno delle esecuzioni con la risposta e
+  con l'ancora. Il criterio le chiedeva tutte e due.
+- **R2, la risposta della persona, non passa.** d′_A / d′_R = 1,02 (0,94-1,11).
+- **Misura 2.** Con la risposta: 97,1 con la lettera della persona giusta, 95,6
+  con la lettera sbagliata. Con l'ancora: 94,2 con la lettera a caso giusta,
+  96,6 sbagliata. Da sola sulle stesse divisioni: 92,8 e 94,4 (secondo la
+  lettera della persona), 90,5 e 94,3 (secondo la lettera a caso).
+- **Misura 3, l'attrazione di una lettera sbagliata.** Con la risposta −0,7
+  punti (da −2,8 a +1,2), con l'ancora −0,9 (da −2,8 a +0,8); contro Haiku da
+  sola rifatta, −0,1 e −0,2. Una lettera sbagliata non attira Haiku, che sia
+  della persona o a caso.
+- **Misura 4.** L'accuratezza con la risposta prevista dalla macchina con
+  l'ancora è 95,2; quella osservata 96,5; scarto +1,3 punti (da −0,6 a +3,6).
+- **Descrittivo.** Gettoni di risposta: da sola circa 175, con la risposta 217,
+  con l'ancora 219. Sulle 254 prove in cui la lettera a caso coincide con quella
+  della persona le due domande sono identiche; la lettera di Haiku cambia in 7.
+- **Regola.** Nessuna delle due passa: l'articolo dice che la macchina che
+  riceve la nostra risposta non si distingue dalla macchina che riceve una
+  lettera a caso, e non attribuisce alla persona il guadagno sulla macchina da
+  sola.
+
+## Dopo la revisione critica (v4): la verifica (scritto il 16 novembre 2026, prima di eseguirla)
+
+Una revisione critica della versione 3 dell'articolo ha chiesto di controllare
+che cosa era deciso prima, e come. Due analisi vengono per prime, perché le
+altre usano i loro risultati. Tutte e due girano sui dati già nel repository:
+non si chiama nessun modello.
+
+### A8, la griglia delle soglie
+
+**Il difetto.** Dichiarato in «T, la taratura»: la correlazione si calcola su
+una griglia di soglie a passi di 0,02 (`measure._fast_rho`, e la griglia `zu`
+in `sdt.estimate_from_evidence`). L'articolo dice che su ChatBench sposta
+l'angolo di meno di un grado.
+
+**Che cosa è stato controllato prima di scrivere questa sezione, solo su dati
+simulati.** Sui campioni enormi delle situazioni A ed E (un milione di prove),
+con la griglia lo strumento dà ρ = 0,163 e 0,287 contro i veri 0,20 e 0,30;
+con le soglie esatte nella sola misura, 0,194 e 0,297; con le soglie esatte
+nella misura e nella conversione, 0,196 e 0,297. La causa è la griglia, e
+nella situazione A vale circa due gradi, non meno di uno. Nessun dato reale è
+stato misurato con lo stimatore corretto prima del commit di questa sezione.
+
+**La correzione.** In tutti e due i punti le soglie si usano esatte (i valori
+distinti arrotondati a 10⁻⁶) invece di raggrupparle sulla griglia. Nient'altro
+cambia: gli stessi semi, gli stessi ricampionamenti, gli stessi punti della
+conversione.
+
+**Che cosa si riporta.** Tutte le analisi che usano l'angolo si rifanno con lo
+stimatore corretto (`analysis`, `run_chatbench`, `frontier`, `difficulty`,
+`review`, `verdict`, `summary`, `figure`; anche `calibration`). Per ogni
+confronto, l'angolo prima e dopo; per famiglia, lo spostamento mediano e il
+più grande. I criteri della taratura si valutano di nuovo.
+
+**Regola per l'articolo.** La versione 4 usa ovunque lo stimatore corretto, e
+lo spostamento va in appendice D in un capoverso, con i suoi numeri. Se cambia
+un verdetto della versione 3 (il conto degli intervalli sotto i 90 gradi in
+H1, H3, la tabella di H5, il segno della correlazione di rango in H7, gli
+angoli delle tabelle 5, 7 e 8 oltre i loro intervalli), il lavoro si ferma e
+decide l'autore prima di scrivere.
+
+### A12, le ipotesi H1-H5 con il criterio come scritto
+
+**Il problema.** Il protocollo dice: «Passa significa che l'intervallo al 95
+per cento soddisfa il criterio». `angle/summary.py` decide H3 confrontando due
+medie (riga 80) e H2 confrontando due mediane (riga 64), senza intervallo. Su
+ChatBench H3 «passa» con un errore medio di 0,0570 contro 0,0574. H1 dice «su
+ogni famiglia di dati» senza dire se per famiglia o per confronto.
+
+**Che cosa si calcola**, prima sui risultati della versione 3 (una verifica di
+ciò che l'articolo dice) e poi su quelli rifatti dopo A8. Bootstrap sui
+confronti, stratificato per famiglia di dati, 2.000 repliche, seme 534.
+
+- **H1.** Due letture, riportate tutte e due. Per confronto: quanti hanno
+  l'intervallo di φ sotto i 90 gradi (come nella versione 3). Per famiglia:
+  l'intervallo della mediana di φ sui confronti; la famiglia passa se
+  l'estremo alto sta sotto i 90.
+- **H2.** Per famiglia, la differenza fra la mediana di ρ macchina-macchina e
+  la mediana di ρ persona-macchina, con il suo intervallo; passa se l'estremo
+  basso sta sopra lo zero.
+- **H3.** La media sui confronti di e_φ − e_90 (gli errori assoluti delle due
+  previsioni), con il suo intervallo; passa se l'estremo alto sta sotto lo
+  zero. In tutto, senza HAIID e per famiglia. Le righe fra le due previsioni si
+  contano, senza intervallo: sono troppo poche.
+- **H4** non si conta come prova a sé: con ρ > 0 l'ideale all'angolo φ è più
+  basso che a 90 gradi, quindi ogni volta che la coppia batte la persona la
+  quota del guadagno all'angolo φ è più grande. Si riporta come conseguenza di
+  H1.
+- **H5** resta com'era nella versione 3 (già non passa).
+
+**Limite, dichiarato adesso.** Il bootstrap sui confronti non porta
+l'incertezza delle stime di ciascun confronto (il suo angolo ha un intervallo
+proprio): l'intervallo di H3 è troppo stretto, non troppo largo. Un
+ricampionamento a due livelli chiederebbe di rifare ogni confronto con le sue
+repliche, e non si fa.
+
+**Regola per l'articolo.** La tabella 24 e l'appendice D usano questi verdetti.
+Se uno è diverso da quello della versione 3 (il caso atteso è H3 su ChatBench),
+il lavoro si ferma e decide l'autore come scriverlo.
+
+## Dopo la revisione critica (v4): le misure nuove (scritto il 16 novembre 2026, prima di calcolarle)
+
+Girano dopo A8, sui risultati rifatti con lo stimatore corretto. Non si chiama
+nessun modello, tranne in A11, che aspetta il via libera dell'autore. Tutti i
+bootstrap: pesi di Poisson, 2.000 repliche, seme 534, salvo quando l'analisi
+che estendono ne usa altri (allora gli stessi).
+
+**A1, intervalli per il margine e per i due tetti.** Per i confronti delle
+tabelle 5 (le due coppie di ChatBench), 7 (i modelli Claude di oggi su
+ChatBench) e 8 (αNLI): il margine della coppia ideale sopra il più forte dei
+due, con gli indizi in comune, |S|(φ)/max(d_H, d_M) − 1, e con il solo
+verdetto (il verdetto della macchina a una persona con gli indizi graduati, e
+il contrario, `verdict.pair`). `measure.compare` tiene le repliche di (d_H,
+d_M, ρ); il margine con gli indizi in comune si calcola su ciascuna. Quello
+con il solo verdetto si calcola su una griglia di k e φ al d_H del confronto
+e si interpola su ogni replica; nel punto stimato l'interpolazione deve
+differire dal calcolo diretto per meno di 0,1 punti di margine, altrimenti si
+infittisce la griglia. Nessuna ipotesi. Regola: ogni margine delle tabelle 5,
+7 e 8 ha il suo intervallo; nel testo un margine non compare mai senza; un
+margine il cui intervallo arriva a zero si scrive come non distinguibile da
+zero.
+
+**A2, il margine in risposte giuste.** Per ogni margine di A1: l'accuratezza
+di un osservatore con sensibilità d_più forte·(1 + margine), meno quella del
+più forte, con lo stesso numero di opzioni; su ogni replica. Regola: una
+colonna «in risposte giuste» nelle tabelle; nel testo solo per la cifra che
+conta.
+
+**A3, gli errori tolti.** La quota degli errori della macchina tolti dalla
+coppia ideale con gli indizi in comune a 90 gradi. Affermazione da
+verificare: per k grande il rapporto fra gli errori della coppia e quelli
+della macchina tende a exp(−d_H²/4) in una scelta fra m opzioni (dall'andamento
+asintotico dell'errore, che va come (m − 1)·Φ(−d/√2)), quindi dipende solo
+dalla persona; con la convenzione sì/no d′ = 2z(a), exp(−d_H²/8). Si fa per via
+analitica e numerica, per m = 2 e 4, d_H da 0,5 a 2, k da 1 a 20. Criterio:
+«non dipende da k» si scrive solo dove lo scarto relativo dal limite sta sotto
+il 5 per cento; altrove si dice la dipendenza. È una proprietà del modello.
+
+**A4, il peso dell'evidenza.** W = d′²/2 (in nat; 1 nat = 10/ln 10 ≈ 4,34
+deciban) per H, M e S, e ΔW_SH = W_S − W_H, ΔW_SM = W_S − W_M, con gli
+intervalli dalle repliche di A1. Convenzione: nel modello gaussiano a varianza
+uguale d′²/2 è il logaritmo atteso del rapporto di verosimiglianza fra le due
+classi per un'osservazione; in una scelta fra m opzioni è la stessa grandezza
+per l'opzione giusta contro ciascuna sbagliata, una convenzione e non
+l'informazione della scelta. Nessuna ipotesi. Regola: ΔW sta accanto al
+turing; le zone le danno anche i segni di ΔW_SH e ΔW_SM.
+
+**A5, la folla.** ChatBench, condizione in cui la persona risponde prima da
+sola, GPT-4o e Llama: il tetto di una folla grande i cui membri hanno
+sensibilità d′ e correlazione ρ a due a due è d′/√ρ (classico, per indizi
+graduati messi in comune e sensibilità uguali). Con ρ_HH e ρ_SS di «Due
+persone con la chat accanto», Tu_folla = Tu·√(ρ_HH/ρ_SS). Un solo bootstrap su
+persone e domande porta d′_H, d′_S e le due ρ con gli stessi pesi. Ipotesi
+(dal brief della revisione): la folla guadagna meno del singolo, Tu_folla/Tu <
+1. Criterio: l'estremo alto dell'intervallo di Tu_folla/Tu sotto 1. Regola: se
+passa, l'articolo dice che la folla guadagna meno del singolo, con i numeri;
+se no, che il guadagno della folla non si distingue da quello del singolo. In
+tutti e due i casi è una conseguenza del modello su ingressi misurati, e gli
+angoli fra le persone sono quelli di una prova che non è passata.
+
+**A6, la persona come verificatore.** Nei disaccordi della tabella 16 (la chat
+dà una lettera fra le opzioni, diversa dalla risposta della persona da sola),
+seguire la chat è la risposta «la chat ha ragione»: d_v = z(segue | la chat ha
+ragione) − z(segue | la chat sbaglia). L'osservatore senza gating
+(`conversations.linear_observer`, un bonus fisso tarato sull'accuratezza della
+coppia) dà d_v0. Premio = d_v − d_v0, con l'intervallo dal bootstrap di
+persone e domande su d_v; d_v0 si calcola una volta nel punto (il suo errore
+di campionamento non si porta, ed è dichiarato). Per livello di sicurezza
+dichiarata nella risposta da sola, solo dove ci sono almeno 30 disaccordi con
+la chat che sbaglia. Ipotesi: la persona verifica oltre un bonus fisso, premio
+> 0. Criterio: estremo basso sopra lo zero. Regola: se non passa, il testo
+dice che la persona non si distingue da un osservatore a peso fisso, e la
+parola «premio» non compare.
+
+**A7, taratura con domande eterogenee.** Una situazione nuova, H, come A più:
+la difficoltà cambia da domanda a domanda (la media dell'opzione giusta
+spostata di δ_q ~ N(0; 0,5²), uguale per persona e macchina), e in ogni
+domanda un'opzione sbagliata attira (la sua media alzata di 0,6 per tutti). Il
+modello dell'articolo è allora sbagliato, e ρ non ha un valore vero
+generativo: il turing si giudica contro il suo valore vero dal campione
+enorme, con i criteri delle altre situazioni (errore al più del 5 per cento,
+copertura fra 90 e 98); l'angolo contro il valore dello strumento stesso sul
+campione enorme (solo la copertura). Regola: in appendice C così come viene.
+
+**A9, l'avvocato del diavolo.** (i) `devil.bootstrap` ricampiona già persone e
+domande; controllo: lo stesso con i pesi sulle voci (domanda × risposta data
+da sola) invece che sulle domande, e la variazione degli intervalli. (ii) Le
+chiamate distinte per condizione, contate da `devil-results/`. (iii) I due
+stack: Llama 3.1 8B in FP8 su vLLM, sola lettera, contro il Llama di ChatBench
+(accuratezze rifatte sulle stesse domande); Claude Haiku 5.5 attraverso Claude
+Code. Regola: una frase ciascuno nel corpo.
+
+**A11, contaminazione (gira solo con il via libera dell'autore).** Le domande di
+ChatBench vengono da MMLU, αNLI è pubblico dal 2020. Prova 1: le opzioni
+permutate. ChatBench: le opzioni ruotano in modo che la giusta finisca su
+un'altra lettera, scelta con SHA-256 del seme 534 e della domanda, come
+nell'ancora casuale; i quattro modelli Claude con le impostazioni della corsa
+sui modelli di oggi (4 × 396 chiamate). αNLI: le due ipotesi si scambiano di
+posto; gli undici modelli aperti, sola lettera (11 × 1.532 passate sulla L4).
+Misura: l'accuratezza originale meno quella permutata, appaiata per domanda,
+con un bootstrap sulle domande; poi k, angolo, margine e tetti sulle domande
+permutate. Criterio: l'intervallo della differenza esclude lo zero. Regola: se
+lo esclude, k e margine «su domande nuove» vanno accanto agli originali; se
+no, l'articolo dice che la permutazione non sposta k e non esclude che il
+modello ricordi il contenuto. In ogni caso il k dei modelli di oggi si presenta
+come limite superiore. Con 396 risposte giuste su 396 (Fable) la prova dà al
+più un limite inferiore, e lo si dice. La prova 2 (domande riformulate) si
+propone solo se la prova 1 mostra un effetto.
+
+## Dopo la revisione critica (v4): esito della verifica e di A3, A5, A6, A9 (16 novembre 2026)
+
+**A8, la griglia.** Tutte le analisi che usano l'angolo sono state rifatte con
+le soglie esatte (`analysis`, `run_chatbench`, `analysis_vision`, `frontier`,
+`devil`, `difficulty`, `review`, `full_evidence`, `summary`, `figure`,
+`verdict`, `calibration`). I dati di model-vs-human mancavano dalla copia
+locale e sono stati riscaricati dal repository degli autori (90 file CSV)
+prima di `analysis_vision`.
+- Sui campioni enormi della taratura lo strumento ora dà il valore vero:
+  situazione A ρ = 0,196 (vero 0,20; era 0,163), angolo 78,7 gradi (vero
+  78,5; era 80,6); E 0,297 (0,30); F 0,449 (0,45). Errori, coperture e
+  verdetti della taratura praticamente invariati (copertura sempre sopra il
+  98 per cento in cinque situazioni su sei).
+- Spostamento dell'angolo, per famiglia (mediana; estremi): ChatBench −0,02
+  (da −1,9 a +3,1); le due coppie di ChatBench −0,16 (da −3,0 a +1,4);
+  immagini di HAIID −0,3 (da −1,6 a +0,1); testo di HAIID +0,02 (da −0,03 a
+  +0,55); αNLI 0 (lì non ci sono soglie personali); i 689 confronti sulle
+  immagini 0 (mediana). Nessun angolo esce dal suo intervallo della versione
+  3, tranne Fable 5.2 su ChatBench, che non ha errori: il suo angolo non si
+  stima, e la stima sta su un bordo della tabella di conversione prima e dopo
+  (8,1 e 126,9 gradi).
+- Tabella 5: GPT-4o 74,5 → 74,9 gradi (58,8-85,9), Llama 75,1 → 74,6
+  (62,3-82,0).
+- **Cambiano due verdetti della versione 3**, tutti e due senza cambiarne la
+  lettura: in H1 i confronti di ChatBench con l'intervallo sotto i 90 gradi
+  passano da 7 a 8 su 20; in H7 la correlazione di rango su ChatBench con il
+  ragionamento passa da −0,02 a +0,10 (p 0,97 → 0,79). Si spostano altri
+  numeri citati nell'articolo: senza il modello aperto più forte, ChatBench a
+  sola lettera, −0,63 (p 0,08) → −0,58 (p 0,11); la tendenza sulle immagini
+  −0,45 (p 0,19) → −0,62 (p 0,06), che resta non distinguibile dal caso al 5
+  per cento; intervalli sotto i 90 gradi sulle immagini 374 → 380 su 689;
+  stime al bordo della tabella 30 → 29.
+- **Regola.** È cambiato un verdetto: il lavoro si ferma, e decide l'autore
+  come scriverlo.
+
+**A12, H1-H3 con l'intervallo** (verdetti identici sui risultati della
+versione 3 e su quelli rifatti; numeri di quelli rifatti).
+- H1 per famiglia: passano tutte e quattro (mediana di φ con il suo
+  intervallo): ChatBench 81,4 (79,8-84,6), αNLI 64,4 (59,6-65,3), testo di
+  HAIID 64,8 (57,6-70,9), immagini di HAIID 78,3 (71,6-86,9). Per confronto:
+  8 su 20, 20 su 20, 16 su 18, 8 su 16.
+- H2: passa nelle quattro famiglie.
+- H3: passa in tutto (media di e_φ − e_90 = −0,104, da −0,123 a −0,084), senza
+  HAIID (−0,124), su αNLI (−0,247) e sul testo di HAIID (−0,147); **non passa**
+  su ChatBench (−0,001, da −0,020 a +0,017) né sulle immagini di HAIID
+  (−0,004, da −0,041 a +0,034). La versione 3 mostrava il pareggio di
+  ChatBench nella sua tabella; `summary.py` aveva scritto «passa».
+- **Regola.** H3 differisce da ciò che diceva `summary.json` per due famiglie:
+  decide l'autore come scriverlo.
+
+**A3, gli errori tolti.** Con quattro opzioni e la persona dell'articolo (58
+risposte giuste su cento, d_H = 1,09), la coppia ideale a 90 gradi toglie il
+31,6 per cento degli errori della macchina con k = 1, il 28,5 con k = 2, il
+27,6 con k = 3, il 26,8 con k = 5, verso il limite 1 − exp(−d_H²/4) = 25,7.
+Lo scarto dal limite scende sotto il 5 per cento da k = 1,5-2 in poi, per d_H
+fra 1 e 1,25; fino a k = 3 per d_H = 2. «Circa un quarto qualunque sia k»
+vale da k ≈ 2, non per ogni k. Una proprietà del modello.
+
+**A5, la folla: non passa.** Tu_folla/Tu, GPT-4o 1,04 (0,51-2,68), Llama 0,86
+(0,50-1,51); Tu_folla 1,72 (0,87-4,40) e 1,20 (0,72-2,05) contro 1,65 e 1,40
+del singolo. Con GPT-4o, in 145 repliche su 2.000 la correlazione fra due
+persone con la chat non è positiva: il tetto della folla è allora illimitato e
+quelle repliche restano fuori, quindi l'estremo alto vero è ancora più alto.
+Il guadagno della folla non si distingue da quello del singolo.
+
+**A6, il verificatore: non passa.** d_v: GPT-4o 1,07 (0,47-1,72) contro 1,01
+del peso fisso, premio +0,06 (da −0,53 a +0,72); Llama 0,67 (0,13-1,23)
+contro 1,03, premio −0,36 (da −0,90 a +0,20). Per livello di sicurezza
+dichiarata, dove i casi bastano, nessun livello passa. La persona non si
+distingue da un osservatore a peso fisso.
+
+**A9, l'avvocato del diavolo.** (i) Con i pesi sulle voci invece che sulle
+domande gli intervalli si stringono (dall'80 al 100 per cento della
+larghezza): il ricampionamento della versione 3 era quello prudente. (ii)
+Chiamate distinte: 1.038 in ogni condizione con una lettera nella domanda (la
+risposta della persona, l'avvocato del diavolo, l'ancora), 396 per la
+macchina da sola; dietro, 2.903 prove. (iii) I due Llama, sulle stesse 396
+domande: in FP8 con la sola lettera 45,2 per cento; il Llama di ChatBench con
+la sola lettera 41,5, in testo libero 63,9. La distanza dal 67 per cento
+dell'articolo viene soprattutto dal formato della risposta, non dallo stack.
+
+## Dopo la revisione critica (v4): esito di A1, A2, A4, A7 (16 novembre 2026)
+
+**A1 e A2, margini e tetti con i loro intervalli** (`results/margins.json`).
+- Tabella 5. GPT-4o: margine della coppia ideale con gli indizi in comune 2,2
+  per cento (da 0 a 8,3), cioè +0,8 risposte giuste su cento (da 0 a 2,8);
+  tetto sulla macchina 1,022 (1,000-1,083); tetto con il solo verdetto 1,000
+  (1,000-1,011). Llama: 16,9 per cento (5,9-26,4), +6,4 risposte giuste
+  (2,3-9,5); 1,169 (1,059-1,270); con il solo verdetto 1,096 (1,018-1,188).
+  Con l'interpolazione cubica la griglia del verdetto non ha avuto bisogno di
+  essere infittita (5 × 5; il punto entro 10⁻⁴ dal calcolo diretto).
+- Tabella 7, margine a 90 gradi dall'intervallo di k. GPT-4o e Llama di
+  ChatBench contro tutte le persone che hanno risposto da sole (59 per cento):
+  nella versione 3 il loro k era calcolato fuori dal codice; qui viene dai
+  dati: GPT-4o k = 2,08 (1,81-2,41), margine 11,0 per cento (8,3-14,3), +3,5
+  risposte giuste; Llama 1,23 (1,07-1,43), 28,8 per cento (22,1-36,6), +10,6.
+  Haiku 5.5 8,1 (5,8-10,9), Sonnet 5.5 4,9 (3,1-6,7), Opus 5.5 4,4 (2,7-6,2).
+  Fable 5.2, senza errori: con la regola del tre k ≥ 3,50 e un margine al più
+  del 4,0 per cento alla sensibilità puntuale delle persone; con le persone
+  all'estremo alto del loro intervallo, come la tabella 21 legge gli altri, k
+  ≥ 3,13 e al più il 5,0 per cento, le cifre della versione 3.
+- Tabella 8 (αNLI): ogni margine con il suo intervallo, con la chiave della
+  storia e senza le storie contestate.
+
+**A4, il peso dell'evidenza** (nat). GPT-4o: W_H 0,58, W_M 2,73, W_S 1,58;
+ΔW_SH +1,00 (0,71-1,31), ΔW_SM −1,15 (da −1,72 a −0,67): potenziamento.
+Llama: W_H 0,68, W_M 0,95, W_S 1,34; ΔW_SH +0,66 (0,41-0,94), ΔW_SM +0,39
+(0,10-0,67): sinergia. I segni danno le stesse zone del turing, e nessun
+intervallo tocca lo zero.
+
+**A7, domande eterogenee** (`results/calibration-h.json`, 300 repliche). Il
+turing: errore +1,2 per cento (criterio soddisfatto), copertura 99,0 per cento
+(criterio non soddisfatto, per eccesso di prudenza, come in cinque situazioni
+della versione 3). L'angolo contro il valore dello strumento stesso su un
+campione enorme (71,6 gradi): stima media 71,8, copertura 98,3 per cento. Con
+una difficoltà che cambia da domanda a domanda e un'opzione sbagliata che
+attira, lo strumento mantiene il suo comportamento.
+
+## Le sezioni successive, solo in inglese
+
+Da qui in avanti il protocollo sta soltanto in [`PROTOCOL.md`](PROTOCOL.md), che fa fede: ogni sezione è stata
+pubblicata prima del calcolo che descrive, e l'esito è scritto sotto.
+
+- *After the critical review (v4): the new measures*, sotto A11: gli esiti della prova sulla contaminazione, su
+  ChatBench e su αNLI (la sezione qui sopra si ferma al protocollo).
+- *After the third review (v4)*: A13, la macchina interrogata di nuovo; A14, l'intervallo di dove vanno i punti.
+- *After the fourth review (v4)*: A15, le ipotesi ricampionando persone e domande; la correzione di A13 (k = 1).
+- *After the fifth review (v4)*: A16, la terza corsa di Haiku; A19, il primo messaggio della persona nelle chat mute.
+- *After the sixth review (v4)*: A17, la posizione della risposta e la somiglianza fra le macchine; A18, l'angolo
+  contro un modello probit a effetti misti.

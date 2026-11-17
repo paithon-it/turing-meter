@@ -1,0 +1,156 @@
+{
+ "replicas": 2000,
+ "seed": 534,
+ "h1": {
+  "chatbench": {
+   "comparisons": 20,
+   "interval_below_90": 7,
+   "phi_median": 80.81086695761103,
+   "phi_median_ci": [
+    78.49813006064441,
+    83.25943753559783
+   ],
+   "family_passes": true
+  },
+  "alphanli": {
+   "comparisons": 20,
+   "interval_below_90": 20,
+   "phi_median": 64.36987409334404,
+   "phi_median_ci": [
+    59.58880866477364,
+    65.26492600350326
+   ],
+   "family_passes": true
+  },
+  "haiid-text": {
+   "comparisons": 18,
+   "interval_below_90": 16,
+   "phi_median": 64.74291209555327,
+   "phi_median_ci": [
+    57.60456856165995,
+    70.67184071956976
+   ],
+   "family_passes": true
+  },
+  "haiid-images": {
+   "comparisons": 16,
+   "interval_below_90": 8,
+   "phi_median": 78.44190713114251,
+   "phi_median_ci": [
+    71.86995662607347,
+    88.14884342524455
+   ],
+   "family_passes": true
+  }
+ },
+ "h2": {
+  "chatbench": {
+   "difference": 0.24945473604322257,
+   "difference_ci": [
+    0.20438279471735324,
+    0.29269560766303493
+   ],
+   "pairs": 180,
+   "comparisons": 20,
+   "passes": true
+  },
+  "alphanli": {
+   "difference": 0.19640215030301467,
+   "difference_ci": [
+    0.1158406172678002,
+    0.21698600343363775
+   ],
+   "pairs": 180,
+   "comparisons": 20,
+   "passes": true
+  },
+  "haiid-text": {
+   "difference": 0.2854267095011862,
+   "difference_ci": [
+    0.14947362807581713,
+    0.39298916326056355
+   ],
+   "pairs": 360,
+   "comparisons": 18,
+   "passes": true
+  },
+  "haiid-images": {
+   "difference": 0.4731339326109901,
+   "difference_ci": [
+    0.22637815355887067,
+    0.6866647789686409
+   ],
+   "pairs": 72,
+   "comparisons": 16,
+   "passes": true
+  }
+ },
+ "h3": {
+  "all": {
+   "comparisons": 74,
+   "mean_difference": -0.10294980652385942,
+   "mean_difference_ci": [
+    -0.12224875843462717,
+    -0.0827786590784555
+   ],
+   "better_phi": 55,
+   "between_the_two": 12,
+   "passes": true
+  },
+  "without_haiid": {
+   "comparisons": 40,
+   "mean_difference": -0.12371150678312315,
+   "mean_difference_ci": [
+    -0.14954670810009876,
+    -0.09485976910118243
+   ],
+   "better_phi": 29,
+   "between_the_two": 10,
+   "passes": true
+  },
+  "chatbench": {
+   "comparisons": 20,
+   "mean_difference": -0.0004257207310733646,
+   "mean_difference_ci": [
+    -0.020380076606681594,
+    0.018979257213697823
+   ],
+   "better_phi": 9,
+   "between_the_two": 6,
+   "passes": false
+  },
+  "alphanli": {
+   "comparisons": 20,
+   "mean_difference": -0.2469972928351729,
+   "mean_difference_ci": [
+    -0.2983396381883761,
+    -0.19364075353766833
+   ],
+   "better_phi": 20,
+   "between_the_two": 4,
+   "passes": true
+  },
+  "haiid-text": {
+   "comparisons": 18,
+   "mean_difference": -0.14798991783434093,
+   "mean_difference_ci": [
+    -0.1843739356137221,
+    -0.10955896454240732
+   ],
+   "better_phi": 17,
+   "between_the_two": 0,
+   "passes": true
+  },
+  "haiid-images": {
+   "comparisons": 16,
+   "mean_difference": -0.0003754306514083261,
+   "mean_difference_ci": [
+    -0.03792028707286025,
+    0.0404077028708708
+   ],
+   "better_phi": 9,
+   "between_the_two": 2,
+   "passes": false
+  }
+ }
+}

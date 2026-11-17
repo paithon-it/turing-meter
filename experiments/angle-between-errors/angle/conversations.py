@@ -427,6 +427,26 @@ def agreement_and_disagreement(x: pd.DataFrame, model: str, repetitions: int = 2
     return out
 
 
+def branches(x: pd.DataFrame) -> dict:
+    """The tree of the chat figure: a hundred trials split by what comes out of the chat, with the correct answers of
+    the machine alone and of the pair in each branch, per hundred trials (the article's figure reads them from here)."""
+    n = len(x)
+    per_hundred = lambda s: float(100.0 * s / n)
+    none = x[~x.letter]
+    same = x[x.letter & (x.conv_answer_letter == x.selected_answer)]
+    other = x[x.letter & (x.conv_answer_letter != x.selected_answer)]
+    out = {"trials": int(n)}
+    for name, b in (("no_letter", none), ("same_letter", same), ("other_letter", other)):
+        out[name] = {"trials": int(len(b)), "share": per_hundred(len(b)), "machine": per_hundred(b.m_alone.sum()), "pair": per_hundred(b.acc_ai.sum())}
+    out["other_letter"].update(chat_right=per_hundred(other.chat_ok.sum()), chat_wrong=per_hundred((1 - other.chat_ok).sum()))
+    f = following(x, repetitions=1)
+    out.update(follow_right=f["follow_right"], follow_wrong=f["follow_wrong"],
+               machine=per_hundred(x.m_alone.sum()), pair=per_hundred(x.acc_ai.sum()))
+    parts = sum(out[b]["share"] for b in ("no_letter", "same_letter", "other_letter"))
+    assert abs(parts - 100.0) < 1e-9 and abs(sum(out[b]["machine"] for b in ("no_letter", "same_letter", "other_letter")) - out["machine"]) < 1e-9
+    return out
+
+
 def run() -> dict:
     out = {"zero_errors_fable": zero_errors()}
     for model in MODELS:
@@ -442,4 +462,9 @@ def run() -> dict:
 
 
 if __name__ == "__main__":
-    print(json.dumps(run(), indent=1))
+    import sys
+    if sys.argv[1:] == ["branches"]:          # only the tree of the chat figure → results/chat-branches.json
+        Path("results/chat-branches.json").write_text(json.dumps({"gpt-4o": branches(trials("gpt-4o"))}, indent=1))
+        print(Path("results/chat-branches.json").read_text())
+    else:
+        print(json.dumps(run(), indent=1))

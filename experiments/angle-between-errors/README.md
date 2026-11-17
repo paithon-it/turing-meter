@@ -13,9 +13,10 @@ whether the law of the ideal pair predicts what a pair can really do. The
 turing is the ratio of a person's sensitivity d′ with an AI to their
 sensitivity alone; the angle is the arccos of the correlation between human and
 machine errors, measured on ChatBench, ChaosNLI (αNLI), HAIID and
-model-vs-human, against 24 machines. Hypotheses and criteria are in
+model-vs-human, against 28 machines. Hypotheses and criteria are in
 `PROTOCOL.md`, written before looking at the data (the Italian original is
 `PROTOCOL.it.md`); what changed afterwards is in its "Deviations" section.
+Analyses A13 to A19 and the outcomes of A11 are in `PROTOCOL.md` only.
 
 ## How to cite
 

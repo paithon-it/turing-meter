@@ -12,6 +12,7 @@ giusta con la macchina accanto), e si controlla se la legge della coppia
 ideale prevede ciò che una coppia può davvero fare. Ipotesi e criteri stanno in
 `PROTOCOL.it.md` (la traduzione inglese è `PROTOCOL.md`), scritto prima di
 guardare i dati; ciò che è cambiato dopo sta nella sua sezione «Deviazioni».
+Le analisi da A13 ad A19 e gli esiti di A11 stanno solo in `PROTOCOL.md`, che per quelli fa fede.
 
 ## Come citare
 
